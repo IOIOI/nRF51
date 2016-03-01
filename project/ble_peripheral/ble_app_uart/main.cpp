@@ -23,6 +23,7 @@
 
 #include <stdint.h>
 #include <string.h>
+#include <string>
 
 extern "C"{
 
@@ -138,6 +139,8 @@ static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t lengt
         while(app_uart_put(p_data[i]) != NRF_SUCCESS);
     }
     while(app_uart_put('\n') != NRF_SUCCESS);
+    const std::string msg((char*)p_data, (size_t)length);
+    printf("%s\r\n", msg.c_str());
 }
 /**@snippet [Handling the data received over BLE] */
 
@@ -272,12 +275,14 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
             APP_ERROR_CHECK(err_code);
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
+            printf("connect\r\n");
             break;
             
         case BLE_GAP_EVT_DISCONNECTED:
             err_code = bsp_indication_set(BSP_INDICATE_IDLE);
             APP_ERROR_CHECK(err_code);
             m_conn_handle = BLE_CONN_HANDLE_INVALID;
+            printf("disconnect\r\n");
             break;
 
         case BLE_GAP_EVT_SEC_PARAMS_REQUEST:

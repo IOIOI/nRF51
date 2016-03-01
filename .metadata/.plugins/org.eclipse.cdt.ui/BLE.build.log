@@ -1,15 +1,19 @@
-13:08:05 **** Incremental Build of configuration Default for project BLE ****
+14:33:39 **** Incremental Build of configuration Default for project BLE ****
 make 
 rm -rf _build
 echo  Makefile
 Makefile
 mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
 Compiling file: app_button.c
 Compiling file: app_error.c
 Compiling file: app_fifo.c
 Compiling file: app_timer.c
 Compiling file: app_trace.c
 Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
 Compiling file: retarget.c
 Compiling file: app_uart_fifo.c
 Compiling file: nrf_delay.c
@@ -33,8 +37,8 @@ Preparing: nrf51422_xxac_s130.bin
 Preparing: nrf51422_xxac_s130.hex
 
    text	   data	    bss	    dec	    hex	filename
-  20788	    120	   2120	  23028	   59f4	_build/nrf51422_xxac_s130.out
+  34468	    132	   3448	  38048	   94a0	_build/nrf51422_xxac_s130.out
 
 
-13:08:10 Build Finished (took 4s.752ms)
+14:33:44 Build Finished (took 4s.828ms)
 

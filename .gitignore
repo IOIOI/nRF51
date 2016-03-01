@@ -1,0 +1,5 @@
+*.o
+project/ble_peripheral/ble_app_uart/pca10028/s130/armgcc/_build/nrf51422_xxac_s130.bin
+project/ble_peripheral/ble_app_uart/pca10028/s130/armgcc/_build/nrf51422_xxac_s130.hex
+project/ble_peripheral/ble_app_uart/pca10028/s130/armgcc/_build/nrf51422_xxac_s130.map
+project/ble_peripheral/ble_app_uart/pca10028/s130/armgcc/_build/nrf51422_xxac_s130.out

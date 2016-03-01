@@ -334,3 +334,532 @@ Preparing: nrf51422_xxac_s130.hex
    text	   data	    bss	    dec	    hex	filename
   20788	    120	   2120	  23028	   59f4	_build/nrf51422_xxac_s130.out
 
+13:20:12 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  20788	    120	   2120	  23028	   59f4	_build/nrf51422_xxac_s130.out
+
+13:24:26 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  31952	    116	   2124	  34192	   8590	_build/nrf51422_xxac_s130.out
+
+14:05:39 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+_build/retarget.o: In function `_write':
+/Users/nilsweiss/nRF51/components/libraries/uart/retarget.c:55: multiple definition of `_write'
+_build/RTT_Syscalls_GCC.o:/Users/nilsweiss/nRF51/components/drivers_ext/segger_rtt/RTT_Syscalls_GCC.c:75: first defined here
+collect2: error: ld returned 1 exit status
+make: *** [nrf51422_xxac_s130] Error 1
+14:07:07 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+_build/retarget.o: In function `_write':
+/Users/nilsweiss/nRF51/components/libraries/uart/retarget.c:55: multiple definition of `_write'
+_build/RTT_Syscalls_GCC.o:/Users/nilsweiss/nRF51/components/drivers_ext/segger_rtt/RTT_Syscalls_GCC.c:75: first defined here
+collect2: error: ld returned 1 exit status
+make: *** [nrf51422_xxac_s130] Error 1
+14:08:37 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+_build/retarget.o: In function `_write':
+/Users/nilsweiss/nRF51/components/libraries/uart/retarget.c:55: multiple definition of `_write'
+_build/RTT_Syscalls_GCC.o:/Users/nilsweiss/nRF51/components/drivers_ext/segger_rtt/RTT_Syscalls_GCC.c:75: first defined here
+collect2: error: ld returned 1 exit status
+make: *** [nrf51422_xxac_s130] Error 1
+14:14:29 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  32688	    116	   3284	  36088	   8cf8	_build/nrf51422_xxac_s130.out
+
+14:28:25 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  32740	    116	   3284	  36140	   8d2c	_build/nrf51422_xxac_s130.out
+
+14:32:38 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp: In function 'void nus_data_handler(ble_nus_t*, uint8_t*, uint16_t)':
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:142:35: error: no matching function for call to 'std::__cxx11::basic_string<char>::basic_string(uint8_t*&, uint16_t&)'
+     std::string msg(p_data, length);
+                                   ^
+In file included from /Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/string:52:0,
+                 from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:26:
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:535:9: note: candidate: template<class _InputIterator, class> std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(_InputIterator, _InputIterator, const _Alloc&)
+         basic_string(_InputIterator __beg, _InputIterator __end,
+         ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:535:9: note:   template argument deduction/substitution failed:
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:142:35: note:   deduced conflicting types for parameter '_InputIterator' ('unsigned char*' and 'short unsigned int')
+     std::string msg(p_data, length);
+                                   ^
+In file included from /Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/string:52:0,
+                 from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:26:
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:512:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&&, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       basic_string(basic_string&& __str, const _Alloc& __a)
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:512:7: note:   no known conversion for argument 1 from 'uint8_t* {aka unsigned char*}' to 'std::__cxx11::basic_string<char>&&'
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:508:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       basic_string(const basic_string& __str, const _Alloc& __a)
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:508:7: note:   no known conversion for argument 1 from 'uint8_t* {aka unsigned char*}' to 'const std::__cxx11::basic_string<char>&'
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:504:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(std::initializer_list<_Tp>, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       basic_string(initializer_list<_CharT> __l, const _Alloc& __a = _Alloc())
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:504:7: note:   no known conversion for argument 1 from 'uint8_t* {aka unsigned char*}' to 'std::initializer_list<char>'
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:477:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       basic_string(basic_string&& __str) noexcept
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:477:7: note:   candidate expects 1 argument, 2 provided
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:465:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type, _CharT, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type = unsigned int] <near match>
+       basic_string(size_type __n, _CharT __c, const _Alloc& __a = _Alloc())
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:465:7: note:   conversion of argument 1 would be ill-formed:
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:142:35: error: invalid conversion from 'uint8_t* {aka unsigned char*}' to 'std::__cxx11::basic_string<char>::size_type {aka unsigned int}' [-fpermissive]
+     std::string msg(p_data, length);
+                                   ^
+In file included from /Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/string:52:0,
+                 from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:26:
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:455:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const _CharT*, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       basic_string(const _CharT* __s, const _Alloc& __a = _Alloc())
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:455:7: note:   no known conversion for argument 2 from 'uint16_t {aka short unsigned int}' to 'const std::allocator<char>&'
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:445:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const _CharT*, std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type = unsigned int] <near match>
+       basic_string(const _CharT* __s, size_type __n,
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:445:7: note:   conversion of argument 1 would be ill-formed:
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:142:35: error: invalid conversion from 'uint8_t* {aka unsigned char*}' to 'const char*' [-fpermissive]
+     std::string msg(p_data, length);
+                                   ^
+In file included from /Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/string:52:0,
+                 from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:26:
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:427:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type, std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type = unsigned int]
+       basic_string(const basic_string& __str, size_type __pos,
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:427:7: note:   candidate expects 4 arguments, 2 provided
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:411:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type, std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type = unsigned int]
+       basic_string(const basic_string& __str, size_type __pos,
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:411:7: note:   no known conversion for argument 1 from 'uint8_t* {aka unsigned char*}' to 'const std::__cxx11::basic_string<char>&'
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:399:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       basic_string(const basic_string& __str)
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:399:7: note:   candidate expects 1 argument, 2 provided
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:391:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       basic_string(const _Alloc& __a)
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:391:7: note:   candidate expects 1 argument, 2 provided
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:380:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string() [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       basic_string()
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:380:7: note:   candidate expects 0 arguments, 2 provided
+make: *** [_build/main.o] Error 1
+14:32:54 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp: In function 'void nus_data_handler(ble_nus_t*, uint8_t*, uint16_t)':
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:142:41: error: no matching function for call to 'std::__cxx11::basic_string<char>::basic_string(uint8_t*&, uint16_t&)'
+     const std::string msg(p_data, length);
+                                         ^
+In file included from /Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/string:52:0,
+                 from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:26:
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:535:9: note: candidate: template<class _InputIterator, class> std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(_InputIterator, _InputIterator, const _Alloc&)
+         basic_string(_InputIterator __beg, _InputIterator __end,
+         ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:535:9: note:   template argument deduction/substitution failed:
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:142:41: note:   deduced conflicting types for parameter '_InputIterator' ('unsigned char*' and 'short unsigned int')
+     const std::string msg(p_data, length);
+                                         ^
+In file included from /Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/string:52:0,
+                 from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:26:
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:512:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&&, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       basic_string(basic_string&& __str, const _Alloc& __a)
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:512:7: note:   no known conversion for argument 1 from 'uint8_t* {aka unsigned char*}' to 'std::__cxx11::basic_string<char>&&'
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:508:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       basic_string(const basic_string& __str, const _Alloc& __a)
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:508:7: note:   no known conversion for argument 1 from 'uint8_t* {aka unsigned char*}' to 'const std::__cxx11::basic_string<char>&'
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:504:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(std::initializer_list<_Tp>, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       basic_string(initializer_list<_CharT> __l, const _Alloc& __a = _Alloc())
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:504:7: note:   no known conversion for argument 1 from 'uint8_t* {aka unsigned char*}' to 'std::initializer_list<char>'
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:477:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       basic_string(basic_string&& __str) noexcept
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:477:7: note:   candidate expects 1 argument, 2 provided
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:465:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type, _CharT, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type = unsigned int] <near match>
+       basic_string(size_type __n, _CharT __c, const _Alloc& __a = _Alloc())
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:465:7: note:   conversion of argument 1 would be ill-formed:
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:142:41: error: invalid conversion from 'uint8_t* {aka unsigned char*}' to 'std::__cxx11::basic_string<char>::size_type {aka unsigned int}' [-fpermissive]
+     const std::string msg(p_data, length);
+                                         ^
+In file included from /Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/string:52:0,
+                 from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:26:
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:455:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const _CharT*, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       basic_string(const _CharT* __s, const _Alloc& __a = _Alloc())
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:455:7: note:   no known conversion for argument 2 from 'uint16_t {aka short unsigned int}' to 'const std::allocator<char>&'
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:445:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const _CharT*, std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type = unsigned int] <near match>
+       basic_string(const _CharT* __s, size_type __n,
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:445:7: note:   conversion of argument 1 would be ill-formed:
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:142:41: error: invalid conversion from 'uint8_t* {aka unsigned char*}' to 'const char*' [-fpermissive]
+     const std::string msg(p_data, length);
+                                         ^
+In file included from /Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/string:52:0,
+                 from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:26:
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:427:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type, std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type, const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type = unsigned int]
+       basic_string(const basic_string& __str, size_type __pos,
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:427:7: note:   candidate expects 4 arguments, 2 provided
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:411:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type, std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>; std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::size_type = unsigned int]
+       basic_string(const basic_string& __str, size_type __pos,
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:411:7: note:   no known conversion for argument 1 from 'uint8_t* {aka unsigned char*}' to 'const std::__cxx11::basic_string<char>&'
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:399:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       basic_string(const basic_string& __str)
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:399:7: note:   candidate expects 1 argument, 2 provided
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:391:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string(const _Alloc&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       basic_string(const _Alloc& __a)
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:391:7: note:   candidate expects 1 argument, 2 provided
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:380:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::basic_string() [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       basic_string()
+       ^
+/Users/nilsweiss/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi/include/c++/5.2.1/bits/basic_string.h:380:7: note:   candidate expects 0 arguments, 2 provided
+make: *** [_build/main.o] Error 1
+14:33:39 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  34468	    132	   3448	  38048	   94a0	_build/nrf51422_xxac_s130.out
+

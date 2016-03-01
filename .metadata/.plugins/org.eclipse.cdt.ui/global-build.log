@@ -1,0 +1,336 @@
+12:41:40 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+In file included from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:33:0:
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp: In function 'int main()':
+/Users/nilsweiss/nRF51/components/libraries/timer/app_timer.h:156:58: error: converting 'false' to pointer type for argument 4 of 'uint32_t app_timer_init(uint32_t, uint8_t, void*, app_timer_evt_schedule_func_t)' [-Werror=conversion-null]
+                                            SCHEDULER_FUNC);                                        \
+                                                          ^
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:520:5: note: in expansion of macro 'APP_TIMER_INIT'
+     APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, false);
+     ^
+In file included from /Users/nilsweiss/nRF51/components/softdevice/s130/headers/ble_gap.h:48:0,
+                 from /Users/nilsweiss/nRF51/components/softdevice/s130/headers/ble.h:52,
+                 from /Users/nilsweiss/nRF51/components/ble/common/ble_advdata.h:28,
+                 from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:29:
+/Users/nilsweiss/nRF51/components/softdevice/s130/headers/ble_gatts.h: In function 'uint32_t sd_ble_gatts_sys_attr_set(uint16_t, const uint8_t*, uint16_t, uint32_t)':
+/Users/nilsweiss/nRF51/components/softdevice/s130/headers/nrf_svc.h:56:6: error: asm operand 0 probably doesn't match constraints [-Werror]
+     ); \
+      ^
+/Users/nilsweiss/nRF51/components/softdevice/s130/headers/ble_gatts.h:603:1: note: in expansion of macro 'SVCALL'
+ SVCALL(SD_BLE_GATTS_SYS_ATTR_SET, uint32_t, sd_ble_gatts_sys_attr_set(uint16_t conn_handle, uint8_t const *p_sys_attr_data, uint16_t len, uint32_t flags)); 
+ ^
+/Users/nilsweiss/nRF51/components/softdevice/s130/headers/nrf_svc.h:56:6: error: impossible constraint in 'asm'
+     ); \
+      ^
+/Users/nilsweiss/nRF51/components/softdevice/s130/headers/ble_gatts.h:603:1: note: in expansion of macro 'SVCALL'
+ SVCALL(SD_BLE_GATTS_SYS_ATTR_SET, uint32_t, sd_ble_gatts_sys_attr_set(uint16_t conn_handle, uint8_t const *p_sys_attr_data, uint16_t len, uint32_t flags)); 
+ ^
+cc1plus: all warnings being treated as errors
+make: *** [_build/main.o] Error 1
+12:46:20 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+In file included from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:33:0:
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp: In function 'int main()':
+/Users/nilsweiss/nRF51/components/libraries/timer/app_timer.h:156:58: error: converting 'false' to pointer type for argument 4 of 'uint32_t app_timer_init(uint32_t, uint8_t, void*, app_timer_evt_schedule_func_t)' [-Werror=conversion-null]
+                                            SCHEDULER_FUNC);                                        \
+                                                          ^
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:520:5: note: in expansion of macro 'APP_TIMER_INIT'
+     APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, false);
+     ^
+cc1plus: all warnings being treated as errors
+make: *** [_build/main.o] Error 1
+12:55:18 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+_build/main.o: In function `conn_params_error_handler(unsigned long)':
+main.cpp:(.text._ZL25conn_params_error_handlerm+0x6): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+_build/main.o: In function `nus_data_handler(ble_nus_s*, unsigned char*, unsigned short)':
+main.cpp:(.text._ZL16nus_data_handlerP9ble_nus_sPht+0xe): undefined reference to `app_uart_put(unsigned char)'
+main.cpp:(.text._ZL16nus_data_handlerP9ble_nus_sPht+0x1e): undefined reference to `app_uart_put(unsigned char)'
+_build/main.o: In function `on_conn_params_evt(ble_conn_params_evt_t*)':
+main.cpp:(.text._ZL18on_conn_params_evtP21ble_conn_params_evt_t+0x1c): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+_build/main.o: In function `ble_evt_dispatch(ble_evt_t*)':
+main.cpp:(.text._ZL16ble_evt_dispatchP9ble_evt_t+0x4): undefined reference to `ble_conn_params_on_ble_evt(ble_evt_t*)'
+main.cpp:(.text._ZL16ble_evt_dispatchP9ble_evt_t+0xc): undefined reference to `ble_nus_on_ble_evt(ble_nus_s*, ble_evt_t*)'
+main.cpp:(.text._ZL16ble_evt_dispatchP9ble_evt_t+0x34): undefined reference to `ble_advertising_on_ble_evt(ble_evt_t const*)'
+main.cpp:(.text._ZL16ble_evt_dispatchP9ble_evt_t+0x3a): undefined reference to `bsp_btn_ble_on_ble_evt(ble_evt_t*)'
+main.cpp:(.text._ZL16ble_evt_dispatchP9ble_evt_t+0x56): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text._ZL16ble_evt_dispatchP9ble_evt_t+0x62): undefined reference to `bsp_indication_set(bsp_indication_t)'
+main.cpp:(.text._ZL16ble_evt_dispatchP9ble_evt_t+0x74): undefined reference to `bsp_indication_set(bsp_indication_t)'
+main.cpp:(.text._ZL16ble_evt_dispatchP9ble_evt_t+0x8a): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text._ZL16ble_evt_dispatchP9ble_evt_t+0x94): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+_build/main.o: In function `bsp_event_handler(bsp_event_t)':
+main.cpp:(.text._Z17bsp_event_handler11bsp_event_t+0x26): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text._Z17bsp_event_handler11bsp_event_t+0x2e): undefined reference to `bsp_indication_set(bsp_indication_t)'
+main.cpp:(.text._Z17bsp_event_handler11bsp_event_t+0x36): undefined reference to `bsp_btn_ble_sleep_mode_prepare()'
+main.cpp:(.text._Z17bsp_event_handler11bsp_event_t+0x48): undefined reference to `ble_advertising_restart_without_whitelist()'
+main.cpp:(.text._Z17bsp_event_handler11bsp_event_t+0x52): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text._Z17bsp_event_handler11bsp_event_t+0x5c): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+_build/main.o: In function `uart_event_handle(app_uart_evt_t*)':
+main.cpp:(.text._Z17uart_event_handleP14app_uart_evt_t+0x16): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text._Z17uart_event_handleP14app_uart_evt_t+0x24): undefined reference to `app_uart_get(unsigned char*)'
+main.cpp:(.text._Z17uart_event_handleP14app_uart_evt_t+0x44): undefined reference to `ble_nus_string_send(ble_nus_s*, unsigned char*, unsigned short)'
+main.cpp:(.text._Z17uart_event_handleP14app_uart_evt_t+0x54): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+_build/main.o: In function `on_adv_evt(ble_adv_evt_t)':
+main.cpp:(.text._ZL10on_adv_evt13ble_adv_evt_t+0xc): undefined reference to `bsp_indication_set(bsp_indication_t)'
+main.cpp:(.text._ZL10on_adv_evt13ble_adv_evt_t+0x18): undefined reference to `bsp_indication_set(bsp_indication_t)'
+main.cpp:(.text._ZL10on_adv_evt13ble_adv_evt_t+0x20): undefined reference to `bsp_btn_ble_sleep_mode_prepare()'
+main.cpp:(.text._ZL10on_adv_evt13ble_adv_evt_t+0x34): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text._ZL10on_adv_evt13ble_adv_evt_t+0x3e): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text._ZL10on_adv_evt13ble_adv_evt_t+0x48): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+_build/main.o: In function `main':
+main.cpp:(.text.startup.main+0x1e): undefined reference to `app_timer_init(unsigned long, unsigned char, void*, unsigned long (*)(void (*)(void*), void*))'
+main.cpp:(.text.startup.main+0x2a): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text.startup.main+0x52): undefined reference to `app_uart_init(app_uart_comm_params_t const*, app_uart_buffers_t*, void (*)(app_uart_evt_t*), app_irq_priority_t)'
+main.cpp:(.text.startup.main+0x5e): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text.startup.main+0x68): undefined reference to `bsp_init(unsigned long, unsigned long, void (*)(bsp_event_t))'
+main.cpp:(.text.startup.main+0x74): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text.startup.main+0x7c): undefined reference to `bsp_btn_ble_init(void (*)(unsigned long), bsp_event_t*)'
+main.cpp:(.text.startup.main+0x88): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text.startup.main+0x94): undefined reference to `softdevice_handler_init(unsigned long, void*, unsigned short, unsigned long (*)())'
+main.cpp:(.text.startup.main+0xa0): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text.startup.main+0xc8): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text.startup.main+0xce): undefined reference to `softdevice_ble_evt_handler_set(void (*)(ble_evt_t*))'
+main.cpp:(.text.startup.main+0xda): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text.startup.main+0x10a): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text.startup.main+0x138): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text.startup.main+0x14e): undefined reference to `ble_nus_init(ble_nus_s*, ble_nus_init_t const*)'
+main.cpp:(.text.startup.main+0x15a): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text.startup.main+0x1ac): undefined reference to `ble_advertising_init(ble_advdata_t const*, ble_advdata_t const*, ble_adv_modes_config_t const*, void (*)(ble_adv_evt_t), void (*)(unsigned long))'
+main.cpp:(.text.startup.main+0x1b8): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text.startup.main+0x1e8): undefined reference to `ble_conn_params_init(ble_conn_params_init_t const*)'
+main.cpp:(.text.startup.main+0x1f4): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+main.cpp:(.text.startup.main+0x202): undefined reference to `ble_advertising_start(ble_adv_mode_t)'
+main.cpp:(.text.startup.main+0x216): undefined reference to `app_error_handler(unsigned long, unsigned long, unsigned char const*)'
+collect2: error: ld returned 1 exit status
+make: *** [nrf51422_xxac_s130] Error 1
+12:59:21 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  20788	    120	   2120	  23028	   59f4	_build/nrf51422_xxac_s130.out
+
+13:05:23 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  20788	    120	   2120	  23028	   59f4	_build/nrf51422_xxac_s130.out
+
+13:05:40 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  20788	    120	   2120	  23028	   59f4	_build/nrf51422_xxac_s130.out
+
+13:08:05 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  20788	    120	   2120	  23028	   59f4	_build/nrf51422_xxac_s130.out
+

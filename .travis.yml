@@ -45,4 +45,5 @@ before_script:
         - arm-none-eabi-gcc --version
         - gcov --version        
 script: 
+        - cd project/ble_peripheral/ble_app_uart/pca10028/s130/armgcc/
         - make  

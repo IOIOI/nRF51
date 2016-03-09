@@ -1,4 +1,4 @@
-14:33:39 **** Incremental Build of configuration Default for project BLE ****
+12:52:22 **** Incremental Build of configuration Default for project BLE ****
 make 
 rm -rf _build
 echo  Makefile
@@ -30,6 +30,8 @@ Compiling file: ble_nus.c
 Compiling file: ble_srv_common.c
 Compiling file: system_nrf51.c
 Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
 Compiling file: main.cpp
 Compiling file: gcc_startup_nrf51.s
 Linking target: nrf51422_xxac_s130.out
@@ -37,8 +39,8 @@ Preparing: nrf51422_xxac_s130.bin
 Preparing: nrf51422_xxac_s130.hex
 
    text	   data	    bss	    dec	    hex	filename
-  34468	    132	   3448	  38048	   94a0	_build/nrf51422_xxac_s130.out
+  51312	    124	   3856	  55292	   d7fc	_build/nrf51422_xxac_s130.out
 
 
-14:33:44 Build Finished (took 4s.828ms)
+12:52:27 Build Finished (took 4s.892ms)
 

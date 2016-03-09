@@ -1048,7 +1048,7 @@
 					<entry kind="macro" name="__UTQ_IBIT__" value="0">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__VERSION__" value="&quot;4.9.3 20150529 (release) [ARM/embedded-4_9-branch revision 224288]&quot;">
+					<entry kind="macro" name="__VERSION__" value="&quot;4.9.3 20150529 (release) [ARM/embedded-4_9-branch revision 227977]&quot;">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__VFP_FP__" value="1">
@@ -2151,7 +2151,7 @@
 					<entry kind="macro" name="__UTQ_IBIT__" value="0">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
-					<entry kind="macro" name="__VERSION__" value="&quot;4.9.3 20150529 (release) [ARM/embedded-4_9-branch revision 224288]&quot;">
+					<entry kind="macro" name="__VERSION__" value="&quot;4.9.3 20150529 (release) [ARM/embedded-4_9-branch revision 227977]&quot;">
 						<flag value="BUILTIN|READONLY"/>
 					</entry>
 					<entry kind="macro" name="__VFP_FP__" value="1">

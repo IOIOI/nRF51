@@ -64,6 +64,8 @@ $(abspath ../../../../../../components/ble/ble_services/ble_nus/ble_nus.c) \
 $(abspath ../../../../../../components/ble/common/ble_srv_common.c) \
 $(abspath ../../../../../../components/toolchain/system_nrf51.c) \
 $(abspath ../../../../../../components/softdevice/common/softdevice_handler/softdevice_handler.c) \
+$(abspath ../../../../../../components/ble/device_manager/device_manager_peripheral.c) \
+$(abspath ../../../app_bond.c) \
 
 #source common to all targets
 CPP_SOURCE_FILES += \
@@ -97,6 +99,8 @@ INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/common)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_advertising)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/trace)
 INC_PATHS += -I$(abspath ../../../../../../components/softdevice/common/softdevice_handler)
+INC_PATHS += -I$(abspath ../../../../../../components/ble/device_manager)
+INC_PATHS += -I$(abspath ../../../../../../components/ble/device_manager/config)
 
 OBJECT_DIRECTORY = _build
 LISTING_DIRECTORY = $(OBJECT_DIRECTORY)
@@ -156,6 +160,9 @@ ASMFLAGS += -DS130
 ASMFLAGS += -DBLE_STACK_SUPPORT_REQD
 ASMFLAGS += -DSWI_DISABLE0
 
+# Defines
+DEFINES += -DDEBUG
+
 #default target - first one defined
 default: clean nrf51422_xxac_s130
 
@@ -204,12 +211,12 @@ $(BUILD_DIRECTORIES):
 # Create objects from C SRC files
 $(OBJECT_DIRECTORY)/%.o: %.c
 	@echo Compiling file: $(notdir $<)
-	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c -o $@ $<
+	$(NO_ECHO)$(CC) $(CFLAGS) $(DEFINES) $(INC_PATHS) -c -o $@ $<
 	
 # Create objects from CPP SRC files
 $(OBJECT_DIRECTORY)/%.o: %.cpp
 	@echo Compiling file: $(notdir $<)
-	$(NO_ECHO)$(CPP) $(CPPFLAGS) $(INC_PATHS) -c -o $@ $<
+	$(NO_ECHO)$(CPP) $(CPPFLAGS) $(DEFINES) $(INC_PATHS) -c -o $@ $<
 
 # Assemble files
 $(OBJECT_DIRECTORY)/%.o: %.s
@@ -219,7 +226,7 @@ $(OBJECT_DIRECTORY)/%.o: %.s
 # Link
 $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out: $(BUILD_DIRECTORIES) $(OBJECTS)
 	@echo Linking target: $(OUTPUT_FILENAME).out
-	$(NO_ECHO)$(CPP) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
+	$(NO_ECHO)$(CPP) $(LDFLAGS) $(DEFINES) $(OBJECTS) $(LIBS) -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
 
 ## Create binary .bin file from the .out file
 $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).bin: $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out

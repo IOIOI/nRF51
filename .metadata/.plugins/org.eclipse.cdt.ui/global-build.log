@@ -863,3 +863,1229 @@ Preparing: nrf51422_xxac_s130.hex
    text	   data	    bss	    dec	    hex	filename
   34468	    132	   3448	  38048	   94a0	_build/nrf51422_xxac_s130.out
 
+11:26:36 **** Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp: In function 'void device_manager_init(bool)':
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:510:146: error: 'APP_LOG' was not declared in this scope
+             APP_LOG("[APP][ID: %d], Application context : %08X\r\n",m_app_bond_table.device_id[i],(unsigned int) m_app_bond_table.app_bond_cnt[i]);
+                                                                                                                                                  ^
+make: *** [_build/main.o] Error 1
+11:26:53 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  49680	    124	   3808	  53612	   d16c	_build/nrf51422_xxac_s130.out
+
+11:33:09 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:155:21: fatal error: iostreamt: No such file or directory
+ #include <iostreamt>
+                     ^
+compilation terminated.
+make: *** [_build/main.o] Error 1
+11:33:29 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+In file included from /Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/string:38:0,
+                 from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:26:
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_classes.h: In function 'void nus_data_handler(ble_nus_t*, uint8_t*, uint16_t)':
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_classes.h:43:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_classes.h:43:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_classes.h:43:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_classes.h:43:15: error: expected primary-expression before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_classes.tcc:39:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_classes.tcc:39:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_classes.tcc:39:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_classes.tcc:39:15: error: expected primary-expression before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/ios_base.h:43:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/ios_base.h:43:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/ios_base.h:43:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/ios_base.h:43:15: error: expected primary-expression before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/streambuf:45:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/streambuf:45:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/streambuf:45:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/streambuf:45:15: error: expected primary-expression before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/streambuf.tcc:39:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/streambuf.tcc:39:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/streambuf.tcc:39:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/streambuf.tcc:39:15: error: expected primary-expression before '__attribute__'
+In file included from /Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/string.h:10:0,
+                 from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:25:
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/wctype.h:14:1: error: expected unqualified-id before string constant
+ _BEGIN_STD_C
+ ^
+In file included from /Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_facets.h:39:0,
+                 from /Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/basic_ios.h:37,
+                 from /Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/ios:44,
+                 from /Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/ostream:38,
+                 from /Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/iostream:39,
+                 from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:155:
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/cwctype:80:1: error: 'namespace' definition is not allowed here
+ namespace std
+ ^
+In file included from /Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/string:38:0,
+                 from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:26:
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/arm-none-eabi/armv6-m/bits/ctype_base.h:33:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/arm-none-eabi/armv6-m/bits/ctype_base.h:33:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/arm-none-eabi/armv6-m/bits/ctype_base.h:33:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/arm-none-eabi/armv6-m/bits/ctype_base.h:33:15: error: expected primary-expression before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/streambuf_iterator.h:38:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/streambuf_iterator.h:38:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/streambuf_iterator.h:38:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/streambuf_iterator.h:38:15: error: expected primary-expression before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_facets.h:50:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_facets.h:50:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_facets.h:50:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_facets.h:50:15: error: expected primary-expression before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/arm-none-eabi/armv6-m/bits/ctype_inline.h:37:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/arm-none-eabi/armv6-m/bits/ctype_inline.h:37:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/arm-none-eabi/armv6-m/bits/ctype_inline.h:37:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/arm-none-eabi/armv6-m/bits/ctype_inline.h:37:15: error: expected primary-expression before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_facets.h:1513:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_facets.h:1513:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_facets.h:1513:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_facets.h:1513:15: error: expected primary-expression before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_facets.tcc:35:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_facets.tcc:35:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_facets.tcc:35:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/locale_facets.tcc:35:15: error: expected primary-expression before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/basic_ios.h:40:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/basic_ios.h:40:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/basic_ios.h:40:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/basic_ios.h:40:15: error: expected primary-expression before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/basic_ios.tcc:35:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/basic_ios.tcc:35:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/basic_ios.tcc:35:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/basic_ios.tcc:35:15: error: expected primary-expression before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/ostream:41:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/ostream:41:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/ostream:41:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/ostream:41:15: error: expected primary-expression before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/ostream.tcc:41:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/ostream.tcc:41:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/ostream.tcc:41:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/ostream.tcc:41:15: error: expected primary-expression before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/istream:41:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/istream:41:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/istream:41:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/istream:41:15: error: expected primary-expression before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/istream.tcc:41:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/istream.tcc:41:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/istream.tcc:41:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/bits/istream.tcc:41:15: error: expected primary-expression before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/iostream:42:15: error: expected '=' before '__attribute__'
+ namespace std _GLIBCXX_VISIBILITY(default)
+               ^
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/iostream:42:15: error: expected identifier before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/iostream:42:15: error: expected ';' before '__attribute__'
+/Users/nilsweiss/gcc-arm-none-eabi-4_9-2015q2/arm-none-eabi/include/c++/4.9.3/iostream:42:15: error: expected primary-expression before '__attribute__'
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:156:5: error: 'cout' is not a member of 'std'
+     std::cout<<msg<<std::endl;
+     ^
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:156:21: error: 'endl' is not a member of 'std'
+     std::cout<<msg<<std::endl;
+                     ^
+make: *** [_build/main.o] Error 1
+11:46:01 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  49716	    124	   3808	  53648	   d190	_build/nrf51422_xxac_s130.out
+
+11:49:31 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  49680	    124	   3808	  53612	   d16c	_build/nrf51422_xxac_s130.out
+
+11:51:20 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  49680	    124	   3808	  53612	   d16c	_build/nrf51422_xxac_s130.out
+
+11:51:47 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  49680	    124	   3808	  53612	   d16c	_build/nrf51422_xxac_s130.out
+
+11:57:17 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  49680	    124	   3808	  53612	   d16c	_build/nrf51422_xxac_s130.out
+
+11:58:49 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  45264	    124	   3736	  49124	   bfe4	_build/nrf51422_xxac_s130.out
+
+11:59:13 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  49672	    124	   3808	  53604	   d164	_build/nrf51422_xxac_s130.out
+
+12:08:53 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  49672	    124	   3808	  53604	   d164	_build/nrf51422_xxac_s130.out
+
+12:09:02 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  50412	    124	   3820	  54356	   d454	_build/nrf51422_xxac_s130.out
+
+12:17:22 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  51216	    124	   3848	  55188	   d794	_build/nrf51422_xxac_s130.out
+
+12:20:19 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  51216	    124	   3848	  55188	   d794	_build/nrf51422_xxac_s130.out
+
+12:26:08 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  51224	    124	   3848	  55196	   d79c	_build/nrf51422_xxac_s130.out
+
+12:43:11 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp: In function 'void gap_params_init()':
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:144:26: error: 'union ble_opt_t' has no member named 'gap'
+      m_static_pin_option.gap.passkey.p_passkey = passkey;
+                          ^
+make: *** [_build/main.o] Error 1
+12:43:19 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp: In function 'void gap_params_init()':
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:144:26: error: 'union ble_opt_t' has no member named 'gap'
+      m_static_pin_option.gap.passkey.p_passkey = passkey;
+                          ^
+make: *** [_build/main.o] Error 1
+12:44:28 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  51304	    124	   3860	  55288	   d7f8	_build/nrf51422_xxac_s130.out
+
+12:47:34 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:95:23: error: 'm_static_pin_option' defined but not used [-Werror=unused-variable]
+ static ble_opt_t      m_static_pin_option;
+                       ^
+cc1plus: all warnings being treated as errors
+make: *** [_build/main.o] Error 1
+12:47:43 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:95:23: error: 'm_static_pin_option' defined but not used [-Werror=unused-variable]
+ static ble_opt_t      m_static_pin_option;
+                       ^
+cc1plus: all warnings being treated as errors
+make: *** [_build/main.o] Error 1
+12:47:57 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  51216	    124	   3852	  55192	   d798	_build/nrf51422_xxac_s130.out
+
+12:48:19 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  51224	    124	   3852	  55200	   d7a0	_build/nrf51422_xxac_s130.out
+
+12:50:17 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  51224	    124	   3852	  55200	   d7a0	_build/nrf51422_xxac_s130.out
+
+12:51:44 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  51224	    124	   3848	  55196	   d79c	_build/nrf51422_xxac_s130.out
+
+12:52:22 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  51312	    124	   3856	  55292	   d7fc	_build/nrf51422_xxac_s130.out
+

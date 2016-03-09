@@ -41,6 +41,10 @@ extern "C"{
 #include "app_util_platform.h"
 #include "bsp.h"
 #include "bsp_btn_ble.h"
+
+#include "device_manager.h"
+#include "pstorage.h"
+#include "app_bond.h"
 }
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                           /**< Include the service_changed characteristic. If not enabled, the server's database cannot be changed for the lifetime of the device. */
@@ -55,7 +59,7 @@ extern "C"{
 #define APP_TIMER_OP_QUEUE_SIZE         4                                           /**< Size of timer operation queues. */
 
 #define MIN_CONN_INTERVAL               MSEC_TO_UNITS(20, UNIT_1_25_MS)             /**< Minimum acceptable connection interval (20 ms), Connection interval uses 1.25 ms units. */
-#define MAX_CONN_INTERVAL               MSEC_TO_UNITS(75, UNIT_1_25_MS)             /**< Maximum acceptable connection interval (75 ms), Connection interval uses 1.25 ms units. */
+#define MAX_CONN_INTERVAL               MSEC_TO_UNITS(500, UNIT_1_25_MS)             /**< Maximum acceptable connection interval (75 ms), Connection interval uses 1.25 ms units. */
 #define SLAVE_LATENCY                   0                                           /**< Slave latency. */
 #define CONN_SUP_TIMEOUT                MSEC_TO_UNITS(4000, UNIT_10_MS)             /**< Connection supervisory timeout (4 seconds), Supervision Timeout uses 10 ms units. */
 #define FIRST_CONN_PARAMS_UPDATE_DELAY  APP_TIMER_TICKS(5000, APP_TIMER_PRESCALER)  /**< Time from initiating event (connect or start of notification) to first time sd_ble_gap_conn_param_update is called (5 seconds). */
@@ -63,6 +67,19 @@ extern "C"{
 #define MAX_CONN_PARAMS_UPDATE_COUNT    3                                           /**< Number of attempts before giving up the connection parameter negotiation. */
 
 #define START_STRING                    "Start...\n"                                /**< The string that will be sent over the UART when the application starts. */
+
+#define SEC_PARAM_TIMEOUT				30
+#define SEC_PARAM_BOND                  1                                           /**< Perform bonding. */
+#define SEC_PARAM_MITM                  1                                           /**< Man In The Middle protection not required. */
+#define SEC_PARAM_IO_CAPABILITIES       BLE_GAP_IO_CAPS_NONE		                /**< No I/O capabilities. */
+#define SEC_PARAM_OOB                   0                                           /**< Out Of Band data not available. */
+#define SEC_PARAM_MIN_KEY_SIZE          7                                           /**< Minimum encryption key size. */
+#define SEC_PARAM_MAX_KEY_SIZE          16                                          /**< Maximum encryption key size. */
+
+#define PASSKEY_TXT                     "Passkey:"                                  /**< Message to be displayed together with the pass-key. */
+#define PASSKEY_TXT_LENGTH              8                                           /**< Length of message to be displayed together with the pass-key. */
+#define PASSKEY_LENGTH                  6                                           /**< Length of pass-key received by the stack for display. */
+#define STATIC_PASSKEY					"123456" 									/**< Static pin. */
 
 #define DEAD_BEEF                       0xDEADBEEF                                  /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
 
@@ -73,7 +90,9 @@ static ble_nus_t                        m_nus;                                  
 static uint16_t                         m_conn_handle = BLE_CONN_HANDLE_INVALID;    /**< Handle of the current connection. */
 
 static ble_uuid_t                       m_adv_uuids[] = {{BLE_UUID_NUS_SERVICE, NUS_SERVICE_UUID_TYPE}};  /**< Universally unique service identifier. */
-
+static dm_application_instance_t		m_app_handle;								/**< Application identifier allocated by device manager */
+static app_bond_table_t					m_app_bond_table;
+static ble_opt_t						m_static_pin_option;
 
 /**@brief Function for assert macro callback.
  *
@@ -103,7 +122,7 @@ static void gap_params_init(void)
     ble_gap_conn_params_t   gap_conn_params;
     ble_gap_conn_sec_mode_t sec_mode;
 
-    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&sec_mode);
+    BLE_GAP_CONN_SEC_MODE_SET_ENC_WITH_MITM(&sec_mode);
     
     err_code = sd_ble_gap_device_name_set(&sec_mode,
                                           (const uint8_t *) DEVICE_NAME,
@@ -119,6 +138,12 @@ static void gap_params_init(void)
 
     err_code = sd_ble_gap_ppcp_set(&gap_conn_params);
     APP_ERROR_CHECK(err_code);
+
+    // Add static pin:
+    	uint8_t passkey[] = STATIC_PASSKEY;
+    	m_static_pin_option.gap_opt.passkey.p_passkey = passkey;
+    	err_code =  sd_ble_opt_set(BLE_GAP_OPT_PASSKEY, &m_static_pin_option);
+    	APP_ERROR_CHECK(err_code);
 }
 
 
@@ -155,7 +180,7 @@ static void services_init(void)
     memset(&nus_init, 0, sizeof(nus_init));
 
     nus_init.data_handler = nus_data_handler;
-    
+
     err_code = ble_nus_init(&m_nus, &nus_init);
     APP_ERROR_CHECK(err_code);
 }
@@ -277,24 +302,12 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
             printf("connect\r\n");
             break;
-            
+
         case BLE_GAP_EVT_DISCONNECTED:
             err_code = bsp_indication_set(BSP_INDICATE_IDLE);
             APP_ERROR_CHECK(err_code);
             m_conn_handle = BLE_CONN_HANDLE_INVALID;
             printf("disconnect\r\n");
-            break;
-
-        case BLE_GAP_EVT_SEC_PARAMS_REQUEST:
-            // Pairing not supported
-            err_code = sd_ble_gap_sec_params_reply(m_conn_handle, BLE_GAP_SEC_STATUS_PAIRING_NOT_SUPP, NULL, NULL);
-            APP_ERROR_CHECK(err_code);
-            break;
-
-        case BLE_GATTS_EVT_SYS_ATTR_MISSING:
-            // No system attributes have been stored.
-            err_code = sd_ble_gatts_sys_attr_set(m_conn_handle, NULL, 0, 0);
-            APP_ERROR_CHECK(err_code);
             break;
 
         default:
@@ -314,12 +327,18 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
  */
 static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
 {
+    dm_ble_evt_handler(p_ble_evt);
     ble_conn_params_on_ble_evt(p_ble_evt);
     ble_nus_on_ble_evt(&m_nus, p_ble_evt);
     on_ble_evt(p_ble_evt);
     ble_advertising_on_ble_evt(p_ble_evt);
     bsp_btn_ble_on_ble_evt(p_ble_evt);
-    
+    }
+
+static void sys_evt_dispatch(uint32_t sys_evt)
+{
+    pstorage_sys_event_handler(sys_evt); //Add this line
+    ble_advertising_on_sys_evt(sys_evt);
 }
 
 
@@ -346,6 +365,9 @@ static void ble_stack_init(void)
     
     // Subscribe for BLE events.
     err_code = softdevice_ble_evt_handler_set(ble_evt_dispatch);
+    APP_ERROR_CHECK(err_code);
+
+    err_code = softdevice_sys_evt_handler_set(sys_evt_dispatch);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -382,6 +404,124 @@ void bsp_event_handler(bsp_event_t event)
         default:
             break;
     }
+}
+
+/**@brief Function for handling the Device Manager events.
+ *
+ * @param[in] p_evt  Data associated to the device manager event.
+ */
+static uint32_t device_manager_evt_handler(dm_handle_t const * p_handle,
+                                           dm_event_t const  * p_event,
+                                           ret_code_t        event_result)
+{
+	 uint32_t err_code;
+
+	    static bool device_delete_all_started;
+
+	    // Recovery in the event of DM_DEVICE_CONTEXT_FULL
+	    if(event_result == DM_DEVICE_CONTEXT_FULL)
+	    {
+	        /* Clear all devices from the bond table*/
+	        err_code = dm_device_delete_all(&m_app_handle);
+	        APP_ERROR_CHECK(err_code);
+
+	        device_delete_all_started = true;
+
+	    }
+	    else
+	    {
+	        APP_ERROR_CHECK(event_result);
+	    }
+
+	    if (p_event->event_id == DM_EVT_DEVICE_CONTEXT_STORED)
+	    {
+	        table_index_t table_index;
+
+	        //Find first and last bond created from m_bond_index_table
+	        app_bond_find(&m_app_bond_table,&table_index);
+
+			//Increment counter if a new bond was created
+	        if(!(table_index.mr_cnt_val >= m_app_bond_table.app_bond_cnt[p_handle->device_id]))
+	        {
+	           table_index.mr_cnt_val++;
+	           m_app_bond_table.app_bond_cnt[p_handle->device_id] = table_index.mr_cnt_val;
+	        }
+
+	        //Delete first created bond if bond table is full
+	        if(((table_index.mr_cnt_val-table_index.lr_cnt_val)== DEVICE_MANAGER_MAX_BONDS-1)
+	             && (table_index.lr_cnt_val != NO_APP_CONTEXT))
+	          {
+	                uint32_t err_code;
+	                dm_handle_t device;
+
+	                device.appl_id = 0;
+
+	                m_app_bond_table.app_bond_cnt[table_index.lr_index]=NO_APP_CONTEXT;
+	                device.device_id = m_app_bond_table.device_id[table_index.lr_index];
+
+	                err_code = dm_device_delete(&device);
+	                APP_ERROR_CHECK(err_code);
+
+	          }
+
+	        //Update the app context for new device
+	        app_bond_update_context(&m_app_bond_table,p_handle);
+
+	    }
+	    else if (p_event->event_id ==DM_EVT_DEVICE_CONTEXT_DELETED)
+	    {
+
+	         /* Wait for all devices to be cleared before perfoming a sys reset */
+	         if(device_delete_all_started && (p_handle->device_id == DEVICE_MANAGER_MAX_BONDS -1))
+	         {
+	             err_code = sd_nvic_SystemReset();
+	             APP_ERROR_CHECK(err_code);
+	         }
+
+	    }
+
+
+	    return NRF_SUCCESS;
+}
+
+/**@brief Function for the Device Manager initialization.
+ *
+ * @param[in] erase_bonds  Indicates whether bonding information should be cleared from
+ *                         persistent storage during initialization of the Device Manager.
+ */
+static void device_manager_init(bool erase_bonds)
+{
+    uint32_t               err_code;
+    dm_init_param_t        init_param = {erase_bonds};
+    dm_application_param_t register_param;
+
+    // Initialize persistent storage module.
+    err_code = pstorage_init();
+    APP_ERROR_CHECK(err_code);
+
+    err_code = dm_init(&init_param);
+    APP_ERROR_CHECK(err_code);
+
+    memset(&register_param.sec_param, 0, sizeof(ble_gap_sec_params_t));
+
+    register_param.sec_param.bond         = SEC_PARAM_BOND;
+    register_param.sec_param.mitm         = SEC_PARAM_MITM;
+    register_param.sec_param.io_caps      = SEC_PARAM_IO_CAPABILITIES;
+    register_param.sec_param.oob          = SEC_PARAM_OOB;
+    register_param.sec_param.min_key_size = SEC_PARAM_MIN_KEY_SIZE;
+    register_param.sec_param.max_key_size = SEC_PARAM_MAX_KEY_SIZE;
+    register_param.evt_handler            = device_manager_evt_handler;
+    register_param.service_type           = DM_PROTOCOL_CNTXT_GATT_SRVR_ID;
+
+    err_code = dm_register(&m_app_handle, &register_param);
+    APP_ERROR_CHECK(err_code);
+
+    app_bond_init(&m_app_bond_table);
+
+        for(uint8_t i = 0; i < DEVICE_MANAGER_MAX_BONDS; i++)
+        {
+            printf("[APP][ID: %d], Application context : %08X\r\n",m_app_bond_table.device_id[i],(unsigned int) m_app_bond_table.app_bond_cnt[i]);
+        }
 }
 
 
@@ -530,11 +670,12 @@ int main(void)
     uart_init();
     buttons_leds_init(&erase_bonds);
     ble_stack_init();
+    device_manager_init(erase_bonds);
     gap_params_init();
     services_init();
     advertising_init();
     conn_params_init();
-    
+
     printf("%s",start_string);
 
     err_code = ble_advertising_start(BLE_ADV_MODE_FAST);

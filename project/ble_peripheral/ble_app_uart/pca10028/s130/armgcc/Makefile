@@ -47,13 +47,16 @@ $(abspath ../../../../../../components/libraries/fifo/app_fifo.c) \
 $(abspath ../../../../../../components/libraries/timer/app_timer.c) \
 $(abspath ../../../../../../components/libraries/trace/app_trace.c) \
 $(abspath ../../../../../../components/libraries/util/nrf_assert.c) \
+$(abspath ../../../../../../components/libraries/util/sdk_mapped_flags.c) \
 $(abspath ../../../../../../components/libraries/util/nrf_log.c) \
 $(abspath ../../../../../../components/libraries/uart/retarget.c) \
+$(abspath ../../../../../../components/libraries/fds/fds.c) \
 $(abspath ../../../../../../components/libraries/uart/app_uart_fifo.c) \
 $(abspath ../../../../../../components/drivers_nrf/delay/nrf_delay.c) \
 $(abspath ../../../../../../components/drivers_nrf/common/nrf_drv_common.c) \
 $(abspath ../../../../../../components/drivers_nrf/gpiote/nrf_drv_gpiote.c) \
 $(abspath ../../../../../../components/drivers_nrf/uart/nrf_drv_uart.c) \
+$(abspath ../../../../../../components/libraries/fstorage/fstorage.c) \
 $(abspath ../../../../../../components/drivers_nrf/pstorage/pstorage.c) \
 $(abspath ../../../../../bsp/bsp.c) \
 $(abspath ../../../../../bsp/bsp_btn_ble.c) \
@@ -62,10 +65,22 @@ $(abspath ../../../../../../components/ble/ble_advertising/ble_advertising.c) \
 $(abspath ../../../../../../components/ble/common/ble_conn_params.c) \
 $(abspath ../../../../../../components/ble/ble_services/ble_nus/ble_nus.c) \
 $(abspath ../../../../../../components/ble/common/ble_srv_common.c) \
+$(abspath ../../../../../../components/ble/common/ble_conn_state.c) \
+$(abspath ../../../../../../components/ble/peer_manager/peer_manager.c) \
+$(abspath ../../../../../../components/ble/peer_manager/peer_database.c) \
+$(abspath ../../../../../../components/ble/peer_manager/peer_data_storage.c) \
+$(abspath ../../../../../../components/ble/peer_manager/peer_data.c) \
+$(abspath ../../../../../../components/ble/peer_manager/peer_id.c) \
+$(abspath ../../../../../../components/ble/peer_manager/security_dispatcher.c) \
+$(abspath ../../../../../../components/ble/peer_manager/pm_buffer.c) \
+$(abspath ../../../../../../components/ble/peer_manager/pm_mutex.c) \
+$(abspath ../../../../../../components/ble/peer_manager/security_manager.c) \
+$(abspath ../../../../../../components/ble/peer_manager/gatt_cache_manager.c) \
+$(abspath ../../../../../../components/ble/peer_manager/gatts_cache_manager.c) \
+$(abspath ../../../../../../components/ble/peer_manager/gattc_cache_manager.c) \
+$(abspath ../../../../../../components/ble/peer_manager/id_manager.c) \
 $(abspath ../../../../../../components/toolchain/system_nrf51.c) \
 $(abspath ../../../../../../components/softdevice/common/softdevice_handler/softdevice_handler.c) \
-$(abspath ../../../../../../components/ble/device_manager/device_manager_peripheral.c) \
-$(abspath ../../../app_bond.c) \
 
 #source common to all targets
 CPP_SOURCE_FILES += \
@@ -85,7 +100,11 @@ INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/delay)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/util)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/uart)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/common)
+INC_PATHS += -I$(abspath ../../../../../../components/libraries/fstorage)
+INC_PATHS += -I$(abspath ../../../../../../components/libraries/fds)
+INC_PATHS += -I$(abspath ../../../../../../components/ble/peer_manager)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/pstorage)
+INC_PATHS += -I$(abspath ../../../../../../components/libraries/experimental_section_vars)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/uart)
 INC_PATHS += -I$(abspath ../../../../../../components/device)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/button)
@@ -99,8 +118,6 @@ INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/common)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_advertising)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/trace)
 INC_PATHS += -I$(abspath ../../../../../../components/softdevice/common/softdevice_handler)
-INC_PATHS += -I$(abspath ../../../../../../components/ble/device_manager)
-INC_PATHS += -I$(abspath ../../../../../../components/ble/device_manager/config)
 
 OBJECT_DIRECTORY = _build
 LISTING_DIRECTORY = $(OBJECT_DIRECTORY)
@@ -119,7 +136,7 @@ CFLAGS += -DBLE_STACK_SUPPORT_REQD
 CFLAGS += -DSWI_DISABLE0
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -O0 -g
+CFLAGS += -Wall -O0 -g
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
@@ -135,7 +152,7 @@ CPPFLAGS += -DBLE_STACK_SUPPORT_REQD
 CPPFLAGS += -DSWI_DISABLE0
 CPPFLAGS += -mcpu=cortex-m0
 CPPFLAGS += -mthumb -mabi=aapcs --std=c++14
-CPPFLAGS += -Wall -Werror -O0 -g
+CPPFLAGS += -Wall -O0 -g
 CPPFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CPPFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
@@ -162,6 +179,7 @@ ASMFLAGS += -DSWI_DISABLE0
 
 # Defines
 DEFINES += -DDEBUG
+DEFINES += -DENABLE_DEBUG_LOG_SUPPORT
 
 #default target - first one defined
 default: clean nrf51422_xxac_s130

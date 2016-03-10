@@ -1,4 +1,4 @@
-12:52:22 **** Incremental Build of configuration Default for project BLE ****
+18:12:58 **** Incremental Build of configuration Default for project BLE ****
 make 
 rm -rf _build
 echo  Makefile
@@ -13,13 +13,20 @@ Compiling file: app_fifo.c
 Compiling file: app_timer.c
 Compiling file: app_trace.c
 Compiling file: nrf_assert.c
+Compiling file: sdk_mapped_flags.c
 Compiling file: nrf_log.c
 Compiling file: retarget.c
+Compiling file: fds.c
+In file included from /Users/nilsweiss/nRF51/components/libraries/fds/fds.c:18:0:
+/Users/nilsweiss/nRF51/components/libraries/fds/fds_types_internal.h:51:16: warning: 'm_nested_critical' defined but not used [-Wunused-variable]
+ static uint8_t m_nested_critical;
+                ^
 Compiling file: app_uart_fifo.c
 Compiling file: nrf_delay.c
 Compiling file: nrf_drv_common.c
 Compiling file: nrf_drv_gpiote.c
 Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
 Compiling file: pstorage.c
 Compiling file: bsp.c
 Compiling file: bsp_btn_ble.c
@@ -28,19 +35,34 @@ Compiling file: ble_advertising.c
 Compiling file: ble_conn_params.c
 Compiling file: ble_nus.c
 Compiling file: ble_srv_common.c
+Compiling file: ble_conn_state.c
+Compiling file: peer_manager.c
+Compiling file: peer_database.c
+Compiling file: peer_data_storage.c
+Compiling file: peer_data.c
+Compiling file: peer_id.c
+Compiling file: security_dispatcher.c
+Compiling file: pm_buffer.c
+Compiling file: pm_mutex.c
+Compiling file: security_manager.c
+Compiling file: gatt_cache_manager.c
+Compiling file: gatts_cache_manager.c
+Compiling file: gattc_cache_manager.c
+Compiling file: id_manager.c
 Compiling file: system_nrf51.c
 Compiling file: softdevice_handler.c
-Compiling file: device_manager_peripheral.c
-Compiling file: app_bond.c
 Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:89:23: warning: 'm_static_pin_option' defined but not used [-Wunused-variable]
+ static ble_opt_t      m_static_pin_option;
+                       ^
 Compiling file: gcc_startup_nrf51.s
 Linking target: nrf51422_xxac_s130.out
 Preparing: nrf51422_xxac_s130.bin
 Preparing: nrf51422_xxac_s130.hex
 
    text	   data	    bss	    dec	    hex	filename
-  51312	    124	   3856	  55292	   d7fc	_build/nrf51422_xxac_s130.out
+  72200	    172	   5252	  77624	  12f38	_build/nrf51422_xxac_s130.out
 
 
-12:52:27 Build Finished (took 4s.892ms)
+18:13:05 Build Finished (took 7s.238ms)
 

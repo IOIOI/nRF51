@@ -2089,3 +2089,2350 @@ Preparing: nrf51422_xxac_s130.hex
    text	   data	    bss	    dec	    hex	filename
   51312	    124	   3856	  55292	   d7fc	_build/nrf51422_xxac_s130.out
 
+13:26:27 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  51336	    124	   3856	  55316	   d814	_build/nrf51422_xxac_s130.out
+
+13:34:02 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  51336	    124	   3856	  55316	   d814	_build/nrf51422_xxac_s130.out
+
+14:37:04 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'application_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:582:5: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+     DM_TRC("[DM]: Initializing Application Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:596:5: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+     DM_TRC("[DM]: Initializing Connection Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'peer_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:612:5: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+     DM_TRC("[DM]: Initializing Peer Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_allocate':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:705:16: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                index, m_peer_table[index].peer_id.id_addr_info.addr_type);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:729:13: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+             DM_LOG("[DM]: Allocated device instance 0x%02X\r\n", index);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_free':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:755:9: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+         DM_TRC("[DM]:[DI 0x%02X]: Freeing Instance.\r\n", device_index);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_find':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:799:16: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                index, m_peer_table[index].peer_id.id_addr_info.addr_type);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:811:13: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+             DM_LOG("[DM]: Found device at instance 0x%02X\r\n", index);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_allocate':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:867:9: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+         DM_LOG("[DM]:[%02X]: Connection Instance Allocated.\r\n", (*p_instance));        
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_free':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:887:5: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+     DM_TRC("[DM]:[CI 0x%02X]: Freeing connection instance\r\n", (*p_instance));
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:891:9: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+         DM_LOG("[DM]:[%02X]: Freed connection instance.\r\n", (*p_instance));
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_context_store':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:982:24: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Werror=format=]
+                        p_handle->device_id, err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:998:17: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Werror=format=]
+                 DM_ERR("[DM]: Failed to store service context, reason %08X\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1006:9: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Werror=format=]
+         DM_ERR("[DM]: Failed to store device context, reason %08X\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_store':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1093:20: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Werror=format=]
+                    m_gatts_table[p_handle->connection_id].size);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1105:24: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Werror=format=]
+                        err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_load':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1197:16: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Werror=format=]
+                m_gatts_table[p_handle->connection_id].size);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1197:16: error: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Werror=format=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1209:16: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Werror=format=]
+                err_code);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_apply':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1289:12: error: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Werror=format=]
+            m_gatts_table[p_handle->connection_id].size);
+            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1324:9: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+         DM_LOG("[DM]: Failed to set system attributes, reason 0x%08X.\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1336:13: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+             DM_LOG("[DM]: Failed to send Service Changed indication, reason 0x%08X.\r\n", err_code);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1673:13: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'pstorage_block_t' [-Werror=format=]
+             DM_LOG("[DM]: Storage handle 0x%08X.\r\n", m_storage_handle.block_id);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1686:21: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                     DM_TRC("[DM]:[0x%02X]: Block handle 0x%08X.\r\n", index, block_handle.block_id);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1686:21: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Werror=format=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1701:29: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                             err_code);
+                             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1701:29: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Werror=format=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1710:32: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                                m_peer_table[index].peer_id.id_addr_info.addr_type);
+                                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1726:28: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                            err_code);
+                            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1726:28: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Werror=format=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1741:9: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Werror=format=]
+         DM_ERR("[DM]: Failed to register with storage module, reason 0x%08X.\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_security_setup_req':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1818:5: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+     DM_TRC("[DM]: << dm_security_setup_req, 0x%08X\r\n", err_code);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_whitelist_create':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1917:12: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+            addr_count);
+            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1917:12: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Werror=format=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_application_context_set':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2128:20: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Werror=format=]
+                    p_context->len);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2128:20: error: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Werror=format=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_application_context_delete':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2272:17: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                 DM_ERR("[DM]: Failed to delete application context, reason 0x%08X\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'bond_data_load':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2479:13: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Werror=format=]
+             BOND_STORAGE_OFFSET);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2490:20: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Werror=format=]
+                    err_code);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2509:17: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Werror=format=]
+                 err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2515:16: error: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Werror=format=]
+                "device %08X, reason %08X.\r\n", p_handle->connection_id, p_handle->device_id, err_code);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_ble_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2668:24: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                        "0x%08X\r\n", index, m_connection_table[index].bonded_dev_id, err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2668:24: error: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Werror=format=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2689:21: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                     DM_LOG("[DM]:[CI 0x%02X]:[DI 0x%02X]: Bonded!\r\n",index, device_index);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2689:21: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Werror=format=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2696:21: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                     DM_LOG("[DM]: Security parameter request failed, reason 0x%08X.\r\n", err_code);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2733:17: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                 DM_LOG("[DM]: Security parameter reply request failed, reason 0x%08X.\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2778:36: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                                    handle.device_id);
+                                    ^
+cc1: all warnings being treated as errors
+make: *** [_build/device_manager_peripheral.o] Error 1
+14:39:11 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'application_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:582:5: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+     DM_TRC("[DM]: Initializing Application Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:596:5: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+     DM_TRC("[DM]: Initializing Connection Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'peer_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:612:5: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+     DM_TRC("[DM]: Initializing Peer Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_allocate':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:705:16: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                index, m_peer_table[index].peer_id.id_addr_info.addr_type);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:729:13: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+             DM_LOG("[DM]: Allocated device instance 0x%02X\r\n", index);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_free':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:755:9: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+         DM_TRC("[DM]:[DI 0x%02X]: Freeing Instance.\r\n", device_index);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_find':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:799:16: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                index, m_peer_table[index].peer_id.id_addr_info.addr_type);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:811:13: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+             DM_LOG("[DM]: Found device at instance 0x%02X\r\n", index);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_allocate':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:867:9: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+         DM_LOG("[DM]:[%02X]: Connection Instance Allocated.\r\n", (*p_instance));        
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_free':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:887:5: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+     DM_TRC("[DM]:[CI 0x%02X]: Freeing connection instance\r\n", (*p_instance));
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:891:9: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+         DM_LOG("[DM]:[%02X]: Freed connection instance.\r\n", (*p_instance));
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_context_store':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:982:24: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Werror=format=]
+                        p_handle->device_id, err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:998:17: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Werror=format=]
+                 DM_ERR("[DM]: Failed to store service context, reason %08X\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1006:9: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Werror=format=]
+         DM_ERR("[DM]: Failed to store device context, reason %08X\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_store':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1093:20: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Werror=format=]
+                    m_gatts_table[p_handle->connection_id].size);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1105:24: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Werror=format=]
+                        err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_load':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1197:16: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Werror=format=]
+                m_gatts_table[p_handle->connection_id].size);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1197:16: error: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Werror=format=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1209:16: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Werror=format=]
+                err_code);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_apply':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1289:12: error: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Werror=format=]
+            m_gatts_table[p_handle->connection_id].size);
+            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1324:9: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+         DM_LOG("[DM]: Failed to set system attributes, reason 0x%08X.\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1336:13: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+             DM_LOG("[DM]: Failed to send Service Changed indication, reason 0x%08X.\r\n", err_code);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1673:13: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'pstorage_block_t' [-Werror=format=]
+             DM_LOG("[DM]: Storage handle 0x%08X.\r\n", m_storage_handle.block_id);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1686:21: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                     DM_TRC("[DM]:[0x%02X]: Block handle 0x%08X.\r\n", index, block_handle.block_id);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1686:21: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Werror=format=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1701:29: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                             err_code);
+                             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1701:29: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Werror=format=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1710:32: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                                m_peer_table[index].peer_id.id_addr_info.addr_type);
+                                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1726:28: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                            err_code);
+                            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1726:28: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Werror=format=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1741:9: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Werror=format=]
+         DM_ERR("[DM]: Failed to register with storage module, reason 0x%08X.\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_security_setup_req':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1818:5: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+     DM_TRC("[DM]: << dm_security_setup_req, 0x%08X\r\n", err_code);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_whitelist_create':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1917:12: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+            addr_count);
+            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1917:12: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Werror=format=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_application_context_set':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2128:20: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Werror=format=]
+                    p_context->len);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2128:20: error: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Werror=format=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_application_context_delete':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2272:17: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                 DM_ERR("[DM]: Failed to delete application context, reason 0x%08X\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'bond_data_load':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2479:13: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Werror=format=]
+             BOND_STORAGE_OFFSET);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2490:20: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Werror=format=]
+                    err_code);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2509:17: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Werror=format=]
+                 err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2515:16: error: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Werror=format=]
+                "device %08X, reason %08X.\r\n", p_handle->connection_id, p_handle->device_id, err_code);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_ble_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2668:24: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                        "0x%08X\r\n", index, m_connection_table[index].bonded_dev_id, err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2668:24: error: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Werror=format=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2689:21: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                     DM_LOG("[DM]:[CI 0x%02X]:[DI 0x%02X]: Bonded!\r\n",index, device_index);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2689:21: error: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Werror=format=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2696:21: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                     DM_LOG("[DM]: Security parameter request failed, reason 0x%08X.\r\n", err_code);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2733:17: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                 DM_LOG("[DM]: Security parameter reply request failed, reason 0x%08X.\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2778:36: error: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Werror=format=]
+                                    handle.device_id);
+                                    ^
+cc1: all warnings being treated as errors
+make: *** [_build/device_manager_peripheral.o] Error 1
+14:39:26 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'application_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:582:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]: Initializing Application Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:596:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]: Initializing Connection Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'peer_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:612:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]: Initializing Peer Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_allocate':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:705:16: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                index, m_peer_table[index].peer_id.id_addr_info.addr_type);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:729:13: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+             DM_LOG("[DM]: Allocated device instance 0x%02X\r\n", index);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_free':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:755:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+         DM_TRC("[DM]:[DI 0x%02X]: Freeing Instance.\r\n", device_index);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_find':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:799:16: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                index, m_peer_table[index].peer_id.id_addr_info.addr_type);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:811:13: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+             DM_LOG("[DM]: Found device at instance 0x%02X\r\n", index);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_allocate':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:867:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+         DM_LOG("[DM]:[%02X]: Connection Instance Allocated.\r\n", (*p_instance));        
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_free':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:887:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]:[CI 0x%02X]: Freeing connection instance\r\n", (*p_instance));
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:891:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+         DM_LOG("[DM]:[%02X]: Freed connection instance.\r\n", (*p_instance));
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_context_store':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:982:24: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Wformat=]
+                        p_handle->device_id, err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:998:17: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Wformat=]
+                 DM_ERR("[DM]: Failed to store service context, reason %08X\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1006:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Wformat=]
+         DM_ERR("[DM]: Failed to store device context, reason %08X\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_store':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1093:20: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                    m_gatts_table[p_handle->connection_id].size);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1105:24: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                        err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_load':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1197:16: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Wformat=]
+                m_gatts_table[p_handle->connection_id].size);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1197:16: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1209:16: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Wformat=]
+                err_code);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_apply':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1289:12: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+            m_gatts_table[p_handle->connection_id].size);
+            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1324:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+         DM_LOG("[DM]: Failed to set system attributes, reason 0x%08X.\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1336:13: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+             DM_LOG("[DM]: Failed to send Service Changed indication, reason 0x%08X.\r\n", err_code);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1673:13: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'pstorage_block_t' [-Wformat=]
+             DM_LOG("[DM]: Storage handle 0x%08X.\r\n", m_storage_handle.block_id);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1686:21: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                     DM_TRC("[DM]:[0x%02X]: Block handle 0x%08X.\r\n", index, block_handle.block_id);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1686:21: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1701:29: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                             err_code);
+                             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1701:29: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1710:32: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                                m_peer_table[index].peer_id.id_addr_info.addr_type);
+                                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1726:28: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                            err_code);
+                            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1726:28: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1741:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Wformat=]
+         DM_ERR("[DM]: Failed to register with storage module, reason 0x%08X.\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_security_setup_req':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1818:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]: << dm_security_setup_req, 0x%08X\r\n", err_code);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_whitelist_create':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1917:12: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+            addr_count);
+            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1917:12: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_application_context_set':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2128:20: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                    p_context->len);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2128:20: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_application_context_delete':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2272:17: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                 DM_ERR("[DM]: Failed to delete application context, reason 0x%08X\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'bond_data_load':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2479:13: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Wformat=]
+             BOND_STORAGE_OFFSET);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2490:20: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                    err_code);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2509:17: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                 err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2515:16: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+                "device %08X, reason %08X.\r\n", p_handle->connection_id, p_handle->device_id, err_code);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_ble_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2668:24: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                        "0x%08X\r\n", index, m_connection_table[index].bonded_dev_id, err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2668:24: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2689:21: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                     DM_LOG("[DM]:[CI 0x%02X]:[DI 0x%02X]: Bonded!\r\n",index, device_index);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2689:21: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2696:21: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                     DM_LOG("[DM]: Security parameter request failed, reason 0x%08X.\r\n", err_code);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2733:17: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                 DM_LOG("[DM]: Security parameter reply request failed, reason 0x%08X.\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2778:36: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                                    handle.device_id);
+                                    ^
+Compiling file: app_bond.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp: In function 'uint32_t device_manager_evt_handler(const dm_handle_t*, const dm_event_t*, ret_code_t)':
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:438:39: error: expected unqualified-id before ')' token
+       dm_security_setup_req(p_handle->);
+                                       ^
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp: In function 'void device_manager_init(bool)':
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:533:33: error: too few arguments to function 'uint32_t sd_ble_gap_authenticate(uint16_t, const ble_gap_sec_params_t*)'
+         sd_ble_gap_authenticate()
+                                 ^
+In file included from /Users/nilsweiss/nRF51/components/softdevice/s130/headers/ble_gap.h:48:0,
+                 from /Users/nilsweiss/nRF51/components/softdevice/s130/headers/ble.h:52,
+                 from /Users/nilsweiss/nRF51/components/ble/common/ble_advdata.h:28,
+                 from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:33:
+/Users/nilsweiss/nRF51/components/softdevice/s130/headers/ble_gap.h:1160:43: note: declared here
+ SVCALL(SD_BLE_GAP_AUTHENTICATE, uint32_t, sd_ble_gap_authenticate(uint16_t conn_handle, ble_gap_sec_params_t const *p_sec_params));
+                                           ^
+/Users/nilsweiss/nRF51/components/softdevice/s130/headers/nrf_svc.h:52:45: note: in definition of macro 'SVCALL'
+   __attribute__((naked)) static return_type signature \
+                                             ^
+make: *** [_build/main.o] Error 1
+14:39:46 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'application_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:582:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]: Initializing Application Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:596:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]: Initializing Connection Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'peer_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:612:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]: Initializing Peer Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_allocate':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:705:16: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                index, m_peer_table[index].peer_id.id_addr_info.addr_type);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:729:13: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+             DM_LOG("[DM]: Allocated device instance 0x%02X\r\n", index);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_free':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:755:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+         DM_TRC("[DM]:[DI 0x%02X]: Freeing Instance.\r\n", device_index);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_find':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:799:16: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                index, m_peer_table[index].peer_id.id_addr_info.addr_type);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:811:13: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+             DM_LOG("[DM]: Found device at instance 0x%02X\r\n", index);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_allocate':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:867:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+         DM_LOG("[DM]:[%02X]: Connection Instance Allocated.\r\n", (*p_instance));        
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_free':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:887:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]:[CI 0x%02X]: Freeing connection instance\r\n", (*p_instance));
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:891:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+         DM_LOG("[DM]:[%02X]: Freed connection instance.\r\n", (*p_instance));
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_context_store':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:982:24: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Wformat=]
+                        p_handle->device_id, err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:998:17: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Wformat=]
+                 DM_ERR("[DM]: Failed to store service context, reason %08X\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1006:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Wformat=]
+         DM_ERR("[DM]: Failed to store device context, reason %08X\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_store':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1093:20: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                    m_gatts_table[p_handle->connection_id].size);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1105:24: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                        err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_load':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1197:16: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Wformat=]
+                m_gatts_table[p_handle->connection_id].size);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1197:16: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1209:16: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Wformat=]
+                err_code);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_apply':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1289:12: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+            m_gatts_table[p_handle->connection_id].size);
+            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1324:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+         DM_LOG("[DM]: Failed to set system attributes, reason 0x%08X.\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1336:13: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+             DM_LOG("[DM]: Failed to send Service Changed indication, reason 0x%08X.\r\n", err_code);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1673:13: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'pstorage_block_t' [-Wformat=]
+             DM_LOG("[DM]: Storage handle 0x%08X.\r\n", m_storage_handle.block_id);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1686:21: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                     DM_TRC("[DM]:[0x%02X]: Block handle 0x%08X.\r\n", index, block_handle.block_id);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1686:21: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1701:29: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                             err_code);
+                             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1701:29: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1710:32: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                                m_peer_table[index].peer_id.id_addr_info.addr_type);
+                                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1726:28: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                            err_code);
+                            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1726:28: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1741:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Wformat=]
+         DM_ERR("[DM]: Failed to register with storage module, reason 0x%08X.\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_security_setup_req':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1818:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]: << dm_security_setup_req, 0x%08X\r\n", err_code);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_whitelist_create':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1917:12: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+            addr_count);
+            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1917:12: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_application_context_set':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2128:20: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                    p_context->len);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2128:20: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_application_context_delete':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2272:17: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                 DM_ERR("[DM]: Failed to delete application context, reason 0x%08X\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'bond_data_load':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2479:13: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Wformat=]
+             BOND_STORAGE_OFFSET);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2490:20: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                    err_code);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2509:17: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                 err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2515:16: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+                "device %08X, reason %08X.\r\n", p_handle->connection_id, p_handle->device_id, err_code);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_ble_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2668:24: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                        "0x%08X\r\n", index, m_connection_table[index].bonded_dev_id, err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2668:24: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2689:21: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                     DM_LOG("[DM]:[CI 0x%02X]:[DI 0x%02X]: Bonded!\r\n",index, device_index);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2689:21: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2696:21: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                     DM_LOG("[DM]: Security parameter request failed, reason 0x%08X.\r\n", err_code);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2733:17: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                 DM_LOG("[DM]: Security parameter reply request failed, reason 0x%08X.\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2778:36: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                                    handle.device_id);
+                                    ^
+Compiling file: app_bond.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp: In function 'void device_manager_init(bool)':
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:533:33: error: too few arguments to function 'uint32_t sd_ble_gap_authenticate(uint16_t, const ble_gap_sec_params_t*)'
+         sd_ble_gap_authenticate()
+                                 ^
+In file included from /Users/nilsweiss/nRF51/components/softdevice/s130/headers/ble_gap.h:48:0,
+                 from /Users/nilsweiss/nRF51/components/softdevice/s130/headers/ble.h:52,
+                 from /Users/nilsweiss/nRF51/components/ble/common/ble_advdata.h:28,
+                 from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:33:
+/Users/nilsweiss/nRF51/components/softdevice/s130/headers/ble_gap.h:1160:43: note: declared here
+ SVCALL(SD_BLE_GAP_AUTHENTICATE, uint32_t, sd_ble_gap_authenticate(uint16_t conn_handle, ble_gap_sec_params_t const *p_sec_params));
+                                           ^
+/Users/nilsweiss/nRF51/components/softdevice/s130/headers/nrf_svc.h:52:45: note: in definition of macro 'SVCALL'
+   __attribute__((naked)) static return_type signature \
+                                             ^
+make: *** [_build/main.o] Error 1
+14:40:09 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'application_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:582:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]: Initializing Application Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:596:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]: Initializing Connection Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'peer_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:612:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]: Initializing Peer Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_allocate':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:705:16: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                index, m_peer_table[index].peer_id.id_addr_info.addr_type);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:729:13: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+             DM_LOG("[DM]: Allocated device instance 0x%02X\r\n", index);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_free':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:755:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+         DM_TRC("[DM]:[DI 0x%02X]: Freeing Instance.\r\n", device_index);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_find':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:799:16: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                index, m_peer_table[index].peer_id.id_addr_info.addr_type);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:811:13: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+             DM_LOG("[DM]: Found device at instance 0x%02X\r\n", index);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_allocate':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:867:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+         DM_LOG("[DM]:[%02X]: Connection Instance Allocated.\r\n", (*p_instance));        
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_free':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:887:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]:[CI 0x%02X]: Freeing connection instance\r\n", (*p_instance));
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:891:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+         DM_LOG("[DM]:[%02X]: Freed connection instance.\r\n", (*p_instance));
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_context_store':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:982:24: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Wformat=]
+                        p_handle->device_id, err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:998:17: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Wformat=]
+                 DM_ERR("[DM]: Failed to store service context, reason %08X\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1006:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Wformat=]
+         DM_ERR("[DM]: Failed to store device context, reason %08X\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_store':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1093:20: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                    m_gatts_table[p_handle->connection_id].size);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1105:24: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                        err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_load':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1197:16: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Wformat=]
+                m_gatts_table[p_handle->connection_id].size);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1197:16: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1209:16: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Wformat=]
+                err_code);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_apply':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1289:12: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+            m_gatts_table[p_handle->connection_id].size);
+            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1324:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+         DM_LOG("[DM]: Failed to set system attributes, reason 0x%08X.\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1336:13: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+             DM_LOG("[DM]: Failed to send Service Changed indication, reason 0x%08X.\r\n", err_code);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1673:13: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'pstorage_block_t' [-Wformat=]
+             DM_LOG("[DM]: Storage handle 0x%08X.\r\n", m_storage_handle.block_id);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1686:21: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                     DM_TRC("[DM]:[0x%02X]: Block handle 0x%08X.\r\n", index, block_handle.block_id);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1686:21: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1701:29: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                             err_code);
+                             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1701:29: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1710:32: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                                m_peer_table[index].peer_id.id_addr_info.addr_type);
+                                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1726:28: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                            err_code);
+                            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1726:28: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1741:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Wformat=]
+         DM_ERR("[DM]: Failed to register with storage module, reason 0x%08X.\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_security_setup_req':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1818:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]: << dm_security_setup_req, 0x%08X\r\n", err_code);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_whitelist_create':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1917:12: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+            addr_count);
+            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1917:12: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_application_context_set':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2128:20: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                    p_context->len);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2128:20: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_application_context_delete':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2272:17: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                 DM_ERR("[DM]: Failed to delete application context, reason 0x%08X\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'bond_data_load':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2479:13: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Wformat=]
+             BOND_STORAGE_OFFSET);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2490:20: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                    err_code);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2509:17: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                 err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2515:16: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+                "device %08X, reason %08X.\r\n", p_handle->connection_id, p_handle->device_id, err_code);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_ble_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2668:24: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                        "0x%08X\r\n", index, m_connection_table[index].bonded_dev_id, err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2668:24: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2689:21: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                     DM_LOG("[DM]:[CI 0x%02X]:[DI 0x%02X]: Bonded!\r\n",index, device_index);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2689:21: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2696:21: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                     DM_LOG("[DM]: Security parameter request failed, reason 0x%08X.\r\n", err_code);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2733:17: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                 DM_LOG("[DM]: Security parameter reply request failed, reason 0x%08X.\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2778:36: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                                    handle.device_id);
+                                    ^
+Compiling file: app_bond.c
+Compiling file: main.cpp
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  60108	    124	   3856	  64088	   fa58	_build/nrf51422_xxac_s130.out
+
+17:54:43 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: device_manager_peripheral.c
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'application_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:582:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]: Initializing Application Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:596:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]: Initializing Connection Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'peer_instance_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:612:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]: Initializing Peer Instance 0x%08X.\r\n", index);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_allocate':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:705:16: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                index, m_peer_table[index].peer_id.id_addr_info.addr_type);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:729:13: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+             DM_LOG("[DM]: Allocated device instance 0x%02X\r\n", index);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_free':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:755:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+         DM_TRC("[DM]:[DI 0x%02X]: Freeing Instance.\r\n", device_index);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_instance_find':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:799:16: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                index, m_peer_table[index].peer_id.id_addr_info.addr_type);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:811:13: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+             DM_LOG("[DM]: Found device at instance 0x%02X\r\n", index);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_allocate':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:867:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+         DM_LOG("[DM]:[%02X]: Connection Instance Allocated.\r\n", (*p_instance));        
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'connection_instance_free':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:887:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]:[CI 0x%02X]: Freeing connection instance\r\n", (*p_instance));
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:891:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+         DM_LOG("[DM]:[%02X]: Freed connection instance.\r\n", (*p_instance));
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'device_context_store':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:982:24: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Wformat=]
+                        p_handle->device_id, err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:998:17: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Wformat=]
+                 DM_ERR("[DM]: Failed to store service context, reason %08X\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1006:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Wformat=]
+         DM_ERR("[DM]: Failed to store device context, reason %08X\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_store':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1093:20: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                    m_gatts_table[p_handle->connection_id].size);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1105:24: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                        err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_load':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1197:16: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Wformat=]
+                m_gatts_table[p_handle->connection_id].size);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1197:16: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1209:16: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Wformat=]
+                err_code);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'gatts_context_apply':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1289:12: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+            m_gatts_table[p_handle->connection_id].size);
+            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1324:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+         DM_LOG("[DM]: Failed to set system attributes, reason 0x%08X.\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1336:13: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+             DM_LOG("[DM]: Failed to send Service Changed indication, reason 0x%08X.\r\n", err_code);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_init':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1673:13: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'pstorage_block_t' [-Wformat=]
+             DM_LOG("[DM]: Storage handle 0x%08X.\r\n", m_storage_handle.block_id);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1686:21: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                     DM_TRC("[DM]:[0x%02X]: Block handle 0x%08X.\r\n", index, block_handle.block_id);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1686:21: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1701:29: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                             err_code);
+                             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1701:29: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1710:32: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                                m_peer_table[index].peer_id.id_addr_info.addr_type);
+                                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1726:28: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                            err_code);
+                            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1726:28: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'ret_code_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1741:9: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'ret_code_t' [-Wformat=]
+         DM_ERR("[DM]: Failed to register with storage module, reason 0x%08X.\r\n", err_code);
+         ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_security_setup_req':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1818:5: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+     DM_TRC("[DM]: << dm_security_setup_req, 0x%08X\r\n", err_code);
+     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_whitelist_create':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1917:12: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+            addr_count);
+            ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:1917:12: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_application_context_set':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2128:20: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                    p_context->len);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2128:20: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_application_context_delete':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2272:17: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                 DM_ERR("[DM]: Failed to delete application context, reason 0x%08X\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'bond_data_load':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2479:13: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'pstorage_block_t' [-Wformat=]
+             BOND_STORAGE_OFFSET);
+             ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2490:20: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                    err_code);
+                    ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2509:17: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+                 err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2515:16: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+                "device %08X, reason %08X.\r\n", p_handle->connection_id, p_handle->device_id, err_code);
+                ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c: In function 'dm_ble_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2668:24: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                        "0x%08X\r\n", index, m_connection_table[index].bonded_dev_id, err_code);
+                        ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2668:24: warning: format '%X' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2689:21: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                     DM_LOG("[DM]:[CI 0x%02X]:[DI 0x%02X]: Bonded!\r\n",index, device_index);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2689:21: warning: format '%X' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' [-Wformat=]
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2696:21: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                     DM_LOG("[DM]: Security parameter request failed, reason 0x%08X.\r\n", err_code);
+                     ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2733:17: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                 DM_LOG("[DM]: Security parameter reply request failed, reason 0x%08X.\r\n", err_code);
+                 ^
+/Users/nilsweiss/nRF51/components/ble/device_manager/device_manager_peripheral.c:2778:36: warning: format '%X' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t' [-Wformat=]
+                                    handle.device_id);
+                                    ^
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:45:22: fatal error: fstorage.h: No such file or directory
+ #include "fstorage.h"
+                      ^
+compilation terminated.
+make: *** [_build/main.o] Error 1
+17:56:19 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+make: *** No rule to make target `_build/fstorage.o', needed by `nrf51422_xxac_s130'.  Stop.
+17:57:07 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+In file included from /Users/nilsweiss/nRF51/components/libraries/fstorage/fstorage.c:13:0:
+/Users/nilsweiss/nRF51/components/libraries/fstorage/fstorage.h:28:26: fatal error: section_vars.h: No such file or directory
+ #include "section_vars.h"
+                          ^
+compilation terminated.
+make: *** [_build/fstorage.o] Error 1
+17:57:37 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+In file included from /Users/nilsweiss/nRF51/components/libraries/fstorage/fstorage.c:13:0:
+/Users/nilsweiss/nRF51/components/libraries/fstorage/fstorage.h:28:26: fatal error: section_vars.h: No such file or directory
+ #include "section_vars.h"
+                          ^
+compilation terminated.
+make: *** [_build/fstorage.o] Error 1
+17:58:36 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+/Users/nilsweiss/nRF51/components/ble/ble_advertising/ble_advertising.c:18:22: fatal error: pstorage.h: No such file or directory
+ #include "pstorage.h"
+                      ^
+compilation terminated.
+make: *** [_build/ble_advertising.o] Error 1
+17:59:13 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:46:17: fatal error: fds.h: No such file or directory
+ #include "fds.h"
+                 ^
+compilation terminated.
+make: *** [_build/main.o] Error 1
+17:59:52 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:47:26: fatal error: peer_manager.h: No such file or directory
+ #include "peer_manager.h"
+                          ^
+compilation terminated.
+make: *** [_build/main.o] Error 1
+18:00:17 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:47:26: fatal error: peer_manager.h: No such file or directory
+ #include "peer_manager.h"
+                          ^
+compilation terminated.
+make: *** [_build/main.o] Error 1
+18:00:49 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp: In function 'void gap_params_init()':
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:137:26: error: 'STATIC_PASSKEY' was not declared in this scope
+      uint8_t passkey[] = STATIC_PASSKEY;
+                          ^
+make: *** [_build/main.o] Error 1
+18:01:02 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:89:23: warning: 'm_static_pin_option' defined but not used [-Wunused-variable]
+ static ble_opt_t      m_static_pin_option;
+                       ^
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+_build/ble_advertising.o: In function `ble_advertising_start':
+/Users/nilsweiss/nRF51/components/ble/ble_advertising/ble_advertising.c:186: undefined reference to `pstorage_access_status_get'
+_build/main.o: In function `ble_evt_dispatch':
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:320: undefined reference to `ble_conn_state_on_ble_evt'
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:323: undefined reference to `pm_ble_evt_handler'
+_build/main.o: In function `pm_evt_handler':
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:425: undefined reference to `pm_link_secure'
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:442: undefined reference to `fds_gc'
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:456: undefined reference to `pm_local_database_has_changed'
+_build/main.o: In function `peer_manager_init':
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:470: undefined reference to `pm_init'
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:475: undefined reference to `pm_peer_delete_all'
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:492: undefined reference to `pm_sec_params_set'
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:495: undefined reference to `pm_register'
+collect2: error: ld returned 1 exit status
+make: *** [nrf51422_xxac_s130] Error 1
+18:02:16 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+make: *** No rule to make target `_build/fds.o', needed by `nrf51422_xxac_s130'.  Stop.
+18:02:29 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: fds.c
+In file included from /Users/nilsweiss/nRF51/components/libraries/fds/fds.c:18:0:
+/Users/nilsweiss/nRF51/components/libraries/fds/fds_types_internal.h:51:16: warning: 'm_nested_critical' defined but not used [-Wunused-variable]
+ static uint8_t m_nested_critical;
+                ^
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: peer_manager.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:89:23: warning: 'm_static_pin_option' defined but not used [-Wunused-variable]
+ static ble_opt_t      m_static_pin_option;
+                       ^
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+_build/ble_advertising.o: In function `ble_advertising_start':
+/Users/nilsweiss/nRF51/components/ble/ble_advertising/ble_advertising.c:186: undefined reference to `pstorage_access_status_get'
+_build/peer_manager.o: In function `pdb_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:96: undefined reference to `im_conn_handle_get'
+_build/peer_manager.o: In function `sm_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:179: undefined reference to `ble_conn_state_user_flag_set'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:180: undefined reference to `ble_conn_state_user_flag_set'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:190: undefined reference to `ble_conn_state_user_flag_set'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:191: undefined reference to `ble_conn_state_user_flag_set'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:200: undefined reference to `ble_conn_state_user_flag_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:211: undefined reference to `ble_conn_state_user_flag_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:265: undefined reference to `ble_conn_state_user_flag_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:277: undefined reference to `im_peer_id_get_by_conn_handle'
+_build/peer_manager.o: In function `gcm_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:295: undefined reference to `im_conn_handle_get'
+_build/peer_manager.o: In function `im_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:367: undefined reference to `ble_conn_state_user_flag_set'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:370: undefined reference to `im_peer_id_get_by_conn_handle'
+_build/peer_manager.o: In function `pm_ble_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:382: undefined reference to `im_ble_evt_handler'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:383: undefined reference to `sm_ble_evt_handler'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:384: undefined reference to `gcm_ble_evt_handler'
+_build/peer_manager.o: In function `pm_init':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:392: undefined reference to `pdb_register'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:402: undefined reference to `sm_register'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:408: undefined reference to `gcm_init'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:414: undefined reference to `im_register'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:420: undefined reference to `ble_conn_state_user_flag_acquire'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:426: undefined reference to `ble_conn_state_user_flag_acquire'
+_build/peer_manager.o: In function `pm_sec_params_set':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:460: undefined reference to `sm_sec_params_set'
+_build/peer_manager.o: In function `pm_link_secure':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:477: undefined reference to `sm_link_secure'
+_build/peer_manager.o: In function `pm_local_database_has_changed':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:491: undefined reference to `gcm_local_database_has_changed'
+_build/peer_manager.o: In function `pm_peer_delete':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:606: undefined reference to `pdb_peer_free'
+_build/peer_manager.o: In function `pm_peer_delete_all':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:615: undefined reference to `pdb_next_peer_id_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:613: undefined reference to `pdb_next_peer_id_get'
+_build/main.o: In function `ble_evt_dispatch':
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:320: undefined reference to `ble_conn_state_on_ble_evt'
+collect2: error: ld returned 1 exit status
+make: *** [nrf51422_xxac_s130] Error 1
+18:03:27 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: fds.c
+In file included from /Users/nilsweiss/nRF51/components/libraries/fds/fds.c:18:0:
+/Users/nilsweiss/nRF51/components/libraries/fds/fds_types_internal.h:51:16: warning: 'm_nested_critical' defined but not used [-Wunused-variable]
+ static uint8_t m_nested_critical;
+                ^
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+make: *** No rule to make target `_build/pstorage.o', needed by `nrf51422_xxac_s130'.  Stop.
+18:03:31 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: fds.c
+In file included from /Users/nilsweiss/nRF51/components/libraries/fds/fds.c:18:0:
+/Users/nilsweiss/nRF51/components/libraries/fds/fds_types_internal.h:51:16: warning: 'm_nested_critical' defined but not used [-Wunused-variable]
+ static uint8_t m_nested_critical;
+                ^
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+make: *** No rule to make target `_build/pstorage.o', needed by `nrf51422_xxac_s130'.  Stop.
+18:04:12 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: fds.c
+In file included from /Users/nilsweiss/nRF51/components/libraries/fds/fds.c:18:0:
+/Users/nilsweiss/nRF51/components/libraries/fds/fds_types_internal.h:51:16: warning: 'm_nested_critical' defined but not used [-Wunused-variable]
+ static uint8_t m_nested_critical;
+                ^
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: peer_manager.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:89:23: warning: 'm_static_pin_option' defined but not used [-Wunused-variable]
+ static ble_opt_t      m_static_pin_option;
+                       ^
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+_build/peer_manager.o: In function `pdb_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:96: undefined reference to `im_conn_handle_get'
+_build/peer_manager.o: In function `sm_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:179: undefined reference to `ble_conn_state_user_flag_set'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:180: undefined reference to `ble_conn_state_user_flag_set'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:190: undefined reference to `ble_conn_state_user_flag_set'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:191: undefined reference to `ble_conn_state_user_flag_set'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:200: undefined reference to `ble_conn_state_user_flag_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:211: undefined reference to `ble_conn_state_user_flag_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:265: undefined reference to `ble_conn_state_user_flag_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:277: undefined reference to `im_peer_id_get_by_conn_handle'
+_build/peer_manager.o: In function `gcm_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:295: undefined reference to `im_conn_handle_get'
+_build/peer_manager.o: In function `im_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:367: undefined reference to `ble_conn_state_user_flag_set'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:370: undefined reference to `im_peer_id_get_by_conn_handle'
+_build/peer_manager.o: In function `pm_ble_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:382: undefined reference to `im_ble_evt_handler'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:383: undefined reference to `sm_ble_evt_handler'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:384: undefined reference to `gcm_ble_evt_handler'
+_build/peer_manager.o: In function `pm_init':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:392: undefined reference to `pdb_register'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:402: undefined reference to `sm_register'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:408: undefined reference to `gcm_init'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:414: undefined reference to `im_register'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:420: undefined reference to `ble_conn_state_user_flag_acquire'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:426: undefined reference to `ble_conn_state_user_flag_acquire'
+_build/peer_manager.o: In function `pm_sec_params_set':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:460: undefined reference to `sm_sec_params_set'
+_build/peer_manager.o: In function `pm_link_secure':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:477: undefined reference to `sm_link_secure'
+_build/peer_manager.o: In function `pm_local_database_has_changed':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:491: undefined reference to `gcm_local_database_has_changed'
+_build/peer_manager.o: In function `pm_peer_delete':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:606: undefined reference to `pdb_peer_free'
+_build/peer_manager.o: In function `pm_peer_delete_all':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:615: undefined reference to `pdb_next_peer_id_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:613: undefined reference to `pdb_next_peer_id_get'
+_build/main.o: In function `ble_evt_dispatch':
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:320: undefined reference to `ble_conn_state_on_ble_evt'
+collect2: error: ld returned 1 exit status
+make: *** [nrf51422_xxac_s130] Error 1
+18:05:58 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: fds.c
+In file included from /Users/nilsweiss/nRF51/components/libraries/fds/fds.c:18:0:
+/Users/nilsweiss/nRF51/components/libraries/fds/fds_types_internal.h:51:16: warning: 'm_nested_critical' defined but not used [-Wunused-variable]
+ static uint8_t m_nested_critical;
+                ^
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: ble_conn_state.c
+Compiling file: peer_manager.c
+Compiling file: id_manager.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:89:23: warning: 'm_static_pin_option' defined but not used [-Wunused-variable]
+ static ble_opt_t      m_static_pin_option;
+                       ^
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+_build/ble_conn_state.o: In function `record_activate':
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:93: undefined reference to `sdk_mapped_flags_first_key_index_get'
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:98: undefined reference to `sdk_mapped_flags_update_by_key'
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:102: undefined reference to `sdk_mapped_flags_update_by_key'
+_build/ble_conn_state.o: In function `record_invalidate':
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:120: undefined reference to `sdk_mapped_flags_bulk_update_by_key'
+_build/ble_conn_state.o: In function `record_set_disconnected':
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:134: undefined reference to `sdk_mapped_flags_update_by_key'
+_build/ble_conn_state.o: In function `record_purge_disconnected':
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:148: undefined reference to `sdk_mapped_flags_key_list_get'
+_build/ble_conn_state.o: In function `ble_conn_state_on_ble_evt':
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:211: undefined reference to `sdk_mapped_flags_update_by_key'
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:224: undefined reference to `sdk_mapped_flags_update_by_key'
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:229: undefined reference to `sdk_mapped_flags_update_by_key'
+_build/ble_conn_state.o: In function `ble_conn_state_user_flag_get':
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:359: undefined reference to `sdk_mapped_flags_get_by_key'
+_build/ble_conn_state.o: In function `ble_conn_state_user_flag_set':
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:376: undefined reference to `sdk_mapped_flags_update_by_key'
+_build/peer_manager.o: In function `pm_ble_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:383: undefined reference to `sm_ble_evt_handler'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:384: undefined reference to `gcm_ble_evt_handler'
+_build/peer_manager.o: In function `pm_init':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:392: undefined reference to `pdb_register'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:402: undefined reference to `sm_register'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:408: undefined reference to `gcm_init'
+_build/peer_manager.o: In function `pm_sec_params_set':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:460: undefined reference to `sm_sec_params_set'
+_build/peer_manager.o: In function `pm_link_secure':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:477: undefined reference to `sm_link_secure'
+_build/peer_manager.o: In function `pm_local_database_has_changed':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:491: undefined reference to `gcm_local_database_has_changed'
+_build/peer_manager.o: In function `pm_peer_delete':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:606: undefined reference to `pdb_peer_free'
+_build/peer_manager.o: In function `pm_peer_delete_all':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:615: undefined reference to `pdb_next_peer_id_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:613: undefined reference to `pdb_next_peer_id_get'
+_build/id_manager.o: In function `im_ble_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/id_manager.c:251: undefined reference to `pdb_next_peer_id_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/id_manager.c:261: undefined reference to `pdb_read_buf_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/id_manager.c:275: undefined reference to `pdb_read_buf_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/id_manager.c:295: undefined reference to `pdb_next_peer_id_get'
+_build/id_manager.o: In function `pdb_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/id_manager.c:353: undefined reference to `pdb_read_buf_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/id_manager.c:356: undefined reference to `pdb_next_peer_id_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/id_manager.c:360: undefined reference to `pdb_read_buf_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/id_manager.c:377: undefined reference to `pdb_next_peer_id_get'
+_build/id_manager.o: In function `im_register':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/id_manager.c:400: undefined reference to `pdb_register'
+collect2: error: ld returned 1 exit status
+make: *** [nrf51422_xxac_s130] Error 1
+18:06:59 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: fds.c
+In file included from /Users/nilsweiss/nRF51/components/libraries/fds/fds.c:18:0:
+/Users/nilsweiss/nRF51/components/libraries/fds/fds_types_internal.h:51:16: warning: 'm_nested_critical' defined but not used [-Wunused-variable]
+ static uint8_t m_nested_critical;
+                ^
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: ble_conn_state.c
+Compiling file: peer_manager.c
+Compiling file: peer_database.c
+Compiling file: security_manager.c
+Compiling file: id_manager.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:89:23: warning: 'm_static_pin_option' defined but not used [-Wunused-variable]
+ static ble_opt_t      m_static_pin_option;
+                       ^
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+_build/ble_conn_state.o: In function `record_activate':
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:93: undefined reference to `sdk_mapped_flags_first_key_index_get'
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:98: undefined reference to `sdk_mapped_flags_update_by_key'
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:102: undefined reference to `sdk_mapped_flags_update_by_key'
+_build/ble_conn_state.o: In function `record_invalidate':
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:120: undefined reference to `sdk_mapped_flags_bulk_update_by_key'
+_build/ble_conn_state.o: In function `record_set_disconnected':
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:134: undefined reference to `sdk_mapped_flags_update_by_key'
+_build/ble_conn_state.o: In function `record_purge_disconnected':
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:148: undefined reference to `sdk_mapped_flags_key_list_get'
+_build/ble_conn_state.o: In function `ble_conn_state_on_ble_evt':
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:211: undefined reference to `sdk_mapped_flags_update_by_key'
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:224: undefined reference to `sdk_mapped_flags_update_by_key'
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:229: undefined reference to `sdk_mapped_flags_update_by_key'
+_build/ble_conn_state.o: In function `ble_conn_state_conn_handles':
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:320: undefined reference to `sdk_mapped_flags_key_list_get'
+_build/ble_conn_state.o: In function `ble_conn_state_user_flag_get':
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:359: undefined reference to `sdk_mapped_flags_get_by_key'
+_build/ble_conn_state.o: In function `ble_conn_state_user_flag_set':
+/Users/nilsweiss/nRF51/components/ble/common/ble_conn_state.c:376: undefined reference to `sdk_mapped_flags_update_by_key'
+_build/peer_manager.o: In function `pm_ble_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:384: undefined reference to `gcm_ble_evt_handler'
+_build/peer_manager.o: In function `pm_init':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:408: undefined reference to `gcm_init'
+_build/peer_manager.o: In function `pm_local_database_has_changed':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_manager.c:491: undefined reference to `gcm_local_database_has_changed'
+_build/peer_database.o: In function `write_buffer_record_release':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:157: undefined reference to `pm_buffer_release'
+_build/peer_database.o: In function `pdb_register':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:320: undefined reference to `pds_register'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:325: undefined reference to `pm_buffer_init'
+_build/peer_database.o: In function `pdb_peer_free':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:354: undefined reference to `pds_peer_id_free'
+_build/peer_database.o: In function `pdb_read_buf_get':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:365: undefined reference to `pds_peer_data_read_ptr_get'
+_build/peer_database.o: In function `write_or_update':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:588: undefined reference to `pds_peer_data_read_ptr_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:592: undefined reference to `pds_peer_data_write_prepare_cancel'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:593: undefined reference to `pds_peer_data_update'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:599: undefined reference to `pds_peer_data_write'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:603: undefined reference to `pds_peer_data_write_prepared'
+_build/peer_database.o: In function `pdb_write_buf_store':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:633: undefined reference to `pm_buffer_ptr_get'
+_build/peer_database.o: In function `pdb_next_peer_id_get':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:727: undefined reference to `pds_next_peer_id_get'
+_build/security_manager.o: In function `link_secure':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/security_manager.c:190: undefined reference to `smd_link_secure'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/security_manager.c:194: undefined reference to `smd_link_secure'
+_build/security_manager.o: In function `smd_params_reply_perform':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/security_manager.c:236: undefined reference to `smd_params_reply'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/security_manager.c:240: undefined reference to `smd_params_reply'
+_build/security_manager.o: In function `sm_register':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/security_manager.c:401: undefined reference to `smd_register'
+_build/security_manager.o: In function `sm_ble_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/security_manager.c:426: undefined reference to `smd_ble_evt_handler'
+collect2: error: ld returned 1 exit status
+make: *** [nrf51422_xxac_s130] Error 1
+18:08:20 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+make: *** No rule to make target `_build/sdk_mapped_flag.o', needed by `nrf51422_xxac_s130'.  Stop.
+18:08:42 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: sdk_mapped_flags.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: fds.c
+In file included from /Users/nilsweiss/nRF51/components/libraries/fds/fds.c:18:0:
+/Users/nilsweiss/nRF51/components/libraries/fds/fds_types_internal.h:51:16: warning: 'm_nested_critical' defined but not used [-Wunused-variable]
+ static uint8_t m_nested_critical;
+                ^
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: ble_conn_state.c
+Compiling file: peer_manager.c
+Compiling file: peer_database.c
+Compiling file: security_manager.c
+Compiling file: gatt_cache_manager.c
+Compiling file: id_manager.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:89:23: warning: 'm_static_pin_option' defined but not used [-Wunused-variable]
+ static ble_opt_t      m_static_pin_option;
+                       ^
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+_build/peer_database.o: In function `write_buffer_record_release':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:157: undefined reference to `pm_buffer_release'
+_build/peer_database.o: In function `pdb_register':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:320: undefined reference to `pds_register'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:325: undefined reference to `pm_buffer_init'
+_build/peer_database.o: In function `pdb_peer_free':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:354: undefined reference to `pds_peer_id_free'
+_build/peer_database.o: In function `pdb_read_buf_get':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:365: undefined reference to `pds_peer_data_read_ptr_get'
+_build/peer_database.o: In function `write_or_update':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:588: undefined reference to `pds_peer_data_read_ptr_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:592: undefined reference to `pds_peer_data_write_prepare_cancel'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:593: undefined reference to `pds_peer_data_update'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:599: undefined reference to `pds_peer_data_write'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:603: undefined reference to `pds_peer_data_write_prepared'
+_build/peer_database.o: In function `pdb_write_buf_store':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:633: undefined reference to `pm_buffer_ptr_get'
+_build/peer_database.o: In function `pdb_next_peer_id_get':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_database.c:727: undefined reference to `pds_next_peer_id_get'
+_build/security_manager.o: In function `link_secure':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/security_manager.c:190: undefined reference to `smd_link_secure'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/security_manager.c:194: undefined reference to `smd_link_secure'
+_build/security_manager.o: In function `smd_params_reply_perform':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/security_manager.c:236: undefined reference to `smd_params_reply'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/security_manager.c:240: undefined reference to `smd_params_reply'
+_build/security_manager.o: In function `sm_register':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/security_manager.c:401: undefined reference to `smd_register'
+_build/security_manager.o: In function `sm_ble_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/security_manager.c:426: undefined reference to `smd_ble_evt_handler'
+_build/gatt_cache_manager.o: In function `local_db_apply_in_evt':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:104: undefined reference to `gscm_local_db_cache_apply'
+_build/gatt_cache_manager.o: In function `local_db_update_in_evt':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:158: undefined reference to `gscm_local_db_cache_update'
+_build/gatt_cache_manager.o: In function `service_changed_send_in_evt':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:219: undefined reference to `gscm_service_changed_ind_send'
+_build/gatt_cache_manager.o: In function `im_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:310: undefined reference to `gscm_service_changed_ind_needed'
+_build/gatt_cache_manager.o: In function `gcm_init':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:344: undefined reference to `gscm_init'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:347: undefined reference to `gccm_init'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:356: undefined reference to `smd_register'
+_build/gatt_cache_manager.o: In function `gcm_ble_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:457: undefined reference to `gscm_peer_was_notified_of_db_change'
+_build/gatt_cache_manager.o: In function `gcm_local_database_has_changed':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:529: undefined reference to `gscm_local_database_has_changed'
+collect2: error: ld returned 1 exit status
+make: *** [nrf51422_xxac_s130] Error 1
+18:10:34 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: sdk_mapped_flags.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: fds.c
+In file included from /Users/nilsweiss/nRF51/components/libraries/fds/fds.c:18:0:
+/Users/nilsweiss/nRF51/components/libraries/fds/fds_types_internal.h:51:16: warning: 'm_nested_critical' defined but not used [-Wunused-variable]
+ static uint8_t m_nested_critical;
+                ^
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: ble_conn_state.c
+Compiling file: peer_manager.c
+Compiling file: peer_database.c
+Compiling file: peer_data_storage.c
+Compiling file: security_dispatcher.c
+Compiling file: pm_buffer.c
+Compiling file: security_manager.c
+Compiling file: gatt_cache_manager.c
+Compiling file: id_manager.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:89:23: warning: 'm_static_pin_option' defined but not used [-Wunused-variable]
+ static ble_opt_t      m_static_pin_option;
+                       ^
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+_build/peer_data_storage.o: In function `peer_ids_init':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_data_storage.c:228: undefined reference to `peer_id_allocate'
+_build/peer_data_storage.o: In function `fds_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_data_storage.c:282: undefined reference to `peer_id_free'
+_build/peer_data_storage.o: In function `pds_register':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_data_storage.c:326: undefined reference to `peer_id_init'
+_build/peer_data_storage.o: In function `pds_peer_data_write_prepared':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_data_storage.c:503: undefined reference to `peer_data_parts_get'
+_build/peer_data_storage.o: In function `pds_peer_data_write':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_data_storage.c:536: undefined reference to `peer_data_parts_get'
+_build/peer_data_storage.o: In function `pds_peer_data_update':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_data_storage.c:569: undefined reference to `peer_data_parts_get'
+_build/peer_data_storage.o: In function `pds_peer_id_allocate':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_data_storage.c:616: undefined reference to `peer_id_allocate'
+_build/peer_data_storage.o: In function `pds_peer_id_is_allocated':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_data_storage.c:644: undefined reference to `peer_id_is_allocated'
+_build/peer_data_storage.o: In function `pds_next_peer_id_get':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_data_storage.c:656: undefined reference to `peer_id_next_id_get'
+_build/pm_buffer.o: In function `pm_buffer_init':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/pm_buffer.c:48: undefined reference to `pm_mutex_init'
+_build/pm_buffer.o: In function `pm_buffer_block_acquire':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/pm_buffer.c:70: undefined reference to `pm_mutex_lock'
+_build/pm_buffer.o: In function `pm_buffer_ptr_get':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/pm_buffer.c:103: undefined reference to `pm_mutex_lock_status_get'
+_build/pm_buffer.o: In function `pm_buffer_release':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/pm_buffer.c:118: undefined reference to `pm_mutex_lock_status_get'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/pm_buffer.c:120: undefined reference to `pm_mutex_unlock'
+_build/gatt_cache_manager.o: In function `local_db_apply_in_evt':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:104: undefined reference to `gscm_local_db_cache_apply'
+_build/gatt_cache_manager.o: In function `local_db_update_in_evt':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:158: undefined reference to `gscm_local_db_cache_update'
+_build/gatt_cache_manager.o: In function `service_changed_send_in_evt':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:219: undefined reference to `gscm_service_changed_ind_send'
+_build/gatt_cache_manager.o: In function `im_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:310: undefined reference to `gscm_service_changed_ind_needed'
+_build/gatt_cache_manager.o: In function `gcm_init':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:344: undefined reference to `gscm_init'
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:347: undefined reference to `gccm_init'
+_build/gatt_cache_manager.o: In function `gcm_ble_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:457: undefined reference to `gscm_peer_was_notified_of_db_change'
+_build/gatt_cache_manager.o: In function `gcm_local_database_has_changed':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:529: undefined reference to `gscm_local_database_has_changed'
+collect2: error: ld returned 1 exit status
+make: *** [nrf51422_xxac_s130] Error 1
+18:12:08 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: sdk_mapped_flags.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: fds.c
+In file included from /Users/nilsweiss/nRF51/components/libraries/fds/fds.c:18:0:
+/Users/nilsweiss/nRF51/components/libraries/fds/fds_types_internal.h:51:16: warning: 'm_nested_critical' defined but not used [-Wunused-variable]
+ static uint8_t m_nested_critical;
+                ^
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: ble_conn_state.c
+Compiling file: peer_manager.c
+Compiling file: peer_database.c
+Compiling file: peer_data_storage.c
+Compiling file: peer_data.c
+Compiling file: security_dispatcher.c
+Compiling file: pm_buffer.c
+Compiling file: pm_mutex.c
+Compiling file: security_manager.c
+Compiling file: gatt_cache_manager.c
+Compiling file: gatts_cache_manager.c
+Compiling file: id_manager.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:89:23: warning: 'm_static_pin_option' defined but not used [-Wunused-variable]
+ static ble_opt_t      m_static_pin_option;
+                       ^
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+_build/peer_data_storage.o: In function `peer_ids_init':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_data_storage.c:228: undefined reference to `peer_id_allocate'
+_build/peer_data_storage.o: In function `fds_evt_handler':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_data_storage.c:282: undefined reference to `peer_id_free'
+_build/peer_data_storage.o: In function `pds_register':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_data_storage.c:326: undefined reference to `peer_id_init'
+_build/peer_data_storage.o: In function `pds_peer_id_allocate':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_data_storage.c:616: undefined reference to `peer_id_allocate'
+_build/peer_data_storage.o: In function `pds_peer_id_is_allocated':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_data_storage.c:644: undefined reference to `peer_id_is_allocated'
+_build/peer_data_storage.o: In function `pds_next_peer_id_get':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/peer_data_storage.c:656: undefined reference to `peer_id_next_id_get'
+_build/gatt_cache_manager.o: In function `gcm_init':
+/Users/nilsweiss/nRF51/components/ble/peer_manager/gatt_cache_manager.c:347: undefined reference to `gccm_init'
+collect2: error: ld returned 1 exit status
+make: *** [nrf51422_xxac_s130] Error 1
+18:12:58 **** Incremental Build of configuration Default for project BLE ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: sdk_mapped_flags.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: fds.c
+In file included from /Users/nilsweiss/nRF51/components/libraries/fds/fds.c:18:0:
+/Users/nilsweiss/nRF51/components/libraries/fds/fds_types_internal.h:51:16: warning: 'm_nested_critical' defined but not used [-Wunused-variable]
+ static uint8_t m_nested_critical;
+                ^
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: fstorage.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: ble_conn_state.c
+Compiling file: peer_manager.c
+Compiling file: peer_database.c
+Compiling file: peer_data_storage.c
+Compiling file: peer_data.c
+Compiling file: peer_id.c
+Compiling file: security_dispatcher.c
+Compiling file: pm_buffer.c
+Compiling file: pm_mutex.c
+Compiling file: security_manager.c
+Compiling file: gatt_cache_manager.c
+Compiling file: gatts_cache_manager.c
+Compiling file: gattc_cache_manager.c
+Compiling file: id_manager.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:89:23: warning: 'm_static_pin_option' defined but not used [-Wunused-variable]
+ static ble_opt_t      m_static_pin_option;
+                       ^
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  72200	    172	   5252	  77624	  12f38	_build/nrf51422_xxac_s130.out
+

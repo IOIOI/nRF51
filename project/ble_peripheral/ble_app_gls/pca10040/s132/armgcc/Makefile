@@ -1,4 +1,4 @@
-PROJECT_NAME := ble_app_gls_s130_pca10028
+PROJECT_NAME := ble_app_gls_s132_pca10040
 
 export OUTPUT_FILENAME
 #MAKEFILE_NAME := $(CURDIR)/$(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
@@ -68,21 +68,21 @@ $(abspath ../../../../../../components/ble/ble_services/ble_gls/ble_gls_db.c) \
 $(abspath ../../../../../../components/ble/ble_racp/ble_racp.c) \
 $(abspath ../../../../../../components/ble/common/ble_srv_common.c) \
 $(abspath ../../../../../../components/ble/device_manager/device_manager_peripheral.c) \
-$(abspath ../../../../../../components/toolchain/system_nrf51.c) \
+$(abspath ../../../../../../components/toolchain/system_nrf52.c) \
 $(abspath ../../../../../../components/softdevice/common/softdevice_handler/softdevice_handler.c) \
 
 #assembly files common to all targets
-ASM_SOURCE_FILES  = $(abspath ../../../../../../components/toolchain/gcc/gcc_startup_nrf51.s)
+ASM_SOURCE_FILES  = $(abspath ../../../../../../components/toolchain/gcc/gcc_startup_nrf52.s)
 
 #includes common to all targets
-INC_PATHS  = -I$(abspath ../../../config/ble_app_gls_s130_pca10028)
+INC_PATHS  = -I$(abspath ../../../config/ble_app_gls_s132_pca10040)
 INC_PATHS += -I$(abspath ../../../config)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_ext/segger_rtt)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/config)
 INC_PATHS += -I$(abspath ../../../../../bsp)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/fifo)
-INC_PATHS += -I$(abspath ../../../../../../components/softdevice/s130/headers)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/delay)
+INC_PATHS += -I$(abspath ../../../../../../components/softdevice/s132/headers/nrf52)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/util)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/device_manager)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/uart)
@@ -95,6 +95,7 @@ INC_PATHS += -I$(abspath ../../../../../../components/libraries/uart)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_services/ble_gls)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/button)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/timer)
+INC_PATHS += -I$(abspath ../../../../../../components/softdevice/s132/headers)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/gpiote)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/hal)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_racp)
@@ -102,7 +103,6 @@ INC_PATHS += -I$(abspath ../../../../../../components/toolchain/gcc)
 INC_PATHS += -I$(abspath ../../../../../../components/toolchain)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/common)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_advertising)
-INC_PATHS += -I$(abspath ../../../../../../components/softdevice/s130/headers/nrf51)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/trace)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_services/ble_bas)
 INC_PATHS += -I$(abspath ../../../../../../components/softdevice/common/softdevice_handler)
@@ -115,17 +115,32 @@ OUTPUT_BINARY_DIRECTORY = $(OBJECT_DIRECTORY)
 BUILD_DIRECTORIES := $(sort $(OBJECT_DIRECTORY) $(OUTPUT_BINARY_DIRECTORY) $(LISTING_DIRECTORY) )
 
 #flags common to all targets
-CFLAGS  = -DNRF_LOG_USES_RTT=1
-CFLAGS += -DBOARD_PCA10028
+CFLAGS  = -DNRF52
 CFLAGS += -DSOFTDEVICE_PRESENT
-CFLAGS += -DNRF51
-CFLAGS += -DS130
+CFLAGS += -DBOARD_PCA10040
+CFLAGS += -DNRF52_PAN_64
+CFLAGS += -DNRF52_PAN_12
+CFLAGS += -DNRF52_PAN_15
+CFLAGS += -DNRF52_PAN_58
+CFLAGS += -DNRF52_PAN_55
+CFLAGS += -DNRF52_PAN_54
+CFLAGS += -DNRF52_PAN_31
+CFLAGS += -DNRF52_PAN_30
+CFLAGS += -DNRF52_PAN_51
+CFLAGS += -DNRF52_PAN_36
+CFLAGS += -DNRF52_PAN_53
+CFLAGS += -DNRF_LOG_USES_UART=1
+CFLAGS += -DS132
+CFLAGS += -DCONFIG_GPIO_AS_PINRESET
 CFLAGS += -DBLE_STACK_SUPPORT_REQD
 CFLAGS += -DSWI_DISABLE0
-CFLAGS += -mcpu=cortex-m0
+CFLAGS += -DNRF52_PAN_20
+CFLAGS += -DNRF52_PAN_62
+CFLAGS += -DNRF52_PAN_63
+CFLAGS += -mcpu=cortex-m4
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
 CFLAGS += -Wall -Werror -O3 -g3
-CFLAGS += -mfloat-abi=soft
+CFLAGS += -mfloat-abi=hard -mfpu=fpv4-sp-d16
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
 CFLAGS += -fno-builtin --short-enums
@@ -133,7 +148,8 @@ CFLAGS += -fno-builtin --short-enums
 # keep every function in separate section. This will allow linker to dump unused functions
 LDFLAGS += -Xlinker -Map=$(LISTING_DIRECTORY)/$(OUTPUT_FILENAME).map
 LDFLAGS += -mthumb -mabi=aapcs -L $(TEMPLATE_PATH) -T$(LINKER_SCRIPT)
-LDFLAGS += -mcpu=cortex-m0
+LDFLAGS += -mcpu=cortex-m4
+LDFLAGS += -mfloat-abi=hard -mfpu=fpv4-sp-d16
 # let linker to dump unused sections
 LDFLAGS += -Wl,--gc-sections
 # use newlib in nano version
@@ -141,25 +157,40 @@ LDFLAGS += --specs=nano.specs -lc -lnosys
 
 # Assembler flags
 ASMFLAGS += -x assembler-with-cpp
-ASMFLAGS += -DNRF_LOG_USES_UART=1
-ASMFLAGS += -DBOARD_PCA10028
+ASMFLAGS += -DNRF52
 ASMFLAGS += -DSOFTDEVICE_PRESENT
-ASMFLAGS += -DNRF51
-ASMFLAGS += -DS130
+ASMFLAGS += -DBOARD_PCA10040
+ASMFLAGS += -DNRF52_PAN_64
+ASMFLAGS += -DNRF52_PAN_12
+ASMFLAGS += -DNRF52_PAN_15
+ASMFLAGS += -DNRF52_PAN_58
+ASMFLAGS += -DNRF52_PAN_55
+ASMFLAGS += -DNRF52_PAN_54
+ASMFLAGS += -DNRF52_PAN_31
+ASMFLAGS += -DNRF52_PAN_30
+ASMFLAGS += -DNRF52_PAN_51
+ASMFLAGS += -DNRF52_PAN_36
+ASMFLAGS += -DNRF52_PAN_53
+ASMFLAGS += -DNRF_LOG_USES_UART=1
+ASMFLAGS += -DS132
+ASMFLAGS += -DCONFIG_GPIO_AS_PINRESET
 ASMFLAGS += -DBLE_STACK_SUPPORT_REQD
 ASMFLAGS += -DSWI_DISABLE0
+ASMFLAGS += -DNRF52_PAN_20
+ASMFLAGS += -DNRF52_PAN_62
+ASMFLAGS += -DNRF52_PAN_63
 #default target - first one defined
-default: clean nrf51422_xxac_s130
+default: clean nrf52832_xxaa_s132
 
 #building all targets
 all: clean
 	$(NO_ECHO)$(MAKE) -f $(MAKEFILE_NAME) -C $(MAKEFILE_DIR) -e cleanobj
-	$(NO_ECHO)$(MAKE) -f $(MAKEFILE_NAME) -C $(MAKEFILE_DIR) -e nrf51422_xxac_s130
+	$(NO_ECHO)$(MAKE) -f $(MAKEFILE_NAME) -C $(MAKEFILE_DIR) -e nrf52832_xxaa_s132
 
 #target for printing all targets
 help:
 	@echo following targets are available:
-	@echo 	nrf51422_xxac_s130
+	@echo 	nrf52832_xxaa_s132
 	@echo 	flash_softdevice
 
 
@@ -176,9 +207,9 @@ vpath %.s $(ASM_PATHS)
 
 OBJECTS = $(C_OBJECTS) $(ASM_OBJECTS)
 
-nrf51422_xxac_s130: OUTPUT_FILENAME := nrf51422_xxac_s130
-nrf51422_xxac_s130: LINKER_SCRIPT=ble_app_gls_gcc_nrf51.ld
-nrf51422_xxac_s130: $(BUILD_DIRECTORIES) $(OBJECTS)
+nrf52832_xxaa_s132: OUTPUT_FILENAME := nrf52832_xxaa_s132
+nrf52832_xxaa_s132: LINKER_SCRIPT=ble_app_gls_gcc_nrf52.ld
+nrf52832_xxaa_s132: $(BUILD_DIRECTORIES) $(OBJECTS)
 	@echo Linking target: $(OUTPUT_FILENAME).out
 	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
 	$(NO_ECHO)$(MAKE) -f $(MAKEFILE_NAME) -C $(MAKEFILE_DIR) -e finalize
@@ -239,11 +270,11 @@ cleanobj:
 
 flash: $(MAKECMDGOALS)
 	@echo Flashing: $(OUTPUT_BINARY_DIRECTORY)/$<.hex
-	nrfjprog --program $(OUTPUT_BINARY_DIRECTORY)/$<.hex -f nrf51  --sectorerase
+	nrfjprog --program $(OUTPUT_BINARY_DIRECTORY)/$<.hex -f nrf52  --sectorerase
 	nrfjprog --reset
 
 ## Flash softdevice
 flash_softdevice:
-	@echo Flashing: s130_nrf51_2.0.0-7.alpha_softdevice.hex
-	nrfjprog --program ../../../../../../components/softdevice/s130/hex/s130_nrf51_2.0.0-7.alpha_softdevice.hex -f nrf51 --chiperase
+	@echo Flashing: s132_nrf52_2.0.0-7.alpha_softdevice.hex
+	nrfjprog --program ../../../../../../components/softdevice/s132/hex/s132_nrf52_2.0.0-7.alpha_softdevice.hex -f nrf52 --chiperase
 	nrfjprog --reset

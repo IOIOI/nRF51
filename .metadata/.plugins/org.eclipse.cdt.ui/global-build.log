@@ -1,4 +1,150 @@
-12:43:08 **** Build of configuration Default for project BLE_GLS ****
+13:07:18 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_gls/main.c:41:21: fatal error: ble_nus.h: No such file or directory
+ #include "ble_nus.h"
+                     ^
+compilation terminated.
+make: *** [_build/main.o] Error 1
+13:08:37 **** Incremental Build of configuration Default for project BLE_2 ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  26056	    116	   4360	  30532	   7744	_build/nrf51422_xxac_s130.out
+
+13:08:46 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_gls/main.c:41:21: fatal error: ble_nus.h: No such file or directory
+ #include "ble_nus.h"
+                     ^
+compilation terminated.
+make: *** [_build/main.o] Error 1
+13:09:20 **** Incremental Build of configuration Default for project BLE_2 ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  26056	    116	   4360	  30532	   7744	_build/nrf51422_xxac_s130.out
+
+13:09:28 **** Incremental Build of configuration Default for project BLE_GLS ****
 make 
 rm -rf _build
 echo  Makefile
@@ -32,6 +178,7 @@ Compiling file: ble_conn_params.c
 Compiling file: ble_dis.c
 Compiling file: ble_gls.c
 Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
 Compiling file: ble_racp.c
 Compiling file: ble_srv_common.c
 Compiling file: device_manager_peripheral.c
@@ -43,5 +190,903 @@ Preparing: nrf51422_xxac_s130.bin
 Preparing: nrf51422_xxac_s130.hex
 
    text	   data	    bss	    dec	    hex	filename
-  34548	    140	   5212	  39900	   9bdc	_build/nrf51422_xxac_s130.out
+  39136	    152	   5256	  44544	   ae00	_build/nrf51422_xxac_s130.out
+
+13:10:05 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_bas.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_dis.c
+Compiling file: ble_gls.c
+Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
+Compiling file: ble_racp.c
+Compiling file: ble_srv_common.c
+Compiling file: device_manager_peripheral.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  39136	    152	   5256	  44544	   ae00	_build/nrf51422_xxac_s130.out
+
+13:13:58 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_bas.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_dis.c
+Compiling file: ble_gls.c
+Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
+Compiling file: ble_racp.c
+Compiling file: ble_srv_common.c
+Compiling file: device_manager_peripheral.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  39120	    152	   5256	  44528	   adf0	_build/nrf51422_xxac_s130.out
+
+13:15:07 **** Incremental Build of configuration Default for project BLE_2 ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  26056	    116	   4360	  30532	   7744	_build/nrf51422_xxac_s130.out
+
+13:15:17 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_bas.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_dis.c
+Compiling file: ble_gls.c
+Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
+Compiling file: ble_racp.c
+Compiling file: ble_srv_common.c
+Compiling file: device_manager_peripheral.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  36048	    152	   3092	  39292	   997c	_build/nrf51422_xxac_s130.out
+
+13:15:28 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_bas.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_dis.c
+Compiling file: ble_gls.c
+Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
+Compiling file: ble_racp.c
+Compiling file: ble_srv_common.c
+Compiling file: device_manager_peripheral.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  36048	    152	   3092	  39292	   997c	_build/nrf51422_xxac_s130.out
+
+13:16:18 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_bas.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_dis.c
+Compiling file: ble_gls.c
+Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
+Compiling file: ble_racp.c
+Compiling file: ble_srv_common.c
+Compiling file: device_manager_peripheral.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  36980	    152	   3364	  40496	   9e30	_build/nrf51422_xxac_s130.out
+
+13:17:22 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_bas.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_dis.c
+Compiling file: ble_gls.c
+Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
+Compiling file: ble_racp.c
+Compiling file: ble_srv_common.c
+Compiling file: device_manager_peripheral.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  36980	    152	   3364	  40496	   9e30	_build/nrf51422_xxac_s130.out
+
+13:20:15 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_bas.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_dis.c
+Compiling file: ble_gls.c
+Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
+Compiling file: ble_racp.c
+Compiling file: ble_srv_common.c
+Compiling file: device_manager_peripheral.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  36980	    140	   3364	  40484	   9e24	_build/nrf51422_xxac_s130.out
+
+13:24:40 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_bas.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_dis.c
+Compiling file: ble_gls.c
+Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
+Compiling file: ble_racp.c
+Compiling file: ble_srv_common.c
+Compiling file: device_manager_peripheral.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  36992	    140	   3364	  40496	   9e30	_build/nrf51422_xxac_s130.out
+
+13:27:53 **** Incremental Build of configuration Default for project BLE_2 ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_nus.c
+Compiling file: ble_srv_common.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  26056	    116	   4360	  30532	   7744	_build/nrf51422_xxac_s130.out
+
+13:28:01 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_bas.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_dis.c
+Compiling file: ble_gls.c
+Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
+Compiling file: ble_racp.c
+Compiling file: ble_srv_common.c
+Compiling file: device_manager_peripheral.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  37916	    140	   3396	  41452	   a1ec	_build/nrf51422_xxac_s130.out
+
+13:28:16 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_bas.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_dis.c
+Compiling file: ble_gls.c
+Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
+Compiling file: ble_racp.c
+Compiling file: ble_srv_common.c
+Compiling file: device_manager_peripheral.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  37916	    140	   3396	  41452	   a1ec	_build/nrf51422_xxac_s130.out
+
+13:29:44 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_bas.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_dis.c
+Compiling file: ble_gls.c
+Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
+Compiling file: ble_racp.c
+Compiling file: ble_srv_common.c
+Compiling file: device_manager_peripheral.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  37916	    140	   3396	  41452	   a1ec	_build/nrf51422_xxac_s130.out
+
+13:32:40 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_bas.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_dis.c
+Compiling file: ble_gls.c
+Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
+Compiling file: ble_racp.c
+Compiling file: ble_srv_common.c
+Compiling file: device_manager_peripheral.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  37880	    140	   3396	  41416	   a1c8	_build/nrf51422_xxac_s130.out
+
+13:41:01 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_bas.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_dis.c
+Compiling file: ble_gls.c
+Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
+Compiling file: ble_racp.c
+Compiling file: ble_srv_common.c
+Compiling file: device_manager_peripheral.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  37040	    140	   3124	  40304	   9d70	_build/nrf51422_xxac_s130.out
+
+13:45:47 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_bas.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_dis.c
+Compiling file: ble_gls.c
+Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
+Compiling file: ble_racp.c
+Compiling file: ble_srv_common.c
+Compiling file: device_manager_peripheral.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  31876	    136	   3068	  35080	   8908	_build/nrf51422_xxac_s130.out
+
+13:46:45 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_bas.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_dis.c
+Compiling file: ble_gls.c
+Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
+Compiling file: ble_racp.c
+Compiling file: ble_srv_common.c
+Compiling file: device_manager_peripheral.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  31876	    148	   3068	  35092	   8914	_build/nrf51422_xxac_s130.out
+
+13:55:17 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_bas.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_dis.c
+Compiling file: ble_gls.c
+Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
+Compiling file: ble_racp.c
+Compiling file: ble_srv_common.c
+Compiling file: device_manager_peripheral.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  32508	    148	   3348	  36004	   8ca4	_build/nrf51422_xxac_s130.out
+
+13:57:15 **** Incremental Build of configuration Default for project BLE_GLS ****
+make 
+rm -rf _build
+echo  Makefile
+Makefile
+mkdir _build
+Compiling file: RTT_Syscalls_GCC.c
+Compiling file: SEGGER_RTT.c
+Compiling file: SEGGER_RTT_printf.c
+Compiling file: app_button.c
+Compiling file: app_error.c
+Compiling file: app_fifo.c
+Compiling file: app_timer.c
+Compiling file: app_trace.c
+Compiling file: nrf_assert.c
+Compiling file: nrf_log.c
+Compiling file: retarget.c
+Compiling file: sensorsim.c
+Compiling file: app_uart_fifo.c
+Compiling file: nrf_delay.c
+Compiling file: nrf_drv_common.c
+Compiling file: nrf_drv_gpiote.c
+Compiling file: nrf_drv_uart.c
+Compiling file: pstorage.c
+Compiling file: bsp.c
+Compiling file: bsp_btn_ble.c
+Compiling file: main.c
+Compiling file: ble_advdata.c
+Compiling file: ble_advertising.c
+Compiling file: ble_bas.c
+Compiling file: ble_conn_params.c
+Compiling file: ble_dis.c
+Compiling file: ble_gls.c
+Compiling file: ble_gls_db.c
+Compiling file: ble_nus.c
+Compiling file: ble_racp.c
+Compiling file: ble_srv_common.c
+Compiling file: device_manager_peripheral.c
+Compiling file: system_nrf51.c
+Compiling file: softdevice_handler.c
+Compiling file: gcc_startup_nrf51.s
+Linking target: nrf51422_xxac_s130.out
+Preparing: nrf51422_xxac_s130.bin
+Preparing: nrf51422_xxac_s130.hex
+
+   text	   data	    bss	    dec	    hex	filename
+  32388	    140	   3320	  35848	   8c08	_build/nrf51422_xxac_s130.out
 

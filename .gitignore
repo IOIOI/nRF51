@@ -4,3 +4,5 @@ project/ble_peripheral/ble_app_uart/pca10028/s130/armgcc/_build/nrf51422_xxac_s1
 project/ble_peripheral/ble_app_uart/pca10028/s130/armgcc/_build/nrf51422_xxac_s130.map
 project/ble_peripheral/ble_app_uart/pca10028/s130/armgcc/_build/nrf51422_xxac_s130.out
 .metadata
+project/ble_peripheral/ble_app_gls/pca10028/s130/armgcc/_build
+project/ble_peripheral/ble_app_uart_1/pca10028/s130/armgcc/_build

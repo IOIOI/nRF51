@@ -1,4 +1,4 @@
-18:12:58 **** Incremental Build of configuration Default for project BLE ****
+10:28:13 **** Incremental Build of configuration Default for project BLE ****
 make 
 rm -rf _build
 echo  Makefile
@@ -17,10 +17,6 @@ Compiling file: sdk_mapped_flags.c
 Compiling file: nrf_log.c
 Compiling file: retarget.c
 Compiling file: fds.c
-In file included from /Users/nilsweiss/nRF51/components/libraries/fds/fds.c:18:0:
-/Users/nilsweiss/nRF51/components/libraries/fds/fds_types_internal.h:51:16: warning: 'm_nested_critical' defined but not used [-Wunused-variable]
- static uint8_t m_nested_critical;
-                ^
 Compiling file: app_uart_fifo.c
 Compiling file: nrf_delay.c
 Compiling file: nrf_drv_common.c
@@ -52,17 +48,41 @@ Compiling file: id_manager.c
 Compiling file: system_nrf51.c
 Compiling file: softdevice_handler.c
 Compiling file: main.cpp
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp: In function 'void ble_stack_init()':
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:358:48: error: too few arguments to function 'uint32_t sd_ble_enable(ble_enable_params_t*, uint32_t*)'
+     err_code = sd_ble_enable(&ble_enable_params);
+                                                ^
+In file included from /Users/nilsweiss/nRF51/components/softdevice/s130/headers/ble_gap.h:48:0,
+                 from /Users/nilsweiss/nRF51/components/softdevice/s130/headers/ble.h:52,
+                 from /Users/nilsweiss/nRF51/components/ble/common/ble_advdata.h:28,
+                 from /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:33:
+/Users/nilsweiss/nRF51/components/softdevice/s130/headers/ble.h:359:33: note: declared here
+ SVCALL(SD_BLE_ENABLE, uint32_t, sd_ble_enable(ble_enable_params_t * p_ble_enable_params, uint32_t * p_app_ram_base));
+                                 ^
+/Users/nilsweiss/nRF51/components/softdevice/s130/headers/nrf_svc.h:52:45: note: in definition of macro 'SVCALL'
+   __attribute__((naked)) static return_type signature \
+                                             ^
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp: In function 'void pm_evt_handler(const pm_evt_t*)':
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:419:61: error: request for member 'error_type' in 'p_evt->pm_evt_t::params.pm_evt_t::<anonymous union>::link_secure_failed_evt.pm_link_secure_failed_evt_t::error', which is of non-class type 'const pm_sec_error_code_t {aka const short unsigned int}'
+              if (p_evt->params.link_secure_failed_evt.error.error_type == PM_ERROR_TYPE_PM_SEC_ERROR)
+                                                             ^
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:419:75: error: 'PM_ERROR_TYPE_PM_SEC_ERROR' was not declared in this scope
+              if (p_evt->params.link_secure_failed_evt.error.error_type == PM_ERROR_TYPE_PM_SEC_ERROR)
+                                                                           ^
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:421:69: error: request for member 'error' in 'p_evt->pm_evt_t::params.pm_evt_t::<anonymous union>::link_secure_failed_evt.pm_link_secure_failed_evt_t::error', which is of non-class type 'const pm_sec_error_code_t {aka const short unsigned int}'
+                  switch (p_evt->params.link_secure_failed_evt.error.error.pm_sec_error)
+                                                                     ^
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:423:27: error: 'PM_SEC_ERROR_CODE_PIN_OR_KEY_MISSING' was not declared in this scope
+                      case PM_SEC_ERROR_CODE_PIN_OR_KEY_MISSING:
+                           ^
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:433:69: error: request for member 'error' in 'p_evt->pm_evt_t::params.pm_evt_t::<anonymous union>::link_secure_failed_evt.pm_link_secure_failed_evt_t::error', which is of non-class type 'const pm_sec_error_code_t {aka const short unsigned int}'
+                  switch (p_evt->params.link_secure_failed_evt.error.error.sec_status)
+                                                                     ^
+/Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp: At global scope:
 /Users/nilsweiss/nRF51/project/ble_peripheral/ble_app_uart/main.cpp:89:23: warning: 'm_static_pin_option' defined but not used [-Wunused-variable]
  static ble_opt_t      m_static_pin_option;
                        ^
-Compiling file: gcc_startup_nrf51.s
-Linking target: nrf51422_xxac_s130.out
-Preparing: nrf51422_xxac_s130.bin
-Preparing: nrf51422_xxac_s130.hex
+make: *** [_build/main.o] Error 1
 
-   text	   data	    bss	    dec	    hex	filename
-  72200	    172	   5252	  77624	  12f38	_build/nrf51422_xxac_s130.out
-
-
-18:13:05 Build Finished (took 7s.238ms)
+10:28:21 Build Finished (took 8s.200ms)
 

@@ -917,3 +917,21 @@ java.io.IOException: Cannot run program "arm-none-eabi-g++": Unknown reason
 !MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.mi.service.MIRunControl$9@68bae63a): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Context cannot be suspended. null' resulted in an error.
 !SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2016-03-09 18:14:16.881
 !MESSAGE Context cannot be suspended.
+!SESSION 2016-03-10 10:12:24.995 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_51
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -keyring /Users/nilsweiss/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.cpp.product -keyring /Users/nilsweiss/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2016-03-10 10:12:36.121
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.cdt.core 1 0 2016-03-10 10:20:11.991
+!MESSAGE Indexed 'BLE_2' (232 sources, 481 headers) in 13.2 sec: 34,533 declarations; 95,830 references; 9 unresolved inclusions; 1,076 syntax errors; 6,279 unresolved names (4.6%)
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2016-03-10 10:28:06.799
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.mi.service.MIRunControl$9@7881a08f): Status ERROR: org.eclipse.cdt.dsf.gdb code=10001 Context cannot be suspended. null' resulted in an error.
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10001 2016-03-10 10:28:06.800
+!MESSAGE Context cannot be suspended.

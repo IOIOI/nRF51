@@ -47,6 +47,7 @@ $(abspath ../../../../../components/drivers_nrf/clock/nrf_drv_clock.c) \
 $(abspath ../../../../../components/drivers_nrf/common/nrf_drv_common.c) \
 $(abspath ../../../../../components/drivers_nrf/gpiote/nrf_drv_gpiote.c) \
 $(abspath ../../../../../components/drivers_nrf/wdt/nrf_drv_wdt.c) \
+$(abspath ../../../../../components/drivers_nrf/nrf_soc_nosd/nrf_soc.c) \
 $(abspath ../../../../bsp/bsp.c) \
 $(abspath ../../main.c) \
 $(abspath ../../../../../components/toolchain/system_nrf51.c) \
@@ -87,7 +88,7 @@ CFLAGS += -DSWI_DISABLE0
 CFLAGS += -DBOARD_PCA10028
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -O3
+CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing

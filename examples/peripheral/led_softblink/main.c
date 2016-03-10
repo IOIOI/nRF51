@@ -56,12 +56,10 @@ static void leds_init(void)
 static void lfclk_init(void)
 {
     uint32_t err_code;
-    nrf_drv_clock_config_t nrf_drv_clock_config = NRF_DRV_CLOCK_DEAFULT_CONFIG;
-
-    err_code = nrf_drv_clock_init(&nrf_drv_clock_config);
+    err_code = nrf_drv_clock_init();
     APP_ERROR_CHECK(err_code);
 
-    nrf_drv_clock_lfclk_request();
+    nrf_drv_clock_lfclk_request(NULL);
 }
 #endif
 

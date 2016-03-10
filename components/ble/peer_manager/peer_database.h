@@ -54,6 +54,10 @@ typedef struct
     {
         struct
         {
+            bool update;  /**< If true, an existing value was overwritten. */
+        } write_buf_stored_evt;
+        struct
+        {
             pm_store_token_t store_token;  /**< A token identifying the store operation this event pertains to. */
         } raw_stored_evt;
         struct

@@ -37,12 +37,16 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 
 #source common to all targets
 C_SOURCE_FILES += \
+$(abspath ../../../../../../components/drivers_ext/segger_rtt/RTT_Syscalls_GCC.c) \
+$(abspath ../../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT.c) \
+$(abspath ../../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT_printf.c) \
 $(abspath ../../../../../../components/libraries/button/app_button.c) \
 $(abspath ../../../../../../components/libraries/util/app_error.c) \
 $(abspath ../../../../../../components/libraries/fifo/app_fifo.c) \
 $(abspath ../../../../../../components/libraries/timer/app_timer.c) \
 $(abspath ../../../../../../components/libraries/util/app_util_platform.c) \
 $(abspath ../../../../../../components/libraries/util/nrf_assert.c) \
+$(abspath ../../../../../../components/libraries/util/nrf_log.c) \
 $(abspath ../../../../../../components/libraries/uart/retarget.c) \
 $(abspath ../../../../../../components/libraries/uart/app_uart_fifo.c) \
 $(abspath ../../../../../../components/drivers_nrf/delay/nrf_delay.c) \
@@ -61,21 +65,22 @@ ASM_SOURCE_FILES  = $(abspath ../../../../../../components/toolchain/gcc/gcc_sta
 INC_PATHS  = -I$(abspath ../../config/receiver_pca10031)
 INC_PATHS += -I$(abspath ../../config)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/util)
-INC_PATHS += -I$(abspath ../../../../../../components/toolchain/gcc)
-INC_PATHS += -I$(abspath ../../../../../../components/toolchain)
+INC_PATHS += -I$(abspath ../../../../../../components/libraries/timer)
+INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/uart)
+INC_PATHS += -I$(abspath ../../../../../../components/drivers_ext/segger_rtt)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/common)
+INC_PATHS += -I$(abspath ../..)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/radio_config)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/config)
-INC_PATHS += -I$(abspath ../../../../../bsp)
-INC_PATHS += -I$(abspath ../../../../../../components/libraries/fifo)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/gpiote)
-INC_PATHS += -I$(abspath ../..)
+INC_PATHS += -I$(abspath ../../../../../../components/libraries/fifo)
+INC_PATHS += -I$(abspath ../../../../../bsp)
+INC_PATHS += -I$(abspath ../../../../../../components/toolchain/gcc)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/nrf_soc_nosd)
-INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/uart)
+INC_PATHS += -I$(abspath ../../../../../../components/toolchain)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/uart)
 INC_PATHS += -I$(abspath ../../../../../../components/device)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/delay)
-INC_PATHS += -I$(abspath ../../../../../../components/libraries/timer)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/hal)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/button)
 
@@ -90,10 +95,11 @@ BUILD_DIRECTORIES := $(sort $(OBJECT_DIRECTORY) $(OUTPUT_BINARY_DIRECTORY) $(LIS
 CFLAGS  = -DNRF51
 CFLAGS += -DBSP_UART_SUPPORT
 CFLAGS += -DBOARD_PCA10031
+CFLAGS += -DNRF_LOG_USES_UART=1
 CFLAGS += -DSWI_DISABLE0
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -O3
+CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
@@ -113,6 +119,7 @@ ASMFLAGS += -x assembler-with-cpp
 ASMFLAGS += -DNRF51
 ASMFLAGS += -DBSP_UART_SUPPORT
 ASMFLAGS += -DBOARD_PCA10031
+ASMFLAGS += -DNRF_LOG_USES_UART=1
 ASMFLAGS += -DSWI_DISABLE0
 #default target - first one defined
 default: clean nrf51422_xxac

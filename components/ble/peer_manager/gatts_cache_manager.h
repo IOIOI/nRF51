@@ -3,7 +3,7 @@
 #ifndef GATTS_CACHE_MANAGER_H__
 #define GATTS_CACHE_MANAGER_H__
 
-#include "stdint.h"
+#include <stdint.h>
 #include "sdk_errors.h"
 #include "ble.h"
 #include "ble_gap.h"

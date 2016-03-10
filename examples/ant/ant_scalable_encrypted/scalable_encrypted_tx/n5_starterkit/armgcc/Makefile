@@ -60,20 +60,20 @@ ASM_SOURCE_FILES  = $(abspath ../../../../../../components/toolchain/gcc/gcc_sta
 INC_PATHS  = -I$(abspath ../../config/ant_scalable_encrypted_tx_s210_n5_starterkit)
 INC_PATHS += -I$(abspath ../../config)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/util)
-INC_PATHS += -I$(abspath ../../../../../../components/toolchain/gcc)
-INC_PATHS += -I$(abspath ../../../../../../components/toolchain)
+INC_PATHS += -I$(abspath ../../../../../../components/libraries/timer)
+INC_PATHS += -I$(abspath ../../../../../../components/ant/ant_stack_config)
 INC_PATHS += -I$(abspath ../../../../../../components/softdevice/s210/headers)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/common)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/config)
-INC_PATHS += -I$(abspath ../../../../../bsp)
-INC_PATHS += -I$(abspath ../../../../../../components/ant/ant_stack_config)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/gpiote)
+INC_PATHS += -I$(abspath ../../../../../bsp)
+INC_PATHS += -I$(abspath ../../../../../../components/toolchain/gcc)
 INC_PATHS += -I$(abspath ../../../../../../components/ant/ant_encryption)
 INC_PATHS += -I$(abspath ../../../../../../components/device)
 INC_PATHS += -I$(abspath ../../../../../../components/softdevice/common/softdevice_handler)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/delay)
 INC_PATHS += -I$(abspath ../../../../../../components/ant/ant_channel_config)
-INC_PATHS += -I$(abspath ../../../../../../components/libraries/timer)
+INC_PATHS += -I$(abspath ../../../../../../components/toolchain)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/hal)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/button)
 
@@ -93,7 +93,7 @@ CFLAGS += -DBOARD_N5DK1
 CFLAGS += -DANT_STACK_SUPPORT_REQD
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -O3
+CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing

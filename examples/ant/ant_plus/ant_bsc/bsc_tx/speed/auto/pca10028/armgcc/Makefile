@@ -37,12 +37,16 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 
 #source common to all targets
 C_SOURCE_FILES += \
+$(abspath ../../../../../../../../../components/drivers_ext/segger_rtt/RTT_Syscalls_GCC.c) \
+$(abspath ../../../../../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT.c) \
+$(abspath ../../../../../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT_printf.c) \
 $(abspath ../../../../../../../../../components/libraries/button/app_button.c) \
 $(abspath ../../../../../../../../../components/libraries/util/app_error.c) \
 $(abspath ../../../../../../../../../components/libraries/fifo/app_fifo.c) \
 $(abspath ../../../../../../../../../components/libraries/timer/app_timer.c) \
 $(abspath ../../../../../../../../../components/libraries/trace/app_trace.c) \
 $(abspath ../../../../../../../../../components/libraries/util/nrf_assert.c) \
+$(abspath ../../../../../../../../../components/libraries/util/nrf_log.c) \
 $(abspath ../../../../../../../../../components/libraries/uart/retarget.c) \
 $(abspath ../../../../../../../../../components/libraries/sensorsim/sensorsim.c) \
 $(abspath ../../../../../../../../../components/libraries/uart/app_uart_fifo.c) \
@@ -95,7 +99,8 @@ INC_PATHS += -I$(abspath ../../../../../../../../../components/drivers_nrf/confi
 INC_PATHS += -I$(abspath ../../../../../../../../../components/libraries/util)
 INC_PATHS += -I$(abspath ../../../../../../../../../components/drivers_nrf/hal)
 INC_PATHS += -I$(abspath ../../../../../../../../../components/libraries/button)
-INC_PATHS += -I$(abspath ../../../../../../../../../components/ant/ant_key_manager)
+INC_PATHS += -I$(abspath ../../../../../../../../bsp)
+INC_PATHS += -I$(abspath ../../../../../../../../../components/drivers_ext/segger_rtt)
 INC_PATHS += -I$(abspath ../../../../../../../../../components/softdevice/s210/headers)
 INC_PATHS += -I$(abspath ../../../../../../../../../components/ant/ant_profiles/ant_bsc/pages/logger)
 INC_PATHS += -I$(abspath ../../../../../../../../../components/libraries/sensorsim)
@@ -103,7 +108,7 @@ INC_PATHS += -I$(abspath ../../../../../../../../../components/ant/ant_profiles/
 INC_PATHS += -I$(abspath ../../../../../../../../../components/libraries/trace)
 INC_PATHS += -I$(abspath ../../../../../../../../../components/drivers_nrf/delay)
 INC_PATHS += -I$(abspath ../../../../../../../../../components/ant/ant_profiles/ant_bsc/utils)
-INC_PATHS += -I$(abspath ../../../../../../../../bsp)
+INC_PATHS += -I$(abspath ../../../../../../../../../components/ant/ant_key_manager)
 
 OBJECT_DIRECTORY = _build
 LISTING_DIRECTORY = $(OBJECT_DIRECTORY)
@@ -122,6 +127,7 @@ CFLAGS += -DBOARD_PCA10028
 CFLAGS += -DTRACE_BSC_PAGE_0_ENABLE
 CFLAGS += -DANT_STACK_SUPPORT_REQD
 CFLAGS += -DTRACE_BSC_GENERAL_ENABLE
+CFLAGS += -DNRF_LOG_USES_UART=1
 CFLAGS += -DS210
 CFLAGS += -DSENSOR_TYPE=0x7B
 CFLAGS += -DTRACE_BSC_COMB_PAGE_0_ENABLE
@@ -132,7 +138,7 @@ CFLAGS += -DTRACE_BSC_PAGE_2_ENABLE
 CFLAGS += -DSOFTDEVICE_PRESENT
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -O3
+CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
@@ -158,6 +164,7 @@ ASMFLAGS += -DBOARD_PCA10028
 ASMFLAGS += -DTRACE_BSC_PAGE_0_ENABLE
 ASMFLAGS += -DANT_STACK_SUPPORT_REQD
 ASMFLAGS += -DTRACE_BSC_GENERAL_ENABLE
+ASMFLAGS += -DNRF_LOG_USES_UART=1
 ASMFLAGS += -DS210
 ASMFLAGS += -DSENSOR_TYPE=0x7B
 ASMFLAGS += -DTRACE_BSC_COMB_PAGE_0_ENABLE

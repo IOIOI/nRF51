@@ -33,6 +33,10 @@
 #include "app_trace.h"
 #include "app_util.h"
 
+#define CENTRAL_LINK_COUNT               DEVICE_MANAGER_MAX_CONNECTIONS                 /**<number of central links used by the application. When changing this number remember to adjust the RAM settings*/
+#define PERIPHERAL_LINK_COUNT            0                                              /**<number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
+
+
 #ifdef BSP_BUTTON_1
 #define BOND_DELETE_ALL_BUTTON_PIN       BSP_BUTTON_1                                   /**< Button used for deleting all bonded centrals during startup. */
 #endif
@@ -55,7 +59,6 @@
 #define SUPERVISION_TIMEOUT              MSEC_TO_UNITS(4000, UNIT_10_MS)                /**< Determines supervision time-out in units of 10 millisecond. */
 
 #define TARGET_DEV_NAME                  "Multilink"                                    /**< Target device name that application is looking for. */
-#define MAX_PEER_COUNT                   DEVICE_MANAGER_MAX_CONNECTIONS                 /**< Maximum number of peer's application intends to manage. */
 
 
 /**@brief Variable length data encapsulation in terms of length and pointer to data */
@@ -148,7 +151,7 @@ static ret_code_t device_manager_event_handler(const dm_handle_t    * p_handle,
             APP_ERROR_CHECK(err_code);
 
             m_peer_count++;
-            if (m_peer_count < MAX_PEER_COUNT)
+            if (m_peer_count < CENTRAL_LINK_COUNT)
             {
                 scan_start();
             }
@@ -160,7 +163,7 @@ static ret_code_t device_manager_event_handler(const dm_handle_t    * p_handle,
             err_code = client_handling_destroy(p_handle);
             APP_ERROR_CHECK(err_code);
 
-            if (m_peer_count == MAX_PEER_COUNT)
+            if (m_peer_count == CENTRAL_LINK_COUNT)
             {
                 scan_start();
             }
@@ -381,19 +384,22 @@ static void ble_stack_init(void)
 
     // Initialize the SoftDevice handler module.
     SOFTDEVICE_HANDLER_INIT(NRF_CLOCK_LFCLKSRC_XTAL_20_PPM, NULL);
-
-    // Enable BLE stack.
+    
     ble_enable_params_t ble_enable_params;
-    memset(&ble_enable_params, 0, sizeof(ble_enable_params));
-#if (defined(S130) || defined(S132))
-    ble_enable_params.gatts_enable_params.attr_tab_size   = BLE_GATTS_ATTR_TAB_SIZE_DEFAULT;
-#endif
-    ble_enable_params.gatts_enable_params.service_changed = false;
-#ifdef S120
-    ble_enable_params.gap_enable_params.role              = BLE_GAP_ROLE_CENTRAL;
-#endif
+    err_code = softdevice_enable_get_default_config(CENTRAL_LINK_COUNT,
+                                                    PERIPHERAL_LINK_COUNT,
+                                                    &ble_enable_params);
+    APP_ERROR_CHECK(err_code);
+    
+    //Check the ram settings against the used number of links
+    CHECK_RAM_START_ADDR(CENTRAL_LINK_COUNT,PERIPHERAL_LINK_COUNT);
+    
+    // Enable BLE stack.
+    err_code = softdevice_enable(&ble_enable_params);
+    APP_ERROR_CHECK(err_code);
 
-    err_code = sd_ble_enable(&ble_enable_params);
+    // Register with the SoftDevice handler module for BLE events.
+    err_code = softdevice_ble_evt_handler_set(ble_evt_dispatch);
     APP_ERROR_CHECK(err_code);
 
     // Register with the SoftDevice handler module for BLE events.

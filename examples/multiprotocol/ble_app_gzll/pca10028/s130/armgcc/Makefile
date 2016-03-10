@@ -1,4 +1,4 @@
-PROJECT_NAME := ble_app_gzll_s130_pca10028
+PROJECT_NAME := ble_app_gzll_pca10028
 
 export OUTPUT_FILENAME
 #MAKEFILE_NAME := $(CURDIR)/$(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
@@ -39,15 +39,12 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 C_SOURCE_FILES += \
 $(abspath ../../../../../../components/libraries/button/app_button.c) \
 $(abspath ../../../../../../components/libraries/util/app_error.c) \
-$(abspath ../../../../../../components/libraries/fifo/app_fifo.c) \
 $(abspath ../../../../../../components/libraries/timer/app_timer_ble_gzll.c) \
 $(abspath ../../../../../../components/libraries/util/nrf_assert.c) \
 $(abspath ../../../../../../components/libraries/sensorsim/sensorsim.c) \
-$(abspath ../../../../../../components/libraries/uart/app_uart_fifo.c) \
 $(abspath ../../../../../../components/drivers_nrf/delay/nrf_delay.c) \
 $(abspath ../../../../../../components/drivers_nrf/common/nrf_drv_common.c) \
 $(abspath ../../../../../../components/drivers_nrf/gpiote/nrf_drv_gpiote.c) \
-$(abspath ../../../../../../components/drivers_nrf/uart/nrf_drv_uart.c) \
 $(abspath ../../../../../bsp/bsp.c) \
 $(abspath ../../../ble_app_gzll_device.c) \
 $(abspath ../../../ble_app_gzll_hr.c) \
@@ -70,29 +67,27 @@ LIBS  = $(abspath ../../../../../../components/properitary_rf/gzll/gcc/gzll_gcc.
 
 #includes common to all targets
 INC_PATHS  = -I$(abspath ../../../config)
-INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/config)
-INC_PATHS += -I$(abspath ../../../../../bsp)
-INC_PATHS += -I$(abspath ../../../../../../components/libraries/fifo)
-INC_PATHS += -I$(abspath ../../../../../../components/softdevice/s130/headers)
-INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/delay)
-INC_PATHS += -I$(abspath ../../../../../../components/properitary_rf/gzll)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/util)
-INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/uart)
-INC_PATHS += -I$(abspath ../../../../../../components/ble/common)
-INC_PATHS += -I$(abspath ../../../../../../components/libraries/sensorsim)
-INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_services/ble_dis)
-INC_PATHS += -I$(abspath ../../../../../../components/device)
-INC_PATHS += -I$(abspath ../../../../../../components/libraries/uart)
-INC_PATHS += -I$(abspath ../../../../../../components/libraries/button)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/timer)
+INC_PATHS += -I$(abspath ../../../../../../components/softdevice/s130/headers/nrf51)
+INC_PATHS += -I$(abspath ../../../../../../components/ble/common)
+INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/common)
+INC_PATHS += -I$(abspath ../../../../../../components/libraries/button)
+INC_PATHS += -I$(abspath ../../../../../../components/libraries/sensorsim)
+INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/config)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/gpiote)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/hal)
+INC_PATHS += -I$(abspath ../../../../../bsp)
 INC_PATHS += -I$(abspath ../../../../../../components/toolchain/gcc)
 INC_PATHS += -I$(abspath ../../../../../../components/toolchain)
-INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/common)
-INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_services/ble_bas)
+INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_services/ble_dis)
+INC_PATHS += -I$(abspath ../../../../../../components/device)
 INC_PATHS += -I$(abspath ../../../../../../components/softdevice/common/softdevice_handler)
+INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/delay)
+INC_PATHS += -I$(abspath ../../../../../../components/softdevice/s130/headers)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_services/ble_hrs)
+INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_services/ble_bas)
+INC_PATHS += -I$(abspath ../../../../../../components/properitary_rf/gzll)
 
 OBJECT_DIRECTORY = _build
 LISTING_DIRECTORY = $(OBJECT_DIRECTORY)
@@ -111,7 +106,7 @@ CFLAGS += -DBLE_STACK_SUPPORT_REQD
 CFLAGS += -DGAZELL_PRESENT
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -O3
+CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
@@ -136,17 +131,17 @@ ASMFLAGS += -DS130
 ASMFLAGS += -DBLE_STACK_SUPPORT_REQD
 ASMFLAGS += -DGAZELL_PRESENT
 #default target - first one defined
-default: clean nrf51422_xxac_s130
+default: clean nrf51422_xxaa_s130
 
 #building all targets
 all: clean
 	$(NO_ECHO)$(MAKE) -f $(MAKEFILE_NAME) -C $(MAKEFILE_DIR) -e cleanobj
-	$(NO_ECHO)$(MAKE) -f $(MAKEFILE_NAME) -C $(MAKEFILE_DIR) -e nrf51422_xxac_s130
+	$(NO_ECHO)$(MAKE) -f $(MAKEFILE_NAME) -C $(MAKEFILE_DIR) -e nrf51422_xxaa_s130
 
 #target for printing all targets
 help:
 	@echo following targets are available:
-	@echo 	nrf51422_xxac_s130
+	@echo 	nrf51422_xxaa_s130
 	@echo 	flash_softdevice
 
 
@@ -163,9 +158,9 @@ vpath %.s $(ASM_PATHS)
 
 OBJECTS = $(C_OBJECTS) $(ASM_OBJECTS)
 
-nrf51422_xxac_s130: OUTPUT_FILENAME := nrf51422_xxac_s130
-nrf51422_xxac_s130: LINKER_SCRIPT=ble_app_gzll_gcc_nrf51.ld
-nrf51422_xxac_s130: $(BUILD_DIRECTORIES) $(OBJECTS)
+nrf51422_xxaa_s130: OUTPUT_FILENAME := nrf51422_xxaa_s130
+nrf51422_xxaa_s130: LINKER_SCRIPT=ble_app_gzll_gcc_nrf51.ld
+nrf51422_xxaa_s130: $(BUILD_DIRECTORIES) $(OBJECTS)
 	@echo Linking target: $(OUTPUT_FILENAME).out
 	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
 	$(NO_ECHO)$(MAKE) -f $(MAKEFILE_NAME) -C $(MAKEFILE_DIR) -e finalize
@@ -231,6 +226,6 @@ flash: $(MAKECMDGOALS)
 
 ## Flash softdevice
 flash_softdevice:
-	@echo Flashing: s130_nrf51_1.0.0_softdevice.hex
-	nrfjprog --program ../../../../../../components/softdevice/s130/hex/s130_nrf51_1.0.0_softdevice.hex -f nrf51 --chiperase
+	@echo Flashing: s130_nrf51_2.0.0-7.alpha_softdevice.hex
+	nrfjprog --program ../../../../../../components/softdevice/s130/hex/s130_nrf51_2.0.0-7.alpha_softdevice.hex -f nrf51 --chiperase
 	nrfjprog --reset

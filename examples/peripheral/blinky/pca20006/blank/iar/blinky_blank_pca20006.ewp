@@ -311,9 +311,9 @@
           <state>$PROJ_DIR$\..\..\..\config\blinky_blank_pca20006</state>
           <state>$PROJ_DIR$\..\..\..\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\delay</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\hal</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..\..</state>
           <state>$TOOLKIT_DIR$\CMSIS\Include</state>
@@ -575,9 +575,9 @@
           <state>$PROJ_DIR$\..\..\..\config\blinky_blank_pca20006</state>
           <state>$PROJ_DIR$\..\..\..\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\delay</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\hal</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..\..</state>
         </option>

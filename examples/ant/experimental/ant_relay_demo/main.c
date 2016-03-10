@@ -13,6 +13,12 @@ All rights reserved.
  * @ingroup nrf_ant_relay_demo
  *
  * @brief Example of ANT Relay implementation.
+ *
+ * Before compiling this example for NRF52, complete the following steps:
+ * - Download the S212 SoftDevice from <a href="https://www.thisisant.com/developer/components/nrf52832" target="_blank">thisisant.com</a>.
+ * - Extract the downloaded zip file and copy the S212 SoftDevice headers to <tt>\<InstallFolder\>/components/softdevice/s212/headers</tt>.
+ * If you are using Keil packs, copy the files into a @c headers folder in your example folder.
+ * - Make sure that @ref ANT_LICENSE_KEY in @c nrf_sdm.h is uncommented.
  */
  
  // Version 1.0.0
@@ -86,13 +92,16 @@ static uint8_t pm_ant_public_key[8] = {0xE8, 0xE4, 0x21, 0x3B, 0x55, 0x7A, 0x67,
 static uint32_t m_led_change_counter = 0;
 static uint8_t m_broadcast_data[ANT_STANDARD_DATA_PAYLOAD_SIZE]; /**< Primary data transmit buffer. */
 
+
 /**@brief Function for handling an error.
  *
- * @param[in] error_code  Error code supplied to the handler.
- * @param[in] line_num    Line number where the error occurred.
- * @param[in] p_file_name Pointer to the file name.
+ * @param[in] id    Fault identifier. See @ref NRF_FAULT_IDS.
+ * @param[in] pc    The program counter of the instruction that triggered the fault, or 0 if
+ *                  unavailable.
+ * @param[in] info  Optional additional information regarding the fault. Refer to each fault
+ *                  identifier for details.
  */
-void app_error_handler(uint32_t error_code, uint32_t line_num, const uint8_t * p_file_name)
+void app_error_fault_handler(uint32_t id, uint32_t pc, uint32_t info)
 {
     for (;;)
     {
@@ -561,10 +570,10 @@ void ant_process_mobile(ant_evt_t* p_ant_event)
 int main(void)
 {
     // ANT event message buffer.
-    static ant_evt_t ant_event;
+    __ALIGN(4) static ant_evt_t ant_event;
 
     // Configure LEDs as outputs.
-    nrf_gpio_range_cfg_output(BSP_LED_0, BSP_LED_1);
+    LEDS_CONFIGURE(BSP_LED_0_MASK | BSP_LED_1_MASK);
 
     // Set LED_0 and LED_1 high to indicate that the application is running.
     LEDS_ON(BSP_LED_0_MASK);
@@ -572,7 +581,11 @@ int main(void)
 
     // Enable SoftDevice.
     uint32_t err_code;
+#if defined(S212) || defined(S332)
+    err_code = sd_softdevice_enable(NRF_CLOCK_LFCLKSRC, softdevice_assert_callback, ANT_LICENSE_KEY);
+#else
     err_code = sd_softdevice_enable(NRF_CLOCK_LFCLKSRC, softdevice_assert_callback);
+#endif
     APP_ERROR_CHECK(err_code);
 
     // Set application IRQ to lowest priority.

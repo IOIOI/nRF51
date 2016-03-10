@@ -38,6 +38,7 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 #source common to all targets
 C_SOURCE_FILES += \
 $(abspath ../../../../../components/libraries/util/app_error.c) \
+$(abspath ../../../../../components/libraries/util/app_util_platform.c) \
 $(abspath ../../../../../components/libraries/util/nrf_assert.c) \
 $(abspath ../../../../../external/freertos/source/croutine.c) \
 $(abspath ../../../../../external/freertos/source/event_groups.c) \
@@ -51,6 +52,7 @@ $(abspath ../../../../../external/freertos/source/tasks.c) \
 $(abspath ../../../../../external/freertos/source/timers.c) \
 $(abspath ../../../../../components/drivers_nrf/clock/nrf_drv_clock.c) \
 $(abspath ../../../../../components/drivers_nrf/common/nrf_drv_common.c) \
+$(abspath ../../../../../components/drivers_nrf/nrf_soc_nosd/nrf_soc.c) \
 $(abspath ../../main.c) \
 $(abspath ../../../../../components/toolchain/system_nrf51.c) \
 
@@ -61,12 +63,12 @@ ASM_SOURCE_FILES  = $(abspath ../../../../../components/toolchain/gcc/gcc_startu
 INC_PATHS  = -I$(abspath ../../config/blinky_FreeRTOS_pca10028)
 INC_PATHS += -I$(abspath ../../config)
 INC_PATHS += -I$(abspath ../../../../bsp)
+INC_PATHS += -I$(abspath ../../../../../external/freertos/portable/GCC/nrf51)
 INC_PATHS += -I$(abspath ../../../../../external/freertos/config)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/nrf_soc_nosd)
 INC_PATHS += -I$(abspath ../../../../../components/device)
-INC_PATHS += -I$(abspath ../..)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/hal)
-INC_PATHS += -I$(abspath ../../../../../external/freertos/portable/GCC/nrf51)
+INC_PATHS += -I$(abspath ../..)
 INC_PATHS += -I$(abspath ../../../../../components/libraries/util)
 INC_PATHS += -I$(abspath ../../../../../external/freertos/portable/CMSIS/nrf51)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/common)
@@ -90,7 +92,7 @@ CFLAGS += -DBOARD_PCA10028
 CFLAGS += -DBSP_DEFINES_ONLY
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -O3
+CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing

@@ -34,6 +34,8 @@
 #include "bsp.h"
 #include "ble_gap.h"
 
+#define CENTRAL_LINK_COUNT              0                                           /**<number of central links used by the application. When changing this number remember to adjust the RAM settings*/
+#define PERIPHERAL_LINK_COUNT           1                                           /**<number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
 
 #define ADVERTISING_LED_PIN             BSP_LED_0_MASK                              /**< Is on when device is advertising. */
 #define CONNECTED_LED_PIN               BSP_LED_1_MASK                              /**< Is on when device has connected. */
@@ -352,11 +354,18 @@ static void ble_stack_init(void)
 
     // Initialize the SoftDevice handler module.
     SOFTDEVICE_HANDLER_INIT(NRF_CLOCK_LFCLKSRC_XTAL_20_PPM, false);
-
-    // Enable BLE stack 
+    
     ble_enable_params_t ble_enable_params;
-    memset(&ble_enable_params, 0, sizeof(ble_enable_params));
-    err_code = sd_ble_enable(&ble_enable_params);
+    err_code = softdevice_enable_get_default_config(CENTRAL_LINK_COUNT,
+                                                    PERIPHERAL_LINK_COUNT,
+                                                    &ble_enable_params);
+    APP_ERROR_CHECK(err_code);
+    
+    //Check the ram settings against the used number of links
+    CHECK_RAM_START_ADDR(CENTRAL_LINK_COUNT,PERIPHERAL_LINK_COUNT);
+    
+    // Enable BLE stack.
+    err_code = softdevice_enable(&ble_enable_params);
     APP_ERROR_CHECK(err_code);
 
     ble_gap_addr_t addr;

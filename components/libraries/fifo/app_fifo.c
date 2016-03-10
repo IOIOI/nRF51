@@ -11,18 +11,7 @@
  */
 
 #include "app_fifo.h"
-#include "nrf_error.h"
-#include "app_util.h"
-
-/**
- * @brief Verify NULL parameters are not passed to an API by application.
- */
-#define NULL_PARAM_CHECK(PARAM)                                                                    \
-        if ((PARAM) == NULL)                                                                       \
-        {                                                                                          \
-            return (NRF_ERROR_NULL);                                                               \
-        }
-
+#include "sdk_common.h"
 
 static __INLINE uint32_t fifo_length(app_fifo_t * p_fifo)
 {
@@ -107,8 +96,8 @@ uint32_t app_fifo_flush(app_fifo_t * p_fifo)
 
 uint32_t app_fifo_read(app_fifo_t * p_fifo, uint8_t * p_byte_array, uint32_t * p_size)
 {
-    NULL_PARAM_CHECK(p_fifo);
-    NULL_PARAM_CHECK(p_size);
+    VERIFY_PARAM_NOT_NULL(p_fifo);
+    VERIFY_PARAM_NOT_NULL(p_size);
     
     const uint32_t byte_count    = fifo_length(p_fifo);
     const uint32_t requested_len = (*p_size);
@@ -154,8 +143,8 @@ uint32_t app_fifo_read(app_fifo_t * p_fifo, uint8_t * p_byte_array, uint32_t * p
 
 uint32_t app_fifo_write(app_fifo_t * p_fifo, uint8_t const * p_byte_array, uint32_t * p_size)
 {
-    NULL_PARAM_CHECK(p_fifo);
-    NULL_PARAM_CHECK(p_size);
+    VERIFY_PARAM_NOT_NULL(p_fifo);
+    VERIFY_PARAM_NOT_NULL(p_size);
     
     const uint32_t available_count = p_fifo->buf_size_mask - fifo_length(p_fifo) + 1;
     const uint32_t requested_len   = (*p_size);

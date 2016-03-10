@@ -14,7 +14,7 @@
         <TargetCommonOption>
           <Device>nRF51422_xxAA</Device>
           <Vendor>Nordic Semiconductor</Vendor>
-          <PackID>NordicSemiconductor.nRF_DeviceFamilyPack.8.2.0</PackID>
+          <PackID>NordicSemiconductor.nRF_DeviceFamilyPack.8.3.1</PackID>
           <PackURL>http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/</PackURL>
           <Cpu>IROM(0x00000000,0x40000) IRAM(0x20000000,0x4000) CPUTYPE("Cortex-M0") CLOCK(16000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -358,9 +358,9 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls>--c99</MiscControls>
-              <Define> ANT_STACK_SUPPORT_REQD DISPLAY_TYPE=0x7B ENABLE_DEBUG_LOG_SUPPORT TRACE_BSC_GENERAL_ENABLE TRACE_BSC_PAGE_0_ENABLE TRACE_BSC_PAGE_1_ENABLE TRACE_BSC_PAGE_2_ENABLE TRACE_BSC_PAGE_3_ENABLE TRACE_BSC_PAGE_4_ENABLE TRACE_BSC_PAGE_5_ENABLE TRACE_BSC_COMB_PAGE_0_ENABLE S210 BOARD_N5DK1 SWI_DISABLE0 NRF51 SOFTDEVICE_PRESENT</Define>
+              <Define> ANT_STACK_SUPPORT_REQD DISPLAY_TYPE=0x7B TRACE_BSC_GENERAL_ENABLE TRACE_BSC_PAGE_0_ENABLE TRACE_BSC_PAGE_1_ENABLE TRACE_BSC_PAGE_2_ENABLE TRACE_BSC_PAGE_3_ENABLE TRACE_BSC_PAGE_4_ENABLE TRACE_BSC_PAGE_5_ENABLE TRACE_BSC_COMB_PAGE_0_ENABLE S210 BOARD_N5DK1 SWI_DISABLE0 NRF51 SOFTDEVICE_PRESENT NRF_LOG_USES_UART=1</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\config\ant_bsc_rx_speed_s210_n5_starterkit;..\..\..\config;..\..\..\..\..\..\..\bsp;..\..\..\..\..\..\..\..\components\toolchain;..\..\..\..\..\..\..\..\components\ant\ant_channel_config;..\..\..\..\..\..\..\..\components\ant\ant_key_manager;..\..\..\..\..\..\..\..\components\ant\ant_key_manager\config;..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc;..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc\pages;..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc\pages\logger;..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc\utils;..\..\..\..\..\..\..\..\components\ant\ant_stack_config;..\..\..\..\..\..\..\..\components\ant\ant_state_indicator;..\..\..\..\..\..\..\..\components\drivers_nrf\common;..\..\..\..\..\..\..\..\components\drivers_nrf\delay;..\..\..\..\..\..\..\..\components\drivers_nrf\gpiote;..\..\..\..\..\..\..\..\components\drivers_nrf\hal;..\..\..\..\..\..\..\..\components\drivers_nrf\uart;..\..\..\..\..\..\..\..\components\drivers_nrf\config;..\..\..\..\..\..\..\..\components\libraries\button;..\..\..\..\..\..\..\..\components\libraries\fifo;..\..\..\..\..\..\..\..\components\libraries\timer;..\..\..\..\..\..\..\..\components\libraries\trace;..\..\..\..\..\..\..\..\components\libraries\uart;..\..\..\..\..\..\..\..\components\libraries\util;..\..\..\..\..\..\..\..\components\softdevice\common\softdevice_handler;..\..\..\..\..\..\..\..\components\softdevice\s210\headers</IncludePath>
+              <IncludePath>..\..\..\config\ant_bsc_rx_speed_s210_n5_starterkit;..\..\..\config;..\..\..\..\..\..\..\..\components\ant\ant_channel_config;..\..\..\..\..\..\..\..\components\ant\ant_key_manager;..\..\..\..\..\..\..\..\components\ant\ant_key_manager\config;..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc;..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc\pages;..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc\pages\logger;..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc\utils;..\..\..\..\..\..\..\..\components\ant\ant_stack_config;..\..\..\..\..\..\..\..\components\ant\ant_state_indicator;..\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt;..\..\..\..\..\..\..\..\components\drivers_nrf\common;..\..\..\..\..\..\..\..\components\drivers_nrf\config;..\..\..\..\..\..\..\..\components\drivers_nrf\delay;..\..\..\..\..\..\..\..\components\drivers_nrf\gpiote;..\..\..\..\..\..\..\..\components\drivers_nrf\hal;..\..\..\..\..\..\..\..\components\drivers_nrf\uart;..\..\..\..\..\..\..\..\components\libraries\button;..\..\..\..\..\..\..\..\components\libraries\fifo;..\..\..\..\..\..\..\..\components\libraries\timer;..\..\..\..\..\..\..\..\components\libraries\trace;..\..\..\..\..\..\..\..\components\libraries\uart;..\..\..\..\..\..\..\..\components\libraries\util;..\..\..\..\..\..\..\..\components\softdevice\common\softdevice_handler;..\..\..\..\..\..\..\..\components\softdevice\s210\headers;..\..\..\..\..\..\..\..\components\toolchain;..\..\..\..\..\..\..\bsp</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -374,7 +374,7 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define> ANT_STACK_SUPPORT_REQD DISPLAY_TYPE=0x7B ENABLE_DEBUG_LOG_SUPPORT TRACE_BSC_GENERAL_ENABLE TRACE_BSC_PAGE_0_ENABLE TRACE_BSC_PAGE_1_ENABLE TRACE_BSC_PAGE_2_ENABLE TRACE_BSC_PAGE_3_ENABLE TRACE_BSC_PAGE_4_ENABLE TRACE_BSC_PAGE_5_ENABLE TRACE_BSC_COMB_PAGE_0_ENABLE S210 BOARD_N5DK1 SWI_DISABLE0 NRF51 SOFTDEVICE_PRESENT</Define>
+              <Define> ANT_STACK_SUPPORT_REQD DISPLAY_TYPE=0x7B TRACE_BSC_GENERAL_ENABLE TRACE_BSC_PAGE_0_ENABLE TRACE_BSC_PAGE_1_ENABLE TRACE_BSC_PAGE_2_ENABLE TRACE_BSC_PAGE_3_ENABLE TRACE_BSC_PAGE_4_ENABLE TRACE_BSC_PAGE_5_ENABLE TRACE_BSC_COMB_PAGE_0_ENABLE S210 BOARD_N5DK1 SWI_DISABLE0 NRF51 SOFTDEVICE_PRESENT NRF_LOG_USES_UART=1</Define>
               <Undefine></Undefine>
               <IncludePath></IncludePath>
             </VariousControls>
@@ -1357,6 +1357,144 @@
           <GroupName>nRF_Libraries</GroupName>
           <Files>
             <File>
+              <FileName>RTT_Syscalls_KEIL.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt\RTT_Syscalls_KEIL.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>0</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>1</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+            </File>
+            <File>
+              <FileName>SEGGER_RTT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>0</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>1</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+            </File>
+            <File>
+              <FileName>SEGGER_RTT_printf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT_printf.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>0</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>1</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+            </File>
+            <File>
               <FileName>app_button.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\..\..\components\libraries\button\app_button.c</FilePath>
@@ -1590,6 +1728,52 @@
               <FileName>nrf_assert.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\..\..\components\libraries\util\nrf_assert.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>0</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>1</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+            </File>
+            <File>
+              <FileName>nrf_log.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\..\..\components\libraries\util\nrf_log.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>0</UseCPPCompiler>
@@ -2085,7 +2269,7 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls>--c99</MiscControls>
-              <Define> ANT_STACK_SUPPORT_REQD DISPLAY_TYPE=0x7B ENABLE_DEBUG_LOG_SUPPORT TRACE_BSC_GENERAL_ENABLE TRACE_BSC_PAGE_0_ENABLE TRACE_BSC_PAGE_1_ENABLE TRACE_BSC_PAGE_2_ENABLE TRACE_BSC_PAGE_3_ENABLE TRACE_BSC_PAGE_4_ENABLE TRACE_BSC_PAGE_5_ENABLE TRACE_BSC_COMB_PAGE_0_ENABLE NRF51</Define>
+              <Define> ANT_STACK_SUPPORT_REQD DISPLAY_TYPE=0x7B TRACE_BSC_GENERAL_ENABLE TRACE_BSC_PAGE_0_ENABLE TRACE_BSC_PAGE_1_ENABLE TRACE_BSC_PAGE_2_ENABLE TRACE_BSC_PAGE_3_ENABLE TRACE_BSC_PAGE_4_ENABLE TRACE_BSC_PAGE_5_ENABLE TRACE_BSC_COMB_PAGE_0_ENABLE NRF51</Define>
               <Undefine></Undefine>
               <IncludePath>..\..\..\config\ant_bsc_rx_speed_s210_n5_starterkit;..\..\..\config;..\..\..\..\..\..\..\..\components\toolchain</IncludePath>
             </VariousControls>
@@ -2101,7 +2285,7 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define> ANT_STACK_SUPPORT_REQD DISPLAY_TYPE=0x7B ENABLE_DEBUG_LOG_SUPPORT TRACE_BSC_GENERAL_ENABLE TRACE_BSC_PAGE_0_ENABLE TRACE_BSC_PAGE_1_ENABLE TRACE_BSC_PAGE_2_ENABLE TRACE_BSC_PAGE_3_ENABLE TRACE_BSC_PAGE_4_ENABLE TRACE_BSC_PAGE_5_ENABLE TRACE_BSC_COMB_PAGE_0_ENABLE NRF51</Define>
+              <Define> ANT_STACK_SUPPORT_REQD DISPLAY_TYPE=0x7B TRACE_BSC_GENERAL_ENABLE TRACE_BSC_PAGE_0_ENABLE TRACE_BSC_PAGE_1_ENABLE TRACE_BSC_PAGE_2_ENABLE TRACE_BSC_PAGE_3_ENABLE TRACE_BSC_PAGE_4_ENABLE TRACE_BSC_PAGE_5_ENABLE TRACE_BSC_COMB_PAGE_0_ENABLE NRF51</Define>
               <Undefine></Undefine>
               <IncludePath></IncludePath>
             </VariousControls>
@@ -3084,6 +3268,144 @@
           <GroupName>nRF_Libraries</GroupName>
           <Files>
             <File>
+              <FileName>RTT_Syscalls_KEIL.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt\RTT_Syscalls_KEIL.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>0</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+            </File>
+            <File>
+              <FileName>SEGGER_RTT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>0</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+            </File>
+            <File>
+              <FileName>SEGGER_RTT_printf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT_printf.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>0</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+            </File>
+            <File>
               <FileName>app_button.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\..\..\components\libraries\button\app_button.c</FilePath>
@@ -3360,6 +3682,52 @@
               </FileOption>
             </File>
             <File>
+              <FileName>nrf_log.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\..\..\components\libraries\util\nrf_log.c</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>0</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Cads>
+                    <interw>2</interw>
+                    <Optim>0</Optim>
+                    <oTime>2</oTime>
+                    <SplitLS>2</SplitLS>
+                    <OneElfS>2</OneElfS>
+                    <Strict>2</Strict>
+                    <EnumInt>2</EnumInt>
+                    <PlainCh>2</PlainCh>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <wLevel>0</wLevel>
+                    <uThumb>2</uThumb>
+                    <uSurpInc>2</uSurpInc>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+            </File>
+            <File>
               <FileName>retarget.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\..\..\components\libraries\uart\retarget.c</FilePath>
@@ -3472,7 +3840,7 @@
         <targetInfo excluded="1" name="flash_s210_nrf51422_5.0.0_softdevice"/>
       </targetInfos>
     </package>
-    <package name="nRF_DeviceFamilyPack" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/" vendor="NordicSemiconductor" version="8.2.0">
+    <package name="nRF_DeviceFamilyPack" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/" vendor="NordicSemiconductor" version="8.3.1">
       <targetInfos>
         <targetInfo name="nrf51422_xxaa" versionMatchMode="fixed"/>
         <targetInfo excluded="1" name="flash_s210_nrf51422_5.0.0_softdevice"/>
@@ -3488,8 +3856,8 @@
         <targetInfo excluded="1" name="flash_s210_nrf51422_5.0.0_softdevice"/>
       </targetInfos>
     </component>
-    <component Cclass="Device" Cgroup="Startup" Cvendor="NordicSemiconductor" Cversion="8.2.0" condition="nRF51 Series CMSIS Device">
-      <package name="nRF_DeviceFamilyPack" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/" vendor="NordicSemiconductor" version="8.2.0"/>
+    <component Cclass="Device" Cgroup="Startup" Cvendor="NordicSemiconductor" Cversion="8.3.1" condition="nRF51 Series CMSIS Device">
+      <package name="nRF_DeviceFamilyPack" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/" vendor="NordicSemiconductor" version="8.3.1"/>
       <targetInfos>
         <targetInfo name="nrf51422_xxaa" versionMatchMode="fixed"/>
         <targetInfo excluded="1" name="flash_s210_nrf51422_5.0.0_softdevice"/>

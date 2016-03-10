@@ -68,9 +68,9 @@ INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/uart)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/common)
 INC_PATHS += -I$(abspath ../../../../../components/toolchain)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/config)
-INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/twi_master)
-INC_PATHS += -I$(abspath ../../../../../components/libraries/fifo)
 INC_PATHS += -I$(abspath ../../../../../components/toolchain/gcc)
+INC_PATHS += -I$(abspath ../../../../../components/libraries/fifo)
+INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/twi_master)
 
 OBJECT_DIRECTORY = _build
 LISTING_DIRECTORY = $(OBJECT_DIRECTORY)
@@ -85,7 +85,7 @@ CFLAGS += -DBOARD_PCA10028
 CFLAGS += -DBSP_DEFINES_ONLY
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -O3
+CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing

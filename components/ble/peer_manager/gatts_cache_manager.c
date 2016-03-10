@@ -7,54 +7,11 @@
 #include "peer_manager_types.h"
 #include "peer_database.h"
 #include "id_manager.h"
-#include "nordic_common.h"
-
+#include "sdk_common.h"
 
 #define SYS_ATTR_SYS  (BLE_GATTS_SYS_ATTR_FLAG_SYS_SRVCS) /**< Shorthand define for the flag for system attributes. */
 #define SYS_ATTR_USR  (BLE_GATTS_SYS_ATTR_FLAG_USR_SRVCS) /**< Shorthand define for the flag for user attributes. */
 #define SYS_ATTR_BOTH (SYS_ATTR_SYS | SYS_ATTR_USR)       /**< Shorthand define for the combined flags for system and user attributes. */
-
-
-/**@brief Macro for verifying that the module is initialized. It will cause the function to return
- *        @ref NRF_ERROR_INVALID_STATE if not.
- */
-#define VERIFY_MODULE_INITIALIZED()     \
-do                                      \
-{                                       \
-    if (m_gscm.evt_handler == NULL)     \
-    {                                   \
-        return NRF_ERROR_INVALID_STATE; \
-    }                                   \
-} while(0)
-
-
-/**@brief Macro for verifying that the module is initialized. It will cause the function to return
- *        if not.
- */
-#define VERIFY_MODULE_INITIALIZED_VOID()\
-do                                      \
-{                                       \
-    if (m_gscm.evt_handler == NULL)     \
-    {                                   \
-        return;                         \
-    }                                   \
-} while(0)
-
-
-/**@brief Macro for verifying that a variable (typically a function parameter) is not NULL. It will
- *        cause the function to return @ref NRF_ERROR_NULL if not.
- *
- * @param[in] param  The variable to check if is NULL.
- */
-#define VERIFY_PARAM_NOT_NULL(param)    \
-do                                      \
-{                                       \
-    if (param == NULL)                  \
-    {                                   \
-        return NRF_ERROR_NULL;          \
-    }                                   \
-} while(0)
-
 
 
 /**@brief Structure containing the module variable(s) of the GSCM module.
@@ -65,6 +22,9 @@ typedef struct
 } gscm_t;
 
 static gscm_t m_gscm;  /**< Instantiation of module variable(s). */
+
+#define MODULE_INITIALIZED  (m_gscm.evt_handler != NULL)
+#include "sdk_macros.h"
 
 
 /**@brief Function for resetting the module variable(s) of the GSCM module.
@@ -198,24 +158,20 @@ ret_code_t gscm_local_db_cache_apply(uint16_t conn_handle)
     ret_code_t           err_code;
     pm_peer_data_flash_t peer_data;
     uint8_t      const * p_sys_attr_data = NULL;
-    uint8_t              sys_attr_data[100]; // Workaround for s130 v1, which does not accept pointers to flash.
     uint16_t             sys_attr_len    = 0;
     uint32_t             sys_attr_flags  = (SYS_ATTR_BOTH);
     bool                 all_attributes_applied = true;
 
-    if (peer_id == PM_PEER_ID_INVALID)
+    if (peer_id != PM_PEER_ID_INVALID)
     {
-        return BLE_ERROR_INVALID_CONN_HANDLE;
-    }
-
-    err_code = pdb_read_buf_get(peer_id, PM_PEER_DATA_ID_GATT_LOCAL, &peer_data, NULL);
-    if (err_code == NRF_SUCCESS)
-    {
-        pm_peer_data_local_gatt_db_flash_t const * p_local_gatt_db = peer_data.data.p_local_gatt_db;
-        p_sys_attr_data                                            = sys_attr_data;
-        sys_attr_len                                               = p_local_gatt_db->len;
-        sys_attr_flags                                             = p_local_gatt_db->flags;
-        memcpy(sys_attr_data, p_local_gatt_db->p_data, MIN(sys_attr_len, sizeof(sys_attr_data)));
+        err_code = pdb_read_buf_get(peer_id, PM_PEER_DATA_ID_GATT_LOCAL, &peer_data, NULL);
+        if (err_code == NRF_SUCCESS)
+        {
+            pm_peer_data_local_gatt_db_flash_t const * p_local_gatt_db = peer_data.data.p_local_gatt_db;
+            p_sys_attr_data                                            = p_local_gatt_db->p_data;
+            sys_attr_len                                               = p_local_gatt_db->len;
+            sys_attr_flags                                             = p_local_gatt_db->flags;
+        }
     }
 
     do

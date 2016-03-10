@@ -48,24 +48,24 @@ $(abspath ../../../../../components/drivers_nrf/common/nrf_drv_common.c) \
 $(abspath ../../../../../components/drivers_nrf/gpiote/nrf_drv_gpiote.c) \
 $(abspath ../../../../../components/drivers_nrf/ppi/nrf_drv_ppi.c) \
 $(abspath ../../../../../components/drivers_nrf/rtc/nrf_drv_rtc.c) \
+$(abspath ../../../../../components/drivers_nrf/nrf_soc_nosd/nrf_soc.c) \
 
 #assembly files common to all targets
 ASM_SOURCE_FILES  = $(abspath ../../../../../components/toolchain/gcc/gcc_startup_nrf51.s)
 
 #includes common to all targets
-INC_PATHS  = -I$(abspath ../../config/clock_pca10028)
-INC_PATHS += -I$(abspath ../../config)
+INC_PATHS  = -I$(abspath ../../config)
+INC_PATHS += -I$(abspath ../../../../../components/toolchain)
 INC_PATHS += -I$(abspath ../../../../bsp)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/ppi)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/nrf_soc_nosd)
 INC_PATHS += -I$(abspath ../../../../../components/device)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/hal)
-INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/rtc)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/delay)
 INC_PATHS += -I$(abspath ../..)
 INC_PATHS += -I$(abspath ../../../../../components/libraries/util)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/common)
-INC_PATHS += -I$(abspath ../../../../../components/toolchain)
+INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/rtc)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/config)
 INC_PATHS += -I$(abspath ../../../../../components/toolchain/gcc)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/gpiote)
@@ -84,7 +84,7 @@ CFLAGS += -DBOARD_PCA10028
 CFLAGS += -DBSP_DEFINES_ONLY
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -O3
+CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing

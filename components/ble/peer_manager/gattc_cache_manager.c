@@ -1,36 +1,14 @@
 
 #include "gattc_cache_manager.h"
 
-#include <string.h>
 #include "ble_gap.h"
 #include "ble_conn_state.h"
 #include "peer_manager_types.h"
 #include "peer_database.h"
 #include "id_manager.h"
-
+#include "sdk_common.h"
 
 #define MAX_SIMUL_SEC_PROCEDURES 2
-
-
-#define VERIFY_MODULE_INITIALIZED()     \
-do                                      \
-{                                       \
-    if (m_gccm.evt_handler == NULL)     \
-    {                                   \
-        return NRF_ERROR_INVALID_STATE; \
-    }                                   \
-} while(0)
-
-#define VERIFY_PARAM_NOT_NULL(param)    \
-do                                      \
-{                                       \
-    if (param == NULL)                  \
-    {                                   \
-        return NRF_ERROR_NULL;          \
-    }                                   \
-} while(0)
-
-
 
 typedef struct
 {
@@ -38,6 +16,9 @@ typedef struct
 } gccm_t;
 
 static gccm_t m_gccm;
+
+#define MODULE_INITIALIZED (m_gccm.evt_handler != NULL)
+#include "sdk_macros.h"
 
 static void internal_state_reset(gccm_t * gccm)
 {

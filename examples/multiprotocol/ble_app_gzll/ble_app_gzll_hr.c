@@ -110,7 +110,7 @@ static void battery_level_update(void)
     err_code = ble_bas_battery_level_update(&m_bas, battery_level);
     if ((err_code != NRF_SUCCESS) &&
         (err_code != NRF_ERROR_INVALID_STATE) &&
-        (err_code != BLE_ERROR_NO_TX_BUFFERS) &&
+        (err_code != BLE_ERROR_NO_TX_PACKETS) &&
         (err_code != BLE_ERROR_GATTS_SYS_ATTR_MISSING)
     )
     {
@@ -155,7 +155,7 @@ static void heart_rate_meas_timeout_handler(void * p_context)
     err_code = ble_hrs_heart_rate_measurement_send(&m_hrs, heart_rate);
     if ((err_code != NRF_SUCCESS) &&
         (err_code != NRF_ERROR_INVALID_STATE) &&
-        (err_code != BLE_ERROR_NO_TX_BUFFERS) &&
+        (err_code != BLE_ERROR_NO_TX_PACKETS) &&
         (err_code != BLE_ERROR_GATTS_SYS_ATTR_MISSING)
     )
     {
@@ -596,12 +596,10 @@ void ble_stack_start(void)
 
     // Enable BLE stack 
     ble_enable_params_t ble_enable_params;
-    memset(&ble_enable_params, 0, sizeof(ble_enable_params));
-#if (defined(S130) || defined(S132))
-    ble_enable_params.gatts_enable_params.attr_tab_size   = BLE_GATTS_ATTR_TAB_SIZE_DEFAULT;
-#endif
-    ble_enable_params.gatts_enable_params.service_changed = IS_SRVC_CHANGED_CHARACT_PRESENT;
-    err_code = sd_ble_enable(&ble_enable_params);
+    err_code = softdevice_enable_get_default_config(0, 1, &ble_enable_params);
+    APP_ERROR_CHECK(err_code);
+
+    err_code = softdevice_enable(&ble_enable_params);
     APP_ERROR_CHECK(err_code);
     
     err_code = softdevice_ble_evt_handler_set(ble_evt_dispatch);

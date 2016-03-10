@@ -88,13 +88,10 @@ static void db_discover_evt_handler(ble_db_discovery_evt_t * p_evt)
 
 uint32_t ble_cts_c_init(ble_cts_c_t * p_cts, ble_cts_c_init_t const * p_cts_init)
 {
-    if (   (p_cts_init == NULL)
-        || (p_cts_init->error_handler == NULL)
-        || (p_cts_init->evt_handler == NULL)
-        || (p_cts == NULL))
-    {
-        return NRF_ERROR_NULL;
-    }
+    VERIFY_PARAM_NOT_NULL(p_cts);
+    VERIFY_PARAM_NOT_NULL(p_cts_init);
+    VERIFY_PARAM_NOT_NULL(p_cts_init->error_handler);
+    VERIFY_PARAM_NOT_NULL(p_cts_init->evt_handler);
 
     ble_uuid_t cts_uuid;
 

@@ -15,53 +15,9 @@
 #include "security_dispatcher.h"
 #include "peer_database.h"
 #include "ble_conn_state.h"
-
-
+#include "sdk_common.h"
 
 #define MAX_REGISTRANTS 3                           /**< The number of user that can register with the module. */
-
-#define MODULE_INITIALIZED (m_sm.n_registrants > 0) /**< Expression which is true when the module is initialized. */
-
-/**@brief Macro for verifying that the module is initialized. It will cause the function to return
- *        @ref NRF_ERROR_INVALID_STATE if not.
- */
-#define VERIFY_MODULE_INITIALIZED()     \
-do                                      \
-{                                       \
-    if (!MODULE_INITIALIZED)            \
-    {                                   \
-        return NRF_ERROR_INVALID_STATE; \
-    }                                   \
-} while(0)
-
-
-/**@brief Macro for verifying that the module is initialized. It will cause the function to return
- *        if not.
- */
-#define VERIFY_MODULE_INITIALIZED_VOID()\
-do                                      \
-{                                       \
-    if (!MODULE_INITIALIZED)            \
-    {                                   \
-        return;                         \
-    }                                   \
-} while(0)
-
-
-/**@brief Macro for verifying that the module is initialized. It will cause the function to return
- *        if not.
- *
- * @param[in] param  The variable to check if is NULL.
- */
-#define VERIFY_PARAM_NOT_NULL(param)    \
-do                                      \
-{                                       \
-    if (param == NULL)                  \
-    {                                   \
-        return NRF_ERROR_NULL;          \
-    }                                   \
-} while(0)
-
 
 typedef struct
 {
@@ -85,6 +41,8 @@ static sm_t m_sm = {.flag_id_link_secure_pending_busy        = BLE_CONN_STATE_US
                     .flag_id_params_reply_pending_busy       = BLE_CONN_STATE_USER_FLAG_INVALID,
                     .flag_id_params_reply_pending_flash_full = BLE_CONN_STATE_USER_FLAG_INVALID};
 
+#define MODULE_INITIALIZED (m_sm.n_registrants > 0) /**< Expression which is true when the module is initialized. */
+#include "sdk_macros.h"
 
 static void evt_send(sm_evt_t * p_event)
 {
@@ -356,22 +314,17 @@ static void pdb_evt_handler(pdb_evt_t const * p_event)
 }
 
 
-/**@brief Macro for initializing a BLE Connection State user flag.
+/**@brief Funtion for initializing a BLE Connection State user flag.
  *
  * @param[out] flag_id  The flag to initialize.
  */
-#define FLAG_ID_INIT(flag_id)                             \
-do                                                        \
-{                                                         \
-    if ((flag_id) == BLE_CONN_STATE_USER_FLAG_INVALID)    \
-    {                                                     \
-        (flag_id) = ble_conn_state_user_flag_acquire();   \
-        if ((flag_id) == BLE_CONN_STATE_USER_FLAG_INVALID)\
-        {                                                 \
-            return NRF_ERROR_INTERNAL;                    \
-        }                                                 \
-    }                                                     \
-} while(0)
+static void flag_id_init(ble_conn_state_user_flag_id_t * p_flag_id)
+{
+    if (*p_flag_id == BLE_CONN_STATE_USER_FLAG_INVALID)
+    {
+        *p_flag_id = ble_conn_state_user_flag_acquire();
+    }
+}
 
 
 ret_code_t sm_register(sm_evt_handler_t evt_handler)
@@ -382,13 +335,17 @@ ret_code_t sm_register(sm_evt_handler_t evt_handler)
 
     if (!MODULE_INITIALIZED)
     {
-        FLAG_ID_INIT(m_sm.flag_id_link_secure_pending_busy);
-        FLAG_ID_INIT(m_sm.flag_id_link_secure_pending_flash_full);
-        FLAG_ID_INIT(m_sm.flag_id_link_secure_force_repairing);
-        FLAG_ID_INIT(m_sm.flag_id_link_secure_null_params);
-        FLAG_ID_INIT(m_sm.flag_id_params_reply_pending_busy);
-        FLAG_ID_INIT(m_sm.flag_id_params_reply_pending_flash_full);
+        flag_id_init(&m_sm.flag_id_link_secure_pending_busy);
+        flag_id_init(&m_sm.flag_id_link_secure_pending_flash_full);
+        flag_id_init(&m_sm.flag_id_link_secure_force_repairing);
+        flag_id_init(&m_sm.flag_id_link_secure_null_params);
+        flag_id_init(&m_sm.flag_id_params_reply_pending_busy);
+        flag_id_init(&m_sm.flag_id_params_reply_pending_flash_full);
 
+        if (m_sm.flag_id_params_reply_pending_flash_full == BLE_CONN_STATE_USER_FLAG_INVALID)
+        {
+            return NRF_ERROR_INTERNAL;
+        }
         if (!m_sm.pdb_evt_handler_registered)
         {
             err_code = pdb_register(pdb_evt_handler);

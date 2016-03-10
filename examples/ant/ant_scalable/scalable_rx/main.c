@@ -7,6 +7,14 @@ Copyright (c) Dynastream Innovations Inc. 2015
 All rights reserved.
 */
 
+/*
+ * Before compiling this example for NRF52, complete the following steps:
+ * - Download the S212 SoftDevice from <a href="https://www.thisisant.com/developer/components/nrf52832" target="_blank">thisisant.com</a>.
+ * - Extract the downloaded zip file and copy the S212 SoftDevice headers to <tt>\<InstallFolder\>/components/softdevice/s212/headers</tt>.
+ * If you are using Keil packs, copy the files into a @c headers folder in your example folder.
+ * - Make sure that @ref ANT_LICENSE_KEY in @c nrf_sdm.h is uncommented.
+ */
+
 #include <stdint.h>
 #include "nrf.h"
 #include "app_error.h"

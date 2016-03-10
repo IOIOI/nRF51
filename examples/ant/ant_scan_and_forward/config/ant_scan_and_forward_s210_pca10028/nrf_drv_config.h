@@ -13,11 +13,27 @@
 #ifndef NRF_DRV_CONFIG_H
 #define NRF_DRV_CONFIG_H
 
+/**
+ * Provide a non-zero value here in applications that need to use several
+ * peripherals with the same ID that are sharing certain resources
+ * (for example, SPI0 and TWI0). Obviously, such peripherals cannot be used
+ * simultaneously. Therefore, this definition allows to initialize the driver
+ * for another peripheral from a given group only after the previously used one
+ * is uninitialized. Normally, this is not possible, because interrupt handlers
+ * are implemented in individual drivers.
+ * This functionality requires a more complicated interrupt handling and driver
+ * initialization, hence it is not always desirable to use it.
+ */
+#define PERIPHERAL_RESOURCE_SHARING_ENABLED  0
+
 /* CLOCK */
+#define CLOCK_ENABLED 0
+
+#if (CLOCK_ENABLED == 1)
 #define CLOCK_CONFIG_XTAL_FREQ          NRF_CLOCK_XTALFREQ_Default
 #define CLOCK_CONFIG_LF_SRC             NRF_CLOCK_LF_SRC_Xtal
-#define CLOCK_CONFIG_LF_RC_CAL_INTERVAL RC_2000MS_CALIBRATION_INTERVAL
 #define CLOCK_CONFIG_IRQ_PRIORITY       APP_IRQ_PRIORITY_LOW
+#endif
 
 /* GPIOTE */
 #define GPIOTE_ENABLED 1
@@ -121,6 +137,61 @@
 #define RNG_CONFIG_IRQ_PRIORITY     APP_IRQ_PRIORITY_LOW
 #endif
 
+/* PWM */
+
+#define PWM0_ENABLED 0
+
+#if (PWM0_ENABLED == 1)
+#define PWM0_CONFIG_OUT0_PIN        2
+#define PWM0_CONFIG_OUT1_PIN        3
+#define PWM0_CONFIG_OUT2_PIN        4
+#define PWM0_CONFIG_OUT3_PIN        5
+#define PWM0_CONFIG_IRQ_PRIORITY    APP_IRQ_PRIORITY_LOW
+#define PWM0_CONFIG_BASE_CLOCK      NRF_PWM_CLK_1MHz
+#define PWM0_CONFIG_COUNT_MODE      NRF_PWM_MODE_UP
+#define PWM0_CONFIG_TOP_VALUE       1000
+#define PWM0_CONFIG_LOAD_MODE       NRF_PWM_LOAD_COMMON
+#define PWM0_CONFIG_STEP_MODE       NRF_PWM_STEP_AUTO
+
+#define PWM0_INSTANCE_INDEX 0
+#endif
+
+#define PWM1_ENABLED 0
+
+#if (PWM1_ENABLED == 1)
+#define PWM1_CONFIG_OUT0_PIN        2
+#define PWM1_CONFIG_OUT1_PIN        3
+#define PWM1_CONFIG_OUT2_PIN        4
+#define PWM1_CONFIG_OUT3_PIN        5
+#define PWM1_CONFIG_IRQ_PRIORITY    APP_IRQ_PRIORITY_LOW
+#define PWM1_CONFIG_BASE_CLOCK      NRF_PWM_CLK_1MHz
+#define PWM1_CONFIG_COUNT_MODE      NRF_PWM_MODE_UP
+#define PWM1_CONFIG_TOP_VALUE       1000
+#define PWM1_CONFIG_LOAD_MODE       NRF_PWM_LOAD_COMMON
+#define PWM1_CONFIG_STEP_MODE       NRF_PWM_STEP_AUTO
+
+#define PWM1_INSTANCE_INDEX (PWM0_ENABLED)
+#endif
+
+#define PWM2_ENABLED 0
+
+#if (PWM2_ENABLED == 1)
+#define PWM2_CONFIG_OUT0_PIN        2
+#define PWM2_CONFIG_OUT1_PIN        3
+#define PWM2_CONFIG_OUT2_PIN        4
+#define PWM2_CONFIG_OUT3_PIN        5
+#define PWM2_CONFIG_IRQ_PRIORITY    APP_IRQ_PRIORITY_LOW
+#define PWM2_CONFIG_BASE_CLOCK      NRF_PWM_CLK_1MHz
+#define PWM2_CONFIG_COUNT_MODE      NRF_PWM_MODE_UP
+#define PWM2_CONFIG_TOP_VALUE       1000
+#define PWM2_CONFIG_LOAD_MODE       NRF_PWM_LOAD_COMMON
+#define PWM2_CONFIG_STEP_MODE       NRF_PWM_STEP_AUTO
+
+#define PWM2_INSTANCE_INDEX (PWM0_ENABLED + PWM1_ENABLED)
+#endif
+
+#define PWM_COUNT   (PWM0_ENABLED + PWM1_ENABLED + PWM2_ENABLED)
+
 /* SPI */
 #define SPI0_ENABLED 0
 
@@ -222,6 +293,8 @@
 #define TWI0_ENABLED 0
 
 #if (TWI0_ENABLED == 1)
+#define TWI0_USE_EASY_DMA 0
+
 #define TWI0_CONFIG_FREQUENCY    NRF_TWI_FREQ_100K
 #define TWI0_CONFIG_SCL          0
 #define TWI0_CONFIG_SDA          1
@@ -233,6 +306,8 @@
 #define TWI1_ENABLED 0
 
 #if (TWI1_ENABLED == 1)
+#define TWI1_USE_EASY_DMA 0
+
 #define TWI1_CONFIG_FREQUENCY    NRF_TWI_FREQ_100K
 #define TWI1_CONFIG_SCL          0
 #define TWI1_CONFIG_SDA          1
@@ -241,7 +316,7 @@
 #define TWI1_INSTANCE_INDEX      (TWI0_ENABLED)
 #endif
 
-#define TWI_COUNT                (TWI0_ENABLED+TWI1_ENABLED)
+#define TWI_COUNT                (TWI0_ENABLED + TWI1_ENABLED)
 
 /* TWIS */
 #define TWIS0_ENABLED 0
@@ -273,18 +348,6 @@
 #define TWIS_ASSUME_INIT_AFTER_RESET_ONLY 0
 /* For more documentation see nrf_drv_twis.h file */
 #define TWIS_NO_SYNC_MODE 0
-/**
- * @brief Definition for patching PAN problems
- *
- * Set this definition to nonzero value to patch anomalies
- * from MPW3 - first lunch microcontroller.
- *
- * Concerns:
- * - PAN-29: TWIS: incorrect bits in ERRORSRC
- * - PAN-30: TWIS: STOP task does not work as expected
- */
-#define NRF_TWIS_PATCH_FOR_MPW3 1
-
 
 /* QDEC */
 #define QDEC_ENABLED 0
@@ -311,6 +374,16 @@
 #define SAADC_CONFIG_IRQ_PRIORITY    APP_IRQ_PRIORITY_LOW
 #endif
 
+/* PDM */
+#define PDM_ENABLED 0
+
+#if (PDM_ENABLED == 1)
+#define PDM_CONFIG_MODE            NRF_PDM_MODE_MONO
+#define PDM_CONFIG_EDGE            NRF_PDM_EDGE_LEFTFALLING
+#define PDM_CONFIG_CLOCK_FREQ      NRF_PDM_FREQ_1032K
+#define PDM_CONFIG_IRQ_PRIORITY    APP_IRQ_PRIORITY_LOW
+#endif
+
 /* LPCOMP */
 #define LPCOMP_ENABLED 0
 
@@ -335,6 +408,24 @@
     #define EGU_ENABLED 0
 #endif
 
+/* I2S */
+#define I2S_ENABLED 0
+
+#if (I2S_ENABLED == 1)
+#define I2S_CONFIG_SCK_PIN      22
+#define I2S_CONFIG_LRCK_PIN     23
+#define I2S_CONFIG_MCK_PIN      NRF_DRV_I2S_PIN_NOT_USED
+#define I2S_CONFIG_SDOUT_PIN    24
+#define I2S_CONFIG_SDIN_PIN     25
+#define I2S_CONFIG_IRQ_PRIORITY APP_IRQ_PRIORITY_HIGH
+#define I2S_CONFIG_MASTER       NRF_I2S_MODE_MASTER
+#define I2S_CONFIG_FORMAT       NRF_I2S_FORMAT_I2S
+#define I2S_CONFIG_ALIGN        NRF_I2S_ALIGN_LEFT
+#define I2S_CONFIG_SWIDTH       NRF_I2S_SWIDTH_16BIT
+#define I2S_CONFIG_CHANNELS     NRF_I2S_CHANNELS_STEREO
+#define I2S_CONFIG_MCK_SETUP    NRF_I2S_MCK_32MDIV8
+#define I2S_CONFIG_RATIO        NRF_I2S_RATIO_256X
+#endif
 
 #include "nrf_drv_config_validation.h"
 

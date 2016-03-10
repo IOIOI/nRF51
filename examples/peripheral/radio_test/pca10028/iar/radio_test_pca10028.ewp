@@ -311,16 +311,16 @@
           <state>$PROJ_DIR$\..\..\config\radio_test_pca10028</state>
           <state>$PROJ_DIR$\..\..\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\common</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\delay</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\hal</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\uart</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\libraries\fifo</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\libraries\uart</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\libraries\util</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..</state>
           <state>$TOOLKIT_DIR$\CMSIS\Include</state>
@@ -582,16 +582,16 @@
           <state>$PROJ_DIR$\..\..\config\radio_test_pca10028</state>
           <state>$PROJ_DIR$\..\..\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\common</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\delay</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\hal</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\uart</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\libraries\fifo</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\libraries\uart</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\libraries\util</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..</state>
         </option>

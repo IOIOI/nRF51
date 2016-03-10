@@ -10,6 +10,14 @@
  *
  */
 
+/*
+ * Before compiling this example for NRF52, complete the following steps:
+ * - Download the S212 SoftDevice from <a href="https://www.thisisant.com/developer/components/nrf52832" target="_blank">thisisant.com</a>.
+ * - Extract the downloaded zip file and copy the S212 SoftDevice headers to <tt>\<InstallFolder\>/components/softdevice/s212/headers</tt>.
+ * If you are using Keil packs, copy the files into a @c headers folder in your example folder.
+ * - Make sure that @ref ANT_LICENSE_KEY in @c nrf_sdm.h is uncommented.
+ */
+
 #include "dfu.h"
 #include "dfu_transport.h"
 #include "bootloader.h"
@@ -82,12 +90,10 @@ uint32_t line_num_;
 const uint8_t * p_file_name_;
 #endif // DEBUG_DFU_BOOTLOADER
 
-void app_error_handler(uint32_t error_code, uint32_t line_num, const uint8_t * p_file_name)
+void app_error_fault_handler(uint32_t id, uint32_t pc, uint32_t info)
 {
 #if defined (DEBUG_DFU_BOOTLOADER)
-    error_code_      = error_code;
-    line_num_        = line_num;
-    p_file_name_     = p_file_name;
+    app_error_save_and_stop(id, pc, info);
 #endif // DEBUG_DFU_BOOTLOADER
 
 #if defined (ENABLE_IO_LED)
@@ -96,8 +102,7 @@ void app_error_handler(uint32_t error_code, uint32_t line_num, const uint8_t * p
 
     // This call can be used for debug purposes during application development.
     // On assert, the system can only recover on reset.
-     if(error_code)
-          NVIC_SystemReset();
+    NVIC_SystemReset();
 }
 
 void HardFault_Handler(uint32_t ulProgramCounter, uint32_t ulLinkRegister)
@@ -317,7 +322,7 @@ int main(void)
 #endif //DBG_DFU_BOOTLOADER_PATH
 
     // This check ensures that the defined fields in the bootloader corresponds with actual
-    // setting in the nRF51 chip.
+    // setting in the chip.
     APP_ERROR_CHECK_BOOL(*((uint32_t *)NRF_UICR_BOOT_START_ADDRESS) == BOOTLOADER_REGION_START);
     APP_ERROR_CHECK_BOOL(NRF_FICR->CODEPAGESIZE == CODE_PAGE_SIZE);
 

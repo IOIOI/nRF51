@@ -28,6 +28,9 @@
 #include "bsp.h"
 #include "app_timer.h"
 
+#define CENTRAL_LINK_COUNT              0                                 /**<number of central links used by the application. When changing this number remember to adjust the RAM settings*/
+#define PERIPHERAL_LINK_COUNT           0                                 /**<number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
+
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                 /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 
 #define APP_CFG_NON_CONN_ADV_TIMEOUT    0                                 /**< Time for which the device must be advertising in non-connectable mode (in seconds). 0 disables timeout. */
@@ -166,18 +169,22 @@ static void advertising_start(void)
  */
 static void ble_stack_init(void)
 {
+     uint32_t err_code;
+
     // Initialize the SoftDevice handler module.
     SOFTDEVICE_HANDLER_INIT(NRF_CLOCK_LFCLKSRC_XTAL_20_PPM, NULL);
 
-    // Enable BLE stack 
-    uint32_t err_code;
     ble_enable_params_t ble_enable_params;
-    memset(&ble_enable_params, 0, sizeof(ble_enable_params));
-#if (defined(S130) && defined(S132))
-    ble_enable_params.gatts_enable_params.attr_tab_size   = BLE_GATTS_ATTR_TAB_SIZE_DEFAULT;
-#endif
-    ble_enable_params.gatts_enable_params.service_changed = IS_SRVC_CHANGED_CHARACT_PRESENT;
-    err_code = sd_ble_enable(&ble_enable_params);
+    err_code = softdevice_enable_get_default_config(CENTRAL_LINK_COUNT,
+                                                    PERIPHERAL_LINK_COUNT,
+                                                    &ble_enable_params);
+    APP_ERROR_CHECK(err_code);
+    
+    //Check the ram settings against the used number of links
+    CHECK_RAM_START_ADDR(CENTRAL_LINK_COUNT,PERIPHERAL_LINK_COUNT);
+    
+    // Enable BLE stack.
+    err_code = softdevice_enable(&ble_enable_params);
     APP_ERROR_CHECK(err_code);
 }
 

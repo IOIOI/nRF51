@@ -22,7 +22,7 @@
  * @defgroup nrf_adc ADC HAL
  * @{
  * @ingroup nrf_drivers
- * @brief Hardware access layer for managing the analog-to-digital converter.
+ * @brief @tagAPI51 Hardware access layer for managing the analog-to-digital converter.
  */
 
 #include <stdbool.h>
@@ -30,11 +30,11 @@
 
 #include "nrf.h"
 
+#ifndef NRF52
 /**
- * @enum nrf_adc_config_resolution_t
+ * @enum  nrf_adc_config_resolution_t
  * @brief Resolution of the analog-to-digital converter.
  */
-#ifndef NRF52
 typedef enum
 {
     NRF_ADC_CONFIG_RES_8BIT  = ADC_CONFIG_RES_8bit,  /**< 8 bit resolution. */

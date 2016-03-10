@@ -62,21 +62,21 @@ ASM_SOURCE_FILES  = $(abspath ../../../../../../components/toolchain/gcc/gcc_sta
 INC_PATHS  = -I$(abspath ../../config/ant_scalable_encrypted_rx_s210_pca10028)
 INC_PATHS += -I$(abspath ../../config)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/util)
-INC_PATHS += -I$(abspath ../../../../../../components/toolchain/gcc)
-INC_PATHS += -I$(abspath ../../../../../../components/toolchain)
+INC_PATHS += -I$(abspath ../../../../../../components/libraries/timer)
+INC_PATHS += -I$(abspath ../../../../../../components/ant/ant_stack_config)
 INC_PATHS += -I$(abspath ../../../../../../components/softdevice/s210/headers)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/common)
-INC_PATHS += -I$(abspath ../../../../../../components/ant/ant_stack_config)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/config)
-INC_PATHS += -I$(abspath ../../../../../bsp)
-INC_PATHS += -I$(abspath ../../../../../../components/ant/ant_search_config)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/gpiote)
+INC_PATHS += -I$(abspath ../../../../../../components/ant/ant_search_config)
+INC_PATHS += -I$(abspath ../../../../../bsp)
+INC_PATHS += -I$(abspath ../../../../../../components/toolchain/gcc)
 INC_PATHS += -I$(abspath ../../../../../../components/ant/ant_encryption)
 INC_PATHS += -I$(abspath ../../../../../../components/device)
 INC_PATHS += -I$(abspath ../../../../../../components/softdevice/common/softdevice_handler)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/delay)
 INC_PATHS += -I$(abspath ../../../../../../components/ant/ant_channel_config)
-INC_PATHS += -I$(abspath ../../../../../../components/libraries/timer)
+INC_PATHS += -I$(abspath ../../../../../../components/toolchain)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/hal)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/button)
 
@@ -88,16 +88,16 @@ OUTPUT_BINARY_DIRECTORY = $(OBJECT_DIRECTORY)
 BUILD_DIRECTORIES := $(sort $(OBJECT_DIRECTORY) $(OUTPUT_BINARY_DIRECTORY) $(LISTING_DIRECTORY) )
 
 #flags common to all targets
-CFLAGS  = -DS210
-CFLAGS += -DBOARD_PCA10028
+CFLAGS  = -DBOARD_PCA10028
 CFLAGS += -DSOFTDEVICE_PRESENT
 CFLAGS += -DNRF51
 CFLAGS += -DANT_ENCRYPT_SLAVE_NEGOTIATION_USED
 CFLAGS += -DANT_STACK_SUPPORT_REQD
 CFLAGS += -DSWI_DISABLE0
+CFLAGS += -DS210
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -O3
+CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
@@ -114,13 +114,13 @@ LDFLAGS += --specs=nano.specs -lc -lnosys
 
 # Assembler flags
 ASMFLAGS += -x assembler-with-cpp
-ASMFLAGS += -DS210
 ASMFLAGS += -DBOARD_PCA10028
 ASMFLAGS += -DSOFTDEVICE_PRESENT
 ASMFLAGS += -DNRF51
 ASMFLAGS += -DANT_ENCRYPT_SLAVE_NEGOTIATION_USED
 ASMFLAGS += -DANT_STACK_SUPPORT_REQD
 ASMFLAGS += -DSWI_DISABLE0
+ASMFLAGS += -DS210
 #default target - first one defined
 default: clean nrf51422_xxac
 

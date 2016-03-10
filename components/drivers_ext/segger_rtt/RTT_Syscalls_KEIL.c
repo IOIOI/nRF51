@@ -43,6 +43,8 @@ Purpose : Retargeting module for KEIL MDK-CM3.
 ----------------------------------------------------------------------
 */
 
+#if defined(NRF_LOG_USES_RTT) && NRF_LOG_USES_RTT == 1
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -56,8 +58,9 @@ Purpose : Retargeting module for KEIL MDK-CM3.
 *
 **********************************************************************
 */
+#ifndef NRF_LOG_USES_RTT
 #pragma import(__use_no_semihosting)
-
+#endif
 #ifdef _MICROLIB
   #pragma import(__use_full_stdio)
 #endif
@@ -336,3 +339,5 @@ char * _sys_command_string(char * cmd, int len) {
 void _sys_exit(int ReturnCode) {
   while (1);  // Not implemented
 }
+
+#endif // NRF_LOG_USES_RTT == 1

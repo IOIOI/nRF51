@@ -37,6 +37,9 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 
 #source common to all targets
 C_SOURCE_FILES += \
+$(abspath ../../../../../../components/drivers_ext/segger_rtt/RTT_Syscalls_GCC.c) \
+$(abspath ../../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT.c) \
+$(abspath ../../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT_printf.c) \
 $(abspath ../../../../../../components/libraries/button/app_button.c) \
 $(abspath ../../../../../../components/libraries/util/app_error.c) \
 $(abspath ../../../../../../components/libraries/fifo/app_fifo.c) \
@@ -45,6 +48,7 @@ $(abspath ../../../../../../components/libraries/trace/app_trace.c) \
 $(abspath ../../../../../../components/libraries/bootloader_dfu/bootloader_util.c) \
 $(abspath ../../../../../../components/libraries/bootloader_dfu/dfu_app_handler.c) \
 $(abspath ../../../../../../components/libraries/util/nrf_assert.c) \
+$(abspath ../../../../../../components/libraries/util/nrf_log.c) \
 $(abspath ../../../../../../components/libraries/uart/retarget.c) \
 $(abspath ../../../../../../components/libraries/sensorsim/sensorsim.c) \
 $(abspath ../../../../../../components/libraries/uart/app_uart_fifo.c) \
@@ -74,6 +78,7 @@ ASM_SOURCE_FILES  = $(abspath ../../../../../../components/toolchain/gcc/gcc_sta
 #includes common to all targets
 INC_PATHS  = -I$(abspath ../../../config/ble_app_hrs_s130_with_dfu_pca10028)
 INC_PATHS += -I$(abspath ../../../config)
+INC_PATHS += -I$(abspath ../../../../../../components/drivers_ext/segger_rtt)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/bootloader_dfu)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/config)
 INC_PATHS += -I$(abspath ../../../../../bsp)
@@ -97,6 +102,7 @@ INC_PATHS += -I$(abspath ../../../../../../components/toolchain/gcc)
 INC_PATHS += -I$(abspath ../../../../../../components/toolchain)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/common)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_advertising)
+INC_PATHS += -I$(abspath ../../../../../../components/softdevice/s130/headers/nrf51)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/trace)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_services/ble_bas)
 INC_PATHS += -I$(abspath ../../../../../../components/softdevice/common/softdevice_handler)
@@ -111,7 +117,8 @@ OUTPUT_BINARY_DIRECTORY = $(OBJECT_DIRECTORY)
 BUILD_DIRECTORIES := $(sort $(OBJECT_DIRECTORY) $(OUTPUT_BINARY_DIRECTORY) $(LISTING_DIRECTORY) )
 
 #flags common to all targets
-CFLAGS  = -DBOARD_PCA10028
+CFLAGS  = -DNRF_LOG_USES_UART=1
+CFLAGS += -DBOARD_PCA10028
 CFLAGS += -DSOFTDEVICE_PRESENT
 CFLAGS += -DSWI_DISABLE0
 CFLAGS += -DNRF51
@@ -120,7 +127,7 @@ CFLAGS += -DBLE_STACK_SUPPORT_REQD
 CFLAGS += -DBLE_DFU_APP_SUPPORT
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -O3
+CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
@@ -137,6 +144,7 @@ LDFLAGS += --specs=nano.specs -lc -lnosys
 
 # Assembler flags
 ASMFLAGS += -x assembler-with-cpp
+ASMFLAGS += -DNRF_LOG_USES_UART=1
 ASMFLAGS += -DBOARD_PCA10028
 ASMFLAGS += -DSOFTDEVICE_PRESENT
 ASMFLAGS += -DSWI_DISABLE0
@@ -240,6 +248,6 @@ flash: $(MAKECMDGOALS)
 
 ## Flash softdevice
 flash_softdevice:
-	@echo Flashing: s130_nrf51_1.0.0_softdevice.hex
-	nrfjprog --program ../../../../../../components/softdevice/s130/hex/s130_nrf51_1.0.0_softdevice.hex -f nrf51 --chiperase
+	@echo Flashing: s130_nrf51_2.0.0-7.alpha_softdevice.hex
+	nrfjprog --program ../../../../../../components/softdevice/s130/hex/s130_nrf51_2.0.0-7.alpha_softdevice.hex -f nrf51 --chiperase
 	nrfjprog --reset

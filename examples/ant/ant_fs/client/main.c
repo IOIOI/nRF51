@@ -13,6 +13,12 @@ All rights reserved.
  * @ingroup nrf_ant_fs_client
  *
  * @brief The ANT-FS client device simulator.
+ *
+ * Before compiling this example for NRF52, complete the following steps:
+ * - Download the S212 SoftDevice from <a href="https://www.thisisant.com/developer/components/nrf52832" target="_blank">thisisant.com</a>.
+ * - Extract the downloaded zip file and copy the S212 SoftDevice headers to <tt>\<InstallFolder\>/components/softdevice/s212/headers</tt>.
+ * If you are using Keil packs, copy the files into a @c headers folder in your example folder.
+ * - Make sure that @ref ANT_LICENSE_KEY in @c nrf_sdm.h is uncommented.
  */
 
 #include <stdint.h>
@@ -93,21 +99,18 @@ void softdevice_assert_callback(uint32_t pc, uint16_t line_num, const uint8_t * 
 
 /**@brief Function for handling an error. 
  *
- * @param[in] error_code  Error code supplied to the handler.
- * @param[in] line_num    Line number where the error occurred.
- * @param[in] p_file_name Pointer to the file name. 
+ * @param[in] id    Fault identifier. See @ref NRF_FAULT_IDS.
+ * @param[in] pc    The program counter of the instruction that triggered the fault, or 0 if
+ *                  unavailable.
+ * @param[in] info  Optional additional information regarding the fault. Refer to each fault
+ *                  identifier for details.
  */
-void app_error_handler(uint32_t error_code, uint32_t line_num, const uint8_t * p_file_name)
+void app_error_fault_handler(uint32_t id, uint32_t pc, uint32_t info)
 {
-    printf("ASSERT-app_error_handler\n");
-    printf("Error code: %u\n", error_code);
-    printf("File name: %s\n", (const char*)p_file_name);
-    printf("Line number: %u\n", line_num);
+    printf("ASSERT-app_error_fault_handler\n");
 
-    for (;;)
-    {
-        // No implementation needed.
-    }
+    app_error_print(id, pc, info);
+    app_error_save_and_stop(id, pc, info);
 }
 
 
@@ -550,9 +553,15 @@ static void button_event_handler(bsp_event_t event)
 static __INLINE void softdevice_setup(void)
 {
     printf("softdevice_setup\n");
-    
+
+#if defined(S212) || defined(S332)
+    uint32_t err_code = sd_softdevice_enable(NRF_CLOCK_LFCLKSRC, 
+                                             softdevice_assert_callback,
+                                             ANT_LICENSE_KEY);
+#else
     uint32_t err_code = sd_softdevice_enable(NRF_CLOCK_LFCLKSRC, 
                                              softdevice_assert_callback);
+#endif
     APP_ERROR_CHECK(err_code);
 
     // Configure application-specific interrupts. Set application IRQ to lowest priority and enable 

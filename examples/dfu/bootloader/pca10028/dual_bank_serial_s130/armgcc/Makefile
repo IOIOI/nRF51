@@ -92,6 +92,7 @@ INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/hal)
 INC_PATHS += -I$(abspath ../../../../../../components/toolchain/gcc)
 INC_PATHS += -I$(abspath ../../../../../../components/toolchain)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/common)
+INC_PATHS += -I$(abspath ../../../../../../components/softdevice/s130/headers/nrf51)
 INC_PATHS += -I$(abspath ../../../../../../components/softdevice/common/softdevice_handler)
 
 OBJECT_DIRECTORY = _build
@@ -112,7 +113,7 @@ CFLAGS += -DBLE_STACK_SUPPORT_REQD
 CFLAGS += -DBSP_DEFINES_ONLY
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -Os
+CFLAGS += -Wall -Werror -Os -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing

@@ -14,16 +14,14 @@
  */
 
 #include "ble_ancs_c.h"
-#include <string.h>
-#include <stdbool.h>
 #include "ble_err.h"
 #include "ble_srv_common.h"
-#include "nordic_common.h"
 #include "nrf_assert.h"
 #include "device_manager.h"
 #include "ble_db_discovery.h"
 #include "app_error.h"
 #include "app_trace.h"
+#include "sdk_common.h"
 
 #define BLE_ANCS_NOTIF_EVT_ID_INDEX       0                       /**< Index of the Event ID field when parsing notifications. */
 #define BLE_ANCS_NOTIF_FLAGS_INDEX        1                       /**< Index of the Flags field when parsing notifications. */
@@ -561,10 +559,9 @@ void ble_ancs_c_on_ble_evt(ble_ancs_c_t * p_ancs, const ble_evt_t * p_ble_evt)
 
 uint32_t ble_ancs_c_init(ble_ancs_c_t * p_ancs, const ble_ancs_c_init_t * p_ancs_init)
 {
-    if ((p_ancs == NULL) || p_ancs_init == NULL || (p_ancs_init->evt_handler == NULL))
-    {
-        return NRF_ERROR_NULL;
-    }
+    VERIFY_PARAM_NOT_NULL(p_ancs);
+    VERIFY_PARAM_NOT_NULL(p_ancs_init);
+    VERIFY_PARAM_NOT_NULL(p_ancs_init->evt_handler);
 
     mp_ble_ancs = p_ancs;
 
@@ -700,10 +697,8 @@ uint32_t ble_ancs_c_attr_add(const ble_ancs_c_notif_attr_id_values_t id,
                              uint8_t                               * p_data,
                              const uint16_t                          len)
 {
-    if(p_data == NULL)
-    {
-        return NRF_ERROR_NULL;
-    }
+    VERIFY_PARAM_NOT_NULL(p_data);
+
     if((len == 0) || (len > BLE_ANCS_ATTR_DATA_MAX))
     {
         return NRF_ERROR_INVALID_LENGTH;
@@ -721,17 +716,12 @@ uint32_t ble_ancs_c_request_attrs(const ble_ancs_c_evt_notif_t * notif)
 {
     uint32_t err_code;
     err_code = ble_ancs_verify_notification_format(notif);
-    if (err_code != NRF_SUCCESS)
-    {
-        return err_code;
-    }
+    VERIFY_SUCCESS(err_code);
 
     err_code      = ble_ancs_get_notif_attrs(mp_ble_ancs, notif->notif_uid);
     m_parse_state = COMMAND_ID_AND_NOTIF_UID;
-    if (err_code != NRF_SUCCESS)
-    {
-        return err_code;
-    }
+    VERIFY_SUCCESS(err_code);
+
     return NRF_SUCCESS;
 }
 

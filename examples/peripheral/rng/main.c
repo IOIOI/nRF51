@@ -36,8 +36,6 @@
 #define UART_RX_BUF_SIZE 1                                                            /**< UART RX buffer size. */
 #define RANDOM_BUFF_SIZE 16                                                           /**< Random numbers buffer size. */
 
-extern void softdevice_assertion_handler(uint32_t pc, uint16_t line_num, const uint8_t * file_name);
-
 void assert_nrf_callback(uint16_t line_num, const uint8_t *file_name)
 {
     /* empty function - needed by softdevice handler */

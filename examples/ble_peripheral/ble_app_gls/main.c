@@ -49,14 +49,21 @@
 #include "app_uart.h"
 #include "bsp.h"
 #include "bsp_btn_ble.h"
-
+#include "nrf_log.h"
 
 #if BUTTONS_NUMBER < 2
 #error "Not enough resources on board to run example"
 #endif
 
+    
+#define CENTRAL_LINK_COUNT              0                                          /**<number of central links used by the application. When changing this number remember to adjust the RAM settings*/
+#define PERIPHERAL_LINK_COUNT           1                                          /**<number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
+
+#define APP_LOG NRF_LOG
+
 #define UART_TX_BUF_SIZE 1024                                                      /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE 1                                                         /**< UART RX buffer size. */
+
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                          /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 
@@ -149,17 +156,6 @@ static void service_error_handler(uint32_t nrf_error)
     APP_ERROR_HANDLER(nrf_error);
 }
 
-void uart_error_handle(app_uart_evt_t * p_event)
-{
-    if (p_event->evt_type == APP_UART_COMMUNICATION_ERROR)
-    {
-        APP_ERROR_HANDLER(p_event->data.error_communication);
-    }
-    else if (p_event->evt_type == APP_UART_FIFO_ERROR)
-    {
-        APP_ERROR_HANDLER(p_event->data.error_code);
-    }
-}
 
 /**@brief Function for performing battery measurement and updating the Battery Level characteristic
  *        in Battery Service.
@@ -174,7 +170,7 @@ static void battery_level_update(void)
     err_code = ble_bas_battery_level_update(&m_bas, battery_level);
     if ((err_code != NRF_SUCCESS) &&
         (err_code != NRF_ERROR_INVALID_STATE) &&
-        (err_code != BLE_ERROR_NO_TX_BUFFERS) &&
+        (err_code != BLE_ERROR_NO_TX_PACKETS) &&
         (err_code != BLE_ERROR_GATTS_SYS_ATTR_MISSING)
        )
     {
@@ -517,14 +513,32 @@ static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
     }
 }
 
-
+uint8_t m_oob_key[16] = {
+                        0x24,
+                        0x25,
+                        0x26,
+                        0x27,
+                        0x28,
+                        0x29,
+                        0x2A,
+                        0x2B,
+                        0x2C,
+                        0x2D,
+                        0x2E,
+                        0x2F,
+                        0x35,
+                        0x4A,
+                        0x5E,
+                        0x62
+};
+                        
 /**@brief Function for handling the Application's BLE Stack events.
  *
  * @param[in] p_ble_evt  Bluetooth stack event.
  */
 static void on_ble_evt(ble_evt_t * p_ble_evt)
 {
-    uint32_t err_code = NRF_SUCCESS;
+    uint32_t err_code = NRF_SUCCESS;                    //lint -save -e438 // Last value assigned to variable 'err_code' not used
     ble_gatts_rw_authorize_reply_params_t auth_reply;
 
     switch (p_ble_evt->header.evt_id)
@@ -534,7 +548,16 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             APP_ERROR_CHECK(err_code);
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
             break;
-
+        case BLE_GAP_EVT_AUTH_KEY_REQUEST:
+        {
+            if (p_ble_evt->evt.gap_evt.params.auth_key_request.key_type == BLE_GAP_AUTH_KEY_TYPE_OOB)
+            {
+                err_code = sd_ble_gap_auth_key_reply(p_ble_evt->evt.gap_evt.conn_handle, 
+                                                     BLE_GAP_AUTH_KEY_TYPE_OOB, 
+                                                     m_oob_key);
+            }
+            break;
+        }
         case BLE_GAP_EVT_PASSKEY_DISPLAY:
         {
             char passkey[PASSKEY_LENGTH+1];
@@ -544,7 +567,7 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             err_code = app_timer_stop(m_sec_req_timer_id);
             APP_ERROR_CHECK(err_code);
 
-            printf("Passkey: %s\n",passkey);
+            APP_LOG("Passkey: %s\n",passkey);
           break;
         }
         case BLE_EVT_USER_MEM_REQUEST:
@@ -633,24 +656,27 @@ static void ble_stack_init(void)
 
     // Initialize the SoftDevice handler module.
     SOFTDEVICE_HANDLER_INIT(NRF_CLOCK_LFCLKSRC_XTAL_20_PPM, NULL);
-
-    // Enable BLE stack.
+    
     ble_enable_params_t ble_enable_params;
-    memset(&ble_enable_params, 0, sizeof(ble_enable_params));
-#if (defined(S130) || defined(S132))
-    ble_enable_params.gatts_enable_params.attr_tab_size   = BLE_GATTS_ATTR_TAB_SIZE_DEFAULT;
-#endif	
-    ble_enable_params.gatts_enable_params.service_changed = IS_SRVC_CHANGED_CHARACT_PRESENT;
-    err_code = sd_ble_enable(&ble_enable_params);
+    err_code = softdevice_enable_get_default_config(CENTRAL_LINK_COUNT,
+                                                    PERIPHERAL_LINK_COUNT,
+                                                    &ble_enable_params);
     APP_ERROR_CHECK(err_code);
-
+    
+    //Check the ram settings against the used number of links
+    CHECK_RAM_START_ADDR(CENTRAL_LINK_COUNT,PERIPHERAL_LINK_COUNT);
+    
+    // Enable BLE stack.
+    err_code = softdevice_enable(&ble_enable_params);
+    APP_ERROR_CHECK(err_code);
+    
     // Register with the SoftDevice handler module for BLE events.
     err_code = softdevice_ble_evt_handler_set(ble_evt_dispatch);
     APP_ERROR_CHECK(err_code);
 
     // Register with the SoftDevice handler module for BLE events.
     err_code = softdevice_sys_evt_handler_set(sys_evt_dispatch);
-    APP_ERROR_CHECK(err_code);
+    APP_ERROR_CHECK(err_code);    
 }
 
 
@@ -787,34 +813,6 @@ static void advertising_init(void)
 }
 
 
-/**@brief Function for initializing the UART.
- */
-static void uart_init(void)
-{
-    uint32_t err_code;
-
-    const app_uart_comm_params_t comm_params =
-    {
-        RX_PIN_NUMBER,
-        TX_PIN_NUMBER,
-        RTS_PIN_NUMBER,
-        CTS_PIN_NUMBER,
-        APP_UART_FLOW_CONTROL_ENABLED,
-        false,
-        UART_BAUDRATE_BAUDRATE_Baud38400
-    };
-
-    APP_UART_FIFO_INIT(&comm_params,
-                       UART_RX_BUF_SIZE,
-                       UART_TX_BUF_SIZE,
-                       uart_error_handle,
-                       APP_IRQ_PRIORITY_LOW,
-                       err_code);
-
-    APP_ERROR_CHECK(err_code);
-}
-
-
 /**@brief Function for initializing buttons and leds.
  *
  * @param[out] p_erase_bonds  Will be true if the clear bonding button was pressed to wake the application up.
@@ -844,15 +842,17 @@ static void power_manage(void)
 }
 
 /**@brief Function for application main entry.
- */
+ */ 
 int main(void)
 {
     uint32_t err_code;
     bool erase_bonds;
 
     // Initialize.
+    err_code = NRF_LOG_INIT();
+    APP_ERROR_CHECK(err_code);
+    
     timers_init();
-    uart_init();
     buttons_leds_init(&erase_bonds);
     ble_stack_init();
     device_manager_init(erase_bonds);
@@ -867,7 +867,7 @@ int main(void)
     err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
     APP_ERROR_CHECK(err_code);
 
-    printf("\r\nGLS Start!\r\n");    
+    APP_LOG("\r\nGLS Start!\r\n");
 
     // Enter main loop.
     for (;;)

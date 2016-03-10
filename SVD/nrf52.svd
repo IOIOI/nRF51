@@ -415,7 +415,7 @@
             <description>Slope definition A0.</description>
             <addressOffset>0x000</addressOffset>
             <access>read-only</access>
-            <resetValue>0x00000326</resetValue>
+            <resetValue>0x00000320</resetValue>
             <fields>
               <field>
                 <name>A</name>
@@ -430,7 +430,7 @@
             <description>Slope definition A1.</description>
             <addressOffset>0x004</addressOffset>
             <access>read-only</access>
-            <resetValue>0x00000348</resetValue>
+            <resetValue>0x00000343</resetValue>
             <fields>
               <field>
                 <name>A</name>
@@ -445,7 +445,7 @@
             <description>Slope definition A2.</description>
             <addressOffset>0x008</addressOffset>
             <access>read-only</access>
-            <resetValue>0x000003AA</resetValue>
+            <resetValue>0x0000035D</resetValue>
             <fields>
               <field>
                 <name>A</name>
@@ -460,7 +460,7 @@
             <description>Slope definition A3.</description>
             <addressOffset>0x00C</addressOffset>
             <access>read-only</access>
-            <resetValue>0x0000040E</resetValue>
+            <resetValue>0x00000400</resetValue>
             <fields>
               <field>
                 <name>A</name>
@@ -475,7 +475,7 @@
             <description>Slope definition A4.</description>
             <addressOffset>0x010</addressOffset>
             <access>read-only</access>
-            <resetValue>0x000004BD</resetValue>
+            <resetValue>0x0000047F</resetValue>
             <fields>
               <field>
                 <name>A</name>
@@ -490,7 +490,7 @@
             <description>Slope definition A5.</description>
             <addressOffset>0x014</addressOffset>
             <access>read-only</access>
-            <resetValue>0x000005A3</resetValue>
+            <resetValue>0x0000037B</resetValue>
             <fields>
               <field>
                 <name>A</name>
@@ -505,7 +505,7 @@
             <description>y-intercept B0.</description>
             <addressOffset>0x018</addressOffset>
             <access>read-only</access>
-            <resetValue>0x00003FEF</resetValue>
+            <resetValue>0x00003FCC</resetValue>
             <fields>
               <field>
                 <name>B</name>
@@ -520,7 +520,7 @@
             <description>y-intercept B1.</description>
             <addressOffset>0x01C</addressOffset>
             <access>read-only</access>
-            <resetValue>0x00003FBE</resetValue>
+            <resetValue>0x00003F98</resetValue>
             <fields>
               <field>
                 <name>B</name>
@@ -535,7 +535,7 @@
             <description>y-intercept B2.</description>
             <addressOffset>0x020</addressOffset>
             <access>read-only</access>
-            <resetValue>0x00003FBE</resetValue>
+            <resetValue>0x00003F98</resetValue>
             <fields>
               <field>
                 <name>B</name>
@@ -565,7 +565,7 @@
             <description>y-intercept B4.</description>
             <addressOffset>0x028</addressOffset>
             <access>read-only</access>
-            <resetValue>0x00000124</resetValue>
+            <resetValue>0x0000006A</resetValue>
             <fields>
               <field>
                 <name>B</name>
@@ -580,7 +580,7 @@
             <description>y-intercept B5.</description>
             <addressOffset>0x02C</addressOffset>
             <access>read-only</access>
-            <resetValue>0x0000027C</resetValue>
+            <resetValue>0x00003DD0</resetValue>
             <fields>
               <field>
                 <name>B</name>
@@ -625,7 +625,7 @@
             <description>Segment end T2.</description>
             <addressOffset>0x038</addressOffset>
             <access>read-only</access>
-            <resetValue>0x00000019</resetValue>
+            <resetValue>0x00000014</resetValue>
             <fields>
               <field>
                 <name>T</name>
@@ -640,7 +640,7 @@
             <description>Segment end T3.</description>
             <addressOffset>0x03C</addressOffset>
             <access>read-only</access>
-            <resetValue>0x0000003C</resetValue>
+            <resetValue>0x00000019</resetValue>
             <fields>
               <field>
                 <name>T</name>
@@ -3909,6 +3909,16 @@
                   <name>V24</name>
                   <description>Set threshold to 2.4 V</description>
                   <value>11</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>V25</name>
+                  <description>Set threshold to 2.5 V</description>
+                  <value>12</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>V26</name>
+                  <description>Set threshold to 2.6 V</description>
+                  <value>13</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>V27</name>
@@ -10650,6 +10660,12 @@
           <access>read-write</access>
         </register>
         <register>
+          <name>EVENTS_SUSPENDED</name>
+          <description>Last byte has been sent out after the SUSPEND task has been issued, TWI traffic is now suspended.</description>
+          <addressOffset>0x148</addressOffset>
+          <access>read-write</access>
+        </register>
+        <register>
           <name>EVENTS_RXSTARTED</name>
           <description>Receive sequence started</description>
           <addressOffset>0x14C</addressOffset>
@@ -10814,6 +10830,24 @@
               </enumeratedValues>
             </field>
             <field>
+              <name>SUSPENDED</name>
+              <description>Enable or disable interrupt for SUSPENDED event</description>
+              <lsb>18</lsb>
+              <msb>18</msb>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Disabled</name>
+                  <description>Disable</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Enabled</name>
+                  <description>Enable</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
               <name>RXSTARTED</name>
               <description>Enable or disable interrupt for RXSTARTED event</description>
               <lsb>19</lsb>
@@ -10925,6 +10959,33 @@
               <description>Write '1' to Enable interrupt for ERROR event</description>
               <lsb>9</lsb>
               <msb>9</msb>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>Disabled</name>
+                  <description>Read: Disabled</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Enabled</name>
+                  <description>Read: Enabled</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>Set</name>
+                  <description>Enable</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>SUSPENDED</name>
+              <description>Write '1' to Enable interrupt for SUSPENDED event</description>
+              <lsb>18</lsb>
+              <msb>18</msb>
               <enumeratedValues>
                 <usage>read</usage>
                 <enumeratedValue>
@@ -11095,6 +11156,33 @@
               <description>Write '1' to Disable interrupt for ERROR event</description>
               <lsb>9</lsb>
               <msb>9</msb>
+              <enumeratedValues>
+                <usage>read</usage>
+                <enumeratedValue>
+                  <name>Disabled</name>
+                  <description>Read: Disabled</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Enabled</name>
+                  <description>Read: Enabled</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+              <enumeratedValues>
+                <usage>write</usage>
+                <enumeratedValue>
+                  <name>Clear</name>
+                  <description>Disable</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>SUSPENDED</name>
+              <description>Write '1' to Disable interrupt for SUSPENDED event</description>
+              <lsb>18</lsb>
+              <msb>18</msb>
               <enumeratedValues>
                 <usage>read</usage>
                 <enumeratedValue>
@@ -23718,14 +23806,14 @@
           <resetValue>0x00000000</resetValue>
           <fields>
             <field>
-              <name>THUP</name>
-              <description>VUP = (THUP+1)/64*VREF</description>
+              <name>THDOWN</name>
+              <description>VDOWN = (THDOWN+1)/64*VREF</description>
               <lsb>0</lsb>
               <msb>5</msb>
             </field>
             <field>
-              <name>THDOWN</name>
-              <description>VDOWN = (THDOWN+1)/64*VREF</description>
+              <name>THUP</name>
+              <description>VUP = (THUP+1)/64*VREF</description>
               <lsb>8</lsb>
               <msb>13</msb>
             </field>
@@ -24346,6 +24434,7 @@
           <description>Reference select</description>
           <addressOffset>0x508</addressOffset>
           <access>read-write</access>
+          <resetValue>0x00000004</resetValue>
           <fields>
             <field>
               <name>REFSEL</name>

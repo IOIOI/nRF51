@@ -143,7 +143,7 @@ typedef uint32_t nrf_clock_lfclksrc_t;
  * @param[in] line_number Line number where the assert failed.
  * @param[in] file_name File name where the assert failed.
  */
-typedef void (*softdevice_assertion_handler_t)(uint32_t pc, uint16_t line_number, const uint8_t * p_file_name);
+typedef void (*nrf_fault_handler_t)(uint32_t pc, uint16_t line_number, const uint8_t * p_file_name);
 
 /** @} */
 
@@ -177,7 +177,7 @@ typedef void (*softdevice_assertion_handler_t)(uint32_t pc, uint16_t line_number
  * @retval ::NRF_ERROR_SDM_INCORRECT_INTERRUPT_CONFIGURATION SoftDeviceinterrupt is already enabled, or an enabled interrupt has an illegal priority level.
  * @retval ::NRF_ERROR_SDM_LFCLK_SOURCE_UNKNOWN Unknown low frequency clock source selected.
  */
-SVCALL(SD_SOFTDEVICE_ENABLE, uint32_t, sd_softdevice_enable(nrf_clock_lfclksrc_t clock_source, softdevice_assertion_handler_t assertion_handler));
+SVCALL(SD_SOFTDEVICE_ENABLE, uint32_t, sd_softdevice_enable(nrf_clock_lfclksrc_t clock_source, nrf_fault_handler_t assertion_handler));
 
 /**@brief Disables the SoftDevice and by extension the protocol stack.
  *

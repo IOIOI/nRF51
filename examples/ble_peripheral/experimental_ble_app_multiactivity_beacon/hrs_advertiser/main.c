@@ -48,6 +48,9 @@
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT      0                                          /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 
+#define CENTRAL_LINK_COUNT                   0                                          /**<number of central links used by the application. When changing this number remember to adjust the RAM settings*/
+#define PERIPHERAL_LINK_COUNT                1                                          /**<number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
+
 #define APP_COMPANY_IDENTIFIER               0x0059                                     /**< Company identifier for Nordic Semiconductor ASA. as per www.bluetooth.org. */
 
 #define BEACON_UUID 0xff, 0xfe, 0x2d, 0x12, 0x1e, 0x4b, 0x0f, 0xa4,\
@@ -163,7 +166,7 @@ static void battery_level_update(void)
     err_code = ble_bas_battery_level_update(&m_bas, battery_level);
     if ((err_code != NRF_SUCCESS) &&
         (err_code != NRF_ERROR_INVALID_STATE) &&
-        (err_code != BLE_ERROR_NO_TX_BUFFERS) &&
+        (err_code != BLE_ERROR_NO_TX_PACKETS) &&
         (err_code != BLE_ERROR_GATTS_SYS_ATTR_MISSING)
     )
     {
@@ -208,7 +211,7 @@ static void heart_rate_meas_timeout_handler(void * p_context)
     err_code = ble_hrs_heart_rate_measurement_send(&m_hrs, heart_rate);
     if ((err_code != NRF_SUCCESS) &&
         (err_code != NRF_ERROR_INVALID_STATE) &&
-        (err_code != BLE_ERROR_NO_TX_BUFFERS) &&
+        (err_code != BLE_ERROR_NO_TX_PACKETS) &&
         (err_code != BLE_ERROR_GATTS_SYS_ATTR_MISSING)
     )
     {
@@ -645,15 +648,18 @@ static void ble_stack_init(void)
 
     // Initialize the SoftDevice handler module.
     SOFTDEVICE_HANDLER_INIT(NRF_CLOCK_LFCLKSRC_XTAL_20_PPM, NULL);
-
-    // Enable BLE stack 
+    
     ble_enable_params_t ble_enable_params;
-    memset(&ble_enable_params, 0, sizeof(ble_enable_params));
-#if (defined(S130) || defined(S132))
-    ble_enable_params.gatts_enable_params.attr_tab_size   = BLE_GATTS_ATTR_TAB_SIZE_DEFAULT;
-#endif
-    ble_enable_params.gatts_enable_params.service_changed = IS_SRVC_CHANGED_CHARACT_PRESENT;
-    err_code = sd_ble_enable(&ble_enable_params);
+    err_code = softdevice_enable_get_default_config(CENTRAL_LINK_COUNT,
+                                                    PERIPHERAL_LINK_COUNT,
+                                                    &ble_enable_params);
+    APP_ERROR_CHECK(err_code);
+    
+    //Check the ram settings against the used number of links
+    CHECK_RAM_START_ADDR(CENTRAL_LINK_COUNT,PERIPHERAL_LINK_COUNT);
+    
+    // Enable BLE stack.
+    err_code = softdevice_enable(&ble_enable_params);
     APP_ERROR_CHECK(err_code);
 
     // Register with the SoftDevice handler module for BLE events.

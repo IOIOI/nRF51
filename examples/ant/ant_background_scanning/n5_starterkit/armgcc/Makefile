@@ -37,12 +37,16 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 
 #source common to all targets
 C_SOURCE_FILES += \
+$(abspath ../../../../../components/drivers_ext/segger_rtt/RTT_Syscalls_GCC.c) \
+$(abspath ../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT.c) \
+$(abspath ../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT_printf.c) \
 $(abspath ../../../../../components/libraries/button/app_button.c) \
 $(abspath ../../../../../components/libraries/util/app_error.c) \
 $(abspath ../../../../../components/libraries/fifo/app_fifo.c) \
 $(abspath ../../../../../components/libraries/timer/app_timer.c) \
 $(abspath ../../../../../components/libraries/trace/app_trace.c) \
 $(abspath ../../../../../components/libraries/util/nrf_assert.c) \
+$(abspath ../../../../../components/libraries/util/nrf_log.c) \
 $(abspath ../../../../../components/libraries/uart/retarget.c) \
 $(abspath ../../../../../components/libraries/uart/app_uart_fifo.c) \
 $(abspath ../../../../../components/drivers_nrf/delay/nrf_delay.c) \
@@ -65,24 +69,25 @@ INC_PATHS  = -I$(abspath ../../config/ant_background_scanning_s210_n5_starterkit
 INC_PATHS += -I$(abspath ../../config)
 INC_PATHS += -I$(abspath ../../../../bsp)
 INC_PATHS += -I$(abspath ../../../../../components/ant/ant_search_config)
-INC_PATHS += -I$(abspath ../../../../../components/softdevice/common/softdevice_handler)
 INC_PATHS += -I$(abspath ../../../../../components/device)
-INC_PATHS += -I$(abspath ../../../../../components/libraries/uart)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/hal)
-INC_PATHS += -I$(abspath ../../../../../components/ant/ant_channel_config)
-INC_PATHS += -I$(abspath ../../../../../components/libraries/timer)
-INC_PATHS += -I$(abspath ../../../../../components/ant/ant_stack_config)
 INC_PATHS += -I$(abspath ../../../../../components/libraries/button)
+INC_PATHS += -I$(abspath ../../../../../components/drivers_ext/segger_rtt)
 INC_PATHS += -I$(abspath ../../../../../components/softdevice/s210/headers)
 INC_PATHS += -I$(abspath ../../../../../components/libraries/util)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/uart)
-INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/common)
-INC_PATHS += -I$(abspath ../../../../../components/toolchain)
-INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/delay)
+INC_PATHS += -I$(abspath ../../../../../components/softdevice/common/softdevice_handler)
+INC_PATHS += -I$(abspath ../../../../../components/libraries/timer)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/config)
+INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/delay)
 INC_PATHS += -I$(abspath ../../../../../components/libraries/trace)
 INC_PATHS += -I$(abspath ../../../../../components/libraries/fifo)
+INC_PATHS += -I$(abspath ../../../../../components/libraries/uart)
+INC_PATHS += -I$(abspath ../../../../../components/toolchain)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/gpiote)
+INC_PATHS += -I$(abspath ../../../../../components/ant/ant_channel_config)
+INC_PATHS += -I$(abspath ../../../../../components/ant/ant_stack_config)
+INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/common)
 INC_PATHS += -I$(abspath ../../../../../components/toolchain/gcc)
 
 OBJECT_DIRECTORY = _build
@@ -93,7 +98,8 @@ OUTPUT_BINARY_DIRECTORY = $(OBJECT_DIRECTORY)
 BUILD_DIRECTORIES := $(sort $(OBJECT_DIRECTORY) $(OUTPUT_BINARY_DIRECTORY) $(LISTING_DIRECTORY) )
 
 #flags common to all targets
-CFLAGS  = -DS210
+CFLAGS  = -DNRF_LOG_USES_UART=1
+CFLAGS += -DS210
 CFLAGS += -DSWI_DISABLE0
 CFLAGS += -DSOFTDEVICE_PRESENT
 CFLAGS += -DNRF51
@@ -102,7 +108,7 @@ CFLAGS += -DANT_STACK_SUPPORT_REQD
 CFLAGS += -DENABLE_DEBUG_LOG_SUPPORT 
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -O3
+CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
@@ -119,6 +125,7 @@ LDFLAGS += --specs=nano.specs -lc -lnosys
 
 # Assembler flags
 ASMFLAGS += -x assembler-with-cpp
+ASMFLAGS += -DNRF_LOG_USES_UART=1
 ASMFLAGS += -DS210
 ASMFLAGS += -DSWI_DISABLE0
 ASMFLAGS += -DSOFTDEVICE_PRESENT

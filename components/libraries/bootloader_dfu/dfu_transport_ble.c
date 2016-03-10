@@ -14,7 +14,6 @@
 #include "dfu.h"
 #include <dfu_types.h>
 #include <stddef.h>
-#include <string.h>
 #include "boards.h"
 #include "nrf.h"
 #include "nrf_sdm.h"
@@ -29,13 +28,13 @@
 #include "ble_gatt.h"
 #include "ble_hci.h"
 #include "ble_dfu.h"
-#include "nordic_common.h"
 #include "app_timer.h"
 #include "ble_conn_params.h"
 #include "hci_mem_pool.h"
 #include "bootloader.h"
 #include "dfu_ble_svc_internal.h"
 #include "nrf_delay.h"
+#include "sdk_common.h"
 
 #define DFU_REV_MAJOR                        0x00                                                    /** DFU Major revision number to be exposed. */
 #define DFU_REV_MINOR                        0x08                                                    /** DFU Minor revision number to be exposed. */
@@ -137,24 +136,18 @@ static uint32_t service_change_indicate()
                                              m_ble_peer_data.sys_serv_attr,
                                              sizeof(m_ble_peer_data.sys_serv_attr),
                                              BLE_GATTS_SYS_ATTR_FLAG_SYS_SRVCS);
-        if (err_code != NRF_SUCCESS)
-        {
-            return err_code;
-        }
+        VERIFY_SUCCESS(err_code);
 
         err_code = sd_ble_gatts_sys_attr_set(m_conn_handle,
                                              NULL,
                                              0,
                                              BLE_GATTS_SYS_ATTR_FLAG_USR_SRVCS);
-        if (err_code != NRF_SUCCESS)
-        {
-            return err_code;
-        }
+        VERIFY_SUCCESS(err_code);
 
         err_code = sd_ble_gatts_service_changed(m_conn_handle, DFU_SERVICE_HANDLE, BLE_HANDLE_MAX);
         if ((err_code == BLE_ERROR_INVALID_CONN_HANDLE) ||
             (err_code == NRF_ERROR_INVALID_STATE) ||
-            (err_code == BLE_ERROR_NO_TX_BUFFERS))
+            (err_code == BLE_ERROR_NO_TX_PACKETS))
         {
             // Those errors can be expected when sending trying to send Service Changed Indication
             // if the CCCD is not set to indicate. Thus set the returning error code to success.
@@ -1042,18 +1035,12 @@ uint32_t dfu_transport_update_start(void)
     leds_init();
 
     err_code = softdevice_ble_evt_handler_set(ble_evt_dispatch);
-    if (err_code != NRF_SUCCESS)
-    {
-        return err_code;
-    }
+    VERIFY_SUCCESS(err_code);
 
     dfu_register_callback(dfu_cb_handler);
 
     err_code = hci_mem_pool_open();
-    if (err_code != NRF_SUCCESS)
-    {
-        return err_code;
-    }
+    VERIFY_SUCCESS(err_code);
 
     err_code = dfu_ble_peer_data_get(&m_ble_peer_data);
     if (err_code == NRF_SUCCESS)

@@ -51,8 +51,9 @@
   _Pragma("GCC diagnostic ignored \"-Wreturn-type\"") \
   __attribute__((naked)) static return_type signature \
   { \
-    __asm( "svc %0\n" \
-    	   "bx r14" : : "I" ((uint16_t)number) : "r0" \
+    __asm( \
+        "svc %0\n" \
+        "bx r14" : : "I" (number) : "r0" \
     ); \
   }    \
   _Pragma("GCC diagnostic pop")

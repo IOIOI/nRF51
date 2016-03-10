@@ -2,7 +2,6 @@
 
 #include "gatt_cache_manager.h"
 
-#include <string.h>
 #include "ble_gap.h"
 #include "ble_conn_state.h"
 #include "peer_manager_types.h"
@@ -11,36 +10,7 @@
 #include "security_dispatcher.h"
 #include "gatts_cache_manager.h"
 #include "gattc_cache_manager.h"
-
-
-/**@brief Macro for verifying that the module is initialized. It will cause the function to return
- *        @ref NRF_ERROR_INVALID_STATE if not.
- */
-#define VERIFY_MODULE_INITIALIZED()     \
-do                                      \
-{                                       \
-    if (m_gcm.evt_handler == NULL)      \
-    {                                   \
-        return NRF_ERROR_INVALID_STATE; \
-    }                                   \
-} while(0)
-
-
-/**@brief Macro for verifying that the module is initialized. It will cause the function to return
- *        if not.
- *
- * @param[in] param  The variable to check if is NULL.
- */
-#define VERIFY_PARAM_NOT_NULL(param)    \
-do                                      \
-{                                       \
-    if (param == NULL)                  \
-    {                                   \
-        return NRF_ERROR_NULL;          \
-    }                                   \
-} while(0)
-
-
+#include "sdk_common.h"
 
 /**@brief Structure containing the module variable(s) of the GCM module.
  */
@@ -54,6 +24,8 @@ typedef struct
 
 static gcm_t m_gcm;  /**< Instantiation of module variable(s). */
 
+#define MODULE_INITIALIZED (m_gcm.evt_handler != NULL)
+#include "sdk_macros.h"
 
 /**@brief Function for resetting the module variable(s) of the GSCM module.
  *
@@ -342,19 +314,19 @@ ret_code_t gcm_init(gcm_evt_handler_t evt_handler)
     ret_code_t err_code;
 
     err_code = gscm_init(gscm_evt_handler);
-    if (err_code != NRF_SUCCESS) {return err_code;}
+    VERIFY_SUCCESS(err_code);
 
     err_code = gccm_init(gccm_evt_handler);
-    if (err_code != NRF_SUCCESS) {return err_code;}
+    VERIFY_SUCCESS(err_code);
 
     internal_state_reset(&m_gcm);
     m_gcm.evt_handler = evt_handler;
 
     err_code = im_register(im_evt_handler);
-    if (err_code != NRF_SUCCESS) {return err_code;}
+    VERIFY_SUCCESS(err_code);
 
     err_code = smd_register(smd_evt_handler);
-    if (err_code != NRF_SUCCESS) {return err_code;}
+    VERIFY_SUCCESS(err_code);
 
 
     m_gcm.flag_id_local_db_update_pending = ble_conn_state_user_flag_acquire();

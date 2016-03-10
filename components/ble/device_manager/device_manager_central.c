@@ -182,6 +182,14 @@ typedef enum
 
 //#define DM_DISABLE_API_PARAM_CHECK /**< Macro to disable API parameters check. */
 
+#undef NULL_PARAM_CHECK
+#undef VERIFY_MODULE_INITIALIZED
+#undef VERIFY_MODULE_INITIALIZED_VOID
+#undef VERIFY_APP_REGISTERED
+#undef VERIFY_APP_REGISTERED_VOID
+#undef VERIFY_CONNECTION_INSTANCE
+#undef VERIFY_DEVICE_INSTANCE
+
 #ifndef DM_DISABLE_API_PARAM_CHECK
 
 /**@brief Macro for verifying NULL parameters are not passed to API.

@@ -14,6 +14,7 @@
 #include "app_fifo.h"
 #include "nrf_drv_uart.h"
 #include "nrf_assert.h"
+#include "sdk_common.h"
 
 static __INLINE uint32_t fifo_length(app_fifo_t * const fifo)
 {
@@ -65,6 +66,7 @@ static void uart_event_handler(nrf_drv_uart_event_t * p_event, void* p_context)
     {
         app_uart_event.evt_type                 = APP_UART_COMMUNICATION_ERROR;
         app_uart_event.data.error_communication = p_event->data.error.error_mask;
+        (void)nrf_drv_uart_rx(rx_buffer,1);
         m_event_handler(&app_uart_event);
     }
     else if (p_event->type == NRF_DRV_UART_EVT_TX_DONE)
@@ -100,19 +102,11 @@ uint32_t app_uart_init(const app_uart_comm_params_t * p_comm_params,
 
     // Configure buffer RX buffer.
     err_code = app_fifo_init(&m_rx_fifo, p_buffers->rx_buf, p_buffers->rx_buf_size);
-    if (err_code != NRF_SUCCESS)
-    {
-        // Propagate error code.
-        return err_code;
-    }
+    VERIFY_SUCCESS(err_code);
 
     // Configure buffer TX buffer.
     err_code = app_fifo_init(&m_tx_fifo, p_buffers->tx_buf, p_buffers->tx_buf_size);
-    if (err_code != NRF_SUCCESS)
-    {
-        // Propagate error code.
-        return err_code;
-    }
+    VERIFY_SUCCESS(err_code);
 
     nrf_drv_uart_config_t config = NRF_DRV_UART_DEFAULT_CONFIG;
     config.baudrate = (nrf_uart_baudrate_t)p_comm_params->baud_rate;
@@ -126,13 +120,14 @@ uint32_t app_uart_init(const app_uart_comm_params_t * p_comm_params,
     config.pseltxd = p_comm_params->tx_pin_no;
 
     err_code = nrf_drv_uart_init(&config, uart_event_handler);
+    VERIFY_SUCCESS(err_code);
 
-    if (err_code != NRF_SUCCESS)
+#ifdef NRF52
+    if (!config.use_easy_dma)
+#endif
     {
-        return err_code;
+        nrf_drv_uart_rx_enable();
     }
-
-    nrf_drv_uart_rx_enable();
     return nrf_drv_uart_rx(rx_buffer,1);
 }
 
@@ -141,16 +136,10 @@ uint32_t app_uart_flush(void)
     uint32_t err_code;
 
     err_code = app_fifo_flush(&m_rx_fifo);
-    if (err_code != NRF_SUCCESS)
-    {
-        return err_code;
-    }
+    VERIFY_SUCCESS(err_code);
 
     err_code = app_fifo_flush(&m_tx_fifo);
-    if (err_code != NRF_SUCCESS)
-    {
-        return err_code;
-    }
+    VERIFY_SUCCESS(err_code);
 
     return NRF_SUCCESS;
 }

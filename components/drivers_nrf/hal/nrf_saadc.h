@@ -19,7 +19,7 @@
  * @{
  * @ingroup nrf_saadc
  *
- * @brief Hardware access layer for accessing the SAADC peripheral.
+ * @brief @tagAPI52 Hardware access layer for accessing the SAADC peripheral.
  */
 
 #include <stdbool.h>

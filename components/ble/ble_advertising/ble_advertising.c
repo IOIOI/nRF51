@@ -14,8 +14,8 @@
 #include "ble_advertising.h"
 #include "nrf_soc.h"
 #include "app_trace.h"
-#include "nordic_common.h"
 #include "pstorage.h"
+#include "sdk_common.h"
 
 
 #define LOG app_trace_log
@@ -91,10 +91,9 @@ uint32_t ble_advertising_init(ble_advdata_t const                 * p_advdata,
 {
     uint32_t err_code;
 
-    if((p_advdata == NULL) || p_config == NULL)
-    {
-        return NRF_ERROR_NULL;
-    }
+    VERIFY_PARAM_NOT_NULL(p_advdata);
+    VERIFY_PARAM_NOT_NULL(p_config);
+
     m_adv_mode_current = BLE_ADV_MODE_IDLE;
     m_evt_handler      = evt_handler;
     m_error_handler    = error_handler;
@@ -294,10 +293,7 @@ uint32_t ble_advertising_start(ble_adv_mode_t advertising_mode)
                 adv_params.p_whitelist = &m_whitelist;
                 m_advdata.flags        = BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED;
                 err_code               = ble_advdata_set(&m_advdata, NULL);
-                if(err_code != NRF_SUCCESS)
-                {
-                    return err_code;
-                }
+                VERIFY_SUCCESS(err_code);
 
                 m_adv_evt = BLE_ADV_EVT_FAST_WHITELIST;
                 LOG("[ADV]: Starting fast advertisement with whitelist.\r\n");
@@ -321,10 +317,7 @@ uint32_t ble_advertising_start(ble_adv_mode_t advertising_mode)
                 adv_params.p_whitelist = &m_whitelist;
                 m_advdata.flags        = BLE_GAP_ADV_FLAG_BR_EDR_NOT_SUPPORTED;
                 err_code               = ble_advdata_set(&m_advdata, NULL);
-                if(err_code != NRF_SUCCESS)
-                {
-                    return err_code;
-                }
+                VERIFY_SUCCESS(err_code);
 
                 m_adv_evt = BLE_ADV_EVT_SLOW_WHITELIST;
                 LOG("[ADV]: Starting slow advertisement with whitelist.\r\n");
@@ -342,10 +335,7 @@ uint32_t ble_advertising_start(ble_adv_mode_t advertising_mode)
     if (m_adv_mode_current != BLE_ADV_MODE_IDLE)
     {
         err_code = sd_ble_gap_adv_start(&adv_params);
-        if(err_code != NRF_SUCCESS)
-        {
-            return err_code;
-        }
+        VERIFY_SUCCESS(err_code);
     }
     if (m_evt_handler != NULL)
     {
@@ -534,10 +524,7 @@ uint32_t ble_advertising_restart_without_whitelist(void)
         if (m_adv_mode_current != BLE_ADV_MODE_IDLE)
         {
             err_code = sd_ble_gap_adv_stop();
-            if(err_code != NRF_SUCCESS)
-            {
-                return err_code;
-            }
+            VERIFY_SUCCESS(err_code);
         }
         m_whitelist_temporarily_disabled = true;
 

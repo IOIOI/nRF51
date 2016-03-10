@@ -353,7 +353,7 @@
               <MiscControls>--c99</MiscControls>
               <Define> BSP_DEFINES_ONLY BOARD_PCA10028 ESB_PRESENT NRF51</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\config;..\..\..\..\..\..\..\components\device;..\..\..\..\..\..\..\components\toolchain;..\..\..\..\..\..\..\components\drivers_nrf\hal;..\..\..\..\..\..\..\components\properitary_rf\esb;..\..\..\..\..\..\bsp</IncludePath>
+              <IncludePath>..\..\..\config;..\..\..\..\..\..\..\components\device;..\..\..\..\..\..\..\components\drivers_nrf\hal;..\..\..\..\..\..\..\components\properitary_rf\esb;..\..\..\..\..\..\..\components\toolchain;..\..\..\..\..\..\bsp</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

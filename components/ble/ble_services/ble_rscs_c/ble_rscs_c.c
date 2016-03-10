@@ -11,16 +11,13 @@
  * @{
  */
 
-#include <stdint.h>
 #include "ble_rscs_c.h"
 #include "ble_db_discovery.h"
 #include "ble_types.h"
 #include "ble_srv_common.h"
-#include "nordic_common.h"
-#include "nrf_error.h"
 #include "ble_gattc.h"
-#include "app_util.h"
 #include "app_trace.h"
+#include "sdk_common.h"
 
 #define LOG                    app_trace_log         /**< Debug logger macro that will be used in this file to do logging of important information over UART. */
 
@@ -217,10 +214,8 @@ static void db_discover_evt_handler(ble_db_discovery_evt_t * p_evt)
 
 uint32_t ble_rscs_c_init(ble_rscs_c_t * p_ble_rscs_c, ble_rscs_c_init_t * p_ble_rscs_c_init)
 {
-    if ((p_ble_rscs_c == NULL) || (p_ble_rscs_c_init == NULL))
-    {
-        return NRF_ERROR_NULL;
-    }
+    VERIFY_PARAM_NOT_NULL(p_ble_rscs_c);
+    VERIFY_PARAM_NOT_NULL(p_ble_rscs_c_init);
 
     ble_uuid_t rscs_uuid;
 
@@ -295,10 +290,7 @@ static uint32_t cccd_configure(uint16_t conn_handle, uint16_t handle_cccd, bool 
 
 uint32_t ble_rscs_c_rsc_notif_enable(ble_rscs_c_t * p_ble_rscs_c)
 {
-    if (p_ble_rscs_c == NULL)
-    {
-        return NRF_ERROR_NULL;
-    }
+    VERIFY_PARAM_NOT_NULL(p_ble_rscs_c);
 
     return cccd_configure(p_ble_rscs_c->conn_handle, p_ble_rscs_c->rsc_cccd_handle, true);
 }

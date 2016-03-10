@@ -1391,13 +1391,13 @@
 /* Register: COMP_TH */
 /* Description: Threshold configuration for hysteresis unit */
 
-/* Bits 13..8 : VDOWN = (THDOWN+1)/64*VREF */
-#define COMP_TH_THDOWN_Pos (8UL) /*!< Position of THDOWN field. */
-#define COMP_TH_THDOWN_Msk (0x3FUL << COMP_TH_THDOWN_Pos) /*!< Bit mask of THDOWN field. */
-
-/* Bits 5..0 : VUP = (THUP+1)/64*VREF */
-#define COMP_TH_THUP_Pos (0UL) /*!< Position of THUP field. */
+/* Bits 13..8 : VUP = (THUP+1)/64*VREF */
+#define COMP_TH_THUP_Pos (8UL) /*!< Position of THUP field. */
 #define COMP_TH_THUP_Msk (0x3FUL << COMP_TH_THUP_Pos) /*!< Bit mask of THUP field. */
+
+/* Bits 5..0 : VDOWN = (THDOWN+1)/64*VREF */
+#define COMP_TH_THDOWN_Pos (0UL) /*!< Position of THDOWN field. */
+#define COMP_TH_THDOWN_Msk (0x3FUL << COMP_TH_THDOWN_Pos) /*!< Bit mask of THDOWN field. */
 
 /* Register: COMP_MODE */
 /* Description: Mode configuration */
@@ -6691,6 +6691,8 @@
 #define POWER_POFCON_THRESHOLD_V22 (9UL) /*!< Set threshold to 2.2 V */
 #define POWER_POFCON_THRESHOLD_V23 (10UL) /*!< Set threshold to 2.3 V */
 #define POWER_POFCON_THRESHOLD_V24 (11UL) /*!< Set threshold to 2.4 V */
+#define POWER_POFCON_THRESHOLD_V25 (12UL) /*!< Set threshold to 2.5 V */
+#define POWER_POFCON_THRESHOLD_V26 (13UL) /*!< Set threshold to 2.6 V */
 #define POWER_POFCON_THRESHOLD_V27 (14UL) /*!< Set threshold to 2.7 V */
 #define POWER_POFCON_THRESHOLD_V28 (15UL) /*!< Set threshold to 2.8 V */
 
@@ -11027,6 +11029,12 @@
 #define TWIM_INTEN_RXSTARTED_Disabled (0UL) /*!< Disable */
 #define TWIM_INTEN_RXSTARTED_Enabled (1UL) /*!< Enable */
 
+/* Bit 18 : Enable or disable interrupt for SUSPENDED event */
+#define TWIM_INTEN_SUSPENDED_Pos (18UL) /*!< Position of SUSPENDED field. */
+#define TWIM_INTEN_SUSPENDED_Msk (0x1UL << TWIM_INTEN_SUSPENDED_Pos) /*!< Bit mask of SUSPENDED field. */
+#define TWIM_INTEN_SUSPENDED_Disabled (0UL) /*!< Disable */
+#define TWIM_INTEN_SUSPENDED_Enabled (1UL) /*!< Enable */
+
 /* Bit 9 : Enable or disable interrupt for ERROR event */
 #define TWIM_INTEN_ERROR_Pos (9UL) /*!< Position of ERROR field. */
 #define TWIM_INTEN_ERROR_Msk (0x1UL << TWIM_INTEN_ERROR_Pos) /*!< Bit mask of ERROR field. */
@@ -11069,6 +11077,13 @@
 #define TWIM_INTENSET_RXSTARTED_Disabled (0UL) /*!< Read: Disabled */
 #define TWIM_INTENSET_RXSTARTED_Enabled (1UL) /*!< Read: Enabled */
 #define TWIM_INTENSET_RXSTARTED_Set (1UL) /*!< Enable */
+
+/* Bit 18 : Write '1' to Enable interrupt for SUSPENDED event */
+#define TWIM_INTENSET_SUSPENDED_Pos (18UL) /*!< Position of SUSPENDED field. */
+#define TWIM_INTENSET_SUSPENDED_Msk (0x1UL << TWIM_INTENSET_SUSPENDED_Pos) /*!< Bit mask of SUSPENDED field. */
+#define TWIM_INTENSET_SUSPENDED_Disabled (0UL) /*!< Read: Disabled */
+#define TWIM_INTENSET_SUSPENDED_Enabled (1UL) /*!< Read: Enabled */
+#define TWIM_INTENSET_SUSPENDED_Set (1UL) /*!< Enable */
 
 /* Bit 9 : Write '1' to Enable interrupt for ERROR event */
 #define TWIM_INTENSET_ERROR_Pos (9UL) /*!< Position of ERROR field. */
@@ -11114,6 +11129,13 @@
 #define TWIM_INTENCLR_RXSTARTED_Disabled (0UL) /*!< Read: Disabled */
 #define TWIM_INTENCLR_RXSTARTED_Enabled (1UL) /*!< Read: Enabled */
 #define TWIM_INTENCLR_RXSTARTED_Clear (1UL) /*!< Disable */
+
+/* Bit 18 : Write '1' to Disable interrupt for SUSPENDED event */
+#define TWIM_INTENCLR_SUSPENDED_Pos (18UL) /*!< Position of SUSPENDED field. */
+#define TWIM_INTENCLR_SUSPENDED_Msk (0x1UL << TWIM_INTENCLR_SUSPENDED_Pos) /*!< Bit mask of SUSPENDED field. */
+#define TWIM_INTENCLR_SUSPENDED_Disabled (0UL) /*!< Read: Disabled */
+#define TWIM_INTENCLR_SUSPENDED_Enabled (1UL) /*!< Read: Enabled */
+#define TWIM_INTENCLR_SUSPENDED_Clear (1UL) /*!< Disable */
 
 /* Bit 9 : Write '1' to Disable interrupt for ERROR event */
 #define TWIM_INTENCLR_ERROR_Pos (9UL) /*!< Position of ERROR field. */

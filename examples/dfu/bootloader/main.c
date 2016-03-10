@@ -48,6 +48,7 @@
 #include "softdevice_handler_appsh.h"
 #include "pstorage_platform.h"
 #include "nrf_mbr.h"
+#include "nrf_log.h"
 
 #if BUTTONS_NUMBER < 1
 #error "Not enough buttons on board"
@@ -153,16 +154,14 @@ static void ble_stack_init(bool init_softdevice)
    
     SOFTDEVICE_HANDLER_APPSH_INIT(NRF_CLOCK_LFCLKSRC_XTAL_20_PPM, true);
 
-    // Enable BLE stack 
+    // Enable BLE stack.
     ble_enable_params_t ble_enable_params;
-    memset(&ble_enable_params, 0, sizeof(ble_enable_params));
-    
-    // Below code line is needed for s130. For s110 is inrrelevant - but executable
-    // can run with both s130 and s110.
-    ble_enable_params.gatts_enable_params.attr_tab_size   = BLE_GATTS_ATTR_TAB_SIZE_DEFAULT;
+    // Only one connection as a central is used when performing dfu.
+    err_code = softdevice_enable_get_default_config(1, 1, &ble_enable_params);
+    APP_ERROR_CHECK(err_code);
 
     ble_enable_params.gatts_enable_params.service_changed = IS_SRVC_CHANGED_CHARACT_PRESENT;
-    err_code = sd_ble_enable(&ble_enable_params);
+    err_code = softdevice_enable(&ble_enable_params);
     APP_ERROR_CHECK(err_code);
     
     err_code = softdevice_sys_evt_handler_set(sys_evt_dispatch);
@@ -194,7 +193,7 @@ int main(void)
     leds_init();
 
     // This check ensures that the defined fields in the bootloader corresponds with actual
-    // setting in the nRF51 chip.
+    // setting in the chip.
     APP_ERROR_CHECK_BOOL(*((uint32_t *)NRF_UICR_BOOT_START_ADDRESS) == BOOTLOADER_REGION_START);
     APP_ERROR_CHECK_BOOL(NRF_FICR->CODEPAGESIZE == CODE_PAGE_SIZE);
 
@@ -228,6 +227,8 @@ int main(void)
 
     dfu_start  = app_reset;
     dfu_start |= ((nrf_gpio_pin_read(BOOTLOADER_BUTTON) == 0) ? true: false);
+    
+    
     
     if (dfu_start || (!bootloader_app_is_valid(DFU_BANK_0_REGION_START)))
     {

@@ -6,7 +6,7 @@
  *           nrf52 from Nordic Semiconductor.
  *
  * @version  V1
- * @date     20. October 2015
+ * @date     13. November 2015
  *
  * @note     Generated with SVDConv V2.81d 
  *           from CMSIS SVD File 'nrf52.svd' Version 1,
@@ -919,7 +919,9 @@ typedef struct {                                    /*!< TWIM Structure         
   __IO uint32_t  EVENTS_STOPPED;                    /*!< TWI stopped                                                           */
   __I  uint32_t  RESERVED4[7];
   __IO uint32_t  EVENTS_ERROR;                      /*!< TWI error                                                             */
-  __I  uint32_t  RESERVED5[9];
+  __I  uint32_t  RESERVED5[8];
+  __IO uint32_t  EVENTS_SUSPENDED;                  /*!< Last byte has been sent out after the SUSPEND task has been
+                                                         issued, TWI traffic is now suspended.                                 */
   __IO uint32_t  EVENTS_RXSTARTED;                  /*!< Receive sequence started                                              */
   __IO uint32_t  EVENTS_TXSTARTED;                  /*!< Transmit sequence started                                             */
   __I  uint32_t  RESERVED6[2];

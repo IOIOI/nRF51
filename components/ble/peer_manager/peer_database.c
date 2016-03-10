@@ -17,55 +17,12 @@
 #include "peer_manager_types.h"
 #include "peer_data_storage.h"
 #include "pm_buffer.h"
-
+#include "sdk_common.h"
 
 #define MAX_REGISTRANTS    6                         /**< The number of user that can register with the module. */
 
-#define MODULE_INITIALIZED (m_pdb.n_registrants > 0) /**< Expression which is true when the module is initialized. */
-
 #define N_WRITE_BUFFERS        8                     /**< The number of write buffers available. */
 #define N_WRITE_BUFFER_RECORDS (N_WRITE_BUFFERS)     /**< The number of write buffer records. */
-
-/**@brief Macro for verifying that the module is initialized. It will cause the function to return
- *        @ref NRF_ERROR_INVALID_STATE if not.
- */
-#define VERIFY_MODULE_INITIALIZED()     \
-do                                      \
-{                                       \
-    if (!MODULE_INITIALIZED)            \
-    {                                   \
-        return NRF_ERROR_INVALID_STATE; \
-    }                                   \
-} while(0)
-
-
-/**@brief Macro for verifying that the module is initialized. It will cause the function to return
- *        if not.
- */
-#define VERIFY_MODULE_INITIALIZED_VOID()\
-do                                      \
-{                                       \
-    if (!MODULE_INITIALIZED)            \
-    {                                   \
-        return;                         \
-    }                                   \
-} while(0)
-
-
-/**@brief Macro for verifying that the module is initialized. It will cause the function to return
- *        if not.
- *
- * @param[in] param  The variable to check if is NULL.
- */
-#define VERIFY_PARAM_NOT_NULL(param)    \
-do                                      \
-{                                       \
-    if (param == NULL)                  \
-    {                                   \
-        return NRF_ERROR_NULL;          \
-    }                                   \
-} while(0)
-
 
 typedef struct
 {
@@ -91,6 +48,8 @@ typedef struct
 
 static pdb_t m_pdb = {.n_registrants = 0};
 
+#define MODULE_INITIALIZED (m_pdb.n_registrants > 0) /**< Expression which is true when the module is initialized. */
+#include "sdk_macros.h"
 
 /**@brief Function for invalidating a record of a write buffer allocation.
  *
@@ -225,12 +184,14 @@ static void pds_evt_handler(pds_evt_t const * p_event)
     switch (p_event->evt_id)
     {
         case PDS_EVT_STORED:
+        case PDS_EVT_UPDATED:
             if (   (p_write_buffer_record != NULL)
                 //&& (p_write_buffer_record->store_token == p_event->store_token)
                 && (p_write_buffer_record->store_requested))
             {
                 write_buffer_record_release(p_write_buffer_record);
                 event.evt_id = PDB_EVT_WRITE_BUF_STORED;
+                event.params.write_buf_stored_evt.update = (p_event->evt_id == PDS_EVT_UPDATED);
                 pdb_evt_send(&event);
             }
             else
@@ -240,6 +201,7 @@ static void pds_evt_handler(pds_evt_t const * p_event)
             }
             break;
         case PDS_EVT_ERROR_STORE:
+        case PDS_EVT_ERROR_UPDATE:
             if (   (p_write_buffer_record != NULL)
                 && (p_write_buffer_record->store_token == p_event->store_token)
                 && (p_write_buffer_record->store_requested))
@@ -318,15 +280,10 @@ ret_code_t pdb_register(pdb_evt_handler_t evt_handler)
 
         internal_state_reset(&m_pdb);
         err_code = pds_register(pds_evt_handler);
-        if (err_code != NRF_SUCCESS)
-        {
-            return err_code;
-        }
+        VERIFY_SUCCESS(err_code);
+
         PM_BUFFER_INIT(&m_pdb.write_buffer, N_WRITE_BUFFERS, PDB_WRITE_BUF_SIZE, err_code);
-        if (err_code != NRF_SUCCESS)
-        {
-            return err_code;
-        }
+        VERIFY_SUCCESS(err_code);
     }
 
     m_pdb.evt_handlers[m_pdb.n_registrants] = evt_handler;

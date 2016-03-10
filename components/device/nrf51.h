@@ -6,7 +6,7 @@
  *           nrf51 from Nordic Semiconductor.
  *
  * @version  V522
- * @date     20. October 2015
+ * @date     13. November 2015
  *
  * @note     Generated with SVDConv V2.81d 
  *           from CMSIS SVD File 'nrf51.svd' Version 522,

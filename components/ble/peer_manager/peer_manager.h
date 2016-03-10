@@ -75,35 +75,13 @@ typedef struct
 } pm_link_secured_evt_t;
 
 
-/**@brief The different types of errors that can cause security establishment to fail.
- */
-typedef enum
-{
-    PM_ERROR_TYPE_SEC_STATUS,   /**< Error is in the range defined in @ref BLE_GAP_SEC_STATUS. */
-    PM_ERROR_TYPE_PM_SEC_ERROR, /**< Error is of type @ref pm_sec_error_code_t. */
-} pm_error_type_t;
-
-
-/**@brief Type describing all errors that can occur asynchronously when securing a link.
- */
-typedef struct
-{
-    pm_error_type_t error_type; /**< Which type of error. Specifies which entry in the below union to read. */
-    uint8_t         error_src;  /**< The party that raised the error, see @ref BLE_GAP_SEC_STATUS_SOURCES. */
-    union
-    {
-        uint8_t             sec_status;   /**< The error when the error_type is @ref PM_ERROR_TYPE_SEC_STATUS. See @ref BLE_GAP_SEC_STATUS. See also Table 3.7 ("Pairing Failed Reason Codes") in the Bluetooth Core Specification 4.2, Vol 3, Part H, Ch 3.5.5. */
-        pm_sec_error_code_t pm_sec_error; /**< The error when the error_type is @ref PM_ERROR_TYPE_PM_SEC_ERROR. */
-    } error;
-} pm_sec_error_t;
-
-
 /**@brief Structure containing parameters specific to the @ref PM_EVT_LINK_SECURE_FAILED event.
  */
 typedef struct
 {
-    pm_sec_procedure_t procedure; /**< The procedure that failed. */
-    pm_sec_error_t     error;     /**< How the procedure failed. */
+    pm_sec_procedure_t  procedure;  /**< The procedure that failed. */
+    pm_sec_error_code_t error;      /**< The error code. */
+    uint8_t             error_src;  /**< The party that raised the error, see @ref BLE_GAP_SEC_STATUS_SOURCES. */
 } pm_link_secure_failed_evt_t;
 
 

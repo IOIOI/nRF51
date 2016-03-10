@@ -13,7 +13,7 @@
 #ifndef SECURITY_DISPATCHER_H__
 #define SECURITY_DISPATCHER_H__
 
-#include "stdint.h"
+#include <stdint.h>
 #include "sdk_errors.h"
 #include "ble.h"
 #include "ble_gap.h"
@@ -80,8 +80,8 @@ typedef struct
  */
 typedef struct
 {
-    uint8_t auth_status; /**< The error code describing the error. See @ref BLE_GAP_SEC_STATUS. */
-    uint8_t error_src;   /**< The origin of the error. See @ref BLE_GAP_SEC_STATUS_SOURCES. */
+    pm_sec_error_code_t error;     /**< What went wrong. */
+    uint8_t             error_src; /**< The party that raised the error, see @ref BLE_GAP_SEC_STATUS_SOURCES. */
 } smd_evt_pairing_failed_t;
 
 
@@ -98,7 +98,7 @@ typedef struct
 typedef struct
 {
     pm_sec_error_code_t error;     /**< What went wrong. */
-    uint8_t             error_src; /**< The party which raised the error, see @ref BLE_GAP_SEC_STATUS_SOURCES. */
+    uint8_t             error_src; /**< The party that raised the error, see @ref BLE_GAP_SEC_STATUS_SOURCES. */
 } smd_evt_link_encryption_failed_t;
 
 
@@ -115,7 +115,7 @@ typedef struct
 typedef struct
 {
     pm_peer_id_t peer_id; /**< The peer this event pertains to, if previously bonded. @ref PM_PEER_ID_INVALID if no successful bonding has happened with the peer before. */
-    ret_code_t error;     /**< The unexpected error that occurred. */
+    ret_code_t   error;   /**< The unexpected error that occurred. */
 } smd_evt_error_bonding_info_t;
 
 

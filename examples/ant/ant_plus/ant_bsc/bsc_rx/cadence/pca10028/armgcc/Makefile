@@ -37,12 +37,16 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 
 #source common to all targets
 C_SOURCE_FILES += \
+$(abspath ../../../../../../../../components/drivers_ext/segger_rtt/RTT_Syscalls_GCC.c) \
+$(abspath ../../../../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT.c) \
+$(abspath ../../../../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT_printf.c) \
 $(abspath ../../../../../../../../components/libraries/button/app_button.c) \
 $(abspath ../../../../../../../../components/libraries/util/app_error.c) \
 $(abspath ../../../../../../../../components/libraries/fifo/app_fifo.c) \
 $(abspath ../../../../../../../../components/libraries/timer/app_timer.c) \
 $(abspath ../../../../../../../../components/libraries/trace/app_trace.c) \
 $(abspath ../../../../../../../../components/libraries/util/nrf_assert.c) \
+$(abspath ../../../../../../../../components/libraries/util/nrf_log.c) \
 $(abspath ../../../../../../../../components/libraries/uart/retarget.c) \
 $(abspath ../../../../../../../../components/libraries/uart/app_uart_fifo.c) \
 $(abspath ../../../../../../../../components/drivers_nrf/delay/nrf_delay.c) \
@@ -81,6 +85,7 @@ INC_PATHS += -I$(abspath ../../../../../../../../components/device)
 INC_PATHS += -I$(abspath ../../../../../../../../components/ant/ant_profiles/ant_bsc/pages)
 INC_PATHS += -I$(abspath ../../../../../../../../components/drivers_nrf/hal)
 INC_PATHS += -I$(abspath ../../../../../../../bsp)
+INC_PATHS += -I$(abspath ../../../../../../../../components/drivers_ext/segger_rtt)
 INC_PATHS += -I$(abspath ../../../../../../../../components/libraries/fifo)
 INC_PATHS += -I$(abspath ../../../../../../../../components/drivers_nrf/gpiote)
 INC_PATHS += -I$(abspath ../../../../../../../../components/ant/ant_profiles/ant_bsc)
@@ -118,6 +123,7 @@ CFLAGS += -DDISPLAY_TYPE=0x7A
 CFLAGS += -DTRACE_BSC_PAGE_0_ENABLE
 CFLAGS += -DANT_STACK_SUPPORT_REQD
 CFLAGS += -DTRACE_BSC_GENERAL_ENABLE
+CFLAGS += -DNRF_LOG_USES_UART=1
 CFLAGS += -DS210
 CFLAGS += -DTRACE_BSC_COMB_PAGE_0_ENABLE
 CFLAGS += -DENABLE_DEBUG_LOG_SUPPORT
@@ -127,7 +133,7 @@ CFLAGS += -DTRACE_BSC_PAGE_2_ENABLE
 CFLAGS += -DSOFTDEVICE_PRESENT
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -O3
+CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
@@ -153,6 +159,7 @@ ASMFLAGS += -DDISPLAY_TYPE=0x7A
 ASMFLAGS += -DTRACE_BSC_PAGE_0_ENABLE
 ASMFLAGS += -DANT_STACK_SUPPORT_REQD
 ASMFLAGS += -DTRACE_BSC_GENERAL_ENABLE
+ASMFLAGS += -DNRF_LOG_USES_UART=1
 ASMFLAGS += -DS210
 ASMFLAGS += -DTRACE_BSC_COMB_PAGE_0_ENABLE
 ASMFLAGS += -DENABLE_DEBUG_LOG_SUPPORT

@@ -311,11 +311,11 @@
           <state>$PROJ_DIR$\..\..\config\ram_retention_pca10028</state>
           <state>$PROJ_DIR$\..\..\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\delay</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\hal</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\libraries\util</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..</state>
           <state>$TOOLKIT_DIR$\CMSIS\Include</state>
@@ -577,11 +577,11 @@
           <state>$PROJ_DIR$\..\..\config\ram_retention_pca10028</state>
           <state>$PROJ_DIR$\..\..\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\delay</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\hal</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\libraries\util</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..</state>
         </option>

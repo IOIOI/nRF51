@@ -18,52 +18,9 @@
 #include "peer_database.h"
 #include "id_manager.h"
 #include "ble_conn_state.h"
-
-
+#include "sdk_common.h"
 
 #define MAX_REGISTRANTS 3  /**< The number of user that can register with the module. */
-
-
-/**@brief Macro for verifying that the module is initialized. It will cause the function to return
- *        @ref NRF_ERROR_INVALID_STATE if not.
- */
-#define VERIFY_MODULE_INITIALIZED()     \
-do                                      \
-{                                       \
-    if (!m_pm.initialized)              \
-    {                                   \
-        return NRF_ERROR_INVALID_STATE; \
-    }                                   \
-} while(0)
-
-
-/**@brief Macro for verifying that the module is initialized. It will cause the function to return
- *        if not.
- */
-#define VERIFY_MODULE_INITIALIZED_VOID()\
-do                                      \
-{                                       \
-    if (!m_pm.initialized)               \
-    {                                   \
-        return;                         \
-    }                                   \
-} while(0)
-
-
-/**@brief Macro for verifying that the module is initialized. It will cause the function to return
- *        if not.
- *
- * @param[in] param  The variable to check if is NULL.
- */
-#define VERIFY_PARAM_NOT_NULL(param)    \
-do                                      \
-{                                       \
-    if (param == NULL)                  \
-    {                                   \
-        return NRF_ERROR_NULL;          \
-    }                                   \
-} while(0)
-
 
 typedef struct
 {
@@ -76,6 +33,8 @@ typedef struct
 
 static pm_t m_pm;
 
+#define MODULE_INITIALIZED m_pm.initialized
+#include "sdk_macros.h"
 
 static void evt_send(pm_evt_t * p_event)
 {
@@ -200,11 +159,10 @@ void sm_evt_handler(sm_evt_t const * p_sm_evt)
                         ble_conn_state_user_flag_get(p_sm_evt->conn_handle, m_pm.bonding_flag_id)
                         ? PM_LINK_SECURED_PROCEDURE_BONDING
                         : PM_LINK_SECURED_PROCEDURE_PAIRING;
-            pm_evt.params.link_secure_failed_evt.error.error_type = PM_ERROR_TYPE_SEC_STATUS;
-            pm_evt.params.link_secure_failed_evt.error.error_src
+            pm_evt.params.link_secure_failed_evt.error_src
                 = p_sm_evt->params.pairing_failed.error_src;
-            pm_evt.params.link_secure_failed_evt.error.error.sec_status 
-                = p_sm_evt->params.pairing_failed.auth_status;
+            pm_evt.params.link_secure_failed_evt.error
+                = p_sm_evt->params.pairing_failed.error;
             break;
 
         case SM_EVT_LINK_ENCRYPTION_UPDATE:
@@ -224,11 +182,9 @@ void sm_evt_handler(sm_evt_t const * p_sm_evt)
             pm_evt.evt_id = PM_EVT_LINK_SECURE_FAILED;
             pm_evt.params.link_secure_failed_evt.procedure
                             = PM_LINK_SECURED_PROCEDURE_ENCRYPTION;
-            pm_evt.params.link_secure_failed_evt.error.error_type
-                            = PM_ERROR_TYPE_PM_SEC_ERROR;
-            pm_evt.params.link_secure_failed_evt.error.error_src
+            pm_evt.params.link_secure_failed_evt.error_src
                             = p_sm_evt->params.link_encryption_failed.error_src;
-            pm_evt.params.link_secure_failed_evt.error.error.sec_status
+            pm_evt.params.link_secure_failed_evt.error
                             = p_sm_evt->params.link_encryption_failed.error;
             break;
 
@@ -265,10 +221,8 @@ void sm_evt_handler(sm_evt_t const * p_sm_evt)
                         = ble_conn_state_user_flag_get(p_sm_evt->conn_handle, m_pm.bonding_flag_id)
                         ? PM_LINK_SECURED_PROCEDURE_BONDING
                         : PM_LINK_SECURED_PROCEDURE_PAIRING;
-            pm_evt.params.link_secure_failed_evt.error.error_type = PM_ERROR_TYPE_PM_SEC_ERROR;
-            pm_evt.params.link_secure_failed_evt.error.error_src  = BLE_GAP_SEC_STATUS_SOURCE_LOCAL;
-            pm_evt.params.link_secure_failed_evt.error.error.pm_sec_error 
-                = PM_SEC_ERROR_SMP_TIMEOUT;
+            pm_evt.params.link_secure_failed_evt.error_src  = BLE_GAP_SEC_STATUS_SOURCE_LOCAL;
+            pm_evt.params.link_secure_failed_evt.error      = PM_SEC_ERROR_SMP_TIMEOUT;
             break;
     }
 

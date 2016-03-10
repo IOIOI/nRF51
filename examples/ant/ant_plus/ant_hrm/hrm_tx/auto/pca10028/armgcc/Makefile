@@ -37,12 +37,16 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 
 #source common to all targets
 C_SOURCE_FILES += \
+$(abspath ../../../../../../../../components/drivers_ext/segger_rtt/RTT_Syscalls_GCC.c) \
+$(abspath ../../../../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT.c) \
+$(abspath ../../../../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT_printf.c) \
 $(abspath ../../../../../../../../components/libraries/button/app_button.c) \
 $(abspath ../../../../../../../../components/libraries/util/app_error.c) \
 $(abspath ../../../../../../../../components/libraries/fifo/app_fifo.c) \
 $(abspath ../../../../../../../../components/libraries/timer/app_timer.c) \
 $(abspath ../../../../../../../../components/libraries/trace/app_trace.c) \
 $(abspath ../../../../../../../../components/libraries/util/nrf_assert.c) \
+$(abspath ../../../../../../../../components/libraries/util/nrf_log.c) \
 $(abspath ../../../../../../../../components/libraries/uart/retarget.c) \
 $(abspath ../../../../../../../../components/libraries/sensorsim/sensorsim.c) \
 $(abspath ../../../../../../../../components/libraries/uart/app_uart_fifo.c) \
@@ -80,13 +84,14 @@ INC_PATHS += -I$(abspath ../../../../../../../../components/libraries/trace)
 INC_PATHS += -I$(abspath ../../../../../../../../components/toolchain/gcc)
 INC_PATHS += -I$(abspath ../../../../../../../../components/ant/ant_profiles/ant_hrm)
 INC_PATHS += -I$(abspath ../../../../../../../../components/drivers_nrf/uart)
-INC_PATHS += -I$(abspath ../../../../../../../../components/ant/ant_profiles/ant_hrm/simulator)
+INC_PATHS += -I$(abspath ../../../../../../../../components/device)
 INC_PATHS += -I$(abspath ../../../../../../../../components/drivers_nrf/hal)
 INC_PATHS += -I$(abspath ../../../../../../../bsp)
 INC_PATHS += -I$(abspath ../../../../../../../../components/ant/ant_profiles/ant_hrm/utils)
+INC_PATHS += -I$(abspath ../../../../../../../../components/drivers_ext/segger_rtt)
 INC_PATHS += -I$(abspath ../../../../../../../../components/libraries/fifo)
 INC_PATHS += -I$(abspath ../../../../../../../../components/drivers_nrf/gpiote)
-INC_PATHS += -I$(abspath ../../../../../../../../components/device)
+INC_PATHS += -I$(abspath ../../../../../../../../components/ant/ant_profiles/ant_hrm/simulator)
 INC_PATHS += -I$(abspath ../../../../../../../../components/libraries/button)
 INC_PATHS += -I$(abspath ../../../../../../../../components/ant/ant_state_indicator)
 INC_PATHS += -I$(abspath ../../../../../../../../components/toolchain)
@@ -117,6 +122,7 @@ CFLAGS += -DBOARD_PCA10028
 CFLAGS += -DANT_STACK_SUPPORT_REQD
 CFLAGS += -DTRACE_HRM_PAGE_2_ENABLE
 CFLAGS += -DTRACE_HRM_PAGE_3_ENABLE
+CFLAGS += -DNRF_LOG_USES_UART=1
 CFLAGS += -DS210
 CFLAGS += -DTRACE_HRM_PAGE_4_ENABLE
 CFLAGS += -DTRACE_HRM_PAGE_1_ENABLE
@@ -127,7 +133,7 @@ CFLAGS += -DSWI_DISABLE0
 CFLAGS += -DTRACE_HRM_PAGE_0_ENABLE
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -O3
+CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
@@ -150,6 +156,7 @@ ASMFLAGS += -DBOARD_PCA10028
 ASMFLAGS += -DANT_STACK_SUPPORT_REQD
 ASMFLAGS += -DTRACE_HRM_PAGE_2_ENABLE
 ASMFLAGS += -DTRACE_HRM_PAGE_3_ENABLE
+ASMFLAGS += -DNRF_LOG_USES_UART=1
 ASMFLAGS += -DS210
 ASMFLAGS += -DTRACE_HRM_PAGE_4_ENABLE
 ASMFLAGS += -DTRACE_HRM_PAGE_1_ENABLE

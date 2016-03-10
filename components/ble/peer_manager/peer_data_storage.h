@@ -15,7 +15,7 @@
 #define PEER_DATA_STORAGE_H__
 
 
-#include "stdint.h"
+#include <stdint.h>
 #include "sdk_errors.h"
 #include "ble_gap.h"
 #include "peer_manager_types.h"
@@ -48,9 +48,11 @@ typedef enum
 typedef enum
 {
     PDS_EVT_STORED,                 /**< The specified data has been successfully stored. */
+    PDS_EVT_UPDATED,                /**< The specified data has been successfully updated. */
     PDS_EVT_CLEARED,                /**< The specified data has been successfully cleared. */
     PDS_EVT_PEER_ID_CLEAR,          /**< The peer id has been successfully cleared. */
     PDS_EVT_ERROR_STORE,            /**< The specified data could not be stored. */
+    PDS_EVT_ERROR_UPDATE,           /**< The specified data could not be updated. */
     PDS_EVT_ERROR_CLEAR,            /**< The specified data could not be cleared. */
     PDS_EVT_ERROR_PEER_ID_CLEAR,    /**< The peer id has been successfully cleared. */
     PDS_EVT_COMPRESSED,             /**< A compress procedure has finished successfully. */
@@ -86,8 +88,8 @@ typedef void (*pds_evt_handler_t)(pds_evt_t const * p_event);
  * @retval NRF_SUCCESS              Registration successful.
  * @retval NRF_ERROR_NO_MEM         No more event handlers can be registered.
  * @retval NRF_ERROR_NULL           evt_handler was NULL.
- * @retval NRF_ERROR_INVALID_PARAM  Unexpected return code from @ref pm_buffer_init.
  * @retval NRF_ERROR_INVALID_STATE  FDS has not been initalized.
+ * @retval NRF_ERROR_INTERNAL       Unexpected error.
  */
 ret_code_t pds_register(pds_evt_handler_t evt_handler);
 
@@ -163,7 +165,7 @@ ret_code_t  pds_peer_data_verify(pm_store_token_t store_token);
 ret_code_t pds_peer_data_read(pm_peer_id_t          peer_id,
                               pm_peer_data_id_t     data_id,
                               pm_peer_data_t      * p_data,
-                              fds_length_t        * p_len_words);
+                              uint16_t            * p_len_words);
 
 
 /**@brief Function for preparing persistent storage for a write.

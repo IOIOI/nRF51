@@ -12,7 +12,7 @@
 #ifndef PEER_ID_MANAGER_H__
 #define PEER_ID_MANAGER_H__
 
-#include "stdint.h"
+#include <stdint.h>
 #include "sdk_errors.h"
 #include "ble.h"
 #include "ble_gap.h"

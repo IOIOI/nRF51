@@ -41,10 +41,16 @@ $(abspath ../../../../../components/toolchain/system_nrf51.c) \
 $(abspath ../../main.c) \
 $(abspath ../../qenc_sim.c) \
 $(abspath ../../../../../components/libraries/util/app_error.c) \
+$(abspath ../../../../../components/libraries/fifo/app_fifo.c) \
+$(abspath ../../../../../components/libraries/util/app_util_platform.c) \
 $(abspath ../../../../../components/libraries/util/nrf_assert.c) \
+$(abspath ../../../../../components/libraries/uart/retarget.c) \
+$(abspath ../../../../../components/libraries/uart/app_uart_fifo.c) \
+$(abspath ../../../../../components/drivers_nrf/delay/nrf_delay.c) \
 $(abspath ../../../../../components/drivers_nrf/common/nrf_drv_common.c) \
 $(abspath ../../../../../components/drivers_nrf/gpiote/nrf_drv_gpiote.c) \
 $(abspath ../../../../../components/drivers_nrf/qdec/nrf_drv_qdec.c) \
+$(abspath ../../../../../components/drivers_nrf/uart/nrf_drv_uart.c) \
 
 #assembly files common to all targets
 ASM_SOURCE_FILES  = $(abspath ../../../../../components/toolchain/gcc/gcc_startup_nrf51.s)
@@ -55,13 +61,17 @@ INC_PATHS += -I$(abspath ../../config)
 INC_PATHS += -I$(abspath ../../../../bsp)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/nrf_soc_nosd)
 INC_PATHS += -I$(abspath ../../../../../components/device)
+INC_PATHS += -I$(abspath ../../../../../components/libraries/uart)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/hal)
+INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/delay)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/qdec)
 INC_PATHS += -I$(abspath ../..)
 INC_PATHS += -I$(abspath ../../../../../components/libraries/util)
+INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/uart)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/common)
 INC_PATHS += -I$(abspath ../../../../../components/toolchain)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/config)
+INC_PATHS += -I$(abspath ../../../../../components/libraries/fifo)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/gpiote)
 INC_PATHS += -I$(abspath ../../../../../components/toolchain/gcc)
 
@@ -78,7 +88,7 @@ CFLAGS += -DBOARD_PCA10028
 CFLAGS += -DBSP_DEFINES_ONLY
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -O3
+CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing

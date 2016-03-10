@@ -64,7 +64,7 @@ typedef enum
 typedef enum
 {
 #ifdef NRF51
-    NRF_CLOCK_XTALFREQ_Default = CLOCK_XTALFREQ_XTALFREQ_16MHz, /**< Default. 32MHz. */
+    NRF_CLOCK_XTALFREQ_Default = CLOCK_XTALFREQ_XTALFREQ_16MHz, /**< Default. 32 MHz. */
     NRF_CLOCK_XTALFREQ_16MHz   = CLOCK_XTALFREQ_XTALFREQ_16MHz, /**< 16 MHz crystal. */
     NRF_CLOCK_XTALFREQ_32MHz   = CLOCK_XTALFREQ_XTALFREQ_32MHz  /**< 32 MHz crystal. */
 #elif defined NRF52
@@ -136,8 +136,8 @@ __STATIC_INLINE void nrf_clock_int_disable(uint32_t int_mask)
  *
  * @param[in]  int_mask         Interrupt.
  *
- * @retval     true                   Interrupt is enabled.
- * @retval     false                  Interrupt is not enabled.
+ * @retval     true                   If the interrupt is enabled.
+ * @retval     false                  If the interrupt is not enabled.
  */
 __STATIC_INLINE bool nrf_clock_int_enable_check(nrf_clock_int_mask_t int_mask)
 {
@@ -150,7 +150,7 @@ __STATIC_INLINE bool nrf_clock_int_enable_check(nrf_clock_int_mask_t int_mask)
  *
  * @param[in]  task             Task.
  *
- * @retval     address of requested task register
+ * @return     Address of the requested task register.
  */
 __STATIC_INLINE uint32_t nrf_clock_task_address_get(nrf_clock_task_t task)
 {
@@ -173,7 +173,7 @@ __STATIC_INLINE void nrf_clock_task_trigger(nrf_clock_task_t task)
  *
  * @param[in]  event       Event.
  *
- * @retval     address of requested event register
+ * @return     Address of the requested event register.
  */
 __STATIC_INLINE uint32_t nrf_clock_event_address_get(nrf_clock_event_t event)
 {
@@ -299,13 +299,15 @@ __STATIC_INLINE nrf_clock_hf_src_t nrf_clock_hf_src_get(void)
 /**
  * @brief Function for retrieving the state of the HFCLK clock.
  *
+ * @param[in]  clk_src                   Clock source to be checked.
+ *
  * @retval     false                     If the HFCLK clock is not running.
  * @retval     true                      If the HFCLK clock is running.
  */
-__STATIC_INLINE bool nrf_clock_hf_is_running(void)
+__STATIC_INLINE bool nrf_clock_hf_is_running(nrf_clock_hf_src_t clk_src)
 {
-    return ((NRF_CLOCK->HFCLKSTAT &
-                                CLOCK_HFCLKSTAT_STATE_Msk) >> CLOCK_HFCLKSTAT_STATE_Pos);
+    return (NRF_CLOCK->HFCLKSTAT & (CLOCK_HFCLKSTAT_STATE_Msk | CLOCK_HFCLKSTAT_SRC_Msk)) ==
+            (CLOCK_HFCLKSTAT_STATE_Msk | (clk_src << CLOCK_HFCLKSTAT_SRC_Pos));
 }
 
 /**

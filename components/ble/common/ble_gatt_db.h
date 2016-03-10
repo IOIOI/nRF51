@@ -2,7 +2,7 @@
 #ifndef BLE_GATT_DB_H__
 #define BLE_GATT_DB_H__
 
-#include "stdint.h"
+#include <stdint.h>
 #include "ble.h"
 #include "ble_gattc.h"
 

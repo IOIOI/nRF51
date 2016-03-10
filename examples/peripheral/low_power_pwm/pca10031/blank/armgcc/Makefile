@@ -47,6 +47,7 @@ $(abspath ../../../../../../components/libraries/util/nrf_assert.c) \
 $(abspath ../../../../../../components/drivers_nrf/delay/nrf_delay.c) \
 $(abspath ../../../../../../components/drivers_nrf/clock/nrf_drv_clock.c) \
 $(abspath ../../../../../../components/drivers_nrf/common/nrf_drv_common.c) \
+$(abspath ../../../../../../components/drivers_nrf/nrf_soc_nosd/nrf_soc.c) \
 
 #assembly files common to all targets
 ASM_SOURCE_FILES  = $(abspath ../../../../../../components/toolchain/gcc/gcc_startup_nrf51.s)
@@ -55,18 +56,18 @@ ASM_SOURCE_FILES  = $(abspath ../../../../../../components/toolchain/gcc/gcc_sta
 INC_PATHS  = -I$(abspath ../../../config/low_power_pwm_pca10031)
 INC_PATHS += -I$(abspath ../../../config)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/util)
-INC_PATHS += -I$(abspath ../../../../../../components/toolchain/gcc)
+INC_PATHS += -I$(abspath ../../../../../../components/libraries/timer)
 INC_PATHS += -I$(abspath ../../../../../../components/toolchain)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/common)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/low_power_pwm)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/clock)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/config)
 INC_PATHS += -I$(abspath ../../..)
+INC_PATHS += -I$(abspath ../../../../../../components/toolchain/gcc)
 INC_PATHS += -I$(abspath ../../../../../bsp)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/nrf_soc_nosd)
 INC_PATHS += -I$(abspath ../../../../../../components/device)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/delay)
-INC_PATHS += -I$(abspath ../../../../../../components/libraries/timer)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/hal)
 
 OBJECT_DIRECTORY = _build
@@ -83,7 +84,7 @@ CFLAGS += -DSWI_DISABLE0
 CFLAGS += -DBSP_DEFINES_ONLY
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -O3
+CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing

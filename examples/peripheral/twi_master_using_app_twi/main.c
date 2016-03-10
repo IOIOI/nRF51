@@ -412,10 +412,10 @@ static void lfclk_config(void)
 {
     uint32_t err_code;
 
-    err_code = nrf_drv_clock_init(NULL);
+    err_code = nrf_drv_clock_init();
     APP_ERROR_CHECK(err_code);
 
-    nrf_drv_clock_lfclk_request();
+    nrf_drv_clock_lfclk_request(NULL);
 }
 
 

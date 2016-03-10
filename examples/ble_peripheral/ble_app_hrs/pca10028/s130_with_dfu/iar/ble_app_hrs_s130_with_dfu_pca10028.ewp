@@ -184,6 +184,7 @@
           <state>SWI_DISABLE0</state>
           <state>SOFTDEVICE_PRESENT</state>
           <state>NRF51</state>
+          <state>NRF_LOG_USES_UART=1</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -314,9 +315,6 @@
           <name>CCIncludePath2</name>
           <state>$PROJ_DIR$\..\..\..\config\ble_app_hrs_s130_with_dfu_pca10028</state>
           <state>$PROJ_DIR$\..\..\..\config</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\ble_advertising</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\ble_services\ble_bas</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\ble_services\ble_dfu</state>
@@ -324,13 +322,15 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\ble_services\ble_hrs</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\common</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\device_manager</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\device</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\common</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\delay</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\gpiote</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\hal</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\pstorage</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\uart</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\bootloader_dfu</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\button</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fifo</state>
@@ -341,6 +341,9 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\common\softdevice_handler</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\headers</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\headers\nrf51</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
           <state>$TOOLKIT_DIR$\CMSIS\Include</state>
         </option>
         <option>
@@ -506,6 +509,7 @@
           <state>SWI_DISABLE0</state>
           <state>SOFTDEVICE_PRESENT</state>
           <state>NRF51</state>
+          <state>NRF_LOG_USES_UART=1</state>
         </option>
         <option>
           <name>AList</name>
@@ -603,9 +607,6 @@
           <name>AUserIncludes</name>
           <state>$PROJ_DIR$\..\..\..\config\ble_app_hrs_s130_with_dfu_pca10028</state>
           <state>$PROJ_DIR$\..\..\..\config</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\ble_advertising</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\ble_services\ble_bas</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\ble_services\ble_dfu</state>
@@ -613,13 +614,15 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\ble_services\ble_hrs</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\common</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\device_manager</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\device</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\common</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\delay</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\gpiote</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\hal</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\pstorage</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\uart</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\bootloader_dfu</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\button</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fifo</state>
@@ -630,6 +633,9 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\common\softdevice_handler</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\headers</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\headers\nrf51</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
         </option>
         <option>
           <name>AExtraOptionsCheckV2</name>
@@ -1016,6 +1022,15 @@
   <group>
   <name>nRF_Libraries</name>
     <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt\RTT_Syscalls_IAR.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT_printf.c</name>
+    </file>
+    <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\button\app_button.c</name>
     </file>
     <file>
@@ -1038,6 +1053,9 @@
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util\nrf_assert.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util\nrf_log.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\uart\retarget.c</name>
@@ -1133,7 +1151,7 @@
   <group>
   <name>nRF_SoftDevice</name>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\doc\s130_nrf51822_1.0.0_licence_agreement.txt</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\doc\s130_nrf51_2.0.0-7.alpha_licence_agreement.txt</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\common\softdevice_handler\softdevice_handler.c</name>

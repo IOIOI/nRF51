@@ -43,6 +43,7 @@ Purpose : Low-level functions for using printf() via RTT in IAR.
           application and set the Library Configuration to Normal.
 ----------------------------------------------------------------------
 */
+#if defined(NRF_LOG_USES_RTT) && NRF_LOG_USES_RTT == 1
 #include <yfuns.h>
 #include "SEGGER_RTT.h"
 #pragma module_name = "?__write"
@@ -92,4 +93,6 @@ size_t __write_buffered(int handle, const unsigned char * buffer, size_t size) {
   SEGGER_RTT_Write(0, (const char*)buffer, size);
   return size;
 }
+
+#endif /*NRF_LOG_USES_RTT==1*/
 /****** End Of File *************************************************/

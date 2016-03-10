@@ -11,11 +11,10 @@
 
 #include "ble_db_discovery.h"
 #include <stdlib.h>
-#include <string.h>
-#include "nrf_error.h"
 #include "ble.h"
 #include "app_trace.h"
-#include "nordic_common.h"
+
+#include "sdk_common.h"
 
 #define SRV_DISC_START_HANDLE  0x0001                    /**< The start handle value used during service discovery. */
 #define DB_DISCOVERY_MAX_USERS BLE_DB_DISCOVERY_MAX_SRV  /**< The maximum number of users/registrations allowed by this module. */
@@ -43,6 +42,9 @@ static struct
 static uint32_t m_pending_usr_evt_index;    /**< The index to the pending user event array, pointing to the last added pending user event. */
 static uint32_t m_num_of_handlers_reg;      /**< The number of handlers registered with the DB Discovery module. */
 static bool     m_initialized = false;      /**< This variable Indicates if the module is initialized or not. */
+
+#define MODULE_INITIALIZED (m_initialized == true)
+#include "sdk_macros.h"
 
 /**@brief     Function for fetching the event handler provided by a registered application module.
  *
@@ -785,15 +787,9 @@ uint32_t ble_db_discovery_close()
 uint32_t ble_db_discovery_evt_register(const ble_uuid_t * const             p_uuid,
                                        const ble_db_discovery_evt_handler_t evt_handler)
 {
-    if ((p_uuid == NULL) || (evt_handler == NULL))
-    {
-        return NRF_ERROR_NULL;
-    }
-
-    if (!m_initialized)
-    {
-        return NRF_ERROR_INVALID_STATE;
-    }
+    VERIFY_PARAM_NOT_NULL(p_uuid);
+    VERIFY_PARAM_NOT_NULL(evt_handler);
+    VERIFY_MODULE_INITIALIZED();
 
     if (m_num_of_handlers_reg == DB_DISCOVERY_MAX_USERS)
     {
@@ -808,15 +804,8 @@ uint32_t ble_db_discovery_evt_register(const ble_uuid_t * const             p_uu
 uint32_t ble_db_discovery_start(ble_db_discovery_t * const p_db_discovery,
                                 uint16_t                   conn_handle)
 {
-    if (p_db_discovery == NULL)
-    {
-        return NRF_ERROR_NULL;
-    }
-
-    if (!m_initialized)
-    {
-        return NRF_ERROR_INVALID_STATE;
-    }
+    VERIFY_PARAM_NOT_NULL(p_db_discovery);
+    VERIFY_MODULE_INITIALIZED();
 
     if (m_num_of_handlers_reg == 0)
     {
@@ -849,10 +838,7 @@ uint32_t ble_db_discovery_start(ble_db_discovery_t * const p_db_discovery,
     err_code = sd_ble_gattc_primary_services_discover(p_db_discovery->conn_handle,
                                                       SRV_DISC_START_HANDLE,
                                                       &(p_srv_being_discovered->srv_uuid));
-    if (err_code != NRF_SUCCESS)
-    {
-        return err_code;
-    }
+    VERIFY_SUCCESS(err_code);
     p_db_discovery->discovery_in_progress = true;
 
     return NRF_SUCCESS;
@@ -862,16 +848,9 @@ uint32_t ble_db_discovery_start(ble_db_discovery_t * const p_db_discovery,
 void ble_db_discovery_on_ble_evt(ble_db_discovery_t * const p_db_discovery,
                                  const ble_evt_t * const    p_ble_evt)
 {
-    if ((p_db_discovery == NULL) || (p_ble_evt == NULL))
-    {
-        // Null pointer provided. Return.
-        return;
-    }
-
-    if (!m_initialized)
-    {
-        return;
-    }
+    VERIFY_PARAM_NOT_NULL_VOID(p_db_discovery);
+    VERIFY_PARAM_NOT_NULL_VOID(p_ble_evt);
+    VERIFY_MODULE_INITIALIZED_VOID();
 
     switch (p_ble_evt->header.evt_id)
     {

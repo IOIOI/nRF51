@@ -193,6 +193,7 @@
           <state>SWI_DISABLE0</state>
           <state>NRF51</state>
           <state>SOFTDEVICE_PRESENT</state>
+          <state>NRF_LOG_USES_UART=1</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -323,9 +324,6 @@
           <name>CCIncludePath2</name>
           <state>$PROJ_DIR$\..\..\..\config\ant_bsc_rx_cadence_s210_pca10028</state>
           <state>$PROJ_DIR$\..\..\..\config</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\..\bsp</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\ant\ant_channel_config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\ant\ant_key_manager</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\ant\ant_key_manager\config</state>
@@ -335,12 +333,14 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc\utils</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\ant\ant_stack_config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\ant\ant_state_indicator</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\device</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_nrf\common</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_nrf\delay</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_nrf\gpiote</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_nrf\hal</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_nrf\uart</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\libraries\button</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\libraries\fifo</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\libraries\timer</state>
@@ -349,6 +349,8 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\libraries\util</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\softdevice\common\softdevice_handler</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\softdevice\s210\headers</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\bsp</state>
           <state>$TOOLKIT_DIR$\CMSIS\Include</state>
         </option>
         <option>
@@ -523,6 +525,7 @@
           <state>SWI_DISABLE0</state>
           <state>NRF51</state>
           <state>SOFTDEVICE_PRESENT</state>
+          <state>NRF_LOG_USES_UART=1</state>
         </option>
         <option>
           <name>AList</name>
@@ -620,9 +623,6 @@
           <name>AUserIncludes</name>
           <state>$PROJ_DIR$\..\..\..\config\ant_bsc_rx_cadence_s210_pca10028</state>
           <state>$PROJ_DIR$\..\..\..\config</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\..\bsp</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\ant\ant_channel_config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\ant\ant_key_manager</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\ant\ant_key_manager\config</state>
@@ -632,12 +632,14 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc\utils</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\ant\ant_stack_config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\ant\ant_state_indicator</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\device</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_nrf\common</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_nrf\delay</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_nrf\gpiote</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_nrf\hal</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_nrf\uart</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\libraries\button</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\libraries\fifo</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\libraries\timer</state>
@@ -646,6 +648,8 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\libraries\util</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\softdevice\common\softdevice_handler</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\softdevice\s210\headers</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\bsp</state>
         </option>
         <option>
           <name>AExtraOptionsCheckV2</name>
@@ -1032,6 +1036,15 @@
   <group>
   <name>nRF_Libraries</name>
     <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt\RTT_Syscalls_IAR.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT_printf.c</name>
+    </file>
+    <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\libraries\button\app_button.c</name>
     </file>
     <file>
@@ -1048,6 +1061,9 @@
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\libraries\util\nrf_assert.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\libraries\util\nrf_log.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\..\..\components\libraries\uart\retarget.c</name>

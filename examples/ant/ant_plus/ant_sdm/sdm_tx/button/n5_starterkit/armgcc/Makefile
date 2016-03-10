@@ -37,12 +37,16 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 
 #source common to all targets
 C_SOURCE_FILES += \
+$(abspath ../../../../../../../../components/drivers_ext/segger_rtt/RTT_Syscalls_GCC.c) \
+$(abspath ../../../../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT.c) \
+$(abspath ../../../../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT_printf.c) \
 $(abspath ../../../../../../../../components/libraries/button/app_button.c) \
 $(abspath ../../../../../../../../components/libraries/util/app_error.c) \
 $(abspath ../../../../../../../../components/libraries/fifo/app_fifo.c) \
 $(abspath ../../../../../../../../components/libraries/timer/app_timer.c) \
 $(abspath ../../../../../../../../components/libraries/trace/app_trace.c) \
 $(abspath ../../../../../../../../components/libraries/util/nrf_assert.c) \
+$(abspath ../../../../../../../../components/libraries/util/nrf_log.c) \
 $(abspath ../../../../../../../../components/libraries/uart/retarget.c) \
 $(abspath ../../../../../../../../components/libraries/sensorsim/sensorsim.c) \
 $(abspath ../../../../../../../../components/libraries/uart/app_uart_fifo.c) \
@@ -82,6 +86,7 @@ INC_PATHS += -I$(abspath ../../../../../../../../components/libraries/sensorsim)
 INC_PATHS += -I$(abspath ../../../../../../../../components/ant/ant_key_manager)
 INC_PATHS += -I$(abspath ../../../../../../../../components/ant/ant_profiles/ant_common/pages)
 INC_PATHS += -I$(abspath ../../../../../../../../components/libraries/trace)
+INC_PATHS += -I$(abspath ../../../../../../../../components/drivers_ext/segger_rtt)
 INC_PATHS += -I$(abspath ../../../../../../../../components/ant/ant_profiles/ant_sdm/utils)
 INC_PATHS += -I$(abspath ../../../../../../../../components/toolchain/gcc)
 INC_PATHS += -I$(abspath ../../../../../../../../components/drivers_nrf/uart)
@@ -119,8 +124,7 @@ OUTPUT_BINARY_DIRECTORY = $(OBJECT_DIRECTORY)
 BUILD_DIRECTORIES := $(sort $(OBJECT_DIRECTORY) $(OUTPUT_BINARY_DIRECTORY) $(LISTING_DIRECTORY) )
 
 #flags common to all targets
-CFLAGS  = -DENABLE_DEBUG_LOG_SUPPORT
-CFLAGS += -DNRF51
+CFLAGS  = -DNRF51
 CFLAGS += -DTRACE_SDM_GENERAL_ENABLE
 CFLAGS += -DTRACE_SDM_PAGE_16_ENABLE
 CFLAGS += -DMODIFICATION_TYPE=0
@@ -129,6 +133,7 @@ CFLAGS += -DTRACE_COMMON_PAGE_80_ENABLE
 CFLAGS += -DBOARD_N5DK1
 CFLAGS += -DANT_STACK_SUPPORT_REQD
 CFLAGS += -DTRACE_SDM_PAGE_1_ENABLE
+CFLAGS += -DNRF_LOG_USES_UART=1
 CFLAGS += -DS210
 CFLAGS += -DTRACE_COMMON_PAGE_70_ENABLE
 CFLAGS += -DTRACE_SDM_PAGE_2_ENABLE
@@ -138,7 +143,7 @@ CFLAGS += -DSOFTDEVICE_PRESENT
 CFLAGS += -DTRACE_SDM_PAGE_3_ENABLE
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -O3
+CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
@@ -155,7 +160,6 @@ LDFLAGS += --specs=nano.specs -lc -lnosys
 
 # Assembler flags
 ASMFLAGS += -x assembler-with-cpp
-ASMFLAGS += -DENABLE_DEBUG_LOG_SUPPORT
 ASMFLAGS += -DNRF51
 ASMFLAGS += -DTRACE_SDM_GENERAL_ENABLE
 ASMFLAGS += -DTRACE_SDM_PAGE_16_ENABLE
@@ -165,6 +169,7 @@ ASMFLAGS += -DTRACE_COMMON_PAGE_80_ENABLE
 ASMFLAGS += -DBOARD_N5DK1
 ASMFLAGS += -DANT_STACK_SUPPORT_REQD
 ASMFLAGS += -DTRACE_SDM_PAGE_1_ENABLE
+ASMFLAGS += -DNRF_LOG_USES_UART=1
 ASMFLAGS += -DS210
 ASMFLAGS += -DTRACE_COMMON_PAGE_70_ENABLE
 ASMFLAGS += -DTRACE_SDM_PAGE_2_ENABLE

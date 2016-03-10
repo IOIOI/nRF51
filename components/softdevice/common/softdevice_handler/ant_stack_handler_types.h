@@ -32,9 +32,9 @@
 /**@brief ANT stack event type. */
 typedef struct
 {
+    uint8_t evt_buffer[ANT_STACK_EVT_MSG_BUF_SIZE];                                       /**< Event message buffer. */
     uint8_t channel;                                                                      /**< Channel number. */
     uint8_t event;                                                                        /**< Event code. */
-    uint8_t evt_buffer[ANT_STACK_EVT_MSG_BUF_SIZE];                                       /**< Event message buffer. */
 } ant_evt_t;
 
 /**@brief Application ANT stack event handler type. */

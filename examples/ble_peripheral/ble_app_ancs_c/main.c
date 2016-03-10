@@ -39,28 +39,26 @@
 #include "ble_gap.h"
 #include "ble_advdata.h"
 #include "ble_advertising.h"
-#include "nrf_gpio.h"
-#include "ble_srv_common.h"
 #include "ble_conn_params.h"
 #include "device_manager.h"
-#include "app_button.h"
 #include "app_timer.h"
 #include "pstorage.h"
 #include "nrf_soc.h"
 #include "bsp.h"
 #include "bsp_btn_ble.h"
 #include "softdevice_handler.h"
-#include "app_trace.h"
 #include "nrf_delay.h"
 #include "app_scheduler.h"
 #include "app_timer_appsh.h"
+#include "nrf_log.h"
 
 #if BUTTONS_NUMBER < 2
 #error "Not enough resources on board"
 #endif
 
-#define UART_TX_BUF_SIZE                1024                                        /**< UART TX buffer size. */
-#define UART_RX_BUF_SIZE                1                                           /**< UART RX buffer size. */
+#define CENTRAL_LINK_COUNT              0                                           /**< The number of central links used by the application. When changing this number remember to adjust the RAM settings. */
+#define PERIPHERAL_LINK_COUNT           1                                           /**< The number of peripheral links used by the application. When changing this number remember to adjust the RAM settings. */
+#define VENDOR_SPECIFIC_UUID_COUNT      4                                           /**< The number of vendor specific UUIDs used by this example. */
 
 #define ATTR_DATA_SIZE                  BLE_ANCS_ATTR_DATA_MAX                      /**< Allocated size for attribute data. */
 
@@ -179,19 +177,6 @@ void assert_nrf_callback(uint16_t line_num, const uint8_t * p_file_name)
 }
 
 
-void uart_error_handle(app_uart_evt_t * p_event)
-{
-    if (p_event->evt_type == APP_UART_COMMUNICATION_ERROR)
-    {
-        APP_ERROR_HANDLER(p_event->data.error_communication);
-    }
-    else if (p_event->evt_type == APP_UART_FIFO_ERROR)
-    {
-        APP_ERROR_HANDLER(p_event->data.error_code);
-    }
-}
-
-
 /**@brief Function for handling the security request timer time-out.
  *
  * @details This function is called each time the security request timer expires.
@@ -235,7 +220,7 @@ static void apple_notification_setup(void)
     err_code = ble_ancs_c_data_source_notif_enable(&m_ancs_c);
     APP_ERROR_CHECK(err_code);
 
-    printf("Notifications Enabled.\n\r");
+    NRF_LOG("Notifications Enabled.\n\r");
 }
 
 
@@ -245,32 +230,32 @@ static void apple_notification_setup(void)
  */
 static void notif_print(ble_ancs_c_evt_notif_t * p_notif)
 {
-    printf("\n\rNotification\n\r");
-    printf("Event:       %s\n", lit_eventid[p_notif->evt_id]);
-    printf("Category ID: %s\n", lit_catid[p_notif->category_id]);
-    printf("Category Cnt:%u\n", (unsigned int) p_notif->category_count);
-    printf("UID:         %u\n\r", (unsigned int) p_notif->notif_uid);
+    NRF_LOG("\n\rNotification\n\r");
+    NRF_LOG_PRINTF("Event:       %s\n", lit_eventid[p_notif->evt_id]);
+    NRF_LOG_PRINTF("Category ID: %s\n", lit_catid[p_notif->category_id]);
+    NRF_LOG_PRINTF("Category Cnt:%u\n", (unsigned int) p_notif->category_count);
+    NRF_LOG_PRINTF("UID:         %u\n\r", (unsigned int) p_notif->notif_uid);
 
-    printf("Flags:\n\r");
+    NRF_LOG("Flags:\n\r");
     if(p_notif->evt_flags.silent == 1)
     {
-        printf(" Silent\n\r");
+        NRF_LOG(" Silent\n\r");
     }
     if(p_notif->evt_flags.important == 1)
     {
-        printf(" Important\n\r");
+        NRF_LOG(" Important\n\r");
     }
     if(p_notif->evt_flags.pre_existing == 1)
     {
-        printf(" Pre-existing\n\r");
+        NRF_LOG(" Pre-existing\n\r");
     }
     if(p_notif->evt_flags.positive_action == 1)
     {
-        printf(" Positive Action\n\r");
+        NRF_LOG(" Positive Action\n\r");
     }
     if(p_notif->evt_flags.negative_action == 1)
     {
-        printf(" Positive Action\n\r");
+        NRF_LOG(" Positive Action\n\r");
     }
 }
 
@@ -286,13 +271,13 @@ static void notif_attr_print(ble_ancs_c_evt_notif_attr_t * p_attr,
 {
     if (p_attr->attr_len != 0)
     {
-        printf("%s: %s\n\r",
+        NRF_LOG_PRINTF("%s: %s\n\r",
                lit_attrid[p_attr->attr_id],
                ancs_attr_list[p_attr->attr_id].p_attr_data);
     }
     else if (p_attr->attr_len == 0)
     {
-        printf("%s: (N/A)\n\r", lit_attrid[p_attr->attr_id]);
+        NRF_LOG_PRINTF("%s: (N/A)\n\r", lit_attrid[p_attr->attr_id]);
     }
 }
 
@@ -328,7 +313,7 @@ static void on_ancs_c_evt(ble_ancs_c_evt_t * p_evt)
     switch (p_evt->evt_type)
     {
         case BLE_ANCS_C_EVT_DISCOVER_COMPLETE:
-            printf("Apple Notification Service discovered on the server.\n");
+            NRF_LOG("Apple Notification Service discovered on the server.\n");
             apple_notification_setup();
             break;
 
@@ -349,7 +334,7 @@ static void on_ancs_c_evt(ble_ancs_c_evt_t * p_evt)
                                                  BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
                 APP_ERROR_CHECK(err_code);
             }
-            printf("Apple Notification Service not discovered on the server.\n");
+            NRF_LOG("Apple Notification Service not discovered on the server.\n");
             break;
 
         default:
@@ -593,7 +578,7 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
     switch (p_ble_evt->header.evt_id)
     {
         case BLE_GAP_EVT_CONNECTED:
-            printf("Connected.\n\r");
+            NRF_LOG("Connected.\n\r");
             err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
             APP_ERROR_CHECK(err_code);
 
@@ -601,13 +586,13 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             break;
 
         case BLE_GAP_EVT_DISCONNECTED:
-            printf("Disconnected.\n\r");
+            NRF_LOG("Disconnected.\n\r");
             m_conn_handle = BLE_CONN_HANDLE_INVALID;
             break;
 
         case BLE_GATTC_EVT_TIMEOUT:
         case BLE_GATTS_EVT_TIMEOUT:
-            printf("Timeout.\n\r");
+            NRF_LOG("Timeout.\n\r");
             // Disconnect on GATT Server and Client time-out events.
             err_code = sd_ble_gap_disconnect(m_conn_handle,
                                              BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
@@ -706,14 +691,20 @@ static void ble_stack_init(void)
 
     // Initialize the SoftDevice handler module.
     SOFTDEVICE_HANDLER_INIT(NRF_CLOCK_LFCLKSRC_XTAL_20_PPM, NULL);
-
-    // Enable BLE stack.
+    
     ble_enable_params_t ble_enable_params;
-    memset(&ble_enable_params, 0, sizeof(ble_enable_params));
-#if (defined(S130) || defined(S132))
-    ble_enable_params.gatts_enable_params.attr_tab_size   = BLE_GATTS_ATTR_TAB_SIZE_DEFAULT;
-#endif
-    err_code = sd_ble_enable(&ble_enable_params);
+    err_code = softdevice_enable_get_default_config(CENTRAL_LINK_COUNT,
+                                                    PERIPHERAL_LINK_COUNT,
+                                                    &ble_enable_params);
+    APP_ERROR_CHECK(err_code);
+
+    ble_enable_params.common_enable_params.vs_uuid_count = VENDOR_SPECIFIC_UUID_COUNT;
+
+    //Check the ram settings against the used number of links
+    CHECK_RAM_START_ADDR(CENTRAL_LINK_COUNT,PERIPHERAL_LINK_COUNT);
+    
+    // Enable BLE stack.
+    err_code = softdevice_enable(&ble_enable_params);
     APP_ERROR_CHECK(err_code);
 
     // Register with the SoftDevice handler module for BLE events.
@@ -816,32 +807,6 @@ static void advertising_init(void)
 }
 
 
-/**@brief Function for initializing the UART.
- */
-static void uart_init(void)
-{
-    uint32_t                     err_code;
-    const app_uart_comm_params_t comm_params =
-    {
-        RX_PIN_NUMBER,
-        TX_PIN_NUMBER,
-        RTS_PIN_NUMBER,
-        CTS_PIN_NUMBER,
-        APP_UART_FLOW_CONTROL_ENABLED,
-        false,
-        UART_BAUDRATE_BAUDRATE_Baud115200
-    };
-
-    APP_UART_FIFO_INIT(&comm_params,
-                       UART_RX_BUF_SIZE,
-                       UART_TX_BUF_SIZE,
-                       uart_error_handle,
-                       APP_IRQ_PRIORITY_LOW,
-                       err_code);
-    APP_ERROR_CHECK(err_code);
-}
-
-
 /**@brief Function for initializing buttons and LEDs.
  *
  * @param[out] p_erase_bonds  True if the clear bonds button was pressed to wake the application up.
@@ -879,6 +844,16 @@ static void db_discovery_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
+
+/**@brief Function for initializing the nrf log module.
+ */
+static void nrf_log_init(void)
+{
+    ret_code_t err_code = NRF_LOG_INIT();
+    APP_ERROR_CHECK(err_code);
+}
+
+
 /**@brief Function for the Power manager.
  */
 static void power_manage(void)
@@ -897,10 +872,9 @@ int main(void)
 
     // Initialize.
     timers_init();
-    uart_init();
+    nrf_log_init();
     buttons_leds_init(&erase_bonds);
     ble_stack_init();
-    APP_SCHED_INIT(SCHED_MAX_EVENT_DATA_SIZE, SCHED_QUEUE_SIZE);
     device_manager_init(erase_bonds);
     db_discovery_init();
     scheduler_init();
@@ -913,7 +887,7 @@ int main(void)
     err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
     APP_ERROR_CHECK(err_code);
 
-    printf("\r\nBLE ANCS\r\n");
+    NRF_LOG("\r\nBLE ANCS\r\n");
 
     // Enter main loop.
     for (;;)

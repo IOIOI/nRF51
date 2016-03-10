@@ -51,6 +51,7 @@ $(abspath ../../../../../../components/libraries/bootloader_dfu/dfu_transport_bl
 $(abspath ../../../../../../components/libraries/hci/hci_mem_pool.c) \
 $(abspath ../../../../../../components/libraries/util/nrf_assert.c) \
 $(abspath ../../../../../../components/drivers_nrf/delay/nrf_delay.c) \
+$(abspath ../../../../../../components/drivers_nrf/common/nrf_drv_common.c) \
 $(abspath ../../../../../../components/drivers_nrf/pstorage/pstorage_raw.c) \
 $(abspath ../../../dfu_ble_svc.c) \
 $(abspath ../../../main.c) \
@@ -69,22 +70,25 @@ ASM_SOURCE_FILES  = $(abspath ../../../../../../components/toolchain/gcc/gcc_sta
 INC_PATHS  = -I$(abspath ../../../config/dfu_dual_bank_ble_s130_pca10028)
 INC_PATHS += -I$(abspath ../../../config)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/util)
-INC_PATHS += -I$(abspath ../../../../../../components/toolchain/gcc)
-INC_PATHS += -I$(abspath ../../../../../../components/toolchain)
+INC_PATHS += -I$(abspath ../../../../../../components/libraries/timer)
+INC_PATHS += -I$(abspath ../../../../../../components/softdevice/s130/headers/nrf51)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/common)
-INC_PATHS += -I$(abspath ../../../../../../components/libraries/scheduler)
+INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/common)
 INC_PATHS += -I$(abspath ../../../../../bsp)
+INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/config)
+INC_PATHS += -I$(abspath ../../../../../../components/toolchain/gcc)
+INC_PATHS += -I$(abspath ../../../../../../components/libraries/scheduler)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/pstorage)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/bootloader_dfu/ble_transport)
 INC_PATHS += -I$(abspath ../../../../../../components/softdevice/common/softdevice_handler)
 INC_PATHS += -I$(abspath ../../../../../../components/device)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/hci)
+INC_PATHS += -I$(abspath ../../../../../../components/toolchain)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/delay)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/crc16)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_services/ble_dfu)
-INC_PATHS += -I$(abspath ../../../../../../components/libraries/timer)
-INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/hal)
 INC_PATHS += -I$(abspath ../../../../../../components/softdevice/s130/headers)
+INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/hal)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/bootloader_dfu)
 
 OBJECT_DIRECTORY = _build
@@ -105,7 +109,7 @@ CFLAGS += -DBLE_STACK_SUPPORT_REQD
 CFLAGS += -DBSP_DEFINES_ONLY
 CFLAGS += -mcpu=cortex-m0
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
-CFLAGS += -Wall -Werror -Os
+CFLAGS += -Wall -Werror -Os -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing

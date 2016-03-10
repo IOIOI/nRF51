@@ -8,15 +8,12 @@
  */
 
 #include "ble_bas_c.h"
-#include <stdint.h>
 #include "ble_db_discovery.h"
 #include "ble_types.h"
 #include "ble_srv_common.h"
-#include "nrf_error.h"
 #include "ble_gattc.h"
-#include "app_util.h"
-#include "nordic_common.h"
 #include "app_trace.h"
+#include "sdk_common.h"
 
 #define LOG                  app_trace_log         /**< Debug logger macro that will be used in this file to do logging of important information over UART. */
 #define TX_BUFFER_MASK       0x07                  /**< TX Buffer mask, must be a mask of contiguous zeroes, followed by contiguous sequence of ones: 000...111. */
@@ -241,10 +238,8 @@ static uint32_t cccd_configure(uint16_t conn_handle, uint16_t handle_cccd, bool 
 
 uint32_t ble_bas_c_init(ble_bas_c_t * p_ble_bas_c, ble_bas_c_init_t * p_ble_bas_c_init)
 {
-    if ((p_ble_bas_c == NULL) || (p_ble_bas_c_init == NULL))
-    {
-        return NRF_ERROR_NULL;
-    }
+    VERIFY_PARAM_NOT_NULL(p_ble_bas_c);
+    VERIFY_PARAM_NOT_NULL(p_ble_bas_c_init);
 
     ble_uuid_t bas_uuid;
 
@@ -296,10 +291,7 @@ void ble_bas_c_on_ble_evt(ble_bas_c_t * p_ble_bas_c, const ble_evt_t * p_ble_evt
 
 uint32_t ble_bas_c_bl_notif_enable(ble_bas_c_t * p_ble_bas_c)
 {
-    if (p_ble_bas_c == NULL)
-    {
-        return NRF_ERROR_NULL;
-    }
+    VERIFY_PARAM_NOT_NULL(p_ble_bas_c);
 
     return cccd_configure(p_ble_bas_c->conn_handle, p_ble_bas_c->bl_cccd_handle, true);
 }

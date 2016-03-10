@@ -70,6 +70,9 @@
 
 #include "fds.h"
 
+#define CENTRAL_LINK_COUNT          2                                  /**<number of central links used by the application. When changing this number remember to adjust the RAM settings*/
+#define PERIPHERAL_LINK_COUNT       1                                  /**<number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
+
 #define APPL_LOG                    app_trace_log                      /**< Macro used to log debug information over UART. */
 #define UART_TX_BUF_SIZE            256                                /**< Size of the UART TX buffer, in bytes. Must be a power of two. */
 #define UART_RX_BUF_SIZE            1                                  /**< Size of the UART RX buffer, in bytes. Must be a power of two. */
@@ -97,8 +100,6 @@
 #define MAX_CONNECTION_INTERVAL     MSEC_TO_UNITS(30, UNIT_1_25_MS)    /**< Determines maximum connection interval in milliseconds. */
 #define SLAVE_LATENCY               0                                  /**< Determines slave latency in terms of connection events. */
 #define SUPERVISION_TIMEOUT         MSEC_TO_UNITS(4000, UNIT_10_MS)    /**< Determines supervision time-out in units of 10 milliseconds. */
-
-#define MAX_CONNECTED_CENTRALS      2                                  /**< Maximum number of central applications which can be connected at any time. */
 
 #define UUID16_SIZE                 2                                  /**< Size of a UUID, in bytes. */
 
@@ -265,12 +266,9 @@ static void scan_start(void)
  * @param[in] p_evt  Peer Manager event.
  * @param[in] cmd
  */
-static void fds_evt_handler(ret_code_t       result,
-                            fds_cmd_id_t     cmd,
-                            fds_record_id_t  record_id,
-                            fds_record_key_t record_key)
+static void fds_evt_handler(fds_evt_t const * const p_evt)
 {
-    if (cmd == FDS_CMD_GC)
+    if (p_evt->id == FDS_EVT_GC)
     {
         NRF_LOG_PRINTF("GC completed\n");
     }
@@ -303,30 +301,19 @@ static void pm_evt_handler(pm_evt_t const * p_evt)
              *  be restarted until the link is disconnected and reconnected. Sometimes it is
              *  impossible, to secure the link, or the peer device does not support it. How to
              *  handle this error is highly application dependent. */
-            if (p_evt->params.link_secure_failed_evt.error.error_type == PM_ERROR_TYPE_PM_SEC_ERROR)
+            switch (p_evt->params.link_secure_failed_evt.error)
             {
-                switch (p_evt->params.link_secure_failed_evt.error.error.pm_sec_error)
-                {
-                    case PM_SEC_ERROR_CODE_PIN_OR_KEY_MISSING:
-                        // Rebond if one party has lost its keys.
-                        err_code = pm_link_secure(p_evt->conn_handle, true);
-                        if (err_code != NRF_ERROR_INVALID_STATE)
-                        {
-                            APP_ERROR_CHECK(err_code);
-                        }
-                        break;
+                case PM_SEC_ERROR_PIN_OR_KEY_MISSING:
+                    // Rebond if one party has lost its keys.
+                    err_code = pm_link_secure(p_evt->conn_handle, true);
+                    if (err_code != NRF_ERROR_INVALID_STATE)
+                    {
+                        APP_ERROR_CHECK(err_code);
+                    }
+                    break;
 
-                    default:
-                        break;
-                }
-            }
-            else if (p_evt->params.link_secure_failed_evt.error.error_type == PM_ERROR_TYPE_SEC_STATUS)
-            {
-                switch (p_evt->params.link_secure_failed_evt.error.error.sec_status)
-                {
-                    default:
-                        break;
-                }
+                default:
+                    break;
             }
             break;
 
@@ -398,7 +385,7 @@ static void hrs_c_evt_handler(ble_hrs_c_t * p_hrs_c, ble_hrs_c_evt_t * p_hrs_c_e
             err_code = ble_hrs_heart_rate_measurement_send(&m_hrs, p_hrs_c_evt->params.hrm.hr_value);
             if ((err_code != NRF_SUCCESS) &&
                 (err_code != NRF_ERROR_INVALID_STATE) &&
-                (err_code != BLE_ERROR_NO_TX_BUFFERS) &&
+                (err_code != BLE_ERROR_NO_TX_PACKETS) &&
                 (err_code != BLE_ERROR_GATTS_SYS_ATTR_MISSING)
                 )
             {
@@ -456,7 +443,7 @@ static void rscs_c_evt_handler(ble_rscs_c_t * p_rscs_c, ble_rscs_c_evt_t * p_rsc
             err_code = ble_rscs_measurement_send(&m_rscs, &rscs_measurment);
             if ((err_code != NRF_SUCCESS) &&
                 (err_code != NRF_ERROR_INVALID_STATE) &&
-                (err_code != BLE_ERROR_NO_TX_BUFFERS) &&
+                (err_code != BLE_ERROR_NO_TX_PACKETS) &&
                 (err_code != BLE_ERROR_GATTS_SYS_ATTR_MISSING)
                 )
             {
@@ -534,7 +521,7 @@ static void on_ble_central_evt(const ble_evt_t * const p_ble_evt)
             /** Update LEDs status, and check if we should be looking for more
              *  peripherals to connect to. */
             LEDS_ON(CENTRAL_CONNECTED_LED);
-            if (ble_conn_state_n_centrals() == MAX_CONNECTED_CENTRALS)
+            if (ble_conn_state_n_centrals() == CENTRAL_LINK_COUNT)
             {
                 LEDS_OFF(CENTRAL_SCANNING_LED);
             }
@@ -844,19 +831,18 @@ static void ble_stack_init(void)
 
     // Initialize the SoftDevice handler module.
     SOFTDEVICE_HANDLER_INIT(NRF_CLOCK_LFCLKSRC_XTAL_20_PPM, NULL);
-
-    // Enable BLE stack.
+    
     ble_enable_params_t ble_enable_params;
-    memset(&ble_enable_params, 0, sizeof(ble_enable_params));
-#ifdef S130
-    ble_enable_params.gatts_enable_params.attr_tab_size   = BLE_GATTS_ATTR_TAB_SIZE_DEFAULT;
-#endif
-    ble_enable_params.gatts_enable_params.service_changed = false;
-#ifdef S120
-    ble_enable_params.gap_enable_params.role              = BLE_GAP_ROLE_CENTRAL;
-#endif
-
-    err_code = sd_ble_enable(&ble_enable_params);
+    err_code = softdevice_enable_get_default_config(CENTRAL_LINK_COUNT,
+                                                    PERIPHERAL_LINK_COUNT,
+                                                    &ble_enable_params);
+    APP_ERROR_CHECK(err_code);
+    
+    //Check the ram settings against the used number of links
+    CHECK_RAM_START_ADDR(CENTRAL_LINK_COUNT,PERIPHERAL_LINK_COUNT);
+    
+    // Enable BLE stack.
+    err_code = softdevice_enable(&ble_enable_params);
     APP_ERROR_CHECK(err_code);
 
     // Register with the SoftDevice handler module for BLE events.

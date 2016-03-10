@@ -15,7 +15,7 @@
 #define PEER_ID_H__
 
 
-#include "stdint.h"
+#include <stdint.h>
 #include "sdk_errors.h"
 #include "ble_gap.h"
 #include "peer_manager_types.h"

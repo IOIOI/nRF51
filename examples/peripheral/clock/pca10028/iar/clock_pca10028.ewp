@@ -308,13 +308,11 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
-          <state>$PROJ_DIR$\..\..\config\clock_pca10028</state>
           <state>$PROJ_DIR$\..\..\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\clock</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\common</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\delay</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\gpiote</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\hal</state>
@@ -322,6 +320,7 @@
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\ppi</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\rtc</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\libraries\util</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..</state>
           <state>$TOOLKIT_DIR$\CMSIS\Include</state>
@@ -580,13 +579,11 @@
         </option>
         <option>
           <name>AUserIncludes</name>
-          <state>$PROJ_DIR$\..\..\config\clock_pca10028</state>
           <state>$PROJ_DIR$\..\..\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\clock</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\common</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\delay</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\gpiote</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\hal</state>
@@ -594,6 +591,7 @@
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\ppi</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\rtc</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\libraries\util</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain</state>
           <state>$PROJ_DIR$\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..</state>
         </option>
@@ -1025,6 +1023,9 @@
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\rtc\nrf_drv_rtc.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd\nrf_soc.c</name>
     </file>
   </group>
   <group>

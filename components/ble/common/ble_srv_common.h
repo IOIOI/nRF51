@@ -201,7 +201,7 @@ typedef struct
  * @retval      TRUE If notification is enabled.
  * @retval      FALSE Otherwise.
  */
-static __INLINE bool ble_srv_is_notification_enabled(uint8_t * p_encoded_data)
+static __INLINE bool ble_srv_is_notification_enabled(uint8_t const * p_encoded_data)
 {
     uint16_t cccd_value = uint16_decode(p_encoded_data);
     return ((cccd_value & BLE_GATT_HVX_NOTIFICATION) != 0);
@@ -215,7 +215,7 @@ static __INLINE bool ble_srv_is_notification_enabled(uint8_t * p_encoded_data)
  * @retval      TRUE If indication is enabled.
  * @retval      FALSE Otherwise.
  */
-static __INLINE bool ble_srv_is_indication_enabled(uint8_t * p_encoded_data)
+static __INLINE bool ble_srv_is_indication_enabled(uint8_t const * p_encoded_data)
 {
     uint16_t cccd_value = uint16_decode(p_encoded_data);
     return ((cccd_value & BLE_GATT_HVX_INDICATION) != 0);

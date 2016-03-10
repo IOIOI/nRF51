@@ -10,6 +10,7 @@
  *
  */
 #include "nrf_assert.h"
+#include "nrf_error.h"
 #include "app_error.h"
 #include "ant_interface.h"
 #include "app_util.h"

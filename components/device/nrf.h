@@ -31,6 +31,11 @@
 #ifndef NRF_H
 #define NRF_H
 
+/* MDK version */
+#define MDK_MAJOR_VERSION   8
+#define MDK_MINOR_VERSION   3
+#define MDK_MICRO_VERSION   1
+
 #if defined(_WIN32)         
     /* Do not include nrf51 specific files when building for PC host */
 #elif defined(__unix)       

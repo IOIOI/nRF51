@@ -20,7 +20,7 @@
 #include "ble_gap.h"
 #include "ble_hci.h"
 #include "ble_gatt_db.h"
-#include "compiler_abstraction.h"
+#include "nrf.h"
 
 
 /**@brief Handle to uniquely identify a peer for which we have persistently stored data.
@@ -37,14 +37,25 @@ static __INLINE uint16_t PM_N_WORDS(uint16_t n_bytes)
     return ((n_bytes + 3) >> 2);
 }
 
-/**@brief Errors originating from the Peer Manager module.
+
+
+#define PM_SEC_ERROR_BASE 0x0100  /**< The base for Peer Manager defined errors. See @ref PM_SEC_ERRORS and @ref pm_sec_error_code_t. */
+
+
+/**@defgroup PM_SEC_ERRORS Peer Manager defined security errors.
+ * @{ */
+#define PM_SEC_ERROR_PIN_OR_KEY_MISSING (PM_SEC_ERROR_BASE + 0x06) /**< Encryption failed because the peripheral has lost the LTK for this bond. See also @ref BLE_HCI_STATUS_CODE_PIN_OR_KEY_MISSING and Table 3.7 ("Pairing Failed Reason Codes") in the Bluetooth Core Specification 4.2, section 3.H.3.5.5.  */
+#define PM_SEC_ERROR_MIC_FAILURE        (PM_SEC_ERROR_BASE + 0x3D) /**< Encryption ended with disconnection because of mismatching keys or a stray packet during a procedure. See SoftDevice GAP Message Sequence Charts on encryption, Bluetooth Core Specification 4.2, sections 6.B.5.1.3.1 and 3.H.3.5.5, and/or @ref BLE_HCI_CONN_TERMINATED_DUE_TO_MIC_FAILURE. */
+#define PM_SEC_ERROR_DISCONNECT         (PM_SEC_ERROR_BASE + 0xF0) /**< Pairing or encryption did not finish before link disconnected for unrelated reason. */
+#define PM_SEC_ERROR_SMP_TIMEOUT        (PM_SEC_ERROR_BASE + 0xF1) /**< Pairing/bonding could not start because an SMP timeout has already happened on this link. This means that no more pairing or bonding can happen on this link. To be able to pair or bond, the link must be disconnected and then reconnected. See Bluetooth specification 4.2 section 3.H.3.4 */
+ /** @} */
+
+
+/**@brief Errors from security procedures in Peer Manager.
+ *
+ * @details Possible values are defined in @ref PM_SEC_ERRORS and @ref BLE_GAP_SEC_STATUS.
  */
-typedef enum
-{
-    PM_SEC_ERROR_CODE_PIN_OR_KEY_MISSING = BLE_HCI_STATUS_CODE_PIN_OR_KEY_MISSING,  /**< Encryption failed because the peripheral has lost the LTK for this bond. */
-    PM_SEC_ERROR_CODE_MIC_FAILURE = BLE_HCI_CONN_TERMINATED_DUE_TO_MIC_FAILURE,     /**< Pairing ended with disconnection because of mismatching keys. */
-    PM_SEC_ERROR_SMP_TIMEOUT,                                                       /**< Pairing/bonding could not start because an SMP timeout has already happened on this link. This means that no more pairing or bonding can happen on this link. To be able to pair or bond, the link must be disconnected and then reconnected. See Bluetooth specification 4.2 section 3.H.3.4 */
-} pm_sec_error_code_t;
+typedef uint16_t pm_sec_error_code_t;
 
 
 /**@brief Enumeration describing the different procedures that can lead to an encrypted link.

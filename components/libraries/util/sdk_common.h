@@ -32,6 +32,80 @@
 #include "sdk_errors.h"
 #include "app_util.h"
 
+/**@brief Macro for verifying that the module is initialized. It will cause the function to return
+ *        if not.
+ *
+ * @param[in] param  The variable to check if is NULL.
+ */
+#ifndef DISABLE_PARAM_CHECK
+#define VERIFY_PARAM_NOT_NULL(param)                \
+do                                                  \
+{                                                   \
+    if (param == NULL)                              \
+    {                                               \
+        return NRF_ERROR_NULL;                      \
+    }                                               \
+} while(0)
+#else
+#define VERIFY_PARAM_NOT_NULL()
+#endif /* DISABLE_PARAM_CHECK */
+
+
+/**@brief Macro for verifying that the module is initialized. It will cause the function to return
+ *        if not.
+ *
+ * @param[in] param  The variable to check if is NULL.
+ */
+#ifndef DISABLE_PARAM_CHECK
+#define VERIFY_PARAM_NOT_NULL_VOID(param)           \
+do                                                  \
+{                                                   \
+    if (param == NULL)                              \
+    {                                               \
+        return;                                     \
+    }                                               \
+} while(0)
+#else
+#define VERIFY_PARAM_NOT_NULL_VOID()
+#endif /* DISABLE_PARAM_CHECK */
+
+
+/**@brief Macro for verifying that a function returned NRF_SUCCESS. Will return the err code
+ * if not.
+ *
+ * @param[in] err_code The error code to check.
+ */
+#ifndef DISABLE_PARAM_CHECK
+#define VERIFY_SUCCESS(err_code)            \
+do                                          \
+{                                           \
+    if (err_code != NRF_SUCCESS)            \
+    {                                       \
+        return err_code;                    \
+    }                                       \
+} while(0)
+#else
+#define VERIFY_SUCCESS()
+#endif /* DISABLE_PARAM_CHECK */
+
+
+/**@brief Macro for verifying that a function returned NRF_SUCCESS. Will return if not.
+ *
+ * @param[in] err_code The error code to check.
+ */
+#ifndef DISABLE_PARAM_CHECK
+#define VERIFY_SUCCESS_VOID(err_code)       \
+do                                          \
+{                                           \
+    if (err_code != NRF_SUCCESS)            \
+    {                                       \
+        return;                             \
+    }                                       \
+} while(0)
+#else
+#define VERIFY_SUCCESS_VOID()
+#endif /* DISABLE_PARAM_CHECK */
+
 /** @} */
 /** @endcond */
 #endif // SDK_COMMON_H__

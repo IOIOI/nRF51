@@ -1,4 +1,3 @@
-#include <stdint.h>
 #include <stdlib.h> // definition of NULL
 
 #include "ble.h"
@@ -6,8 +5,8 @@
 #include "ble_db_discovery.h"
 #include "ble_gattc.h"
 #include "ble_srv_common.h"
-#include "nordic_common.h"
 #include "app_error.h"
+#include "sdk_common.h"
 
 
 static ble_nus_c_t * mp_ble_nus_c;
@@ -103,16 +102,11 @@ uint32_t ble_nus_c_init(ble_nus_c_t * p_ble_nus_c, ble_nus_c_init_t * p_ble_nus_
     ble_uuid_t    uart_uuid;
     ble_uuid128_t nus_base_uuid = NUS_BASE_UUID;
         
-    if ((p_ble_nus_c == NULL) || (p_ble_nus_c_init == NULL))
-    {
-        return NRF_ERROR_NULL;
-    }
+    VERIFY_PARAM_NOT_NULL(p_ble_nus_c);
+    VERIFY_PARAM_NOT_NULL(p_ble_nus_c_init);
     
     err_code = sd_ble_uuid_vs_add(&nus_base_uuid, &p_ble_nus_c->uuid_type);
-    if (err_code != NRF_SUCCESS)
-    {
-        return err_code;
-    }
+    VERIFY_SUCCESS(err_code);
     
     uart_uuid.type = p_ble_nus_c->uuid_type;
     uart_uuid.uuid = BLE_UUID_NUS_SERVICE;
@@ -186,10 +180,8 @@ static uint32_t cccd_configure(uint16_t conn_handle, uint16_t cccd_handle, bool 
 
 uint32_t ble_nus_c_rx_notif_enable(ble_nus_c_t * p_ble_nus_c)
 {
-    if (p_ble_nus_c == NULL)
-    {
-        return NRF_ERROR_NULL;
-    }
+    VERIFY_PARAM_NOT_NULL(p_ble_nus_c);
+
     if ( (p_ble_nus_c->conn_handle == BLE_CONN_HANDLE_INVALID)
        ||(p_ble_nus_c->nus_rx_cccd_handle == BLE_GATT_HANDLE_INVALID)
        )
@@ -201,10 +193,7 @@ uint32_t ble_nus_c_rx_notif_enable(ble_nus_c_t * p_ble_nus_c)
 
 uint32_t ble_nus_c_string_send(ble_nus_c_t * p_ble_nus_c, uint8_t * p_string, uint16_t length)
 {
-    if (p_ble_nus_c == NULL)
-    {
-        return NRF_ERROR_NULL;
-    }
+    VERIFY_PARAM_NOT_NULL(p_ble_nus_c);
     
     if (length > BLE_NUS_MAX_DATA_LEN)
     {

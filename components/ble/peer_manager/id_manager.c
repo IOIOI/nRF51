@@ -18,6 +18,7 @@
 #include "peer_manager_types.h"
 #include "peer_database.h"
 #include "nordic_common.h"
+#include "sdk_common.h"
 
 #define IM_MAX_CONN_HANDLES         8
 #define IM_NO_INVALID_CONN_HANDLES  0xFF
@@ -26,27 +27,6 @@
                                         BLE_GAP_WHITELIST_IRK_MAX_COUNT)
 #define IM_ADDR_CLEARTEXT_LENGTH    3
 #define IM_ADDR_CIPHERTEXT_LENGTH   3
-
-#define MODULE_INITIALIZED (m_im.n_registrants > 0)
-
-#define VERIFY_MODULE_INITIALIZED()     \
-do                                      \
-{                                       \
-    if (!MODULE_INITIALIZED)            \
-    {                                   \
-        return NRF_ERROR_INVALID_STATE; \
-    }                                   \
-} while(0)
-
-#define VERIFY_PARAM_NOT_NULL(param)    \
-do                                      \
-{                                       \
-    if (param == NULL)                  \
-    {                                   \
-        return NRF_ERROR_NULL;          \
-    }                                   \
-} while(0)
-
 
 typedef struct
 {
@@ -68,6 +48,9 @@ typedef struct
 } im_t;
 
 static im_t m_im = {.n_registrants = 0};
+
+#define MODULE_INITIALIZED (m_im.n_registrants > 0)
+#include "sdk_macros.h"
 
 static void internal_state_reset()
 {

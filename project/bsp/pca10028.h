@@ -62,19 +62,11 @@
 
 #define BUTTONS_MASK   0x001E0000
 
-/* DEFAULT CONFIG
 #define RX_PIN_NUMBER  11
 #define TX_PIN_NUMBER  9
 #define CTS_PIN_NUMBER 10
 #define RTS_PIN_NUMBER 8
 #define HWFC           true
-*/
-
-#define RX_PIN_NUMBER  12
-#define TX_PIN_NUMBER  13
-#define CTS_PIN_NUMBER 10
-#define RTS_PIN_NUMBER 8
-#define HWFC           false
 
 #define SPIS_MISO_PIN  28    // SPI MISO signal. 
 #define SPIS_CSN_PIN   12    // SPI CSN signal. 

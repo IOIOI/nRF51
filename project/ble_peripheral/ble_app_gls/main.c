@@ -38,6 +38,7 @@
 #include "ble_gls.h"
 #include "ble_racp.h"
 #include "ble_conn_params.h"
+#include "ble_nus.h"
 #include "boards.h"
 #include "sensorsim.h"
 #include "softdevice_handler.h"
@@ -67,11 +68,13 @@
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                          /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 
-#define DEVICE_NAME                    "Nordic_Glucose"                            /**< Name of device. Will be included in the advertising data. */
+#define DEVICE_NAME                    "Nordic_UART_NW"                            /**< Name of device. Will be included in the advertising data. */
 #define MANUFACTURER_NAME              "NordicSemiconductor"                       /**< Manufacturer. Will be passed to Device Information Service. */
 #define MODEL_NUMBER                   "nRF51"                                     /**< Model Number string. Will be passed to Device Information Service. */
 #define MANUFACTURER_ID                0x55AA55AA55                                /**< DUMMY Manufacturer ID. Will be passed to Device Information Service. You shall use the ID for your Company*/
 #define ORG_UNIQUE_ID                  0xEEBBEE                                    /**< DUMMY Organisation Unique ID. Will be passed to Device Information Service. You shall use the Organisation Unique ID relevant for your Company */
+
+#define NUS_SERVICE_UUID_TYPE           BLE_UUID_TYPE_VENDOR_BEGIN                  /**< UUID type for the Nordic UART Service (vendor specific). */
 
 #define APP_ADV_INTERVAL               40                                          /**< The advertising interval (in units of 0.625 ms. This value corresponds to 25 ms). */
 #define APP_ADV_TIMEOUT_IN_SECONDS     180                                         /**< The advertising timeout in units of seconds. */
@@ -112,6 +115,7 @@
 static uint16_t                        m_conn_handle = BLE_CONN_HANDLE_INVALID;    /**< Handle of the current connection. */
 static ble_bas_t                       m_bas;                                      /**< Structure used to identify the battery service. */
 static ble_gls_t                       m_gls;                                      /**< Structure used to identify the glucose service. */
+static ble_nus_t                       m_nus;                                      /**< Structure to identify the Nordic UART Service. */
 
 static sensorsim_cfg_t                 m_battery_sim_cfg;                         /**< Battery Level sensor simulator configuration. */
 static sensorsim_state_t               m_battery_sim_state;                       /**< Battery Level sensor simulator state. */
@@ -126,6 +130,9 @@ static dm_handle_t                     m_dm_handle;                             
 static ble_uuid_t m_adv_uuids[] = {{BLE_UUID_GLUCOSE_SERVICE,            BLE_UUID_TYPE_BLE},
                                    {BLE_UUID_BATTERY_SERVICE,            BLE_UUID_TYPE_BLE},
                                    {BLE_UUID_DEVICE_INFORMATION_SERVICE, BLE_UUID_TYPE_BLE}}; /**< Universally unique service identifiers. */
+
+static ble_uuid_t                       m_adv_uuids_resp[] = {{BLE_UUID_NUS_SERVICE, NUS_SERVICE_UUID_TYPE}};  /**< Universally unique service identifier. */
+
 
 /**@brief Callback function for asserts in the SoftDevice.
  *
@@ -326,6 +333,29 @@ static void gap_params_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
+/**@brief Function for handling the data from the Nordic UART Service.
+ *
+ * @details This function will process the data received from the Nordic UART BLE Service and send
+ *          it to the UART module.
+ *
+ * @param[in] p_nus    Nordic UART Service structure.
+ * @param[in] p_data   Data to be send to UART module.
+ * @param[in] length   Length of the data.
+ */
+/**@snippet [Handling the data received over BLE] */
+static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t length)
+{
+//    for (uint32_t i = 0; i < length; i++)
+//    {
+//        while(app_uart_put(p_data[i]) != NRF_SUCCESS);
+//    }
+//    while(app_uart_put('\n') != NRF_SUCCESS);
+
+    p_data[length] = 0;
+    APP_LOG("[APP] Recv: %s \r\n", (char*) p_data);
+}
+/**@snippet [Handling the data received over BLE] */
+
 
 /**@brief Function for initializing services that will be used by the application.
  *
@@ -334,59 +364,68 @@ static void gap_params_init(void)
 static void services_init(void)
 {
     uint32_t       err_code;
-    ble_gls_init_t gls_init;
-    ble_dis_init_t dis_init;
-    ble_bas_init_t bas_init;
+//    ble_gls_init_t gls_init;
+//    ble_dis_init_t dis_init;
+//    ble_bas_init_t bas_init;
+//
+//    // Initialize Glucose Service - sample selection of feature bits.
+//    memset(&gls_init, 0, sizeof(gls_init));
+//
+//    gls_init.evt_handler          = NULL;
+//    gls_init.error_handler        = service_error_handler;
+//    gls_init.feature              = 0;
+//    gls_init.feature             |= BLE_GLS_FEATURE_LOW_BATT;
+//    gls_init.feature             |= BLE_GLS_FEATURE_TEMP_HIGH_LOW;
+//    gls_init.feature             |= BLE_GLS_FEATURE_GENERAL_FAULT;
+//    gls_init.is_context_supported = false;
+//
+//    err_code = ble_gls_init(&m_gls, &gls_init);
+//    APP_ERROR_CHECK(err_code);
+//
+//    // Initialize Battery Service.
+//    memset(&bas_init, 0, sizeof(bas_init));
+//
+//    // Here the sec level for the Battery Service can be changed/increased.
+//    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&bas_init.battery_level_char_attr_md.cccd_write_perm);
+//    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&bas_init.battery_level_char_attr_md.read_perm);
+//    BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&bas_init.battery_level_char_attr_md.write_perm);
+//
+//    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&bas_init.battery_level_report_read_perm);
+//
+//    bas_init.evt_handler          = NULL;
+//    bas_init.support_notification = true;
+//    bas_init.p_report_ref         = NULL;
+//    bas_init.initial_batt_level   = 100;
+//
+//    err_code = ble_bas_init(&m_bas, &bas_init);
+//    APP_ERROR_CHECK(err_code);
+//
+//    // Initialize Device Information Service.
+//    memset(&dis_init, 0, sizeof(dis_init));
+//
+//    ble_srv_ascii_to_utf8(&dis_init.manufact_name_str, MANUFACTURER_NAME);
+//
+//    ble_srv_ascii_to_utf8(&dis_init.serial_num_str, MODEL_NUMBER);
+//
+//    ble_dis_sys_id_t system_id;
+//    system_id.manufacturer_id            = MANUFACTURER_ID;
+//    system_id.organizationally_unique_id = ORG_UNIQUE_ID;
+//    dis_init.p_sys_id                    = &system_id;
+//
+//    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&dis_init.dis_attr_md.read_perm);
+//    BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&dis_init.dis_attr_md.write_perm);
+//
+//    err_code = ble_dis_init(&dis_init);
+//    APP_ERROR_CHECK(err_code);
 
-    // Initialize Glucose Service - sample selection of feature bits.
-    memset(&gls_init, 0, sizeof(gls_init));
+    ble_nus_init_t nus_init;
 
-    gls_init.evt_handler          = NULL;
-    gls_init.error_handler        = service_error_handler;
-    gls_init.feature              = 0;
-    gls_init.feature             |= BLE_GLS_FEATURE_LOW_BATT;
-    gls_init.feature             |= BLE_GLS_FEATURE_TEMP_HIGH_LOW;
-    gls_init.feature             |= BLE_GLS_FEATURE_GENERAL_FAULT;
-    gls_init.is_context_supported = false;
+        memset(&nus_init, 0, sizeof(nus_init));
 
-    err_code = ble_gls_init(&m_gls, &gls_init);
-    APP_ERROR_CHECK(err_code);
+        nus_init.data_handler = nus_data_handler;
 
-    // Initialize Battery Service.
-    memset(&bas_init, 0, sizeof(bas_init));
-
-    // Here the sec level for the Battery Service can be changed/increased.
-    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&bas_init.battery_level_char_attr_md.cccd_write_perm);
-    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&bas_init.battery_level_char_attr_md.read_perm);
-    BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&bas_init.battery_level_char_attr_md.write_perm);
-
-    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&bas_init.battery_level_report_read_perm);
-
-    bas_init.evt_handler          = NULL;
-    bas_init.support_notification = true;
-    bas_init.p_report_ref         = NULL;
-    bas_init.initial_batt_level   = 100;
-
-    err_code = ble_bas_init(&m_bas, &bas_init);
-    APP_ERROR_CHECK(err_code);
-
-    // Initialize Device Information Service.
-    memset(&dis_init, 0, sizeof(dis_init));
-
-    ble_srv_ascii_to_utf8(&dis_init.manufact_name_str, MANUFACTURER_NAME);
-
-    ble_srv_ascii_to_utf8(&dis_init.serial_num_str, MODEL_NUMBER);
-
-    ble_dis_sys_id_t system_id;
-    system_id.manufacturer_id            = MANUFACTURER_ID;
-    system_id.organizationally_unique_id = ORG_UNIQUE_ID;
-    dis_init.p_sys_id                    = &system_id;
-    
-    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&dis_init.dis_attr_md.read_perm);
-    BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&dis_init.dis_attr_md.write_perm);
-
-    err_code = ble_dis_init(&dis_init);
-    APP_ERROR_CHECK(err_code);
+        err_code = ble_nus_init(&m_nus, &nus_init);
+        APP_ERROR_CHECK(err_code);
 }
 
 
@@ -623,8 +662,9 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
 static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
 {
     dm_ble_evt_handler(p_ble_evt);
-    ble_gls_on_ble_evt(&m_gls, p_ble_evt);
-    ble_bas_on_ble_evt(&m_bas, p_ble_evt);
+    //ble_gls_on_ble_evt(&m_gls, p_ble_evt);
+    ble_nus_on_ble_evt(&m_nus, p_ble_evt);
+    //ble_bas_on_ble_evt(&m_bas, p_ble_evt);
     ble_conn_params_on_ble_evt(p_ble_evt);
     bsp_btn_ble_on_ble_evt(p_ble_evt);
     on_ble_evt(p_ble_evt);
@@ -793,15 +833,20 @@ static void advertising_init(void)
 {
     uint32_t      err_code;
     ble_advdata_t advdata;
+    ble_advdata_t scanrsp;
 
     // Build and set advertising data.
     memset(&advdata, 0, sizeof(advdata));
-
     advdata.name_type               = BLE_ADVDATA_FULL_NAME;
-    advdata.include_appearance      = true;
+    advdata.include_appearance      = false;
     advdata.flags                   = BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE;;
     advdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
     advdata.uuids_complete.p_uuids  = m_adv_uuids;
+
+    memset(&scanrsp, 0, sizeof(scanrsp));
+    scanrsp.uuids_complete.uuid_cnt = sizeof(m_adv_uuids_resp) / sizeof(m_adv_uuids_resp[0]);
+    scanrsp.uuids_complete.p_uuids  = m_adv_uuids_resp;
+
 
     ble_adv_modes_config_t options = {0};
     options.ble_adv_fast_enabled  = BLE_ADV_FAST_ENABLED;
@@ -859,7 +904,7 @@ int main(void)
     gap_params_init();
     advertising_init();
     services_init();
-    sensor_simulator_init();
+    //sensor_simulator_init();
     conn_params_init();
 
     // Start execution.

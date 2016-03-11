@@ -63,6 +63,7 @@ $(abspath ../../../../../../components/ble/ble_advertising/ble_advertising.c) \
 $(abspath ../../../../../../components/ble/ble_services/ble_bas/ble_bas.c) \
 $(abspath ../../../../../../components/ble/common/ble_conn_params.c) \
 $(abspath ../../../../../../components/ble/ble_services/ble_dis/ble_dis.c) \
+$(abspath ../../../../../../components/ble/ble_services/ble_nus/ble_nus.c) \
 $(abspath ../../../../../../components/ble/ble_services/ble_gls/ble_gls.c) \
 $(abspath ../../../../../../components/ble/ble_services/ble_gls/ble_gls_db.c) \
 $(abspath ../../../../../../components/ble/ble_racp/ble_racp.c) \
@@ -93,6 +94,7 @@ INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_services/ble_dis)
 INC_PATHS += -I$(abspath ../../../../../../components/device)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/uart)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_services/ble_gls)
+INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_services/ble_nus)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/button)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/timer)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/gpiote)
@@ -116,6 +118,7 @@ BUILD_DIRECTORIES := $(sort $(OBJECT_DIRECTORY) $(OUTPUT_BINARY_DIRECTORY) $(LIS
 
 #flags common to all targets
 CFLAGS  = -DNRF_LOG_USES_UART=1
+#CFLAGS  = -DDEBUG // destroys uart output
 CFLAGS += -DBOARD_PCA10028
 CFLAGS += -DSOFTDEVICE_PRESENT
 CFLAGS += -DNRF51
@@ -142,6 +145,7 @@ LDFLAGS += --specs=nano.specs -lc -lnosys
 # Assembler flags
 ASMFLAGS += -x assembler-with-cpp
 ASMFLAGS += -DNRF_LOG_USES_UART=1
+#ASMFLAGS  = -DDEBUG
 ASMFLAGS += -DBOARD_PCA10028
 ASMFLAGS += -DSOFTDEVICE_PRESENT
 ASMFLAGS += -DNRF51

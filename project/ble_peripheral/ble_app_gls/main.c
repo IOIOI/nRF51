@@ -30,17 +30,11 @@
 #include "nrf_gpio.h"
 #include "ble.h"
 #include "ble_hci.h"
-#include "ble_srv_common.h"
 #include "ble_advdata.h"
 #include "ble_advertising.h"
-#include "ble_dis.h"
-#include "ble_bas.h"
-#include "ble_gls.h"
-#include "ble_racp.h"
 #include "ble_conn_params.h"
 #include "ble_nus.h"
 #include "boards.h"
-#include "sensorsim.h"
 #include "softdevice_handler.h"
 #include "app_timer.h"
 #include "device_manager.h"
@@ -60,19 +54,14 @@
 #define CENTRAL_LINK_COUNT              0                                          /**<number of central links used by the application. When changing this number remember to adjust the RAM settings*/
 #define PERIPHERAL_LINK_COUNT           1                                          /**<number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
 
-#define APP_LOG NRF_LOG
+#define APP_LOG	NRF_LOG
 
 #define UART_TX_BUF_SIZE 1024                                                      /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE 1                                                         /**< UART RX buffer size. */
 
-
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                          /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 
 #define DEVICE_NAME                    "Nordic_UART_NW"                            /**< Name of device. Will be included in the advertising data. */
-#define MANUFACTURER_NAME              "NordicSemiconductor"                       /**< Manufacturer. Will be passed to Device Information Service. */
-#define MODEL_NUMBER                   "nRF51"                                     /**< Model Number string. Will be passed to Device Information Service. */
-#define MANUFACTURER_ID                0x55AA55AA55                                /**< DUMMY Manufacturer ID. Will be passed to Device Information Service. You shall use the ID for your Company*/
-#define ORG_UNIQUE_ID                  0xEEBBEE                                    /**< DUMMY Organisation Unique ID. Will be passed to Device Information Service. You shall use the Organisation Unique ID relevant for your Company */
 
 #define NUS_SERVICE_UUID_TYPE           BLE_UUID_TYPE_VENDOR_BEGIN                  /**< UUID type for the Nordic UART Service (vendor specific). */
 
@@ -83,11 +72,6 @@
 #define APP_TIMER_OP_QUEUE_SIZE        4                                           /**< Size of timer operation queues. */
 
 #define SECURITY_REQUEST_DELAY         APP_TIMER_TICKS(4000, APP_TIMER_PRESCALER)  /**< Delay after connection until Security Request is sent, if necessary (ticks). */
-
-#define BATTERY_LEVEL_MEAS_INTERVAL    APP_TIMER_TICKS(10000, APP_TIMER_PRESCALER) /**< Battery level measurement interval (ticks). */
-#define MIN_BATTERY_LEVEL              81                                          /**< Minimum battery level as returned by the simulated measurement function. */
-#define MAX_BATTERY_LEVEL              100                                         /**< Maximum battery level as returned by the simulated measurement function. */
-#define BATTERY_LEVEL_INCREMENT        1                                           /**< Value by which the battery level is incremented/decremented for each call to the simulated measurement function. */
 
 #define MIN_CONN_INTERVAL              MSEC_TO_UNITS(10, UNIT_1_25_MS)             /**< Minimum acceptable connection interval (10 ms). */
 #define MAX_CONN_INTERVAL              MSEC_TO_UNITS(100, UNIT_1_25_MS)            /**< Maximum acceptable connection interval (100 ms) */
@@ -106,21 +90,15 @@
 
 #define PASSKEY_TXT                    "Passkey:"                                  /**< Message to be displayed together with the pass-key. */
 #define PASSKEY_TXT_LENGTH             8                                           /**< Length of message to be displayed together with the pass-key. */
-#define PASSKEY_LENGTH                 6                                           /**< Length of pass-key received by the stack for display. */
+#define PASSKEY_LENGTH                 4                                           /**< Length of pass-key received by the stack for display. */
 
 #define DEAD_BEEF                      0xDEADBEEF                                  /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
 
 #define APP_FEATURE_NOT_SUPPORTED      BLE_GATT_STATUS_ATTERR_APP_BEGIN + 2        /**< Reply when unsupported features are requested. */
 
 static uint16_t                        m_conn_handle = BLE_CONN_HANDLE_INVALID;    /**< Handle of the current connection. */
-static ble_bas_t                       m_bas;                                      /**< Structure used to identify the battery service. */
-static ble_gls_t                       m_gls;                                      /**< Structure used to identify the glucose service. */
 static ble_nus_t                       m_nus;                                      /**< Structure to identify the Nordic UART Service. */
 
-static sensorsim_cfg_t                 m_battery_sim_cfg;                         /**< Battery Level sensor simulator configuration. */
-static sensorsim_state_t               m_battery_sim_state;                       /**< Battery Level sensor simulator state. */
-
-APP_TIMER_DEF(m_battery_timer_id);                                                /**< Battery timer. */
 APP_TIMER_DEF(m_sec_req_timer_id);                                                /**< Security Request timer. */
 
 static dm_application_instance_t       m_app_handle;                               /**< Application identifier allocated by device manager. */
@@ -163,43 +141,6 @@ static void service_error_handler(uint32_t nrf_error)
     APP_ERROR_HANDLER(nrf_error);
 }
 
-
-/**@brief Function for performing battery measurement and updating the Battery Level characteristic
- *        in Battery Service.
- */
-static void battery_level_update(void)
-{
-    uint32_t err_code;
-    uint8_t  battery_level;
-
-    battery_level = (uint8_t)sensorsim_measure(&m_battery_sim_state, &m_battery_sim_cfg);
-
-    err_code = ble_bas_battery_level_update(&m_bas, battery_level);
-    if ((err_code != NRF_SUCCESS) &&
-        (err_code != NRF_ERROR_INVALID_STATE) &&
-        (err_code != BLE_ERROR_NO_TX_PACKETS) &&
-        (err_code != BLE_ERROR_GATTS_SYS_ATTR_MISSING)
-       )
-    {
-        APP_ERROR_HANDLER(err_code);
-    }
-}
-
-
-/**@brief Function for handling the Battery measurement timer timeout.
- *
- * @details This function will be called each time the battery level measurement timer expires.
- *
- * @param[in] p_context  Pointer used for passing some arbitrary information (context) from the
- *                       app_start_timer() call to the timeout handler.
- */
-static void battery_level_meas_timeout_handler(void * p_context)
-{
-    UNUSED_PARAMETER(p_context);
-    battery_level_update();
-}
-
-
 /**@brief Function for handling the Security Request timer timeout.
  *
  * @details This function will be called each time the Security Request timer expires.
@@ -226,56 +167,6 @@ static void sec_req_timeout_handler(void * p_context)
     }
 }
 
-
-/**@brief Function for updating glucose measurement and updating glucose characteristic in Glucose.
-          Service.
- */
-static void read_glucose_measurement(void)
-{
-    ble_gls_rec_t rec;
-    uint32_t      err_code;
-
-    static int16_t s_mantissa = 550;
-    static int16_t s_exponent = -3;
-    static uint8_t s_secs     = 5;
-
-    // simulate the reading of a glucose measurement.
-    rec.meas.flags                          = BLE_GLS_MEAS_FLAG_TIME_OFFSET   |
-                                              BLE_GLS_MEAS_FLAG_CONC_TYPE_LOC |
-                                              BLE_GLS_MEAS_FLAG_UNITS_MOL_L;
-    rec.meas.base_time.year                 = 2012;
-    rec.meas.base_time.month                = 1;
-    rec.meas.base_time.day                  = 1;
-    rec.meas.base_time.hours                = 12;
-    rec.meas.base_time.minutes              = 30;
-    rec.meas.base_time.seconds              = 15;
-    rec.meas.glucose_concentration.exponent = s_exponent;
-    rec.meas.glucose_concentration.mantissa = s_mantissa;
-    rec.meas.time_offset                    = 0;
-    rec.meas.type                           = BLE_GLS_MEAS_TYPE_CAP_BLOOD;
-    rec.meas.sample_location                = BLE_GLS_MEAS_LOC_FINGER;
-    rec.meas.sensor_status_annunciation     = 0;
-
-    // change values for next read.
-    s_mantissa += 23;
-    if (s_mantissa > 939)
-    {
-        s_mantissa -= 434;
-    }
-
-    s_secs += 3;
-    if (s_secs > 59)
-    {
-        s_secs = 0;
-    }
-
-    err_code = ble_gls_glucose_new_meas(&m_gls, &rec);
-    if (err_code != NRF_SUCCESS)
-    {
-        // Do nothing.
-    }
-}
-
 /**@brief Function for the Timer initialization.
  *
  * @details Initializes the timer module. This creates and starts application timers.
@@ -286,12 +177,6 @@ static void timers_init(void)
 
     // Initialize timer module.
     APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, false);
-
-    // Create timers.
-    err_code = app_timer_create(&m_battery_timer_id,
-                                APP_TIMER_MODE_REPEATED,
-                                battery_level_meas_timeout_handler);
-    APP_ERROR_CHECK(err_code);
 
     // Create Security Request timer.
     err_code = app_timer_create(&m_sec_req_timer_id,
@@ -317,9 +202,6 @@ static void gap_params_init(void)
     err_code = sd_ble_gap_device_name_set(&sec_mode,
                                           (const uint8_t *)DEVICE_NAME,
                                           strlen(DEVICE_NAME));
-    APP_ERROR_CHECK(err_code);
-
-    err_code = sd_ble_gap_appearance_set(BLE_APPEARANCE_GENERIC_GLUCOSE_METER);
     APP_ERROR_CHECK(err_code);
 
     memset(&gap_conn_params, 0, sizeof(gap_conn_params));
@@ -364,59 +246,6 @@ static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t lengt
 static void services_init(void)
 {
     uint32_t       err_code;
-//    ble_gls_init_t gls_init;
-//    ble_dis_init_t dis_init;
-//    ble_bas_init_t bas_init;
-//
-//    // Initialize Glucose Service - sample selection of feature bits.
-//    memset(&gls_init, 0, sizeof(gls_init));
-//
-//    gls_init.evt_handler          = NULL;
-//    gls_init.error_handler        = service_error_handler;
-//    gls_init.feature              = 0;
-//    gls_init.feature             |= BLE_GLS_FEATURE_LOW_BATT;
-//    gls_init.feature             |= BLE_GLS_FEATURE_TEMP_HIGH_LOW;
-//    gls_init.feature             |= BLE_GLS_FEATURE_GENERAL_FAULT;
-//    gls_init.is_context_supported = false;
-//
-//    err_code = ble_gls_init(&m_gls, &gls_init);
-//    APP_ERROR_CHECK(err_code);
-//
-//    // Initialize Battery Service.
-//    memset(&bas_init, 0, sizeof(bas_init));
-//
-//    // Here the sec level for the Battery Service can be changed/increased.
-//    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&bas_init.battery_level_char_attr_md.cccd_write_perm);
-//    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&bas_init.battery_level_char_attr_md.read_perm);
-//    BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&bas_init.battery_level_char_attr_md.write_perm);
-//
-//    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&bas_init.battery_level_report_read_perm);
-//
-//    bas_init.evt_handler          = NULL;
-//    bas_init.support_notification = true;
-//    bas_init.p_report_ref         = NULL;
-//    bas_init.initial_batt_level   = 100;
-//
-//    err_code = ble_bas_init(&m_bas, &bas_init);
-//    APP_ERROR_CHECK(err_code);
-//
-//    // Initialize Device Information Service.
-//    memset(&dis_init, 0, sizeof(dis_init));
-//
-//    ble_srv_ascii_to_utf8(&dis_init.manufact_name_str, MANUFACTURER_NAME);
-//
-//    ble_srv_ascii_to_utf8(&dis_init.serial_num_str, MODEL_NUMBER);
-//
-//    ble_dis_sys_id_t system_id;
-//    system_id.manufacturer_id            = MANUFACTURER_ID;
-//    system_id.organizationally_unique_id = ORG_UNIQUE_ID;
-//    dis_init.p_sys_id                    = &system_id;
-//
-//    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&dis_init.dis_attr_md.read_perm);
-//    BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&dis_init.dis_attr_md.write_perm);
-//
-//    err_code = ble_dis_init(&dis_init);
-//    APP_ERROR_CHECK(err_code);
 
     ble_nus_init_t nus_init;
 
@@ -426,31 +255,6 @@ static void services_init(void)
 
         err_code = ble_nus_init(&m_nus, &nus_init);
         APP_ERROR_CHECK(err_code);
-}
-
-
-/**@brief Function for initializing the sensor simulators.
- */
-static void sensor_simulator_init(void)
-{
-    m_battery_sim_cfg.min          = MIN_BATTERY_LEVEL;
-    m_battery_sim_cfg.max          = MAX_BATTERY_LEVEL;
-    m_battery_sim_cfg.incr         = BATTERY_LEVEL_INCREMENT;
-    m_battery_sim_cfg.start_at_max = true;
-
-    sensorsim_init(&m_battery_sim_state, &m_battery_sim_cfg);
-}
-
-
-/**@brief Function for starting application timers.
- */
-static void application_timers_start(void)
-{
-    uint32_t err_code;
-
-    // Start application timers.
-    err_code = app_timer_start(m_battery_timer_id, BATTERY_LEVEL_MEAS_INTERVAL, NULL);
-    APP_ERROR_CHECK(err_code);
 }
 
 
@@ -662,9 +466,7 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
 static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
 {
     dm_ble_evt_handler(p_ble_evt);
-    //ble_gls_on_ble_evt(&m_gls, p_ble_evt);
     ble_nus_on_ble_evt(&m_nus, p_ble_evt);
-    //ble_bas_on_ble_evt(&m_bas, p_ble_evt);
     ble_conn_params_on_ble_evt(p_ble_evt);
     bsp_btn_ble_on_ble_evt(p_ble_evt);
     on_ble_evt(p_ble_evt);
@@ -750,7 +552,6 @@ static void bsp_event_handler(bsp_event_t event)
             break;
 
         case BSP_EVENT_KEY_1:
-            read_glucose_measurement();
             break;
 
         default:
@@ -817,7 +618,6 @@ static void device_manager_init(bool erase_bonds)
 
     register_param.sec_param.mitm    = SEC_PARAM_MITM;
     register_param.sec_param.io_caps = SEC_PARAM_IO_CAPABILITIES;
-
 
     err_code = dm_register(&m_app_handle, &register_param);
     APP_ERROR_CHECK(err_code);
@@ -904,15 +704,13 @@ int main(void)
     gap_params_init();
     advertising_init();
     services_init();
-    //sensor_simulator_init();
     conn_params_init();
 
     // Start execution.
-    application_timers_start();
     err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
     APP_ERROR_CHECK(err_code);
 
-    APP_LOG("\r\nGLS Start!\r\n");
+    APP_LOG("\r\nPMD UART Start!\r\n");
 
     // Enter main loop.
     for (;;)

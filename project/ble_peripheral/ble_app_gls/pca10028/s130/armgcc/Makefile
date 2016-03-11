@@ -48,7 +48,6 @@ $(abspath ../../../../../../components/libraries/trace/app_trace.c) \
 $(abspath ../../../../../../components/libraries/util/nrf_assert.c) \
 $(abspath ../../../../../../components/libraries/util/nrf_log.c) \
 $(abspath ../../../../../../components/libraries/uart/retarget.c) \
-$(abspath ../../../../../../components/libraries/sensorsim/sensorsim.c) \
 $(abspath ../../../../../../components/libraries/uart/app_uart_fifo.c) \
 $(abspath ../../../../../../components/drivers_nrf/delay/nrf_delay.c) \
 $(abspath ../../../../../../components/drivers_nrf/common/nrf_drv_common.c) \
@@ -60,13 +59,8 @@ $(abspath ../../../../../bsp/bsp_btn_ble.c) \
 $(abspath ../../../main.c) \
 $(abspath ../../../../../../components/ble/common/ble_advdata.c) \
 $(abspath ../../../../../../components/ble/ble_advertising/ble_advertising.c) \
-$(abspath ../../../../../../components/ble/ble_services/ble_bas/ble_bas.c) \
 $(abspath ../../../../../../components/ble/common/ble_conn_params.c) \
-$(abspath ../../../../../../components/ble/ble_services/ble_dis/ble_dis.c) \
 $(abspath ../../../../../../components/ble/ble_services/ble_nus/ble_nus.c) \
-$(abspath ../../../../../../components/ble/ble_services/ble_gls/ble_gls.c) \
-$(abspath ../../../../../../components/ble/ble_services/ble_gls/ble_gls_db.c) \
-$(abspath ../../../../../../components/ble/ble_racp/ble_racp.c) \
 $(abspath ../../../../../../components/ble/common/ble_srv_common.c) \
 $(abspath ../../../../../../components/ble/device_manager/device_manager_peripheral.c) \
 $(abspath ../../../../../../components/toolchain/system_nrf51.c) \
@@ -88,25 +82,20 @@ INC_PATHS += -I$(abspath ../../../../../../components/libraries/util)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/device_manager)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/uart)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/common)
-INC_PATHS += -I$(abspath ../../../../../../components/libraries/sensorsim)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/pstorage)
-INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_services/ble_dis)
 INC_PATHS += -I$(abspath ../../../../../../components/device)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/uart)
-INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_services/ble_gls)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_services/ble_nus)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/button)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/timer)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/gpiote)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/hal)
-INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_racp)
 INC_PATHS += -I$(abspath ../../../../../../components/toolchain/gcc)
 INC_PATHS += -I$(abspath ../../../../../../components/toolchain)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/common)
 INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_advertising)
 INC_PATHS += -I$(abspath ../../../../../../components/softdevice/s130/headers/nrf51)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/trace)
-INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_services/ble_bas)
 INC_PATHS += -I$(abspath ../../../../../../components/softdevice/common/softdevice_handler)
 
 OBJECT_DIRECTORY = _build

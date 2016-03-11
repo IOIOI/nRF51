@@ -30,6 +30,7 @@
 #include "nrf_gpio.h"
 #include "ble.h"
 #include "ble_hci.h"
+#include "ble_dis.h"
 #include "ble_advdata.h"
 #include "ble_advertising.h"
 #include "ble_conn_params.h"
@@ -61,9 +62,13 @@
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                          /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 
-#define DEVICE_NAME                    "Nordic_UART_NW"                            /**< Name of device. Will be included in the advertising data. */
+#define DEVICE_NAME                     "Nordic_UART_NW"                           /**< Name of device. Will be included in the advertising data. */
+#define MANUFACTURER_NAME               "NordicSemiconductor"                      /**< Manufacturer. Will be passed to Device Information Service. */
+#define MODEL_NUMBER                    "nRF51"                                    /**< Model Number string. Will be passed to Device Information Service. */
+#define MANUFACTURER_ID                 0x55AA55AA55                               /**< DUMMY Manufacturer ID. Will be passed to Device Information Service. You shall use the ID for your Company*/
+#define ORG_UNIQUE_ID                   0xEEBBEE                                   /**< DUMMY Organisation Unique ID. Will be passed to Device Information Service. You shall use the Organisation Unique ID relevant for your Company */
 
-#define NUS_SERVICE_UUID_TYPE           BLE_UUID_TYPE_VENDOR_BEGIN                  /**< UUID type for the Nordic UART Service (vendor specific). */
+#define NUS_SERVICE_UUID_TYPE           BLE_UUID_TYPE_VENDOR_BEGIN                 /**< UUID type for the Nordic UART Service (vendor specific). */
 
 #define APP_ADV_INTERVAL               40                                          /**< The advertising interval (in units of 0.625 ms. This value corresponds to 25 ms). */
 #define APP_ADV_TIMEOUT_IN_SECONDS     180                                         /**< The advertising timeout in units of seconds. */
@@ -105,10 +110,9 @@ static dm_application_instance_t       m_app_handle;                            
 
 static dm_handle_t                     m_dm_handle;                                /**< Device manager's instance handle. */
 
-static ble_uuid_t m_adv_uuids[] = {{BLE_UUID_DEVICE_INFORMATION_SERVICE, BLE_UUID_TYPE_BLE}}; /**< Universally unique service identifiers. */
+static ble_uuid_t 						m_adv_uuids[] = {{BLE_UUID_DEVICE_INFORMATION_SERVICE, BLE_UUID_TYPE_BLE}}; /**< Universally unique service identifiers. */
 
 static ble_uuid_t                       m_adv_uuids_resp[] = {{BLE_UUID_NUS_SERVICE, NUS_SERVICE_UUID_TYPE}};  /**< Universally unique service identifier. */
-
 
 /**@brief Callback function for asserts in the SoftDevice.
  *
@@ -247,6 +251,7 @@ static void services_init(void)
     uint32_t       err_code;
 
     ble_nus_init_t nus_init;
+    ble_dis_init_t dis_init;
 
     memset(&nus_init, 0, sizeof(nus_init));
 
@@ -254,6 +259,24 @@ static void services_init(void)
 
     err_code = ble_nus_init(&m_nus, &nus_init);
     APP_ERROR_CHECK(err_code);
+
+    // Initialize Device Information Service.
+        memset(&dis_init, 0, sizeof(dis_init));
+
+        ble_srv_ascii_to_utf8(&dis_init.manufact_name_str, MANUFACTURER_NAME);
+
+        ble_srv_ascii_to_utf8(&dis_init.serial_num_str, MODEL_NUMBER);
+
+        ble_dis_sys_id_t system_id;
+        system_id.manufacturer_id            = MANUFACTURER_ID;
+        system_id.organizationally_unique_id = ORG_UNIQUE_ID;
+        dis_init.p_sys_id                    = &system_id;
+
+        BLE_GAP_CONN_SEC_MODE_SET_OPEN(&dis_init.dis_attr_md.read_perm);
+        BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&dis_init.dis_attr_md.write_perm);
+
+        err_code = ble_dis_init(&dis_init);
+        APP_ERROR_CHECK(err_code);
 }
 
 
@@ -622,7 +645,6 @@ static void device_manager_init(bool erase_bonds)
     APP_ERROR_CHECK(err_code);
 }
 
-#if 1
 /**@brief Function for initializing the Advertising functionality.
  *
  * @details Encodes the required advertising data and passes it to the stack.
@@ -637,7 +659,7 @@ static void advertising_init(void)
     // Build and set advertising data.
     memset(&advdata, 0, sizeof(advdata));
     advdata.name_type               = BLE_ADVDATA_FULL_NAME;
-    advdata.include_appearance      = false;
+    advdata.include_appearance      = true;
     advdata.flags                   = BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE;;
     advdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
     advdata.uuids_complete.p_uuids  = m_adv_uuids;
@@ -652,37 +674,9 @@ static void advertising_init(void)
     options.ble_adv_fast_interval = APP_ADV_INTERVAL;
     options.ble_adv_fast_timeout  = APP_ADV_TIMEOUT_IN_SECONDS;
 
-    err_code = ble_advertising_init(&advdata, NULL, &options, on_adv_evt, NULL);
-    APP_ERROR_CHECK(err_code);
-}
-#else
-/**@brief Function for initializing the Advertising functionality.
- */
-static void advertising_init(void)
-{
-    uint32_t      err_code;
-    ble_advdata_t advdata;
-    ble_advdata_t scanrsp;
-
-    // Build advertising data struct to pass into @ref ble_advertising_init.
-    memset(&advdata, 0, sizeof(advdata));
-    advdata.name_type          = BLE_ADVDATA_FULL_NAME;
-    advdata.include_appearance = false;
-    advdata.flags              = BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE;
-
-    memset(&scanrsp, 0, sizeof(scanrsp));
-    scanrsp.uuids_complete.uuid_cnt = sizeof(m_adv_uuids_resp) / sizeof(m_adv_uuids_resp[0]);
-    scanrsp.uuids_complete.p_uuids  = m_adv_uuids_resp;
-
-    ble_adv_modes_config_t options = {0};
-    options.ble_adv_fast_enabled  = BLE_ADV_FAST_ENABLED;
-    options.ble_adv_fast_interval = APP_ADV_INTERVAL;
-    options.ble_adv_fast_timeout  = APP_ADV_TIMEOUT_IN_SECONDS;
-
     err_code = ble_advertising_init(&advdata, &scanrsp, &options, on_adv_evt, NULL);
     APP_ERROR_CHECK(err_code);
 }
-#endif
 
 /**@brief Function for initializing buttons and leds.
  *
@@ -728,8 +722,8 @@ int main(void)
     ble_stack_init();
     device_manager_init(erase_bonds);
     gap_params_init();
-    advertising_init();
     services_init();
+    advertising_init();
     conn_params_init();
 
     // Start execution.

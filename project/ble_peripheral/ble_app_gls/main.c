@@ -90,7 +90,7 @@
 
 #define PASSKEY_TXT                    "Passkey:"                                  /**< Message to be displayed together with the pass-key. */
 #define PASSKEY_TXT_LENGTH             8                                           /**< Length of message to be displayed together with the pass-key. */
-#define PASSKEY_LENGTH                 4                                           /**< Length of pass-key received by the stack for display. */
+#define PASSKEY_LENGTH                 6                                           /**< Length of pass-key received by the stack for display. */
 
 #define DEAD_BEEF                      0xDEADBEEF                                  /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
 
@@ -105,9 +105,7 @@ static dm_application_instance_t       m_app_handle;                            
 
 static dm_handle_t                     m_dm_handle;                                /**< Device manager's instance handle. */
 
-static ble_uuid_t m_adv_uuids[] = {{BLE_UUID_GLUCOSE_SERVICE,            BLE_UUID_TYPE_BLE},
-                                   {BLE_UUID_BATTERY_SERVICE,            BLE_UUID_TYPE_BLE},
-                                   {BLE_UUID_DEVICE_INFORMATION_SERVICE, BLE_UUID_TYPE_BLE}}; /**< Universally unique service identifiers. */
+static ble_uuid_t m_adv_uuids[] = {{BLE_UUID_DEVICE_INFORMATION_SERVICE, BLE_UUID_TYPE_BLE}}; /**< Universally unique service identifiers. */
 
 static ble_uuid_t                       m_adv_uuids_resp[] = {{BLE_UUID_NUS_SERVICE, NUS_SERVICE_UUID_TYPE}};  /**< Universally unique service identifier. */
 
@@ -235,6 +233,7 @@ static void nus_data_handler(ble_nus_t * p_nus, uint8_t * p_data, uint16_t lengt
 
     p_data[length] = 0;
     APP_LOG("[APP] Recv: %s \r\n", (char*) p_data);
+    ble_nus_string_send(p_nus, p_data, length);
 }
 /**@snippet [Handling the data received over BLE] */
 
@@ -249,12 +248,12 @@ static void services_init(void)
 
     ble_nus_init_t nus_init;
 
-        memset(&nus_init, 0, sizeof(nus_init));
+    memset(&nus_init, 0, sizeof(nus_init));
 
-        nus_init.data_handler = nus_data_handler;
+    nus_init.data_handler = nus_data_handler;
 
-        err_code = ble_nus_init(&m_nus, &nus_init);
-        APP_ERROR_CHECK(err_code);
+    err_code = ble_nus_init(&m_nus, &nus_init);
+    APP_ERROR_CHECK(err_code);
 }
 
 
@@ -623,7 +622,7 @@ static void device_manager_init(bool erase_bonds)
     APP_ERROR_CHECK(err_code);
 }
 
-
+#if 1
 /**@brief Function for initializing the Advertising functionality.
  *
  * @details Encodes the required advertising data and passes it to the stack.
@@ -656,7 +655,34 @@ static void advertising_init(void)
     err_code = ble_advertising_init(&advdata, NULL, &options, on_adv_evt, NULL);
     APP_ERROR_CHECK(err_code);
 }
+#else
+/**@brief Function for initializing the Advertising functionality.
+ */
+static void advertising_init(void)
+{
+    uint32_t      err_code;
+    ble_advdata_t advdata;
+    ble_advdata_t scanrsp;
 
+    // Build advertising data struct to pass into @ref ble_advertising_init.
+    memset(&advdata, 0, sizeof(advdata));
+    advdata.name_type          = BLE_ADVDATA_FULL_NAME;
+    advdata.include_appearance = false;
+    advdata.flags              = BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE;
+
+    memset(&scanrsp, 0, sizeof(scanrsp));
+    scanrsp.uuids_complete.uuid_cnt = sizeof(m_adv_uuids_resp) / sizeof(m_adv_uuids_resp[0]);
+    scanrsp.uuids_complete.p_uuids  = m_adv_uuids_resp;
+
+    ble_adv_modes_config_t options = {0};
+    options.ble_adv_fast_enabled  = BLE_ADV_FAST_ENABLED;
+    options.ble_adv_fast_interval = APP_ADV_INTERVAL;
+    options.ble_adv_fast_timeout  = APP_ADV_TIMEOUT_IN_SECONDS;
+
+    err_code = ble_advertising_init(&advdata, &scanrsp, &options, on_adv_evt, NULL);
+    APP_ERROR_CHECK(err_code);
+}
+#endif
 
 /**@brief Function for initializing buttons and leds.
  *

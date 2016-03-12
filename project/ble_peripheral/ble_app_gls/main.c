@@ -30,7 +30,6 @@
 #include "nrf_gpio.h"
 #include "ble.h"
 #include "ble_hci.h"
-#include "ble_dis.h"
 #include "ble_advdata.h"
 #include "ble_advertising.h"
 #include "ble_conn_params.h"
@@ -100,16 +99,14 @@
 
 #define APP_FEATURE_NOT_SUPPORTED      BLE_GATT_STATUS_ATTERR_APP_BEGIN + 2        /**< Reply when unsupported features are requested. */
 
-static uint16_t m_conn_handle = BLE_CONN_HANDLE_INVALID;    /**< Handle of the current connection. */
-static ble_nus_t m_nus;                                      /**< Structure to identify the Nordic UART Service. */
+static uint16_t m_conn_handle = BLE_CONN_HANDLE_INVALID;    					    /**< Handle of the current connection. */
+static ble_nus_t m_nus;                                      						/**< Structure to identify the Nordic UART Service. */
 
-APP_TIMER_DEF(m_sec_req_timer_id);                                                /**< Security Request timer. */
+APP_TIMER_DEF(m_sec_req_timer_id);                                                	/**< Security Request timer. */
 
-static dm_application_instance_t m_app_handle;                               /**< Application identifier allocated by device manager. */
+static dm_application_instance_t m_app_handle;                               		/**< Application identifier allocated by device manager. */
 
-static dm_handle_t m_dm_handle;                                /**< Device manager's instance handle. */
-
-static ble_uuid_t m_adv_uuids[] = {{BLE_UUID_DEVICE_INFORMATION_SERVICE, BLE_UUID_TYPE_BLE}}; /**< Universally unique service identifiers. */
+static dm_handle_t m_dm_handle;                               				 		/**< Device manager's instance handle. */
 
 static ble_uuid_t m_adv_uuids_resp[] = {{BLE_UUID_NUS_SERVICE, NUS_SERVICE_UUID_TYPE}};  /**< Universally unique service identifier. */
 
@@ -245,31 +242,12 @@ static void services_init(void)
     uint32_t err_code;
 
     ble_nus_init_t nus_init;
-    ble_dis_init_t dis_init;
 
     memset(&nus_init, 0, sizeof(nus_init));
 
     nus_init.data_handler = nus_data_handler;
 
     err_code = ble_nus_init(&m_nus, &nus_init);
-    APP_ERROR_CHECK(err_code);
-
-    // Initialize Device Information Service.
-    memset(&dis_init, 0, sizeof(dis_init));
-
-    ble_srv_ascii_to_utf8(&dis_init.manufact_name_str, MANUFACTURER_NAME);
-
-    ble_srv_ascii_to_utf8(&dis_init.serial_num_str, MODEL_NUMBER);
-
-    ble_dis_sys_id_t system_id;
-    system_id.manufacturer_id = MANUFACTURER_ID;
-    system_id.organizationally_unique_id = ORG_UNIQUE_ID;
-    dis_init.p_sys_id = &system_id;
-
-    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&dis_init.dis_attr_md.read_perm);
-    BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&dis_init.dis_attr_md.write_perm);
-
-    err_code = ble_dis_init(&dis_init);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -640,9 +618,6 @@ static void advertising_init(void)
     advdata.name_type = BLE_ADVDATA_FULL_NAME;
     advdata.include_appearance = true;
     advdata.flags = BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE;
-    ;
-    advdata.uuids_complete.uuid_cnt = sizeof(m_adv_uuids) / sizeof(m_adv_uuids[0]);
-    advdata.uuids_complete.p_uuids = m_adv_uuids;
 
     memset(&scanrsp, 0, sizeof(scanrsp));
     scanrsp.uuids_complete.uuid_cnt = sizeof(m_adv_uuids_resp) / sizeof(m_adv_uuids_resp[0]);

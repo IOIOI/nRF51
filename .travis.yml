@@ -29,5 +29,5 @@ before_script:
         - gcc --version
 
 script: 
-        - cd project/ble_peripheral/ble_app_uart/pca10028/s130/armgcc/
+        - cd project/ble_peripheral/ble_app_gls/pca10028/s130/armgcc/
         - make  

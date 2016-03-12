@@ -1,4 +1,4 @@
-GNU_INSTALL_ROOT := /usr/local
+GNU_INSTALL_ROOT := 
 GNU_VERSION := 4.9.3
 GNU_PREFIX := arm-none-eabi
 

@@ -6,11 +6,7 @@ MAKEFILE_NAME := $(MAKEFILE_LIST)
 MAKEFILE_DIR := $(dir $(MAKEFILE_NAME) ) 
 
 TEMPLATE_PATH = ../../../../../../components/toolchain/gcc
-ifeq ($(OS),Windows_NT)
-include $(TEMPLATE_PATH)/Makefile.windows
-else
 include $(TEMPLATE_PATH)/Makefile.posix
-endif
 
 MK := mkdir
 RM := rm -rf
@@ -23,14 +19,15 @@ NO_ECHO := @
 endif
 
 # Toolchain commands
-CC              := '$(GNU_INSTALL_ROOT)/bin/$(GNU_PREFIX)-gcc'
-AS              := '$(GNU_INSTALL_ROOT)/bin/$(GNU_PREFIX)-as'
-AR              := '$(GNU_INSTALL_ROOT)/bin/$(GNU_PREFIX)-ar' -r
-LD              := '$(GNU_INSTALL_ROOT)/bin/$(GNU_PREFIX)-ld'
-NM              := '$(GNU_INSTALL_ROOT)/bin/$(GNU_PREFIX)-nm'
-OBJDUMP         := '$(GNU_INSTALL_ROOT)/bin/$(GNU_PREFIX)-objdump'
-OBJCOPY         := '$(GNU_INSTALL_ROOT)/bin/$(GNU_PREFIX)-objcopy'
-SIZE            := '$(GNU_INSTALL_ROOT)/bin/$(GNU_PREFIX)-size'
+CC              := '$(GNU_PREFIX)-gcc'
+CPP             := '$(GNU_PREFIX)-g++'
+AS              := '$(GNU_PREFIX)-as'
+AR              := '$(GNU_PREFIX)-ar' -r
+LD              := '$(GNU_PREFIX)-ld'
+NM              := '$(GNU_PREFIX)-nm'
+OBJDUMP         := '$(GNU_PREFIX)-objdump'
+OBJCOPY         := '$(GNU_PREFIX)-objcopy'
+SIZE            := '$(GNU_PREFIX)-size'
 
 #function for removing duplicates in a list
 remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-out $(firstword $1),$1))))
@@ -56,7 +53,6 @@ $(abspath ../../../../../../components/drivers_nrf/uart/nrf_drv_uart.c) \
 $(abspath ../../../../../../components/drivers_nrf/pstorage/pstorage.c) \
 $(abspath ../../../../../bsp/bsp.c) \
 $(abspath ../../../../../bsp/bsp_btn_ble.c) \
-$(abspath ../../../main.c) \
 $(abspath ../../../../../../components/ble/common/ble_advdata.c) \
 $(abspath ../../../../../../components/ble/ble_advertising/ble_advertising.c) \
 $(abspath ../../../../../../components/ble/common/ble_conn_params.c) \
@@ -65,6 +61,10 @@ $(abspath ../../../../../../components/ble/common/ble_srv_common.c) \
 $(abspath ../../../../../../components/ble/device_manager/device_manager_peripheral.c) \
 $(abspath ../../../../../../components/toolchain/system_nrf51.c) \
 $(abspath ../../../../../../components/softdevice/common/softdevice_handler/softdevice_handler.c) \
+
+#source common to all targets
+CPP_SOURCE_FILES += \
+$(abspath ../../../main.cpp) \
 
 #assembly files common to all targets
 ASM_SOURCE_FILES  = $(abspath ../../../../../../components/toolchain/gcc/gcc_startup_nrf51.s)
@@ -115,21 +115,37 @@ CFLAGS += -DS130
 CFLAGS += -DBLE_STACK_SUPPORT_REQD
 CFLAGS += -DSWI_DISABLE0
 CFLAGS += -mcpu=cortex-m0
-CFLAGS += -mthumb -mabi=aapcs --std=gnu99
+CFLAGS += -mthumb -mabi=aapcs --std=gnu11
 CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
 CFLAGS += -fno-builtin --short-enums
 
+#flags common to all targets
+CPPFLAGS  = -DBOARD_PCA10028
+CPPFLAGS += -DSOFTDEVICE_PRESENT
+CPPFLAGS += -DNRF_LOG_USES_UART=1
+CPPFLAGS += -DNRF51
+CPPFLAGS += -DS130
+CPPFLAGS += -DBLE_STACK_SUPPORT_REQD
+CPPFLAGS += -DSWI_DISABLE0
+CPPFLAGS += -mcpu=cortex-m0
+CPPFLAGS += -mthumb -mabi=aapcs --std=c++14
+CPPFLAGS += -Wall -Werror -O3 -g3
+CPPFLAGS += -mfloat-abi=soft
+# keep every function in separate section. This will allow linker to dump unused functions
+CPPFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
+CPPFLAGS += -fno-builtin --short-enums -fno-rtti -fno-exceptions
+
 # keep every function in separate section. This will allow linker to dump unused functions
 LDFLAGS += -Xlinker -Map=$(LISTING_DIRECTORY)/$(OUTPUT_FILENAME).map
 LDFLAGS += -mthumb -mabi=aapcs -L $(TEMPLATE_PATH) -T$(LINKER_SCRIPT)
 LDFLAGS += -mcpu=cortex-m0
 # let linker to dump unused sections
-LDFLAGS += -Wl,--gc-sections
+LDFLAGS += -Wl,--gc-sections -fno-rtti -fno-exceptions
 # use newlib in nano version
-LDFLAGS += --specs=nano.specs -lc -lnosys
+LDFLAGS += --specs=nano.specs -lc -lnosys -lgcc -lm -lstdc++ -lsupc++
 
 # Assembler flags
 ASMFLAGS += -x assembler-with-cpp
@@ -160,20 +176,25 @@ C_SOURCE_FILE_NAMES = $(notdir $(C_SOURCE_FILES))
 C_PATHS = $(call remduplicates, $(dir $(C_SOURCE_FILES) ) )
 C_OBJECTS = $(addprefix $(OBJECT_DIRECTORY)/, $(C_SOURCE_FILE_NAMES:.c=.o) )
 
+CPP_SOURCE_FILE_NAMES = $(notdir $(CPP_SOURCE_FILES))
+CPP_PATHS = $(call remduplicates, $(dir $(CPP_SOURCE_FILES) ) )
+CPP_OBJECTS = $(addprefix $(OBJECT_DIRECTORY)/, $(CPP_SOURCE_FILE_NAMES:.cpp=.o) )
+
 ASM_SOURCE_FILE_NAMES = $(notdir $(ASM_SOURCE_FILES))
 ASM_PATHS = $(call remduplicates, $(dir $(ASM_SOURCE_FILES) ))
 ASM_OBJECTS = $(addprefix $(OBJECT_DIRECTORY)/, $(ASM_SOURCE_FILE_NAMES:.s=.o) )
 
 vpath %.c $(C_PATHS)
+vpath %.cpp $(CPP_PATHS)
 vpath %.s $(ASM_PATHS)
 
-OBJECTS = $(C_OBJECTS) $(ASM_OBJECTS)
+OBJECTS = $(C_OBJECTS) $(CPP_OBJECTS) $(ASM_OBJECTS)
 
 nrf51422_xxac_s130: OUTPUT_FILENAME := nrf51422_xxac_s130
 nrf51422_xxac_s130: LINKER_SCRIPT=ble_app_gls_gcc_nrf51.ld
 nrf51422_xxac_s130: $(BUILD_DIRECTORIES) $(OBJECTS)
 	@echo Linking target: $(OUTPUT_FILENAME).out
-	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
+	$(NO_ECHO)$(CPP) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
 	$(NO_ECHO)$(MAKE) -f $(MAKEFILE_NAME) -C $(MAKEFILE_DIR) -e finalize
 
 ## Create build directories
@@ -186,6 +207,11 @@ $(OBJECT_DIRECTORY)/%.o: %.c
 	@echo Compiling file: $(notdir $<)
 	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c -o $@ $<
 
+# Create objects from CPP SRC files
+$(OBJECT_DIRECTORY)/%.o: %.cpp
+	@echo Compiling file: $(notdir $<)
+	$(NO_ECHO)$(CPP) $(CPPFLAGS) $(DEFINES) $(INC_PATHS) -c -o $@ $<
+
 # Assemble files
 $(OBJECT_DIRECTORY)/%.o: %.s
 	@echo Compiling file: $(notdir $<)
@@ -195,8 +221,7 @@ $(OBJECT_DIRECTORY)/%.o: %.s
 # Link
 $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out: $(BUILD_DIRECTORIES) $(OBJECTS)
 	@echo Linking target: $(OUTPUT_FILENAME).out
-	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
-
+	$(NO_ECHO)$(CPP) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
 
 ## Create binary .bin file from the .out file
 $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).bin: $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out

@@ -22,6 +22,7 @@
  * @ref srvlib_conn_params module.
  */
 
+extern "C" {
 #include <stdint.h>
 #include <string.h>
 #include "nordic_common.h"
@@ -45,6 +46,7 @@
 #include "bsp.h"
 #include "bsp_btn_ble.h"
 #include "nrf_log.h"
+}
 
 #if BUTTONS_NUMBER < 2
 #error "Not enough resources on board to run example"
@@ -171,7 +173,7 @@ static void timers_init(void)
     uint32_t err_code;
 
     // Initialize timer module.
-    APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, false);
+    APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, NULL);
 
     // Create Security Request timer.
     err_code = app_timer_create(&m_sec_req_timer_id,

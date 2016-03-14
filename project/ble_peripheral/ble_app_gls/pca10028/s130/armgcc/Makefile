@@ -65,6 +65,8 @@ $(abspath ../../../../../../components/softdevice/common/softdevice_handler/soft
 #source common to all targets
 CPP_SOURCE_FILES += \
 $(abspath ../../../main.cpp) \
+$(abspath ../../../advertising.cpp) \
+$(abspath ../../../devicemanager.cpp) \
 
 #assembly files common to all targets
 ASM_SOURCE_FILES  = $(abspath ../../../../../../components/toolchain/gcc/gcc_startup_nrf51.s)
@@ -188,7 +190,7 @@ vpath %.c $(C_PATHS)
 vpath %.cpp $(CPP_PATHS)
 vpath %.s $(ASM_PATHS)
 
-OBJECTS = $(C_OBJECTS) $(CPP_OBJECTS) $(ASM_OBJECTS)
+OBJECTS = $(CPP_OBJECTS) $(C_OBJECTS) $(ASM_OBJECTS)
 
 nrf51422_xxac_s130: OUTPUT_FILENAME := nrf51422_xxac_s130
 nrf51422_xxac_s130: LINKER_SCRIPT=ble_app_gls_gcc_nrf51.ld

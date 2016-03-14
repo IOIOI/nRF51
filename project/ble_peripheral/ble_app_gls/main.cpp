@@ -1,3 +1,18 @@
+/* Copyright (C) 2016  Nils Weiss
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>. */
+
 /* Copyright (c) 2014 Nordic Semiconductor. All Rights Reserved.
  *
  * The information contained herein is property of Nordic Semiconductor ASA.
@@ -22,31 +37,31 @@
  * @ref srvlib_conn_params module.
  */
 
+#include <cstdint>
+#include <cstring>
+#include <string>
+
 extern "C" {
-#include <stdint.h>
-#include <string.h>
 #include "nordic_common.h"
 #include "nrf.h"
 #include "app_error.h"
 #include "nrf_gpio.h"
 #include "ble.h"
 #include "ble_hci.h"
-#include "ble_advdata.h"
-#include "ble_advertising.h"
 #include "ble_conn_params.h"
 #include "ble_nus.h"
 #include "boards.h"
 #include "softdevice_handler.h"
-#include "app_timer.h"
-#include "device_manager.h"
 #include "app_button.h"
-#include "pstorage.h"
 #include "app_trace.h"
 #include "app_uart.h"
 #include "bsp.h"
 #include "bsp_btn_ble.h"
 #include "nrf_log.h"
 }
+
+#include "advertising.h"
+#include "devicemanager.h"
 
 #if BUTTONS_NUMBER < 2
 #error "Not enough resources on board to run example"
@@ -62,22 +77,6 @@ extern "C" {
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                          /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 
-#define DEVICE_NAME                     "Nordic_UART_NW"                           /**< Name of device. Will be included in the advertising data. */
-#define MANUFACTURER_NAME               "NordicSemiconductor"                      /**< Manufacturer. Will be passed to Device Information Service. */
-#define MODEL_NUMBER                    "nRF51"                                    /**< Model Number string. Will be passed to Device Information Service. */
-#define MANUFACTURER_ID                 0x55AA55AA55                               /**< DUMMY Manufacturer ID. Will be passed to Device Information Service. You shall use the ID for your Company*/
-#define ORG_UNIQUE_ID                   0xEEBBEE                                   /**< DUMMY Organisation Unique ID. Will be passed to Device Information Service. You shall use the Organisation Unique ID relevant for your Company */
-
-#define NUS_SERVICE_UUID_TYPE           BLE_UUID_TYPE_VENDOR_BEGIN                 /**< UUID type for the Nordic UART Service (vendor specific). */
-
-#define APP_ADV_INTERVAL               40                                          /**< The advertising interval (in units of 0.625 ms. This value corresponds to 25 ms). */
-#define APP_ADV_TIMEOUT_IN_SECONDS     180                                         /**< The advertising timeout in units of seconds. */
-
-#define APP_TIMER_PRESCALER            0                                           /**< Value of the RTC1 PRESCALER register. */
-#define APP_TIMER_OP_QUEUE_SIZE        4                                           /**< Size of timer operation queues. */
-
-#define SECURITY_REQUEST_DELAY         APP_TIMER_TICKS(4000, APP_TIMER_PRESCALER)  /**< Delay after connection until Security Request is sent, if necessary (ticks). */
-
 #define MIN_CONN_INTERVAL              MSEC_TO_UNITS(10, UNIT_1_25_MS)             /**< Minimum acceptable connection interval (10 ms). */
 #define MAX_CONN_INTERVAL              MSEC_TO_UNITS(100, UNIT_1_25_MS)            /**< Maximum acceptable connection interval (100 ms) */
 #define SLAVE_LATENCY                  0                                           /**< Slave latency. */
@@ -86,31 +85,12 @@ extern "C" {
 #define NEXT_CONN_PARAMS_UPDATE_DELAY  APP_TIMER_TICKS(30000, APP_TIMER_PRESCALER) /**< Time between each call to sd_ble_gap_conn_param_update after the first call (30 seconds). */
 #define MAX_CONN_PARAM_UPDATE_COUNT    3                                           /**< Number of attempts before giving up the connection parameter negotiation. */
 
-#define SEC_PARAM_BOND                 1                                           /**< Perform bonding. */
-#define SEC_PARAM_MITM                 1                                           /**< Man In The Middle protection required (applicable when display module is detected). */
-#define SEC_PARAM_IO_CAPABILITIES      BLE_GAP_IO_CAPS_DISPLAY_ONLY                /**< Display I/O capabilities. */
-#define SEC_PARAM_OOB                  0                                           /**< Out Of Band data not available. */
-#define SEC_PARAM_MIN_KEY_SIZE         7                                           /**< Minimum encryption key size. */
-#define SEC_PARAM_MAX_KEY_SIZE         16                                          /**< Maximum encryption key size. */
-
-#define PASSKEY_TXT                    "Passkey:"                                  /**< Message to be displayed together with the pass-key. */
-#define PASSKEY_TXT_LENGTH             8                                           /**< Length of message to be displayed together with the pass-key. */
-#define PASSKEY_LENGTH                 6                                           /**< Length of pass-key received by the stack for display. */
-
 #define DEAD_BEEF                      0xDEADBEEF                                  /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
 
 #define APP_FEATURE_NOT_SUPPORTED      BLE_GATT_STATUS_ATTERR_APP_BEGIN + 2        /**< Reply when unsupported features are requested. */
 
-static uint16_t m_conn_handle = BLE_CONN_HANDLE_INVALID;    					    /**< Handle of the current connection. */
+uint16_t m_conn_handle = BLE_CONN_HANDLE_INVALID;    					    /**< Handle of the current connection. */
 static ble_nus_t m_nus;                                      						/**< Structure to identify the Nordic UART Service. */
-
-APP_TIMER_DEF(m_sec_req_timer_id);                                                	/**< Security Request timer. */
-
-static dm_application_instance_t m_app_handle;                               		/**< Application identifier allocated by device manager. */
-
-static dm_handle_t m_dm_handle;                               				 		/**< Device manager's instance handle. */
-
-static ble_uuid_t m_adv_uuids_resp[] = {{BLE_UUID_NUS_SERVICE, NUS_SERVICE_UUID_TYPE}};  /**< Universally unique service identifier. */
 
 /**@brief Callback function for asserts in the SoftDevice.
  *
@@ -126,60 +106,6 @@ static ble_uuid_t m_adv_uuids_resp[] = {{BLE_UUID_NUS_SERVICE, NUS_SERVICE_UUID_
 void assert_nrf_callback(uint16_t line_num, const uint8_t* p_file_name)
 {
     app_error_handler(DEAD_BEEF, line_num, p_file_name);
-}
-
-/**@brief Function for handling Service errors.
- *
- * @details A pointer to this function will be passed to each service which may need to inform the
- *          application about an error.
- *
- * @param[in] nrf_error  Error code containing information about what went wrong.
- */
-static void service_error_handler(uint32_t nrf_error)
-{
-    APP_ERROR_HANDLER(nrf_error);
-}
-
-/**@brief Function for handling the Security Request timer timeout.
- *
- * @details This function will be called each time the Security Request timer expires.
- *
- * @param[in] p_context  Pointer used for passing some arbitrary information (context) from the
- *                       app_start_timer() call to the timeout handler.
- */
-static void sec_req_timeout_handler(void* p_context)
-{
-    uint32_t err_code;
-    dm_security_status_t status;
-
-    if (m_conn_handle != BLE_CONN_HANDLE_INVALID) {
-        err_code = dm_security_status_req(&m_dm_handle, &status);
-        APP_ERROR_CHECK(err_code);
-
-        // In case the link is secured by the peer during timeout, the request is not sent.
-        if (status == NOT_ENCRYPTED) {
-            err_code = dm_security_setup_req(&m_dm_handle);
-            APP_ERROR_CHECK(err_code);
-        }
-    }
-}
-
-/**@brief Function for the Timer initialization.
- *
- * @details Initializes the timer module. This creates and starts application timers.
- */
-static void timers_init(void)
-{
-    uint32_t err_code;
-
-    // Initialize timer module.
-    APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, NULL);
-
-    // Create Security Request timer.
-    err_code = app_timer_create(&m_sec_req_timer_id,
-                                APP_TIMER_MODE_SINGLE_SHOT,
-                                sec_req_timeout_handler);
-    APP_ERROR_CHECK(err_code);
 }
 
 /**@brief Function for the GAP initialization.
@@ -230,8 +156,25 @@ static void nus_data_handler(ble_nus_t* p_nus, uint8_t* p_data, uint16_t length)
 //    while(app_uart_put('\n') != NRF_SUCCESS);
 
     p_data[length] = 0;
-    APP_LOG("[APP] Recv: %s \r\n", (char*)p_data);
-    ble_nus_string_send(p_nus, p_data, length);
+    APP_LOG("[APP] Recv: ", (char*)p_data);
+    APP_LOG("\r\n");
+
+    const std::string msg((char*)p_data, length);
+
+    if(msg.find("LED2") != std::string::npos){
+    	LEDS_INVERT(BSP_LED_1_MASK);
+    	APP_LOG("[APP] 2 \r\n");
+    }
+    if(msg.find("LED3") != std::string::npos){
+        	LEDS_INVERT(BSP_LED_2_MASK);
+        	APP_LOG("[APP] 3 \r\n");
+
+        }
+    if(msg.find("LED4") != std::string::npos){
+        	LEDS_INVERT(BSP_LED_3_MASK);
+        	APP_LOG("[APP] 4 \r\n");
+
+        }
 }
 /**@snippet [Handling the data received over BLE] */
 
@@ -322,31 +265,6 @@ static void sleep_mode_enter(void)
     APP_ERROR_CHECK(err_code);
 }
 
-/**@brief Function for handling the Application's BLE Stack events.
- *
- * @details This function will be called for advertising events which are passed to the application.
- *
- * @param[in] ble_adv_evt  Advertising event.
- */
-static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
-{
-    uint32_t err_code;
-
-    switch (ble_adv_evt) {
-    case BLE_ADV_EVT_FAST:
-        err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING);
-        APP_ERROR_CHECK(err_code);
-        break;
-
-    case BLE_ADV_EVT_IDLE:
-        sleep_mode_enter();
-        break;
-
-    default:
-        break;
-    }
-}
-
 uint8_t m_oob_key[16] = {
     0x24,
     0x25,
@@ -395,9 +313,8 @@ static void on_ble_evt(ble_evt_t* p_ble_evt)
             char passkey[PASSKEY_LENGTH + 1];
             memcpy(passkey, p_ble_evt->evt.gap_evt.params.passkey_display.passkey, PASSKEY_LENGTH);
             passkey[PASSKEY_LENGTH] = 0;
-            // Don't send delayed Security Request if security procedure is already in progress.
-            err_code = app_timer_stop(m_sec_req_timer_id);
-            APP_ERROR_CHECK(err_code);
+
+            device_manager_start_sec_timer();
 
             APP_LOG("Passkey: %s\n", passkey);
             break;
@@ -527,111 +444,27 @@ static void bsp_event_handler(bsp_event_t event)
         break;
 
     case BSP_EVENT_WHITELIST_OFF:
-        err_code = ble_advertising_restart_without_whitelist();
-        if (err_code != NRF_ERROR_INVALID_STATE) {
-            APP_ERROR_CHECK(err_code);
-        }
+    	advertising_restart();
         break;
 
     case BSP_EVENT_KEY_1:
+    	APP_LOG("KEY1\r\n");
+    	ble_nus_string_send(&m_nus, (uint8_t*)"KEY1\r\n", 6);
+        break;
+
+    case BSP_EVENT_KEY_2:
+        APP_LOG("KEY2\r\n");
+    	ble_nus_string_send(&m_nus, (uint8_t*)"KEY2\r\n", 6);
+        break;
+
+    case BSP_EVENT_KEY_3:
+    	APP_LOG("KEY3\r\n");
+    	ble_nus_string_send(&m_nus, (uint8_t*)"KEY3\r\n", 6);
         break;
 
     default:
         break;
     }
-}
-
-/**@brief Function for handling the Device Manager events.
- *
- * @param[in] p_evt  Data associated to the device manager event.
- */
-static uint32_t device_manager_evt_handler(dm_handle_t const* p_handle,
-                                           dm_event_t const*  p_event,
-                                           ret_code_t         event_result)
-{
-    uint32_t err_code = NRF_SUCCESS;
-
-    m_dm_handle = *p_handle;
-    APP_ERROR_CHECK(event_result);
-
-    switch (p_event->event_id) {
-    case DM_EVT_CONNECTION:
-        // Start Security Request timer.
-        if (m_dm_handle.device_id != DM_INVALID_ID) {
-            err_code = app_timer_start(m_sec_req_timer_id, SECURITY_REQUEST_DELAY, NULL);
-            APP_ERROR_CHECK(err_code);
-        }
-        break;
-
-    default:
-        break;
-    }
-
-    return NRF_SUCCESS;
-}
-
-/**@brief Function for the Device Manager initialization.
- *
- * @param[in] erase_bonds  Indicates whether bonding information should be cleared from
- *                         persistent storage during initialization of the Device Manager.
- */
-static void device_manager_init(bool erase_bonds)
-{
-    uint32_t err_code;
-    dm_init_param_t init_param = {.clear_persistent_data = erase_bonds};
-    dm_application_param_t register_param;
-
-    // Initialize persistent storage module.
-    err_code = pstorage_init();
-    APP_ERROR_CHECK(err_code);
-
-    err_code = dm_init(&init_param);
-    APP_ERROR_CHECK(err_code);
-
-    memset(&register_param.sec_param, 0, sizeof(ble_gap_sec_params_t));
-
-    register_param.sec_param.bond = SEC_PARAM_BOND;
-    register_param.sec_param.oob = SEC_PARAM_OOB;
-    register_param.sec_param.min_key_size = SEC_PARAM_MIN_KEY_SIZE;
-    register_param.sec_param.max_key_size = SEC_PARAM_MAX_KEY_SIZE;
-    register_param.evt_handler = device_manager_evt_handler;
-    register_param.service_type = DM_PROTOCOL_CNTXT_GATT_SRVR_ID;
-
-    register_param.sec_param.mitm = SEC_PARAM_MITM;
-    register_param.sec_param.io_caps = SEC_PARAM_IO_CAPABILITIES;
-
-    err_code = dm_register(&m_app_handle, &register_param);
-    APP_ERROR_CHECK(err_code);
-}
-
-/**@brief Function for initializing the Advertising functionality.
- *
- * @details Encodes the required advertising data and passes it to the stack.
- *          Also builds a structure to be passed to the stack when starting advertising.
- */
-static void advertising_init(void)
-{
-    uint32_t err_code;
-    ble_advdata_t advdata;
-    ble_advdata_t scanrsp;
-
-    // Build and set advertising data.
-    memset(&advdata, 0, sizeof(advdata));
-    advdata.name_type = BLE_ADVDATA_FULL_NAME;
-    advdata.include_appearance = true;
-    advdata.flags = BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE;
-
-    memset(&scanrsp, 0, sizeof(scanrsp));
-    scanrsp.uuids_complete.uuid_cnt = sizeof(m_adv_uuids_resp) / sizeof(m_adv_uuids_resp[0]);
-    scanrsp.uuids_complete.p_uuids = m_adv_uuids_resp;
-
-    ble_adv_modes_config_t options = {0};
-    options.ble_adv_fast_enabled = BLE_ADV_FAST_ENABLED;
-    options.ble_adv_fast_interval = APP_ADV_INTERVAL;
-    options.ble_adv_fast_timeout = APP_ADV_TIMEOUT_IN_SECONDS;
-
-    err_code = ble_advertising_init(&advdata, &scanrsp, &options, on_adv_evt, NULL);
-    APP_ERROR_CHECK(err_code);
 }
 
 /**@brief Function for initializing buttons and leds.
@@ -681,9 +514,10 @@ int main(void)
     advertising_init();
     conn_params_init();
 
+    LEDS_CONFIGURE(LEDS_MASK);
+
     // Start execution.
-    err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
-    APP_ERROR_CHECK(err_code);
+    advertising_start();
 
     APP_LOG("\r\nPMD UART Start!\r\n");
 

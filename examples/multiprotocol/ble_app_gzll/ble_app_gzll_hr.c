@@ -501,9 +501,9 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             break;
 
         case BLE_GAP_EVT_SEC_PARAMS_REQUEST:
-            s_sec_keyset.keys_central.p_enc_key  = NULL;
-            s_sec_keyset.keys_central.p_id_key   = NULL;
-            s_sec_keyset.keys_central.p_sign_key = NULL;
+            s_sec_keyset.keys_peer.p_enc_key  = NULL;
+            s_sec_keyset.keys_peer.p_id_key   = NULL;
+            s_sec_keyset.keys_peer.p_sign_key = NULL;
             err_code = sd_ble_gap_sec_params_reply(s_conn_handle, 
                                                    BLE_GAP_SEC_STATUS_SUCCESS,        
                                                    &m_sec_params,
@@ -520,9 +520,9 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             break;
 
         case BLE_GAP_EVT_SEC_INFO_REQUEST:
-            if (s_sec_keyset.keys_periph.p_enc_key != NULL)
+            if (s_sec_keyset.keys_own.p_enc_key != NULL)
             {
-                p_enc_info = &s_sec_keyset.keys_periph.p_enc_key->enc_info;
+                p_enc_info = &s_sec_keyset.keys_own.p_enc_key->enc_info;
 
                 err_code = sd_ble_gap_sec_info_reply(s_conn_handle, p_enc_info, NULL, NULL);
                 APP_ERROR_CHECK(err_code);
@@ -591,8 +591,9 @@ static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
 void ble_stack_start(void)
 {
     uint32_t err_code;
+    nrf_clock_lf_cfg_t clock_lf_cfg = NRF_CLOCK_LFCLKSRC;
     
-    SOFTDEVICE_HANDLER_INIT(NRF_CLOCK_LFCLKSRC_XTAL_20_PPM, NULL);
+    SOFTDEVICE_HANDLER_INIT(&clock_lf_cfg, NULL);
 
     // Enable BLE stack 
     ble_enable_params_t ble_enable_params;

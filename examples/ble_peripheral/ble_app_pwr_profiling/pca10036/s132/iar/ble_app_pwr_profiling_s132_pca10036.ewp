@@ -148,7 +148,7 @@
         </option>
         <option>
           <name>OGUseCmsis</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>OGUseCmsisDspLib</name>
@@ -178,16 +178,6 @@
         <option>
           <name>CCDefines</name>
           <state>BLE_STACK_SUPPORT_REQD</state>
-          <state>NRF52_PAN_8</state>
-          <state>NRF52_PAN_9</state>
-          <state>NRF52_PAN_10</state>
-          <state>NRF52_PAN_11</state>
-          <state>NRF52_PAN_12</state>
-          <state>NRF52_PAN_15</state>
-          <state>NRF52_PAN_16</state>
-          <state>NRF52_PAN_17</state>
-          <state>NRF52_PAN_20</state>
-          <state>NRF52_PAN_23</state>
           <state>NRF52_PAN_24</state>
           <state>NRF52_PAN_25</state>
           <state>NRF52_PAN_26</state>
@@ -223,6 +213,16 @@
           <state>NRF52_PAN_3</state>
           <state>NRF52_PAN_4</state>
           <state>NRF52_PAN_7</state>
+          <state>NRF52_PAN_8</state>
+          <state>NRF52_PAN_9</state>
+          <state>NRF52_PAN_10</state>
+          <state>NRF52_PAN_11</state>
+          <state>NRF52_PAN_12</state>
+          <state>NRF52_PAN_15</state>
+          <state>NRF52_PAN_16</state>
+          <state>NRF52_PAN_17</state>
+          <state>NRF52_PAN_20</state>
+          <state>NRF52_PAN_23</state>
           <state>S132</state>
           <state>NRF_LOG_USES_UART=1</state>
           <state>NRF52</state>
@@ -292,7 +292,7 @@
         </option>
         <option>
           <name>CCDebugInfo</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>IEndianMode</name>
@@ -360,7 +360,6 @@
           <state>$PROJ_DIR$\..\..\..\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\common</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\common</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\delay</state>
@@ -368,6 +367,7 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\hal</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\uart</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\button</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fifo</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\timer</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\uart</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util</state>
@@ -375,8 +375,9 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\headers</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\headers\nrf52</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
-          <state>$TOOLKIT_DIR$\CMSIS\Include</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\external\segger_rtt</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -526,7 +527,7 @@
         </option>
         <option>
           <name>ADebug</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>AltRegisterNames</name>
@@ -535,16 +536,6 @@
         <option>
       <name>ADefines</name>
           <state>BLE_STACK_SUPPORT_REQD</state>
-          <state>NRF52_PAN_8</state>
-          <state>NRF52_PAN_9</state>
-          <state>NRF52_PAN_10</state>
-          <state>NRF52_PAN_11</state>
-          <state>NRF52_PAN_12</state>
-          <state>NRF52_PAN_15</state>
-          <state>NRF52_PAN_16</state>
-          <state>NRF52_PAN_17</state>
-          <state>NRF52_PAN_20</state>
-          <state>NRF52_PAN_23</state>
           <state>NRF52_PAN_24</state>
           <state>NRF52_PAN_25</state>
           <state>NRF52_PAN_26</state>
@@ -580,6 +571,16 @@
           <state>NRF52_PAN_3</state>
           <state>NRF52_PAN_4</state>
           <state>NRF52_PAN_7</state>
+          <state>NRF52_PAN_8</state>
+          <state>NRF52_PAN_9</state>
+          <state>NRF52_PAN_10</state>
+          <state>NRF52_PAN_11</state>
+          <state>NRF52_PAN_12</state>
+          <state>NRF52_PAN_15</state>
+          <state>NRF52_PAN_16</state>
+          <state>NRF52_PAN_17</state>
+          <state>NRF52_PAN_20</state>
+          <state>NRF52_PAN_23</state>
           <state>S132</state>
           <state>NRF_LOG_USES_UART=1</state>
           <state>NRF52</state>
@@ -684,7 +685,6 @@
           <state>$PROJ_DIR$\..\..\..\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\common</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\common</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\delay</state>
@@ -692,6 +692,7 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\hal</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\uart</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\button</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fifo</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\timer</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\uart</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util</state>
@@ -699,7 +700,9 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\headers</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\headers\nrf52</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\external\segger_rtt</state>
         </option>
         <option>
           <name>AExtraOptionsCheckV2</name>
@@ -1086,22 +1089,22 @@
   <group>
   <name>nRF_Libraries</name>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt\RTT_Syscalls_IAR.c</name>
-    </file>
-    <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT.c</name>
-    </file>
-    <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT_printf.c</name>
-    </file>
-    <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\button\app_button.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util\app_error.c</name>
     </file>
     <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util\app_error_weak.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fifo\app_fifo.c</name>
+    </file>
+    <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\timer\app_timer.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util\app_util_platform.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util\nrf_assert.c</name>
@@ -1125,7 +1128,7 @@
   <group>
   <name>nRF_Drivers</name>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\uart\app_uart.c</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\uart\app_uart_fifo.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\delay\nrf_delay.c</name>
@@ -1153,6 +1156,18 @@
     </file>
   </group>
   <group>
+  <name>nRF_Segger_RTT</name>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\external\segger_rtt\RTT_Syscalls_IAR.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\external\segger_rtt\SEGGER_RTT.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\external\segger_rtt\SEGGER_RTT_printf.c</name>
+    </file>
+  </group>
+  <group>
   <name>nRF_BLE</name>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\ble\common\ble_advdata.c</name>
@@ -1176,7 +1191,7 @@
   <group>
   <name>nRF_SoftDevice</name>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\doc\s132_nrf52_2.0.0-7.alpha_licence_agreement.txt</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\doc\s132_nrf52_2.0.0_licence_agreement.txt</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\common\softdevice_handler\softdevice_handler.c</name>

@@ -14,14 +14,14 @@
         <TargetCommonOption>
           <Device>nRF52832_xxAA</Device>
           <Vendor>Nordic Semiconductor</Vendor>
-          <PackID>NordicSemiconductor.nRF_DeviceFamilyPack.8.3.1</PackID>
+          <PackID>NordicSemiconductor.nRF_DeviceFamilyPack.8.5.0</PackID>
           <PackURL>http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/</PackURL>
           <Cpu>IROM(0x00000000,0x80000) IRAM(0x20000000,0x10000) CPUTYPE("Cortex-M4") FPU2 CLOCK(64000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
-          <FlashDriverDll>UL2CM3(-UM0364FCE -O78 -S0 -C0 -TO18 -TC16000000 -TP21 -TDS800D -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO15 -FD20000000 -FC2000 -FN1 -FF0nRF52xxx -FS00 -FL0200000)</FlashDriverDll>
+          <FlashDriverDll></FlashDriverDll>
           <DeviceId>0</DeviceId>
-          <RegisterFile>core.h</RegisterFile>
+          <RegisterFile>$$Device:nRF52832_xxAA$Device\Include\nrf.h</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>
@@ -84,6 +84,8 @@
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
+            <nStopA1X>0</nStopA1X>
+            <nStopA2X>0</nStopA2X>
           </AfterMake>
           <SelectedForBatchBuild>0</SelectedForBatchBuild>
           <SVCSIdString></SVCSIdString>
@@ -224,8 +226,9 @@
             <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
+            <nSecure>0</nSecure>
             <RoSelD>3</RoSelD>
-            <RwSelD>5</RwSelD>
+            <RwSelD>3</RwSelD>
             <CodeSel>0</CodeSel>
             <OptFeed>0</OptFeed>
             <NoZi1>0</NoZi1>
@@ -277,7 +280,7 @@
               <IRAM>
                 <Type>0</Type>
                 <StartAddress>0x20000000</StartAddress>
-                <Size>0x8000</Size>
+                <Size>0x10000</Size>
               </IRAM>
               <IROM>
                 <Type>1</Type>
@@ -332,7 +335,7 @@
               <OCR_RVCT9>
                 <Type>0</Type>
                 <StartAddress>0x20000000</StartAddress>
-                <Size>0x8000</Size>
+                <Size>0x10000</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
@@ -356,9 +359,15 @@
             <wLevel>0</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
+            <uC99>1</uC99>
+            <useXO>0</useXO>
+            <v6Lang>0</v6Lang>
+            <v6LangP>0</v6LangP>
+            <vShortEn>0</vShortEn>
+            <vShortWch>0</vShortWch>
             <VariousControls>
-              <MiscControls>--c99</MiscControls>
-              <Define> BSP_DEFINES_ONLY NRF52_PAN_53 NRF52_PAN_15 NRF52_PAN_54 NRF52_PAN_20 NRF52_PAN_55 NRF52_PAN_30 NRF52_PAN_58 NRF52_PAN_31 NRF52_PAN_62 NRF52_PAN_36 NRF52_PAN_63 NRF52_PAN_51 NRF52_PAN_64 CONFIG_GPIO_AS_PINRESET BOARD_PCA10040 NRF52_PAN_12 NRF52 FREERTOS</Define>
+              <MiscControls></MiscControls>
+              <Define> BSP_DEFINES_ONLY BOARD_PCA10040 NRF52_PAN_12 NRF52_PAN_15 NRF52_PAN_20 NRF52_PAN_30 NRF52_PAN_31 NRF52_PAN_36 NRF52_PAN_51 NRF52_PAN_53 NRF52_PAN_54 NRF52_PAN_55 NRF52_PAN_58 NRF52_PAN_62 NRF52_PAN_63 NRF52_PAN_64 CONFIG_GPIO_AS_PINRESET NRF52 FREERTOS</Define>
               <Undefine></Undefine>
               <IncludePath>..\..\config\blinky_FreeRTOS_pca10040;..\..\config;..\..\..\..\..\components\drivers_nrf\clock;..\..\..\..\..\components\drivers_nrf\common;..\..\..\..\..\components\drivers_nrf\config;..\..\..\..\..\components\drivers_nrf\hal;..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd;..\..\..\..\..\components\libraries\util;..\..\..\..\..\components\toolchain;..\..\..\..\bsp;..\..;..\..\..\..\..\external\freertos\config;..\..\..\..\..\external\freertos\portable\ARM\nrf52;..\..\..\..\..\external\freertos\portable\CMSIS\nrf52;..\..\..\..\..\external\freertos\source\include</IncludePath>
             </VariousControls>
@@ -372,9 +381,10 @@
             <SwStkChk>0</SwStkChk>
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
+            <useXO>0</useXO>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define> BSP_DEFINES_ONLY NRF52_PAN_53 NRF52_PAN_15 NRF52_PAN_54 NRF52_PAN_20 NRF52_PAN_55 NRF52_PAN_30 NRF52_PAN_58 NRF52_PAN_31 NRF52_PAN_62 NRF52_PAN_36 NRF52_PAN_63 NRF52_PAN_51 NRF52_PAN_64 CONFIG_GPIO_AS_PINRESET BOARD_PCA10040 NRF52_PAN_12 NRF52 FREERTOS</Define>
+              <Define> BSP_DEFINES_ONLY BOARD_PCA10040 NRF52_PAN_12 NRF52_PAN_15 NRF52_PAN_20 NRF52_PAN_30 NRF52_PAN_31 NRF52_PAN_36 NRF52_PAN_51 NRF52_PAN_53 NRF52_PAN_54 NRF52_PAN_55 NRF52_PAN_58 NRF52_PAN_62 NRF52_PAN_63 NRF52_PAN_64 CONFIG_GPIO_AS_PINRESET NRF52 FREERTOS</Define>
               <Undefine></Undefine>
               <IncludePath></IncludePath>
             </VariousControls>
@@ -387,7 +397,8 @@
             <RepFail>1</RepFail>
             <useFile>0</useFile>
             <TextAddressRange>0x00000000</TextAddressRange>
-            <DataAddressRange>0x00000000</DataAddressRange>
+            <DataAddressRange>0x20000000</DataAddressRange>
+            <pXoBase></pXoBase>
             <ScatterFile></ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
@@ -492,6 +503,11 @@
               <FilePath>..\..\..\..\..\components\drivers_nrf\common\nrf_drv_common.c</FilePath>
             </File>
             <File>
+              <FileName>nrf_nvic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd\nrf_nvic.c</FilePath>
+            </File>
+            <File>
               <FileName>nrf_soc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd\nrf_soc.c</FilePath>
@@ -505,6 +521,11 @@
               <FileName>app_error.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\components\libraries\util\app_error.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_error_weak.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\components\libraries\util\app_error_weak.c</FilePath>
             </File>
             <File>
               <FileName>app_util_platform.c</FileName>
@@ -531,7 +552,7 @@
         <targetInfo name="nrf52832_xxaa" versionMatchMode="fixed"/>
       </targetInfos>
     </package>
-    <package name="nRF_DeviceFamilyPack" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/" vendor="NordicSemiconductor" version="8.3.1">
+    <package name="nRF_DeviceFamilyPack" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/" vendor="NordicSemiconductor" version="8.5.0">
       <targetInfos>
         <targetInfo name="nrf52832_xxaa" versionMatchMode="fixed"/>
       </targetInfos>
@@ -545,8 +566,8 @@
         <targetInfo name="nrf52832_xxaa" versionMatchMode="fixed"/>
       </targetInfos>
     </component>
-    <component Cclass="Device" Cgroup="Startup" Cvendor="NordicSemiconductor" Cversion="8.3.1" condition="nRF51 Series CMSIS Device">
-      <package name="nRF_DeviceFamilyPack" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/" vendor="NordicSemiconductor" version="8.3.1"/>
+    <component Cclass="Device" Cgroup="Startup" Cvendor="NordicSemiconductor" Cversion="8.5.0" condition="nRF51 Series CMSIS Device">
+      <package name="nRF_DeviceFamilyPack" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/" vendor="NordicSemiconductor" version="8.5.0"/>
       <targetInfos>
         <targetInfo name="nrf52832_xxaa" versionMatchMode="fixed"/>
       </targetInfos>

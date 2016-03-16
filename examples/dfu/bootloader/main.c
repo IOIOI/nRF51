@@ -142,6 +142,7 @@ static void ble_stack_init(bool init_softdevice)
 {
     uint32_t         err_code;
     sd_mbr_command_t com = {SD_MBR_COMMAND_INIT_SD, };
+    nrf_clock_lf_cfg_t clock_lf_cfg = NRF_CLOCK_LFCLKSRC;
 
     if (init_softdevice)
     {
@@ -152,7 +153,7 @@ static void ble_stack_init(bool init_softdevice)
     err_code = sd_softdevice_vector_table_base_set(BOOTLOADER_REGION_START);
     APP_ERROR_CHECK(err_code);
    
-    SOFTDEVICE_HANDLER_APPSH_INIT(NRF_CLOCK_LFCLKSRC_XTAL_20_PPM, true);
+    SOFTDEVICE_HANDLER_APPSH_INIT(&clock_lf_cfg, true);
 
     // Enable BLE stack.
     ble_enable_params_t ble_enable_params;

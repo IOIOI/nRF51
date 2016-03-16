@@ -351,7 +351,7 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls>--c99</MiscControls>
-              <Define> NRF52_PAN_8 NRF52_PAN_9 NRF52_PAN_10 NRF52_PAN_11 NRF52_PAN_12 NRF52_PAN_15 NRF52_PAN_16 NRF52_PAN_17 NRF52_PAN_20 NRF52_PAN_23 NRF52_PAN_24 NRF52_PAN_25 NRF52_PAN_26 NRF52_PAN_27 NRF52_PAN_28 NRF52_PAN_29 NRF52_PAN_30 NRF52_PAN_32 NRF52_PAN_33 NRF52_PAN_34 NRF52_PAN_35 NRF52_PAN_36 NRF52_PAN_37 NRF52_PAN_38 NRF52_PAN_39 NRF52_PAN_40 NRF52_PAN_41 NRF52_PAN_42 NRF52_PAN_43 NRF52_PAN_44 NRF52_PAN_46 NRF52_PAN_47 NRF52_PAN_48 NRF52_PAN_49 NRF52_PAN_58 NRF52_PAN_63 NRF52_PAN_64 NRF52_PAN_65 CONFIG_GPIO_AS_PINRESET BOARD_PCA10036 NRF52_PAN_1 NRF52_PAN_2 NRF52_PAN_3 NRF52_PAN_4 NRF52_PAN_7 NRF52 SWI_DISABLE0</Define>
+              <Define> NRF52_PAN_24 NRF52_PAN_25 NRF52_PAN_26 NRF52_PAN_27 NRF52_PAN_28 NRF52_PAN_29 NRF52_PAN_30 NRF52_PAN_32 NRF52_PAN_33 NRF52_PAN_34 NRF52_PAN_35 NRF52_PAN_36 NRF52_PAN_37 NRF52_PAN_38 NRF52_PAN_39 NRF52_PAN_40 NRF52_PAN_41 NRF52_PAN_42 NRF52_PAN_43 NRF52_PAN_44 NRF52_PAN_46 NRF52_PAN_47 NRF52_PAN_48 NRF52_PAN_49 NRF52_PAN_58 NRF52_PAN_63 NRF52_PAN_64 NRF52_PAN_65 CONFIG_GPIO_AS_PINRESET BOARD_PCA10036 NRF52_PAN_1 NRF52_PAN_2 NRF52_PAN_3 NRF52_PAN_4 NRF52_PAN_7 NRF52_PAN_8 NRF52_PAN_9 NRF52_PAN_10 NRF52_PAN_11 NRF52_PAN_12 NRF52_PAN_15 NRF52_PAN_16 NRF52_PAN_17 NRF52_PAN_20 NRF52_PAN_23 NRF52 SWI_DISABLE0</Define>
               <Undefine></Undefine>
               <IncludePath>..\..\config\twi_master_using_app_twi_pca10036;..\..\config;..\..\..\..\..\components\device;..\..\..\..\..\components\drivers_nrf\clock;..\..\..\..\..\components\drivers_nrf\common;..\..\..\..\..\components\drivers_nrf\config;..\..\..\..\..\components\drivers_nrf\delay;..\..\..\..\..\components\drivers_nrf\gpiote;..\..\..\..\..\components\drivers_nrf\hal;..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd;..\..\..\..\..\components\drivers_nrf\rtc;..\..\..\..\..\components\drivers_nrf\twi_master;..\..\..\..\..\components\drivers_nrf\uart;..\..\..\..\..\components\libraries\button;..\..\..\..\..\components\libraries\fifo;..\..\..\..\..\components\libraries\timer;..\..\..\..\..\components\libraries\twi;..\..\..\..\..\components\libraries\uart;..\..\..\..\..\components\libraries\util;..\..\..\..\..\components\toolchain;..\..\..\..\bsp;..\..</IncludePath>
             </VariousControls>
@@ -367,7 +367,7 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define> NRF52_PAN_8 NRF52_PAN_9 NRF52_PAN_10 NRF52_PAN_11 NRF52_PAN_12 NRF52_PAN_15 NRF52_PAN_16 NRF52_PAN_17 NRF52_PAN_20 NRF52_PAN_23 NRF52_PAN_24 NRF52_PAN_25 NRF52_PAN_26 NRF52_PAN_27 NRF52_PAN_28 NRF52_PAN_29 NRF52_PAN_30 NRF52_PAN_32 NRF52_PAN_33 NRF52_PAN_34 NRF52_PAN_35 NRF52_PAN_36 NRF52_PAN_37 NRF52_PAN_38 NRF52_PAN_39 NRF52_PAN_40 NRF52_PAN_41 NRF52_PAN_42 NRF52_PAN_43 NRF52_PAN_44 NRF52_PAN_46 NRF52_PAN_47 NRF52_PAN_48 NRF52_PAN_49 NRF52_PAN_58 NRF52_PAN_63 NRF52_PAN_64 NRF52_PAN_65 CONFIG_GPIO_AS_PINRESET BOARD_PCA10036 NRF52_PAN_1 NRF52_PAN_2 NRF52_PAN_3 NRF52_PAN_4 NRF52_PAN_7 NRF52 SWI_DISABLE0</Define>
+              <Define> NRF52_PAN_24 NRF52_PAN_25 NRF52_PAN_26 NRF52_PAN_27 NRF52_PAN_28 NRF52_PAN_29 NRF52_PAN_30 NRF52_PAN_32 NRF52_PAN_33 NRF52_PAN_34 NRF52_PAN_35 NRF52_PAN_36 NRF52_PAN_37 NRF52_PAN_38 NRF52_PAN_39 NRF52_PAN_40 NRF52_PAN_41 NRF52_PAN_42 NRF52_PAN_43 NRF52_PAN_44 NRF52_PAN_46 NRF52_PAN_47 NRF52_PAN_48 NRF52_PAN_49 NRF52_PAN_58 NRF52_PAN_63 NRF52_PAN_64 NRF52_PAN_65 CONFIG_GPIO_AS_PINRESET BOARD_PCA10036 NRF52_PAN_1 NRF52_PAN_2 NRF52_PAN_3 NRF52_PAN_4 NRF52_PAN_7 NRF52_PAN_8 NRF52_PAN_9 NRF52_PAN_10 NRF52_PAN_11 NRF52_PAN_12 NRF52_PAN_15 NRF52_PAN_16 NRF52_PAN_17 NRF52_PAN_20 NRF52_PAN_23 NRF52 SWI_DISABLE0</Define>
               <Undefine></Undefine>
               <IncludePath></IncludePath>
             </VariousControls>
@@ -495,6 +495,11 @@
               <FilePath>..\..\..\..\..\components\drivers_nrf\uart\nrf_drv_uart.c</FilePath>
             </File>
             <File>
+              <FileName>nrf_nvic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd\nrf_nvic.c</FilePath>
+            </File>
+            <File>
               <FileName>nrf_soc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd\nrf_soc.c</FilePath>
@@ -513,6 +518,11 @@
               <FileName>app_error.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\components\libraries\util\app_error.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_error_weak.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\components\libraries\util\app_error_weak.c</FilePath>
             </File>
             <File>
               <FileName>app_fifo.c</FileName>

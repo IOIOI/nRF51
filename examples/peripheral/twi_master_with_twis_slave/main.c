@@ -78,11 +78,11 @@
  * This string contains list of supported command together with description.
  * It is used in welcome message and in help message if unsupported commmand is detected.
  */
-static const char m_cmd_help_str[] =
-        "   p - Print the EEPROM contents in a form: address, 8 bytes of code, ASCII form.\n"
-        "   w - Write string starting from address 0.\n"
-        "   c - Clear the memory (write 0xff)\n"
-        "   x - Get transmission error byte.";
+static const char m_cmd_help_str[] = 
+        "   p - Print the EEPROM contents in a form: address, 8 bytes of code, ASCII form.\n\r"
+        "   w - Write string starting from address 0.\n\r"
+        "   c - Clear the memory (write 0xff)\n\r"
+        "   x - Get transmission error byte.\n\r";
 
 
 /**
@@ -234,7 +234,7 @@ static void do_print_data(void)
         err_code = eeprom_read(addr, buff, IN_LINE_PRINT_CNT);
         if(NRF_SUCCESS != err_code)
         {
-            UNUSED_VARIABLE(puts("Communication error"));
+            printf("Communication error\n\r");
             return;
         }
 
@@ -250,7 +250,7 @@ static void do_print_data(void)
         {
             safe_putc((char)buff[n]);
         }
-        UNUSED_VARIABLE(putc('\n', stdout));
+        printf("\n\r");
     }
     UNUSED_VARIABLE(fflush(stdout));
 }
@@ -330,7 +330,7 @@ static void do_string_write(void)
     char str[(EEPROM_SIM_SIZE)+1];
     size_t addr = 0;
 
-    UNUSED_VARIABLE(puts("Waiting for string to write:"));
+    printf("Waiting for string to write:\n\r");
     safe_gets(str, sizeof(str)-1);
     while(1)
     {
@@ -341,13 +341,13 @@ static void do_string_write(void)
         err_code = eeprom_write(addr, (uint8_t const *)str+addr, to_write);
         if(NRF_SUCCESS != err_code)
         {
-            UNUSED_VARIABLE(puts("Communication error"));
+            printf("Communication error\n\r");
             return;
         }
         addr += to_write;
     }
 
-    UNUSED_VARIABLE(puts("OK"));
+    printf("OK\n\r");
 }
 
 /**
@@ -366,11 +366,11 @@ static void do_clear_eeprom(void)
         err_code = eeprom_write(addr, &clear_val, 1);
         if(NRF_SUCCESS != err_code)
         {
-            UNUSED_VARIABLE(puts("Communication error"));
+            printf("Communication error\n\r");
             return;
         }
     }
-    UNUSED_VARIABLE(puts("Memory erased"));
+    printf("Memory erased\n\r");
     UNUSED_VARIABLE(fflush(stdout));
 }
 
@@ -445,7 +445,7 @@ int main(void)
         CTS_PIN_NUMBER,
         APP_UART_FLOW_CONTROL_ENABLED,
         false,
-        UART_BAUDRATE_BAUDRATE_Baud38400
+        UART_BAUDRATE_BAUDRATE_Baud115200
     };
 
     APP_UART_FIFO_INIT(&comm_params,
@@ -467,11 +467,11 @@ int main(void)
 
 
     /* Welcome message */
-    UNUSED_VARIABLE(puts(
+    printf(
             "This is TWIS and TWI usage example\n"
-            "You can access simulated EEPROM memory using following commands:"
-    ));
-    UNUSED_VARIABLE(puts(m_cmd_help_str));
+            "You can access simulated EEPROM memory using following commands:\n\r"
+    );
+    printf("%s",m_cmd_help_str);
     
     UNUSED_VARIABLE(fflush(stdout));
 
@@ -505,16 +505,16 @@ int main(void)
             break;
         default:
             printf("You selected %c\n", (char)c);
-            UNUSED_VARIABLE(puts("Unknown command, try one of the following:"));
-            UNUSED_VARIABLE(puts(m_cmd_help_str));
+            printf("Unknown command, try one of the following:\n\r");
+            printf("%s",m_cmd_help_str);
             break;
         }
         if(eeprom_simulator_error_check())
         {
-            UNUSED_VARIABLE(puts(
+            printf(
                     "WARNING: EEPROM transmission error detected.\n"
-                    "Use 'x' command to read error word."
-            ));
+                    "Use 'x' command to read error word.\n\r"
+            );
             UNUSED_VARIABLE(fflush(stdout));
         }
     }

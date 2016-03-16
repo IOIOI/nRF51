@@ -148,7 +148,7 @@
         </option>
         <option>
           <name>OGUseCmsis</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>OGUseCmsisDspLib</name>
@@ -246,7 +246,7 @@
         </option>
         <option>
           <name>CCDebugInfo</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>IEndianMode</name>
@@ -318,9 +318,9 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\headers</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\headers\nrf51</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..\..</state>
-          <state>$TOOLKIT_DIR$\CMSIS\Include</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -470,7 +470,7 @@
         </option>
         <option>
           <name>ADebug</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>AltRegisterNames</name>
@@ -586,6 +586,7 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\headers</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\headers\nrf51</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..\..</state>
         </option>
@@ -995,7 +996,7 @@
   <group>
   <name>nRF_SoftDevice</name>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\doc\s130_nrf51_2.0.0-7.alpha_licence_agreement.txt</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\doc\s130_nrf51_2.0.0_licence_agreement.txt</name>
     </file>
   </group>
   <group>

@@ -148,7 +148,7 @@
         </option>
         <option>
           <name>OGUseCmsis</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>OGUseCmsisDspLib</name>
@@ -180,22 +180,22 @@
           <state>__HEAP_SIZE=0</state>
           <state>BLE_STACK_SUPPORT_REQD</state>
           <state>S132</state>
-          <state>NRF52_PAN_53</state>
-          <state>NRF52_PAN_15</state>
-          <state>NRF52_PAN_54</state>
-          <state>NRF52_PAN_20</state>
-          <state>NRF52_PAN_55</state>
-          <state>NRF52_PAN_30</state>
-          <state>NRF52_PAN_58</state>
-          <state>NRF52_PAN_31</state>
-          <state>NRF52_PAN_62</state>
-          <state>NRF52_PAN_36</state>
-          <state>NRF52_PAN_63</state>
-          <state>NRF52_PAN_51</state>
-          <state>NRF52_PAN_64</state>
-          <state>CONFIG_GPIO_AS_PINRESET</state>
           <state>BOARD_PCA10040</state>
           <state>NRF52_PAN_12</state>
+          <state>NRF52_PAN_15</state>
+          <state>NRF52_PAN_20</state>
+          <state>NRF52_PAN_30</state>
+          <state>NRF52_PAN_31</state>
+          <state>NRF52_PAN_36</state>
+          <state>NRF52_PAN_51</state>
+          <state>NRF52_PAN_53</state>
+          <state>NRF52_PAN_54</state>
+          <state>NRF52_PAN_55</state>
+          <state>NRF52_PAN_58</state>
+          <state>NRF52_PAN_62</state>
+          <state>NRF52_PAN_63</state>
+          <state>NRF52_PAN_64</state>
+          <state>CONFIG_GPIO_AS_PINRESET</state>
           <state>BSP_UART_SUPPORT</state>
           <state>SOFTDEVICE_PRESENT</state>
           <state>NRF52</state>
@@ -265,7 +265,7 @@
         </option>
         <option>
           <name>CCDebugInfo</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>IEndianMode</name>
@@ -334,18 +334,22 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\ble_db_discovery</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\ble_services\ble_rscs_c</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\common</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\device_manager</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\peer_manager</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_nrf\common</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_nrf\delay</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_nrf\gpiote</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_nrf\hal</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_nrf\pstorage</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_nrf\uart</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\button</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\crc16</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\experimental_section_vars</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\fds</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\fds\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\fifo</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\fstorage</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\fstorage\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\timer</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\trace</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\uart</state>
@@ -354,8 +358,9 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\softdevice\s132\headers</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\softdevice\s132\headers\nrf52</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\bsp</state>
-          <state>$TOOLKIT_DIR$\CMSIS\Include</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\external\segger_rtt</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -505,7 +510,7 @@
         </option>
         <option>
           <name>ADebug</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>AltRegisterNames</name>
@@ -516,22 +521,22 @@
           <state>__HEAP_SIZE=0</state>
           <state>BLE_STACK_SUPPORT_REQD</state>
           <state>S132</state>
-          <state>NRF52_PAN_53</state>
-          <state>NRF52_PAN_15</state>
-          <state>NRF52_PAN_54</state>
-          <state>NRF52_PAN_20</state>
-          <state>NRF52_PAN_55</state>
-          <state>NRF52_PAN_30</state>
-          <state>NRF52_PAN_58</state>
-          <state>NRF52_PAN_31</state>
-          <state>NRF52_PAN_62</state>
-          <state>NRF52_PAN_36</state>
-          <state>NRF52_PAN_63</state>
-          <state>NRF52_PAN_51</state>
-          <state>NRF52_PAN_64</state>
-          <state>CONFIG_GPIO_AS_PINRESET</state>
           <state>BOARD_PCA10040</state>
           <state>NRF52_PAN_12</state>
+          <state>NRF52_PAN_15</state>
+          <state>NRF52_PAN_20</state>
+          <state>NRF52_PAN_30</state>
+          <state>NRF52_PAN_31</state>
+          <state>NRF52_PAN_36</state>
+          <state>NRF52_PAN_51</state>
+          <state>NRF52_PAN_53</state>
+          <state>NRF52_PAN_54</state>
+          <state>NRF52_PAN_55</state>
+          <state>NRF52_PAN_58</state>
+          <state>NRF52_PAN_62</state>
+          <state>NRF52_PAN_63</state>
+          <state>NRF52_PAN_64</state>
+          <state>CONFIG_GPIO_AS_PINRESET</state>
           <state>BSP_UART_SUPPORT</state>
           <state>SOFTDEVICE_PRESENT</state>
           <state>NRF52</state>
@@ -637,18 +642,22 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\ble_db_discovery</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\ble_services\ble_rscs_c</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\common</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\device_manager</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\peer_manager</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_nrf\common</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_nrf\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_nrf\delay</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_nrf\gpiote</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_nrf\hal</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_nrf\pstorage</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_nrf\uart</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\button</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\crc16</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\experimental_section_vars</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\fds</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\fds\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\fifo</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\fstorage</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\fstorage\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\timer</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\trace</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\uart</state>
@@ -657,7 +666,9 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\softdevice\s132\headers</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\softdevice\s132\headers\nrf52</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\bsp</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\..\external\segger_rtt</state>
         </option>
         <option>
           <name>AExtraOptionsCheckV2</name>
@@ -1044,19 +1055,13 @@
   <group>
   <name>nRF_Libraries</name>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt\RTT_Syscalls_IAR.c</name>
-    </file>
-    <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT.c</name>
-    </file>
-    <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT_printf.c</name>
-    </file>
-    <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\button\app_button.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\util\app_error.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\util\app_error_weak.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\fifo\app_fifo.c</name>
@@ -1068,6 +1073,18 @@
     <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\trace\app_trace.c</name>
     </file>
     <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\util\app_util_platform.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\crc16\crc16.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\fds\fds.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\fstorage\fstorage.c</name>
+    </file>
+    <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\util\nrf_assert.c</name>
     </file>
     <file>
@@ -1075,6 +1092,9 @@
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\uart\retarget.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\libraries\util\sdk_mapped_flags.c</name>
     </file>
   </group>
   <group>
@@ -1103,9 +1123,6 @@
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_nrf\uart\nrf_drv_uart.c</name>
     </file>
-    <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\drivers_nrf\pstorage\pstorage.c</name>
-    </file>
   </group>
   <group>
   <name>Board Support</name>
@@ -1123,12 +1140,27 @@
     </file>
   </group>
   <group>
+  <name>nRF_Segger_RTT</name>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\external\segger_rtt\RTT_Syscalls_IAR.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\external\segger_rtt\SEGGER_RTT.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\external\segger_rtt\SEGGER_RTT_printf.c</name>
+    </file>
+  </group>
+  <group>
   <name>nRF_BLE</name>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\common\ble_advdata.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\common\ble_conn_params.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\common\ble_conn_state.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\ble_db_discovery\ble_db_discovery.c</name>
@@ -1140,7 +1172,43 @@
     <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\common\ble_srv_common.c</name>
     </file>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\device_manager\device_manager_central.c</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\peer_manager\gatt_cache_manager.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\peer_manager\gattc_cache_manager.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\peer_manager\gatts_cache_manager.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\peer_manager\id_manager.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\peer_manager\peer_data.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\peer_manager\peer_data_storage.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\peer_manager\peer_database.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\peer_manager\peer_id.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\peer_manager\peer_manager.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\peer_manager\pm_buffer.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\peer_manager\pm_mutex.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\peer_manager\security_dispatcher.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\ble\peer_manager\security_manager.c</name>
     </file>
   </group>
   <group>
@@ -1155,7 +1223,7 @@
   <group>
   <name>nRF_SoftDevice</name>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\softdevice\s132\doc\s132_nrf52_2.0.0-7.alpha_licence_agreement.txt</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\softdevice\s132\doc\s132_nrf52_2.0.0_licence_agreement.txt</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\..\components\softdevice\common\softdevice_handler\softdevice_handler.c</name>

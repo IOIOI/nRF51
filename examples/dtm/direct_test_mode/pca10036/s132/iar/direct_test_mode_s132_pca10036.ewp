@@ -148,7 +148,7 @@
         </option>
         <option>
           <name>OGUseCmsis</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>OGUseCmsisDspLib</name>
@@ -178,16 +178,6 @@
         <option>
           <name>CCDefines</name>
           <state>BSP_DEFINES_ONLY</state>
-          <state>NRF52_PAN_8</state>
-          <state>NRF52_PAN_9</state>
-          <state>NRF52_PAN_10</state>
-          <state>NRF52_PAN_11</state>
-          <state>NRF52_PAN_12</state>
-          <state>NRF52_PAN_15</state>
-          <state>NRF52_PAN_16</state>
-          <state>NRF52_PAN_17</state>
-          <state>NRF52_PAN_20</state>
-          <state>NRF52_PAN_23</state>
           <state>NRF52_PAN_24</state>
           <state>NRF52_PAN_25</state>
           <state>NRF52_PAN_26</state>
@@ -223,6 +213,16 @@
           <state>NRF52_PAN_3</state>
           <state>NRF52_PAN_4</state>
           <state>NRF52_PAN_7</state>
+          <state>NRF52_PAN_8</state>
+          <state>NRF52_PAN_9</state>
+          <state>NRF52_PAN_10</state>
+          <state>NRF52_PAN_11</state>
+          <state>NRF52_PAN_12</state>
+          <state>NRF52_PAN_15</state>
+          <state>NRF52_PAN_16</state>
+          <state>NRF52_PAN_17</state>
+          <state>NRF52_PAN_20</state>
+          <state>NRF52_PAN_23</state>
           <state>S132</state>
           <state>NRF52</state>
           <state>SOFTDEVICE_PRESENT</state>
@@ -290,7 +290,7 @@
         </option>
         <option>
           <name>CCDebugInfo</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>IEndianMode</name>
@@ -362,9 +362,9 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\headers</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\headers\nrf52</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..\..</state>
-          <state>$TOOLKIT_DIR$\CMSIS\Include</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -514,7 +514,7 @@
         </option>
         <option>
           <name>ADebug</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>AltRegisterNames</name>
@@ -523,16 +523,6 @@
         <option>
       <name>ADefines</name>
           <state>BSP_DEFINES_ONLY</state>
-          <state>NRF52_PAN_8</state>
-          <state>NRF52_PAN_9</state>
-          <state>NRF52_PAN_10</state>
-          <state>NRF52_PAN_11</state>
-          <state>NRF52_PAN_12</state>
-          <state>NRF52_PAN_15</state>
-          <state>NRF52_PAN_16</state>
-          <state>NRF52_PAN_17</state>
-          <state>NRF52_PAN_20</state>
-          <state>NRF52_PAN_23</state>
           <state>NRF52_PAN_24</state>
           <state>NRF52_PAN_25</state>
           <state>NRF52_PAN_26</state>
@@ -568,6 +558,16 @@
           <state>NRF52_PAN_3</state>
           <state>NRF52_PAN_4</state>
           <state>NRF52_PAN_7</state>
+          <state>NRF52_PAN_8</state>
+          <state>NRF52_PAN_9</state>
+          <state>NRF52_PAN_10</state>
+          <state>NRF52_PAN_11</state>
+          <state>NRF52_PAN_12</state>
+          <state>NRF52_PAN_15</state>
+          <state>NRF52_PAN_16</state>
+          <state>NRF52_PAN_17</state>
+          <state>NRF52_PAN_20</state>
+          <state>NRF52_PAN_23</state>
           <state>S132</state>
           <state>NRF52</state>
           <state>SOFTDEVICE_PRESENT</state>
@@ -674,6 +674,7 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\headers</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\headers\nrf52</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..\..</state>
         </option>
@@ -1083,7 +1084,7 @@
   <group>
   <name>nRF_SoftDevice</name>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\doc\s132_nrf52_2.0.0-7.alpha_licence_agreement.txt</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\doc\s132_nrf52_2.0.0_licence_agreement.txt</name>
     </file>
   </group>
   <group>

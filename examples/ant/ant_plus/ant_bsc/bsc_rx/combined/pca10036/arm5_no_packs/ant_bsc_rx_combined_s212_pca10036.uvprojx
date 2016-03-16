@@ -14,14 +14,14 @@
         <TargetCommonOption>
           <Device>nRF52832_xxAA</Device>
           <Vendor>Nordic Semiconductor</Vendor>
-          <PackID>NordicSemiconductor.nRF_DeviceFamilyPack.8.3.1</PackID>
+          <PackID>NordicSemiconductor.nRF_DeviceFamilyPack.8.5.0</PackID>
           <PackURL>http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/</PackURL>
           <Cpu>IROM(0x00000000,0x80000) IRAM(0x20000000,0x10000) CPUTYPE("Cortex-M4") FPU2 CLOCK(64000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
-          <FlashDriverDll>UL2CM3(-UM0364FCE -O78 -S0 -C0 -TO18 -TC16000000 -TP21 -TDS800D -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO15 -FD20000000 -FC2000 -FN1 -FF0nRF52xxx -FS00 -FL0200000)</FlashDriverDll>
+          <FlashDriverDll></FlashDriverDll>
           <DeviceId>0</DeviceId>
-          <RegisterFile>core.h</RegisterFile>
+          <RegisterFile>$$Device:nRF52832_xxAA$Device\Include\nrf.h</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>
@@ -84,6 +84,8 @@
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
+            <nStopA1X>0</nStopA1X>
+            <nStopA2X>0</nStopA2X>
           </AfterMake>
           <SelectedForBatchBuild>0</SelectedForBatchBuild>
           <SVCSIdString></SVCSIdString>
@@ -224,8 +226,9 @@
             <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
+            <nSecure>0</nSecure>
             <RoSelD>3</RoSelD>
-            <RwSelD>5</RwSelD>
+            <RwSelD>3</RwSelD>
             <CodeSel>0</CodeSel>
             <OptFeed>0</OptFeed>
             <NoZi1>0</NoZi1>
@@ -331,8 +334,8 @@
               </OCR_RVCT8>
               <OCR_RVCT9>
                 <Type>0</Type>
-                <StartAddress>0x20000a00</StartAddress>
-                <Size>0x7600</Size>
+                <StartAddress>0x20000a80</StartAddress>
+                <Size>0x7580</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
@@ -356,11 +359,17 @@
             <wLevel>0</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
+            <uC99>1</uC99>
+            <useXO>0</useXO>
+            <v6Lang>0</v6Lang>
+            <v6LangP>0</v6LangP>
+            <vShortEn>0</vShortEn>
+            <vShortWch>0</vShortWch>
             <VariousControls>
-              <MiscControls>--c99</MiscControls>
-              <Define> ANT_STACK_SUPPORT_REQD DISPLAY_TYPE=0x79 ENABLE_DEBUG_LOG_SUPPORT TRACE_BSC_GENERAL_ENABLE TRACE_BSC_PAGE_0_ENABLE TRACE_BSC_PAGE_1_ENABLE TRACE_BSC_PAGE_2_ENABLE TRACE_BSC_PAGE_3_ENABLE TRACE_BSC_PAGE_4_ENABLE TRACE_BSC_PAGE_5_ENABLE TRACE_BSC_COMB_PAGE_0_ENABLE S212 NRF52_PAN_8 NRF52_PAN_9 NRF52_PAN_10 NRF52_PAN_11 NRF52_PAN_12 NRF52_PAN_15 NRF52_PAN_16 NRF52_PAN_17 NRF52_PAN_20 NRF52_PAN_23 NRF52_PAN_24 NRF52_PAN_25 NRF52_PAN_26 NRF52_PAN_27 NRF52_PAN_28 NRF52_PAN_29 NRF52_PAN_30 NRF52_PAN_32 NRF52_PAN_33 NRF52_PAN_34 NRF52_PAN_35 NRF52_PAN_36 NRF52_PAN_37 NRF52_PAN_38 NRF52_PAN_39 NRF52_PAN_40 NRF52_PAN_41 NRF52_PAN_42 NRF52_PAN_43 NRF52_PAN_44 NRF52_PAN_46 NRF52_PAN_47 NRF52_PAN_48 NRF52_PAN_49 NRF52_PAN_58 NRF52_PAN_63 NRF52_PAN_64 NRF52_PAN_65 CONFIG_GPIO_AS_PINRESET BOARD_PCA10036 NRF52_PAN_1 NRF52_PAN_2 NRF52_PAN_3 NRF52_PAN_4 NRF52_PAN_7 SWI_DISABLE0 NRF52 SOFTDEVICE_PRESENT NRF_LOG_USES_UART=1</Define>
+              <MiscControls></MiscControls>
+              <Define> ANT_STACK_SUPPORT_REQD DISPLAY_TYPE=0x79 ENABLE_DEBUG_LOG_SUPPORT TRACE_BSC_GENERAL_ENABLE TRACE_BSC_PAGE_0_ENABLE TRACE_BSC_PAGE_1_ENABLE TRACE_BSC_PAGE_2_ENABLE TRACE_BSC_PAGE_3_ENABLE TRACE_BSC_PAGE_4_ENABLE TRACE_BSC_PAGE_5_ENABLE TRACE_BSC_COMB_PAGE_0_ENABLE S212 NRF52_PAN_24 NRF52_PAN_25 NRF52_PAN_26 NRF52_PAN_27 NRF52_PAN_28 NRF52_PAN_29 NRF52_PAN_30 NRF52_PAN_32 NRF52_PAN_33 NRF52_PAN_34 NRF52_PAN_35 NRF52_PAN_36 NRF52_PAN_37 NRF52_PAN_38 NRF52_PAN_39 NRF52_PAN_40 NRF52_PAN_41 NRF52_PAN_42 NRF52_PAN_43 NRF52_PAN_44 NRF52_PAN_46 NRF52_PAN_47 NRF52_PAN_48 NRF52_PAN_49 NRF52_PAN_58 NRF52_PAN_63 NRF52_PAN_64 NRF52_PAN_65 CONFIG_GPIO_AS_PINRESET BOARD_PCA10036 NRF52_PAN_1 NRF52_PAN_2 NRF52_PAN_3 NRF52_PAN_4 NRF52_PAN_7 NRF52_PAN_8 NRF52_PAN_9 NRF52_PAN_10 NRF52_PAN_11 NRF52_PAN_12 NRF52_PAN_15 NRF52_PAN_16 NRF52_PAN_17 NRF52_PAN_20 NRF52_PAN_23 SWI_DISABLE0 NRF52 SOFTDEVICE_PRESENT NRF_LOG_USES_UART=1</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\config\ant_bsc_rx_combined_s212_pca10036;..\..\..\config;..\..\..\..\..\..\..\..\components\ant\ant_channel_config;..\..\..\..\..\..\..\..\components\ant\ant_key_manager;..\..\..\..\..\..\..\..\components\ant\ant_key_manager\config;..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc;..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc\pages;..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc\pages\logger;..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc\utils;..\..\..\..\..\..\..\..\components\ant\ant_stack_config;..\..\..\..\..\..\..\..\components\ant\ant_state_indicator;..\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt;..\..\..\..\..\..\..\..\components\drivers_nrf\common;..\..\..\..\..\..\..\..\components\drivers_nrf\config;..\..\..\..\..\..\..\..\components\drivers_nrf\delay;..\..\..\..\..\..\..\..\components\drivers_nrf\gpiote;..\..\..\..\..\..\..\..\components\drivers_nrf\hal;..\..\..\..\..\..\..\..\components\drivers_nrf\uart;..\..\..\..\..\..\..\..\components\libraries\button;..\..\..\..\..\..\..\..\components\libraries\fifo;..\..\..\..\..\..\..\..\components\libraries\timer;..\..\..\..\..\..\..\..\components\libraries\trace;..\..\..\..\..\..\..\..\components\libraries\uart;..\..\..\..\..\..\..\..\components\libraries\util;..\..\..\..\..\..\..\..\components\softdevice\common\softdevice_handler;..\..\..\..\..\..\..\..\components\softdevice\s212\headers;..\..\..\..\..\..\..\..\components\softdevice\s212\headers\nrf52;..\..\..\..\..\..\..\..\components\toolchain;..\..\..\..\..\..\..\bsp</IncludePath>
+              <IncludePath>..\..\..\config;..\..\..\..\..\..\..\..\components\ant\ant_channel_config;..\..\..\..\..\..\..\..\components\ant\ant_key_manager;..\..\..\..\..\..\..\..\components\ant\ant_key_manager\config;..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc;..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc\pages;..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc\pages\logger;..\..\..\..\..\..\..\..\components\ant\ant_profiles\ant_bsc\utils;..\..\..\..\..\..\..\..\components\ant\ant_stack_config;..\..\..\..\..\..\..\..\components\ant\ant_state_indicator;..\..\..\..\..\..\..\..\components\drivers_nrf\common;..\..\..\..\..\..\..\..\components\drivers_nrf\config;..\..\..\..\..\..\..\..\components\drivers_nrf\delay;..\..\..\..\..\..\..\..\components\drivers_nrf\gpiote;..\..\..\..\..\..\..\..\components\drivers_nrf\hal;..\..\..\..\..\..\..\..\components\drivers_nrf\uart;..\..\..\..\..\..\..\..\components\libraries\button;..\..\..\..\..\..\..\..\components\libraries\fifo;..\..\..\..\..\..\..\..\components\libraries\timer;..\..\..\..\..\..\..\..\components\libraries\trace;..\..\..\..\..\..\..\..\components\libraries\uart;..\..\..\..\..\..\..\..\components\libraries\util;..\..\..\..\..\..\..\..\components\softdevice\common\softdevice_handler;..\..\..\..\..\..\..\..\components\softdevice\s212\headers;..\..\..\..\..\..\..\..\components\softdevice\s212\headers\nrf52;..\..\..\..\..\..\..\..\components\toolchain;..\..\..\..\..\..\..\bsp;..\..\..\..\..\..\..\..\external\segger_rtt</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -372,9 +381,10 @@
             <SwStkChk>0</SwStkChk>
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
+            <useXO>0</useXO>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define> ANT_STACK_SUPPORT_REQD DISPLAY_TYPE=0x79 ENABLE_DEBUG_LOG_SUPPORT TRACE_BSC_GENERAL_ENABLE TRACE_BSC_PAGE_0_ENABLE TRACE_BSC_PAGE_1_ENABLE TRACE_BSC_PAGE_2_ENABLE TRACE_BSC_PAGE_3_ENABLE TRACE_BSC_PAGE_4_ENABLE TRACE_BSC_PAGE_5_ENABLE TRACE_BSC_COMB_PAGE_0_ENABLE S212 NRF52_PAN_8 NRF52_PAN_9 NRF52_PAN_10 NRF52_PAN_11 NRF52_PAN_12 NRF52_PAN_15 NRF52_PAN_16 NRF52_PAN_17 NRF52_PAN_20 NRF52_PAN_23 NRF52_PAN_24 NRF52_PAN_25 NRF52_PAN_26 NRF52_PAN_27 NRF52_PAN_28 NRF52_PAN_29 NRF52_PAN_30 NRF52_PAN_32 NRF52_PAN_33 NRF52_PAN_34 NRF52_PAN_35 NRF52_PAN_36 NRF52_PAN_37 NRF52_PAN_38 NRF52_PAN_39 NRF52_PAN_40 NRF52_PAN_41 NRF52_PAN_42 NRF52_PAN_43 NRF52_PAN_44 NRF52_PAN_46 NRF52_PAN_47 NRF52_PAN_48 NRF52_PAN_49 NRF52_PAN_58 NRF52_PAN_63 NRF52_PAN_64 NRF52_PAN_65 CONFIG_GPIO_AS_PINRESET BOARD_PCA10036 NRF52_PAN_1 NRF52_PAN_2 NRF52_PAN_3 NRF52_PAN_4 NRF52_PAN_7 SWI_DISABLE0 NRF52 SOFTDEVICE_PRESENT NRF_LOG_USES_UART=1</Define>
+              <Define> ANT_STACK_SUPPORT_REQD DISPLAY_TYPE=0x79 ENABLE_DEBUG_LOG_SUPPORT TRACE_BSC_GENERAL_ENABLE TRACE_BSC_PAGE_0_ENABLE TRACE_BSC_PAGE_1_ENABLE TRACE_BSC_PAGE_2_ENABLE TRACE_BSC_PAGE_3_ENABLE TRACE_BSC_PAGE_4_ENABLE TRACE_BSC_PAGE_5_ENABLE TRACE_BSC_COMB_PAGE_0_ENABLE S212 NRF52_PAN_24 NRF52_PAN_25 NRF52_PAN_26 NRF52_PAN_27 NRF52_PAN_28 NRF52_PAN_29 NRF52_PAN_30 NRF52_PAN_32 NRF52_PAN_33 NRF52_PAN_34 NRF52_PAN_35 NRF52_PAN_36 NRF52_PAN_37 NRF52_PAN_38 NRF52_PAN_39 NRF52_PAN_40 NRF52_PAN_41 NRF52_PAN_42 NRF52_PAN_43 NRF52_PAN_44 NRF52_PAN_46 NRF52_PAN_47 NRF52_PAN_48 NRF52_PAN_49 NRF52_PAN_58 NRF52_PAN_63 NRF52_PAN_64 NRF52_PAN_65 CONFIG_GPIO_AS_PINRESET BOARD_PCA10036 NRF52_PAN_1 NRF52_PAN_2 NRF52_PAN_3 NRF52_PAN_4 NRF52_PAN_7 NRF52_PAN_8 NRF52_PAN_9 NRF52_PAN_10 NRF52_PAN_11 NRF52_PAN_12 NRF52_PAN_15 NRF52_PAN_16 NRF52_PAN_17 NRF52_PAN_20 NRF52_PAN_23 SWI_DISABLE0 NRF52 SOFTDEVICE_PRESENT NRF_LOG_USES_UART=1</Define>
               <Undefine></Undefine>
               <IncludePath></IncludePath>
             </VariousControls>
@@ -387,7 +397,8 @@
             <RepFail>1</RepFail>
             <useFile>0</useFile>
             <TextAddressRange>0x00000000</TextAddressRange>
-            <DataAddressRange>0x00000000</DataAddressRange>
+            <DataAddressRange>0x20000000</DataAddressRange>
+            <pXoBase></pXoBase>
             <ScatterFile></ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
@@ -537,21 +548,6 @@
           <GroupName>nRF_Libraries</GroupName>
           <Files>
             <File>
-              <FileName>RTT_Syscalls_KEIL.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt\RTT_Syscalls_KEIL.c</FilePath>
-            </File>
-            <File>
-              <FileName>SEGGER_RTT.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT.c</FilePath>
-            </File>
-            <File>
-              <FileName>SEGGER_RTT_printf.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT_printf.c</FilePath>
-            </File>
-            <File>
               <FileName>app_button.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\..\..\components\libraries\button\app_button.c</FilePath>
@@ -560,6 +556,11 @@
               <FileName>app_error.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\..\..\components\libraries\util\app_error.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_error_weak.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\..\..\components\libraries\util\app_error_weak.c</FilePath>
             </File>
             <File>
               <FileName>app_fifo.c</FileName>
@@ -577,6 +578,11 @@
               <FilePath>..\..\..\..\..\..\..\..\components\libraries\trace\app_trace.c</FilePath>
             </File>
             <File>
+              <FileName>app_util_platform.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\..\..\components\libraries\util\app_util_platform.c</FilePath>
+            </File>
+            <File>
               <FileName>nrf_assert.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\..\..\components\libraries\util\nrf_assert.c</FilePath>
@@ -590,6 +596,26 @@
               <FileName>retarget.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\..\..\components\libraries\uart\retarget.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>nRF_Segger_RTT</GroupName>
+          <Files>
+            <File>
+              <FileName>RTT_Syscalls_KEIL.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\..\..\external\segger_rtt\RTT_Syscalls_KEIL.c</FilePath>
+            </File>
+            <File>
+              <FileName>SEGGER_RTT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\..\..\external\segger_rtt\SEGGER_RTT.c</FilePath>
+            </File>
+            <File>
+              <FileName>SEGGER_RTT_printf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\..\..\external\segger_rtt\SEGGER_RTT_printf.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -616,7 +642,7 @@
         <targetInfo name="nrf52832_xxaa" versionMatchMode="fixed"/>
       </targetInfos>
     </package>
-    <package name="nRF_DeviceFamilyPack" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/" vendor="NordicSemiconductor" version="8.3.1">
+    <package name="nRF_DeviceFamilyPack" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/" vendor="NordicSemiconductor" version="8.5.0">
       <targetInfos>
         <targetInfo name="nrf52832_xxaa" versionMatchMode="fixed"/>
       </targetInfos>
@@ -630,8 +656,8 @@
         <targetInfo name="nrf52832_xxaa" versionMatchMode="fixed"/>
       </targetInfos>
     </component>
-    <component Cclass="Device" Cgroup="Startup" Cvendor="NordicSemiconductor" Cversion="8.3.1" condition="nRF51 Series CMSIS Device">
-      <package name="nRF_DeviceFamilyPack" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/" vendor="NordicSemiconductor" version="8.3.1"/>
+    <component Cclass="Device" Cgroup="Startup" Cvendor="NordicSemiconductor" Cversion="8.5.0" condition="nRF51 Series CMSIS Device">
+      <package name="nRF_DeviceFamilyPack" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_DeviceFamilyPack/" vendor="NordicSemiconductor" version="8.5.0"/>
       <targetInfos>
         <targetInfo name="nrf52832_xxaa" versionMatchMode="fixed"/>
       </targetInfos>

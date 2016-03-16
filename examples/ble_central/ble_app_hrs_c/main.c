@@ -36,8 +36,8 @@
 #include "bsp_btn_ble.h"
 #include "nrf_log.h"
 
-#define CENTRAL_LINK_COUNT         1                                  /**<number of central links used by the application. When changing this number remember to adjust the RAM settings*/
-#define PERIPHERAL_LINK_COUNT      0                                  /**<number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
+#define CENTRAL_LINK_COUNT         1                                  /**< Number of central links used by the application. When changing this number remember to adjust the RAM settings*/
+#define PERIPHERAL_LINK_COUNT      0                                  /**< Number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
 
 #define STRING_BUFFER_LEN          50
 #define BOND_DELETE_ALL_BUTTON_ID  0                                  /**< Button used for deleting all bonded centrals during startup. */
@@ -50,6 +50,8 @@
 
 #define SEC_PARAM_BOND             1                                  /**< Perform bonding. */
 #define SEC_PARAM_MITM             1                                  /**< Man In The Middle protection not required. */
+#define SEC_PARAM_LESC             0                                  /**< LE Secure Connections not enabled. */
+#define SEC_PARAM_KEYPRESS         0                                  /**< Keypress notifications not enabled. */
 #define SEC_PARAM_IO_CAPABILITIES  BLE_GAP_IO_CAPS_NONE               /**< No I/O capabilities. */
 #define SEC_PARAM_OOB              0                                  /**< Out Of Band data not available. */
 #define SEC_PARAM_MIN_KEY_SIZE     7                                  /**< Minimum encryption key size. */
@@ -143,6 +145,22 @@ void uart_error_handle(app_uart_evt_t * p_event)
         APP_ERROR_HANDLER(p_event->data.error_code);
     }
 }
+
+
+/**@brief Function for handling database discovery events.
+ *
+ * @details This function is callback function to handle events from the database discovery module.
+ *          Depending on the UUIDs that are discovered, this function should forward the events
+ *          to their respective services.
+ *
+ * @param[in] p_event  Pointer to the database discovery event.
+ */
+static void db_disc_handler(ble_db_discovery_evt_t * p_evt)
+{
+    ble_hrs_on_db_disc_evt(&m_ble_hrs_c, p_evt);
+    ble_bas_on_db_disc_evt(&m_ble_bas_c, p_evt);
+}
+
 
 /**@brief Callback handling device manager events.
  *
@@ -406,7 +424,14 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
                 APPL_LOG_DEBUG("[APPL]: Connection Request timed out.\r\n");
             }
             break;
-
+        case BLE_GAP_EVT_CONNECTED:
+        {
+            err_code = ble_hrs_c_handles_assign(&m_ble_hrs_c, p_gap_evt->conn_handle, NULL);
+            APP_ERROR_CHECK(err_code);
+            err_code = ble_bas_c_handles_assign(&m_ble_bas_c, p_gap_evt->conn_handle, NULL);
+            APP_ERROR_CHECK(err_code);
+            break;
+        }
         case BLE_GAP_EVT_CONN_PARAM_UPDATE_REQUEST:
             // Accepting parameters requested by peer.
             err_code = sd_ble_gap_conn_param_update(p_gap_evt->conn_handle,
@@ -485,9 +510,11 @@ static void sys_evt_dispatch(uint32_t sys_evt)
 static void ble_stack_init(void)
 {
     uint32_t err_code;
-
+		
+    nrf_clock_lf_cfg_t clock_lf_cfg = NRF_CLOCK_LFCLKSRC;
+		
     // Initialize the SoftDevice handler module.
-    SOFTDEVICE_HANDLER_INIT(NRF_CLOCK_LFCLKSRC_XTAL_20_PPM, NULL);
+    SOFTDEVICE_HANDLER_INIT(&clock_lf_cfg, NULL);
     
     ble_enable_params_t ble_enable_params;
     err_code = softdevice_enable_get_default_config(CENTRAL_LINK_COUNT,
@@ -541,12 +568,14 @@ static void device_manager_init(bool erase_bonds)
     // Secuirty parameters to be used for security procedures.
     register_param.sec_param.bond         = SEC_PARAM_BOND;
     register_param.sec_param.mitm         = SEC_PARAM_MITM;
+    register_param.sec_param.lesc         = SEC_PARAM_LESC;
+    register_param.sec_param.keypress     = SEC_PARAM_KEYPRESS;
     register_param.sec_param.io_caps      = SEC_PARAM_IO_CAPABILITIES;
     register_param.sec_param.oob          = SEC_PARAM_OOB;
     register_param.sec_param.min_key_size = SEC_PARAM_MIN_KEY_SIZE;
     register_param.sec_param.max_key_size = SEC_PARAM_MAX_KEY_SIZE;
-    register_param.sec_param.kdist_periph.enc = 1;
-    register_param.sec_param.kdist_periph.id  = 1;
+    register_param.sec_param.kdist_peer.enc = 1;
+    register_param.sec_param.kdist_peer.id  = 1;
 
     err_code = dm_register(&m_dm_app_id, &register_param);
     APP_ERROR_CHECK(err_code);
@@ -718,7 +747,7 @@ static void bas_c_init(void)
  */
 static void db_discovery_init(void)
 {
-    uint32_t err_code = ble_db_discovery_init();
+    uint32_t err_code = ble_db_discovery_init(db_disc_handler);
 
     APP_ERROR_CHECK(err_code);
 }

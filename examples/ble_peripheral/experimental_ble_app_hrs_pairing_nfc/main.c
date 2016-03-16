@@ -50,8 +50,8 @@
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT  1                                          /**< Include or exclude the Service Changed characteristic. If excluded, the server's database cannot be changed for the lifetime of the device.*/
 
-#define CENTRAL_LINK_COUNT               0                                          /**<number of central links used by the application. When changing this number remember to adjust the RAM settings*/
-#define PERIPHERAL_LINK_COUNT            1                                          /**<number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
+#define CENTRAL_LINK_COUNT               0                                          /**< Number of central links used by the application. When changing this number remember to adjust the RAM settings*/
+#define PERIPHERAL_LINK_COUNT            1                                          /**< Number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
 
 #define DEVICE_NAME                      "Nordic_HRM"                               /**< Name of device. Will be included in the advertising data. */
 #define MANUFACTURER_NAME                "NordicSemiconductor"                      /**< Manufacturer. Will be passed to Device Information Service. */
@@ -88,8 +88,6 @@
 #define NEXT_CONN_PARAMS_UPDATE_DELAY    APP_TIMER_TICKS(30000, APP_TIMER_PRESCALER)/**< Time between each call to sd_ble_gap_conn_param_update after the first call (30 seconds). */
 #define MAX_CONN_PARAMS_UPDATE_COUNT     3                                          /**< Number of attempts before giving up the connection parameter negotiation. */
 
-#define SEC_PARAM_BOND                   1                                          /**< Perform bonding. */
-#define SEC_PARAM_IO_CAPABILITIES        BLE_GAP_IO_CAPS_NONE                       /**< No I/O capabilities. */
 
 #define SEC_PARAM_MIN_KEY_SIZE           7                                          /**< Minimum encryption key size. */
 #define SEC_PARAM_MAX_KEY_SIZE           16                                         /**< Maximum encryption key size. */
@@ -138,38 +136,74 @@ static ble_dfu_t                         m_dfus;                                
  **************************************************************************************************/
 #include "nfc_t2t_lib.h"
 #include "nfc_ble_pair_msg.h"
+#include "nfc_launchapp_msg.h"
 #include "nfc_fixes.h"
 
-#define NFC_BLE_JUST_WORKS_PAIRING       0  /**< Just Works pairing over NFC - Temporary Key (TK) always equal to 0. */
-#define NFC_BLE_OOB_PAIRING              1  /**< Out-of-Band pairing over NFC - Temporary Key (TK) value can be configured. */
-#define NFC_BLE_PAIRING_TYPE             NFC_BLE_JUST_WORKS_PAIRING
+/** @snippet [NFC BLE pair usage_0] */
+#define SEC_PARAM_BOND                   1                                          /**< Perform bonding. */
+#define SEC_PARAM_LESC                   0                                          /**< LE Secure Connections not enabled. */
+#define SEC_PARAM_KEYPRESS               0                                          /**< Keypress notifications not enabled. */
+#define SEC_PARAM_IO_CAPABILITIES        BLE_GAP_IO_CAPS_NONE                       /**< No I/O capabilities. */
+#define SEC_PARAM_OOB                    1                                          /**< Out Of Band data available. */
+#define SEC_PARAM_MITM                   0                                          /**< Man In The Middle protection supported (via OOB). */
+// Hardcoded authentication OOB key
+// In this example, this value is constant. However, to be compatible with
+// the BLE Core Specification for OOB pairing, generate a random value for the Temporary Key.
+#define OOB_AUTH_KEY                 {                            \
+                                        {                         \
+                                          0xAA, 0xBB, 0xCC, 0xDD, \
+                                          0xEE, 0xFF, 0x99, 0x88, \
+                                          0x77, 0x66, 0x55, 0x44, \
+                                          0x33, 0x22, 0x11, 0x00  \
+                                        }                         \
+                                     }
 
-#if (NFC_BLE_PAIRING_TYPE == NFC_BLE_OOB_PAIRING)
-    #define SEC_PARAM_MITM               0  /**< Man In The Middle protection not required. */
-    #define SEC_PARAM_OOB                1  /**< Out Of Band data available. */
-    // Hardcoded authentication OOB key
-    #define OOB_AUTH_KEY                 {                            \
-                                            {                         \
-                                              0xAA, 0xBB, 0xCC, 0xDD, \
-                                              0xEE, 0xFF, 0x99, 0x88, \
-                                              0x77, 0x66, 0x55, 0x44, \
-                                              0x33, 0x22, 0x11, 0x00  \
-                                            }                         \
-                                         }
+static ble_advdata_tk_value_t        m_oob_auth_key = OOB_AUTH_KEY;
+/** @snippet [NFC BLE pair usage_0] */
 
-    static ble_advdata_tk_value_t        m_oob_auth_key = OOB_AUTH_KEY;
-#else
-    #define SEC_PARAM_MITM               0  /**< Man In The Middle protection not required. */
-    #define SEC_PARAM_OOB                0  /**< Out Of Band data not available. */
-#endif /* NFC_BLE_PAIRING_TYPE */
+#define BLE_BONDS_NUMBER                1                                           /**< Number of bonds the application handles */
 
-static ble_advdata_t                     m_advdata;
-static volatile uint8_t                  m_advertising_flag = 0;
-uint8_t                                  ndef_msg_buf[256];
-                                         
+/* nRF Toolbox Android application package name */
+static const uint8_t android_package_name[] = {'n', 'o', '.', 'n', 'o', 'r', 'd', 'i', 'c', 's',
+                                               'e', 'm', 'i', '.', 'a', 'n', 'd', 'r', 'o', 'i',
+                                               'd', '.', 'n', 'r', 'f', 't', 'o', 'o', 'l', 'b',
+                                               'o', 'x'};
+
+/* nRF Toolbox application ID for Windows phone */
+static const uint8_t windows_application_id[] = {'{', 'e', '1', '2', 'd', '2', 'd', 'a', '7', '-',
+                                                 '4', '8', '8', '5', '-', '4', '0', '0', 'f', '-',
+                                                 'b', 'c', 'd', '4', '-', '6', 'c', 'b', 'd', '5',
+                                                 'b', '8', 'c', 'f', '6', '2', 'c', '}'};
+
+static ble_advdata_t    m_advdata;
+static volatile uint8_t m_advertising_flag = 0;
+uint8_t                 ndef_msg_buf[256];
+static volatile bool    bond_present;           // This flag is intended to be used by NFC
+ble_gap_addr_t          m_aux_addr;
+ble_gap_addr_t *        m_addr_tab[] = {&m_aux_addr};
+ble_gap_irk_t           m_aux_irk;
+ble_gap_irk_t *         m_irk_tab[] = {&m_aux_irk};
+ble_gap_whitelist_t     m_aux_whitelist;
+
+
+
 static void advertising_disable(void);
 static void advertising_enable(void);
 static void on_ble_evt(ble_evt_t * p_ble_evt);
+
+ /**@brief Function for preparing the BLE pairing data for the NFC tag.
+ *
+ * @details This function does not stop and start the NFC tag data emulation.
+ *
+ */
+static void nfc_pairing_data_set(void);
+
+/**@brief Function for preparing the application launcher data for the NFC tag.
+ *
+ * @details This function does not stop and start the NFC tag data emulation.
+ *
+ */
+static void nfc_launchapp_data_set(void);
 
 /***************************************************************************************************
  * End of modifications needed for BLE pairing over NFC
@@ -694,6 +728,17 @@ static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
         case BLE_ADV_EVT_IDLE:
             sleep_mode_enter();
             break;
+/***************************************************************************************************
+ * Start of modifications needed for BLE pairing over NFC
+ **************************************************************************************************/
+        case BLE_ADV_EVT_WHITELIST_REQUEST:
+            err_code = bsp_indication_set(BSP_INDICATE_ADVERTISING_WHITELIST);
+            err_code = ble_advertising_whitelist_reply(&m_aux_whitelist);
+            APP_ERROR_CHECK(err_code);
+            break;
+/***************************************************************************************************
+ * End of modifications needed for BLE pairing over NFC
+ **************************************************************************************************/
         default:
             break;
     }
@@ -745,9 +790,11 @@ static void sys_evt_dispatch(uint32_t sys_evt)
 static void ble_stack_init(void)
 {
     uint32_t err_code;
-
+    
+    nrf_clock_lf_cfg_t clock_lf_cfg = NRF_CLOCK_LFCLKSRC;
+    
     // Initialize the SoftDevice handler module.
-    SOFTDEVICE_HANDLER_INIT(NRF_CLOCK_LFCLKSRC_XTAL_20_PPM, NULL);
+    SOFTDEVICE_HANDLER_INIT(&clock_lf_cfg, NULL);
     
     ble_enable_params_t ble_enable_params;
     err_code = softdevice_enable_get_default_config(CENTRAL_LINK_COUNT,
@@ -851,6 +898,8 @@ static void device_manager_init(bool erase_bonds)
 
     register_param.sec_param.bond         = SEC_PARAM_BOND;
     register_param.sec_param.mitm         = SEC_PARAM_MITM;
+    register_param.sec_param.lesc         = SEC_PARAM_LESC;
+    register_param.sec_param.keypress     = SEC_PARAM_KEYPRESS;
     register_param.sec_param.io_caps      = SEC_PARAM_IO_CAPABILITIES;
     register_param.sec_param.oob          = SEC_PARAM_OOB;
     register_param.sec_param.min_key_size = SEC_PARAM_MIN_KEY_SIZE;
@@ -892,33 +941,48 @@ static void buttons_leds_init(bool * p_erase_bonds)
  */
 static void on_ble_evt(ble_evt_t * p_ble_evt)
 {
-    uint32_t err_code;
+    uint32_t  err_code;
+    NfcRetval ret_val;
 
     switch (p_ble_evt->header.evt_id)
-            {
+    {
         case BLE_GAP_EVT_CONNECTED:
             err_code = bsp_indication_set(BSP_INDICATE_CONNECTED);
             APP_ERROR_CHECK(err_code);
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
-            /* Disable advertising, so when disconnected it does not restart */
+            /* Disable advertising, so when disconnected it does not restart. */
             advertising_disable();
-            break;
+            break;//BLE_GAP_EVT_CONNECTED
 
         case BLE_GAP_EVT_DISCONNECTED:
             m_conn_handle = BLE_CONN_HANDLE_INVALID;
             m_advertising_flag = 0;
-
-            break;
+            break;//BLE_GAP_EVT_DISCONNECTED
 
         case BLE_GAP_EVT_AUTH_KEY_REQUEST:
-
-#if (NFC_BLE_PAIRING_TYPE == NFC_BLE_OOB_PAIRING)
             err_code = sd_ble_gap_auth_key_reply(p_ble_evt->evt.gap_evt.conn_handle, BLE_GAP_AUTH_KEY_TYPE_OOB, m_oob_auth_key.tk);
-#else
-            err_code = NRF_ERROR_INVALID_STATE;
-#endif /* NFC_BLE_PAIRING_TYPE */
             APP_ERROR_CHECK(err_code);
-            break;
+            break;//BLE_GAP_EVT_AUTH_KEY_REQUEST
+
+        case BLE_GAP_EVT_AUTH_STATUS:
+            if (p_ble_evt->evt.gap_evt.params.auth_status.auth_status == BLE_GAP_SEC_STATUS_SUCCESS)
+            {
+                /* Configure NFC launchapp data (requires stopping NFC tag emulation) */
+                ret_val = nfcStopEmulation();
+                if (ret_val != NFC_RETVAL_OK)
+                {
+                    APP_ERROR_CHECK((uint32_t) ret_val);
+                }
+
+                nfc_launchapp_data_set();
+
+                ret_val = nfcStartEmulation();
+                if (ret_val != NFC_RETVAL_OK)
+                {
+                    APP_ERROR_CHECK((uint32_t) ret_val);
+                }
+            }
+            break;//BLE_GAP_EVT_AUTH_STATUS
 
         default:
             // No implementation needed.
@@ -932,7 +996,7 @@ static void advertising_init(void)
 {
     // Build advertising data struct to pass into @ref ble_advertising_init.
     memset(&m_advdata, 0, sizeof(m_advdata));
-    //Only setup adv_data, options will be set depending if advertising will be enabled or not
+    //Only set up adv_data. Options will be set depending on if advertising will be enabled or not
     m_advdata.name_type               = BLE_ADVDATA_FULL_NAME;
     m_advdata.include_appearance      = true;
     m_advdata.flags                   = BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE;
@@ -947,9 +1011,10 @@ static void advertising_enable(void)
     uint32_t      err_code;
 
     ble_adv_modes_config_t options    = {0};
-    options.ble_adv_fast_enabled  = BLE_ADV_FAST_ENABLED;
-    options.ble_adv_fast_interval = APP_ADV_INTERVAL;
-    options.ble_adv_fast_timeout  = APP_ADV_TIMEOUT_IN_SECONDS;
+    options.ble_adv_fast_enabled      = BLE_ADV_FAST_ENABLED;
+    options.ble_adv_fast_interval     = APP_ADV_INTERVAL;
+    options.ble_adv_fast_timeout      = APP_ADV_TIMEOUT_IN_SECONDS;
+    options.ble_adv_whitelist_enabled = BLE_ADV_WHITELIST_ENABLED;
 
     err_code = ble_advertising_init(&m_advdata, NULL, &options, on_adv_evt, NULL);
     APP_ERROR_CHECK(err_code);
@@ -979,8 +1044,9 @@ static void nfc_callback(void * context, NfcEvent event, const char *data, size_
     switch (event)
     {
         case NFC_EVENT_FIELD_ON:
+        {
             LEDS_ON(BSP_LED_3_MASK);
-            /* Start advertising to become connectable */
+            /* Start advertising to become connectable. */
             if (!m_advertising_flag)
             {
                 m_advertising_flag  = 1;
@@ -988,17 +1054,44 @@ static void nfc_callback(void * context, NfcEvent event, const char *data, size_
                 err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
                 APP_ERROR_CHECK(err_code);
             }
-            break;
+        }break;//NFC_EVENT_FIELD_ON
+
         case NFC_EVENT_FIELD_OFF:
             LEDS_OFF(BSP_LED_3_MASK);
-            break;
+            break;//NFC_EVENT_FIELD_OFF
+
         default:
             break;
     }
     return;
 }
 
-static void nfc_init()
+static void nfc_pairing_data_set(void)
+{
+    uint32_t      err_code = NRF_SUCCESS;
+    NfcRetval     ret_val;
+
+    /** @snippet [NFC BLE pair usage_1] */
+    /* Provide information about available buffer size to encoding function. */
+    uint32_t ndef_msg_len = sizeof(ndef_msg_buf);
+
+    /* Encode BLE pairing message into the buffer. */
+    err_code = nfc_ble_pair_default_msg_encode(NFC_BLE_PAIR_MSG_FULL,
+                                               &m_oob_auth_key,
+                                               ndef_msg_buf,
+                                               &ndef_msg_len);
+    APP_ERROR_CHECK(err_code);
+    /** @snippet [NFC BLE pair usage_1] */
+
+    /* Configure the NFC tag data */
+    ret_val = nfcSetPayload((char *)ndef_msg_buf, ndef_msg_len);
+    if (ret_val != NFC_RETVAL_OK)
+    {
+        APP_ERROR_CHECK((uint32_t) ret_val);
+    }
+}
+
+static void nfc_launchapp_data_set(void)
 {
     uint32_t      err_code = NRF_SUCCESS;
     NfcRetval     ret_val;
@@ -1006,22 +1099,27 @@ static void nfc_init()
     /* Provide information about available buffer size to encoding function. */
     uint32_t ndef_msg_len = sizeof(ndef_msg_buf);
 
-    /* Encode BLE pairing message into buffer. */
-#if (NFC_BLE_PAIRING_TYPE == NFC_BLE_JUST_WORKS_PAIRING)
-    err_code = nfc_ble_pair_default_msg_encode(NFC_BLE_PAIR_MSG_FULL,
-                                               NULL,
-                                               ndef_msg_buf,
-                                               &ndef_msg_len);
-#elif (NFC_BLE_PAIRING_TYPE == NFC_BLE_OOB_PAIRING)
-    err_code = nfc_ble_pair_default_msg_encode(NFC_BLE_PAIR_MSG_FULL,
-                                               &m_oob_auth_key,
-                                               ndef_msg_buf,
-                                               &ndef_msg_len);
-#else
-    #error "Error. Only Just Works and Out-of-Band Pairing over NFC modes are supported."
-#endif
-
+    /* Encode launchapp message into the buffer. */
+    err_code = nfc_launchapp_msg_encode(android_package_name,
+                                        sizeof(android_package_name),
+                                        windows_application_id,
+                                        sizeof(windows_application_id),
+                                        ndef_msg_buf,
+                                        &ndef_msg_len);
     APP_ERROR_CHECK(err_code);
+
+    /* Configure the NFC tag data */
+    ret_val = nfcSetPayload((char *)ndef_msg_buf, ndef_msg_len);
+    if (ret_val != NFC_RETVAL_OK)
+    {
+        APP_ERROR_CHECK((uint32_t) ret_val);
+    }
+}
+
+static void nfc_init(bool erase_bonds)
+{
+    uint32_t      err_code;
+    NfcRetval     ret_val;
 
     /* Start NFC */
     ret_val = nfcSetup(nfc_callback, NULL);
@@ -1030,10 +1128,27 @@ static void nfc_init()
         APP_ERROR_CHECK((uint32_t) ret_val);
     }
 
-    ret_val = nfcSetPayload((char *)ndef_msg_buf, ndef_msg_len);
-    if (ret_val != NFC_RETVAL_OK)
+    /* Get the whitelist from device_manager */
+    memset(&m_aux_whitelist, 0, sizeof(m_aux_whitelist));
+    m_aux_whitelist.addr_count = BLE_BONDS_NUMBER;
+    m_aux_whitelist.irk_count  = BLE_BONDS_NUMBER;
+    m_aux_whitelist.pp_addrs   = m_addr_tab;
+    m_aux_whitelist.pp_irks    = m_irk_tab;
+
+    err_code = dm_whitelist_create(&m_app_handle, &m_aux_whitelist);
+    APP_ERROR_CHECK(err_code);
+
+    /* Check if any bond exists (expect just 1)  */
+    if (m_aux_whitelist.irk_count || m_aux_whitelist.addr_count) bond_present = true;
+
+    /* Set up the NFC tag data */
+    if(!bond_present || erase_bonds)
     {
-        APP_ERROR_CHECK((uint32_t) ret_val);
+        nfc_pairing_data_set();
+    }
+    else
+    {
+        nfc_launchapp_data_set();
     }
 
     ret_val = nfcStartEmulation();
@@ -1065,9 +1180,16 @@ static void power_manage(void)
  */
 int main(void)
 {
-    bool erase_bonds;
+    bool     erase_bonds;
+    uint32_t err_code;
 
     // Initialize.
+    err_code = NRF_LOG_INIT();
+    APP_ERROR_CHECK(err_code);
+
+    // Clear bond flag
+    bond_present = false;
+    
     timers_init();
     buttons_leds_init(&erase_bonds);
     ble_stack_init();
@@ -1077,7 +1199,7 @@ int main(void)
     services_init();
     sensor_simulator_init();
     conn_params_init();
-    nfc_init();
+    nfc_init(erase_bonds);
 
     // Start execution.
     application_timers_start();

@@ -7,8 +7,5 @@
   <project>
     <path>$WS_DIR$\pca10040\iar\ram_retention_pca10040.ewp</path>
   </project>
-  <project>
-    <path>$WS_DIR$\pca10036\iar\ram_retention_pca10036.ewp</path>
-  </project>
   <batchBuild/>
 </workspace>

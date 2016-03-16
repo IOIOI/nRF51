@@ -128,10 +128,12 @@ static void softdevice_setup(void)
 {
     uint32_t err_code;
 
+    nrf_clock_lf_cfg_t clock_lf_cfg = NRF_CLOCK_LFCLKSRC;
+
     err_code = softdevice_ant_evt_handler_set(ant_evt_dispatch);
     APP_ERROR_CHECK(err_code);
 
-    err_code = softdevice_handler_init(NRF_CLOCK_LFCLKSRC, NULL, 0, NULL);
+    err_code = softdevice_handler_init(&clock_lf_cfg, NULL, 0, NULL);
     APP_ERROR_CHECK(err_code);
 
     err_code = ant_stack_static_config();

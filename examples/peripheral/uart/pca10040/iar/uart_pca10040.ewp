@@ -148,7 +148,7 @@
         </option>
         <option>
           <name>OGUseCmsis</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>OGUseCmsisDspLib</name>
@@ -178,22 +178,22 @@
         <option>
           <name>CCDefines</name>
           <state>BSP_DEFINES_ONLY</state>
-          <state>NRF52_PAN_53</state>
-          <state>NRF52_PAN_15</state>
-          <state>NRF52_PAN_54</state>
-          <state>NRF52_PAN_20</state>
-          <state>NRF52_PAN_55</state>
-          <state>NRF52_PAN_30</state>
-          <state>NRF52_PAN_58</state>
-          <state>NRF52_PAN_31</state>
-          <state>NRF52_PAN_62</state>
-          <state>NRF52_PAN_36</state>
-          <state>NRF52_PAN_63</state>
-          <state>NRF52_PAN_51</state>
-          <state>NRF52_PAN_64</state>
-          <state>CONFIG_GPIO_AS_PINRESET</state>
           <state>BOARD_PCA10040</state>
           <state>NRF52_PAN_12</state>
+          <state>NRF52_PAN_15</state>
+          <state>NRF52_PAN_20</state>
+          <state>NRF52_PAN_30</state>
+          <state>NRF52_PAN_31</state>
+          <state>NRF52_PAN_36</state>
+          <state>NRF52_PAN_51</state>
+          <state>NRF52_PAN_53</state>
+          <state>NRF52_PAN_54</state>
+          <state>NRF52_PAN_55</state>
+          <state>NRF52_PAN_58</state>
+          <state>NRF52_PAN_62</state>
+          <state>NRF52_PAN_63</state>
+          <state>NRF52_PAN_64</state>
+          <state>CONFIG_GPIO_AS_PINRESET</state>
           <state>NRF52</state>
         </option>
         <option>
@@ -259,7 +259,7 @@
         </option>
         <option>
           <name>CCDebugInfo</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>IEndianMode</name>
@@ -336,9 +336,9 @@
           <state>$PROJ_DIR$\..\..\..\..\..\components\libraries\uart</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\libraries\util</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..</state>
-          <state>$TOOLKIT_DIR$\CMSIS\Include</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -488,7 +488,7 @@
         </option>
         <option>
           <name>ADebug</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>AltRegisterNames</name>
@@ -497,22 +497,22 @@
         <option>
       <name>ADefines</name>
           <state>BSP_DEFINES_ONLY</state>
-          <state>NRF52_PAN_53</state>
-          <state>NRF52_PAN_15</state>
-          <state>NRF52_PAN_54</state>
-          <state>NRF52_PAN_20</state>
-          <state>NRF52_PAN_55</state>
-          <state>NRF52_PAN_30</state>
-          <state>NRF52_PAN_58</state>
-          <state>NRF52_PAN_31</state>
-          <state>NRF52_PAN_62</state>
-          <state>NRF52_PAN_36</state>
-          <state>NRF52_PAN_63</state>
-          <state>NRF52_PAN_51</state>
-          <state>NRF52_PAN_64</state>
-          <state>CONFIG_GPIO_AS_PINRESET</state>
           <state>BOARD_PCA10040</state>
           <state>NRF52_PAN_12</state>
+          <state>NRF52_PAN_15</state>
+          <state>NRF52_PAN_20</state>
+          <state>NRF52_PAN_30</state>
+          <state>NRF52_PAN_31</state>
+          <state>NRF52_PAN_36</state>
+          <state>NRF52_PAN_51</state>
+          <state>NRF52_PAN_53</state>
+          <state>NRF52_PAN_54</state>
+          <state>NRF52_PAN_55</state>
+          <state>NRF52_PAN_58</state>
+          <state>NRF52_PAN_62</state>
+          <state>NRF52_PAN_63</state>
+          <state>NRF52_PAN_64</state>
+          <state>CONFIG_GPIO_AS_PINRESET</state>
           <state>NRF52</state>
         </option>
         <option>
@@ -622,6 +622,7 @@
           <state>$PROJ_DIR$\..\..\..\..\..\components\libraries\uart</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\libraries\util</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..</state>
         </option>
@@ -1026,6 +1027,9 @@
   <name>nRF_Libraries</name>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\components\libraries\util\app_error.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\components\libraries\util\app_error_weak.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\components\libraries\fifo\app_fifo.c</name>

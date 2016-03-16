@@ -148,7 +148,7 @@
         </option>
         <option>
           <name>OGUseCmsis</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>OGUseCmsisDspLib</name>
@@ -180,12 +180,12 @@
           <state>BLE_STACK_SUPPORT_REQD</state>
           <state>__STACK_SIZE=2048</state>
           <state>__HEAP_SIZE=1024</state>
-          <state>S130</state>
           <state>BOARD_PCA10028</state>
-          <state>SOFTDEVICE_PRESENT</state>
-          <state>NRF51</state>
-          <state>FREERTOS</state>
+          <state>S130</state>
           <state>NRF_LOG_USES_UART=1</state>
+          <state>NRF51</state>
+          <state>SOFTDEVICE_PRESENT</state>
+          <state>FREERTOS</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -250,7 +250,7 @@
         </option>
         <option>
           <name>CCDebugInfo</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>IEndianMode</name>
@@ -323,7 +323,6 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\common</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\device_manager</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\clock</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\common</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\config</state>
@@ -333,7 +332,9 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\pstorage</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\uart</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\button</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fifo</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\experimental_section_vars</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fstorage</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fstorage\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\sensorsim</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\timer</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\trace</state>
@@ -343,12 +344,13 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\headers</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\headers\nrf51</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\external\freertos\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\external\freertos\portable\CMSIS\nrf51</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\external\freertos\portable\IAR\nrf51</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\external\freertos\source\include</state>
-          <state>$TOOLKIT_DIR$\CMSIS\Include</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\external\segger_rtt</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -498,7 +500,7 @@
         </option>
         <option>
           <name>ADebug</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>AltRegisterNames</name>
@@ -509,12 +511,12 @@
           <state>BLE_STACK_SUPPORT_REQD</state>
           <state>__STACK_SIZE=2048</state>
           <state>__HEAP_SIZE=1024</state>
-          <state>S130</state>
           <state>BOARD_PCA10028</state>
-          <state>SOFTDEVICE_PRESENT</state>
-          <state>NRF51</state>
-          <state>FREERTOS</state>
+          <state>S130</state>
           <state>NRF_LOG_USES_UART=1</state>
+          <state>NRF51</state>
+          <state>SOFTDEVICE_PRESENT</state>
+          <state>FREERTOS</state>
         </option>
         <option>
           <name>AList</name>
@@ -619,7 +621,6 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\common</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\device_manager</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\clock</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\common</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\config</state>
@@ -629,7 +630,9 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\pstorage</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\uart</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\button</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fifo</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\experimental_section_vars</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fstorage</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fstorage\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\sensorsim</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\timer</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\trace</state>
@@ -639,11 +642,13 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\headers</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\headers\nrf51</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\external\freertos\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\external\freertos\portable\CMSIS\nrf51</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\external\freertos\portable\IAR\nrf51</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\external\freertos\source\include</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\external\segger_rtt</state>
         </option>
         <option>
           <name>AExtraOptionsCheckV2</name>
@@ -1030,28 +1035,25 @@
   <group>
   <name>nRF_Libraries</name>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt\RTT_Syscalls_IAR.c</name>
-    </file>
-    <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT.c</name>
-    </file>
-    <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT_printf.c</name>
-    </file>
-    <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\button\app_button.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util\app_error.c</name>
     </file>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fifo\app_fifo.c</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util\app_error_weak.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\timer\app_timer_freertos.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\trace\app_trace.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util\app_util_platform.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fstorage\fstorage.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util\nrf_assert.c</name>
@@ -1064,6 +1066,18 @@
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\sensorsim\sensorsim.c</name>
+    </file>
+  </group>
+  <group>
+  <name>nRF_Segger_RTT</name>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\external\segger_rtt\RTT_Syscalls_IAR.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\external\segger_rtt\SEGGER_RTT.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\external\segger_rtt\SEGGER_RTT_printf.c</name>
     </file>
   </group>
   <group>
@@ -1111,7 +1125,7 @@
   <group>
   <name>nRF_Drivers</name>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\uart\app_uart_fifo.c</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\uart\app_uart.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\delay\nrf_delay.c</name>
@@ -1186,7 +1200,7 @@
   <group>
   <name>nRF_SoftDevice</name>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\doc\s130_nrf51_2.0.0-7.alpha_licence_agreement.txt</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s130\doc\s130_nrf51_2.0.0_licence_agreement.txt</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\common\softdevice_handler\softdevice_handler.c</name>

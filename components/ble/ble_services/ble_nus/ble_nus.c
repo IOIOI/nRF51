@@ -103,7 +103,7 @@ static uint32_t rx_char_add(ble_nus_t * p_nus, const ble_nus_init_t * p_nus_init
     memset(&cccd_md, 0, sizeof(cccd_md));
 
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.read_perm);
-    BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM(&cccd_md.write_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&cccd_md.write_perm);
 
     cccd_md.vloc = BLE_GATTS_VLOC_STACK;
 
@@ -174,7 +174,7 @@ static uint32_t tx_char_add(ble_nus_t * p_nus, const ble_nus_init_t * p_nus_init
 
     memset(&attr_md, 0, sizeof(attr_md));
 
-    BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM(&attr_md.read_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.read_perm);
     BLE_GAP_CONN_SEC_MODE_SET_ENC_NO_MITM(&attr_md.write_perm);
 
     attr_md.vloc    = BLE_GATTS_VLOC_STACK;

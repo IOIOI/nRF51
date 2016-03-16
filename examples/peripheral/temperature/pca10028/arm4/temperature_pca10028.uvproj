@@ -465,9 +465,19 @@
               <FilePath>..\..\..\..\..\components\libraries\util\app_error.c</FilePath>
             </File>
             <File>
+              <FileName>app_error_weak.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\components\libraries\util\app_error_weak.c</FilePath>
+            </File>
+            <File>
               <FileName>app_fifo.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\components\libraries\fifo\app_fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_util_platform.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\components\libraries\util\app_util_platform.c</FilePath>
             </File>
             <File>
               <FileName>nrf_assert.c</FileName>

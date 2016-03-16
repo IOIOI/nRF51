@@ -993,7 +993,7 @@ static void antfs_event_process(const antfs_event_return_t * p_event)
  */
 static void ant_evt_dispatch(ant_evt_t * p_ant_evt)
 {
-    antfs_message_process(p_ant_evt->evt_buffer);                         // process regular ant event messages.
+    antfs_message_process(p_ant_evt->msg.evt_buffer);                         // process regular ant event messages.
 
     while (antfs_event_extract(&m_antfs_event))                             // check for antfs events.
     {

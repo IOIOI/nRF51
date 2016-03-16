@@ -70,14 +70,12 @@ int main(void)
     while(1)
     {
         memset(m_rx_buf, 0, m_length);
-        spis_xfer_done  = false;
+        spis_xfer_done = false;
 
         APP_ERROR_CHECK(nrf_drv_spis_buffers_set(&spis, m_tx_buf, m_length, m_rx_buf, m_length));
 
-        while(spis_xfer_done == false)
+        while (!spis_xfer_done)
         {
-            __SEV();
-            __WFE();
             __WFE();
         }
 

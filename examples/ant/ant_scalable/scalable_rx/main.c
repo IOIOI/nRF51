@@ -30,6 +30,8 @@ int main(void)
 {
     uint32_t err_code;
 
+    nrf_clock_lf_cfg_t clock_lf_cfg = NRF_CLOCK_LFCLKSRC;
+
     // Setup LEDs
     LEDS_CONFIGURE(LEDS_MASK);
     ant_scaleable_display_num_tracking_channels();
@@ -38,7 +40,7 @@ int main(void)
     err_code = softdevice_ant_evt_handler_set(ant_scaleable_event_handler);
     APP_ERROR_CHECK(err_code);
 
-    err_code = softdevice_handler_init(NRF_CLOCK_LFCLKSRC, NULL, 0, NULL);
+    err_code = softdevice_handler_init(&clock_lf_cfg, NULL, 0, NULL);
     APP_ERROR_CHECK(err_code);
 
     err_code = ant_stack_static_config();

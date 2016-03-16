@@ -72,7 +72,7 @@ static void init_uart(void)
         .cts_pin_no   = CTS_PIN_NUMBER,
         .flow_control = APP_UART_FLOW_CONTROL_ENABLED,
         .use_parity   = false,
-        .baud_rate    = UART_BAUDRATE_BAUDRATE_Baud38400
+        .baud_rate    = UART_BAUDRATE_BAUDRATE_Baud115200
     };
 
     APP_UART_FIFO_INIT(&comm_params,

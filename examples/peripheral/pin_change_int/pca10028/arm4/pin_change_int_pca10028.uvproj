@@ -455,6 +455,11 @@
               <FilePath>..\..\..\..\..\components\libraries\util\app_error.c</FilePath>
             </File>
             <File>
+              <FileName>app_error_weak.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\components\libraries\util\app_error_weak.c</FilePath>
+            </File>
+            <File>
               <FileName>nrf_assert.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\components\libraries\util\nrf_assert.c</FilePath>

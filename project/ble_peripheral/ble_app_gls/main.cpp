@@ -62,6 +62,7 @@ extern "C" {
 
 #include "advertising.h"
 #include "devicemanager.h"
+#include "usart.h"
 
 #if BUTTONS_NUMBER < 2
 #error "Not enough resources on board to run example"
@@ -71,9 +72,6 @@ extern "C" {
 #define PERIPHERAL_LINK_COUNT           1                                          /**<number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
 
 #define APP_LOG NRF_LOG
-
-#define UART_TX_BUF_SIZE 1024                                                      /**< UART TX buffer size. */
-#define UART_RX_BUF_SIZE 1                                                         /**< UART RX buffer size. */
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                          /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 
@@ -171,7 +169,7 @@ static void nus_data_handler(ble_nus_t* p_nus, uint8_t* p_data, uint16_t length)
 
         }
     if(msg.find("LED4") != std::string::npos){
-        	LEDS_INVERT(BSP_LED_3_MASK);
+        	//LEDS_INVERT(BSP_LED_3_MASK);
         	APP_LOG("[APP] 4 \r\n");
 
         }
@@ -494,6 +492,26 @@ static void power_manage(void)
     APP_ERROR_CHECK(err_code);
 }
 
+static void rxUartByteCallback(uint8_t byte) {
+    static uint8_t data_array[BLE_NUS_MAX_DATA_LEN];
+	    static uint8_t index = 0;
+	    uint32_t       err_code;
+
+	            data_array[index] = byte;
+	            index++;
+
+	            if ((data_array[index - 1] == '\n') || (index >= (BLE_NUS_MAX_DATA_LEN)))
+	            {
+	                err_code = ble_nus_string_send(&m_nus, data_array, index);
+	                if (err_code != NRF_ERROR_INVALID_STATE)
+	                {
+	                    APP_ERROR_CHECK(err_code);
+	                }
+
+	                index = 0;
+	            }
+}
+
 /**@brief Function for application main entry.
  */
 int main(void)
@@ -514,6 +532,9 @@ int main(void)
     advertising_init();
     conn_params_init();
 
+    rxByteCallback = rxUartByteCallback;
+    //uart_init();
+
     LEDS_CONFIGURE(LEDS_MASK);
 
     // Start execution.
@@ -524,6 +545,7 @@ int main(void)
     // Enter main loop.
     for ( ; ; ) {
         power_manage();
+    	LEDS_INVERT(BSP_LED_3_MASK);
     }
 }
 

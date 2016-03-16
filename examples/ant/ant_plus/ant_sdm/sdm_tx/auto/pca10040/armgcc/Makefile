@@ -37,14 +37,13 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 
 #source common to all targets
 C_SOURCE_FILES += \
-$(abspath ../../../../../../../../components/drivers_ext/segger_rtt/RTT_Syscalls_GCC.c) \
-$(abspath ../../../../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT.c) \
-$(abspath ../../../../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT_printf.c) \
 $(abspath ../../../../../../../../components/libraries/button/app_button.c) \
 $(abspath ../../../../../../../../components/libraries/util/app_error.c) \
+$(abspath ../../../../../../../../components/libraries/util/app_error_weak.c) \
 $(abspath ../../../../../../../../components/libraries/fifo/app_fifo.c) \
 $(abspath ../../../../../../../../components/libraries/timer/app_timer.c) \
 $(abspath ../../../../../../../../components/libraries/trace/app_trace.c) \
+$(abspath ../../../../../../../../components/libraries/util/app_util_platform.c) \
 $(abspath ../../../../../../../../components/libraries/util/nrf_assert.c) \
 $(abspath ../../../../../../../../components/libraries/util/nrf_log.c) \
 $(abspath ../../../../../../../../components/libraries/uart/retarget.c) \
@@ -73,6 +72,9 @@ $(abspath ../../../../../../../../components/ant/ant_state_indicator/ant_state_i
 $(abspath ../../../../../../../bsp/bsp.c) \
 $(abspath ../../../../../../../bsp/bsp_btn_ant.c) \
 $(abspath ../../../main.c) \
+$(abspath ../../../../../../../../external/segger_rtt/RTT_Syscalls_GCC.c) \
+$(abspath ../../../../../../../../external/segger_rtt/SEGGER_RTT.c) \
+$(abspath ../../../../../../../../external/segger_rtt/SEGGER_RTT_printf.c) \
 $(abspath ../../../../../../../../components/toolchain/system_nrf52.c) \
 $(abspath ../../../../../../../../components/softdevice/common/softdevice_handler/softdevice_handler.c) \
 
@@ -80,14 +82,12 @@ $(abspath ../../../../../../../../components/softdevice/common/softdevice_handle
 ASM_SOURCE_FILES  = $(abspath ../../../../../../../../components/toolchain/gcc/gcc_startup_nrf52.s)
 
 #includes common to all targets
-INC_PATHS  = -I$(abspath ../../../config/ant_sdm_tx_auto_s212_pca10040)
-INC_PATHS += -I$(abspath ../../../config)
+INC_PATHS  = -I$(abspath ../../../config)
 INC_PATHS += -I$(abspath ../../../../../../../../components/libraries/sensorsim)
 INC_PATHS += -I$(abspath ../../../../../../../../components/ant/ant_key_manager)
 INC_PATHS += -I$(abspath ../../../../../../../../components/ant/ant_profiles/ant_common/pages)
 INC_PATHS += -I$(abspath ../../../../../../../../components/libraries/trace)
 INC_PATHS += -I$(abspath ../../../../../../../../components/softdevice/s212/headers/nrf52)
-INC_PATHS += -I$(abspath ../../../../../../../../components/drivers_ext/segger_rtt)
 INC_PATHS += -I$(abspath ../../../../../../../../components/ant/ant_profiles/ant_sdm/utils)
 INC_PATHS += -I$(abspath ../../../../../../../../components/toolchain/gcc)
 INC_PATHS += -I$(abspath ../../../../../../../../components/drivers_nrf/uart)
@@ -97,6 +97,7 @@ INC_PATHS += -I$(abspath ../../../../../../../bsp)
 INC_PATHS += -I$(abspath ../../../../../../../../components/ant/ant_profiles/ant_sdm)
 INC_PATHS += -I$(abspath ../../../../../../../../components/libraries/fifo)
 INC_PATHS += -I$(abspath ../../../../../../../../components/drivers_nrf/gpiote)
+INC_PATHS += -I$(abspath ../../../../../../../../components/toolchain/CMSIS/Include)
 INC_PATHS += -I$(abspath ../../../../../../../../components/softdevice/s212/headers)
 INC_PATHS += -I$(abspath ../../../../../../../../components/libraries/button)
 INC_PATHS += -I$(abspath ../../../../../../../../components/ant/ant_state_indicator)
@@ -110,6 +111,7 @@ INC_PATHS += -I$(abspath ../../../../../../../../components/drivers_nrf/hal)
 INC_PATHS += -I$(abspath ../../../../../../../../components/libraries/util)
 INC_PATHS += -I$(abspath ../../../../../../../../components/drivers_nrf/common)
 INC_PATHS += -I$(abspath ../../../../../../../../components/softdevice/common/softdevice_handler)
+INC_PATHS += -I$(abspath ../../../../../../../../external/segger_rtt)
 INC_PATHS += -I$(abspath ../../../../../../../../components/drivers_nrf/delay)
 INC_PATHS += -I$(abspath ../../../../../../../../components/ant/ant_stack_config)
 INC_PATHS += -I$(abspath ../../../../../../../../components/drivers_nrf/config)
@@ -164,8 +166,7 @@ CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=hard -mfpu=fpv4-sp-d16
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
-CFLAGS += -fno-builtin --short-enums
-
+CFLAGS += -fno-builtin --short-enums 
 # keep every function in separate section. This will allow linker to dump unused functions
 LDFLAGS += -Xlinker -Map=$(LISTING_DIRECTORY)/$(OUTPUT_FILENAME).map
 LDFLAGS += -mthumb -mabi=aapcs -L $(TEMPLATE_PATH) -T$(LINKER_SCRIPT)
@@ -211,6 +212,7 @@ ASMFLAGS += -DSOFTDEVICE_PRESENT
 ASMFLAGS += -DNRF52_PAN_62
 ASMFLAGS += -DNRF52_PAN_54
 ASMFLAGS += -DTRACE_SDM_PAGE_3_ENABLE
+
 #default target - first one defined
 default: clean nrf52832_xxaa
 
@@ -223,7 +225,6 @@ all: clean
 help:
 	@echo following targets are available:
 	@echo 	nrf52832_xxaa
-
 
 C_SOURCE_FILE_NAMES = $(notdir $(C_SOURCE_FILES))
 C_PATHS = $(call remduplicates, $(dir $(C_SOURCE_FILES) ) )
@@ -240,9 +241,10 @@ OBJECTS = $(C_OBJECTS) $(ASM_OBJECTS)
 
 nrf52832_xxaa: OUTPUT_FILENAME := nrf52832_xxaa
 nrf52832_xxaa: LINKER_SCRIPT=ant_sdm_tx_gcc_nrf52.ld
+
 nrf52832_xxaa: $(BUILD_DIRECTORIES) $(OBJECTS)
 	@echo Linking target: $(OUTPUT_FILENAME).out
-	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
+	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -lm -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
 	$(NO_ECHO)$(MAKE) -f $(MAKEFILE_NAME) -C $(MAKEFILE_DIR) -e finalize
 
 ## Create build directories
@@ -257,16 +259,12 @@ $(OBJECT_DIRECTORY)/%.o: %.c
 
 # Assemble files
 $(OBJECT_DIRECTORY)/%.o: %.s
-	@echo Compiling file: $(notdir $<)
+	@echo Assembly file: $(notdir $<)
 	$(NO_ECHO)$(CC) $(ASMFLAGS) $(INC_PATHS) -c -o $@ $<
-
-
 # Link
 $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out: $(BUILD_DIRECTORIES) $(OBJECTS)
 	@echo Linking target: $(OUTPUT_FILENAME).out
-	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
-
-
+	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -lm -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
 ## Create binary .bin file from the .out file
 $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).bin: $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
 	@echo Preparing: $(OUTPUT_FILENAME).bin
@@ -287,7 +285,6 @@ genbin:
 genhex: 
 	@echo Preparing: $(OUTPUT_FILENAME).hex
 	$(NO_ECHO)$(OBJCOPY) -O ihex $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).hex
-
 echosize:
 	-@echo ''
 	$(NO_ECHO)$(SIZE) $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
@@ -298,10 +295,9 @@ clean:
 
 cleanobj:
 	$(RM) $(BUILD_DIRECTORIES)/*.o
-
-flash: $(MAKECMDGOALS)
+flash: nrf52832_xxaa
 	@echo Flashing: $(OUTPUT_BINARY_DIRECTORY)/$<.hex
 	nrfjprog --program $(OUTPUT_BINARY_DIRECTORY)/$<.hex -f nrf52  --chiperase
-	nrfjprog --reset
+	nrfjprog --reset -f nrf52
 
 ## Flash softdevice

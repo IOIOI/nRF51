@@ -29,7 +29,7 @@
 #include "nrf.h"
 #include "app_error.h"
 #include "nrf_gpio.h"
-#include "nrf_nvmc.h"
+#include "nrf_soc.h"
 #include "nrf_delay.h"
 #include "ant_interface.h"
 #include "ant_parameters.h"
@@ -209,19 +209,9 @@ static void sys_evt_dispatch(uint32_t event)
 static void ant_stack_init(void)
 {
     uint32_t         err_code;
+    nrf_clock_lf_cfg_t clock_lf_cfg = NRF_CLOCK_LFCLKSRC;
 
-#if !defined (S210_V3_STACK)
-    sd_mbr_command_t com = {SD_MBR_COMMAND_INIT_SD, };
-
-    err_code = sd_mbr_command(&com);
-    APP_ERROR_CHECK(err_code);
-
-    err_code = sd_softdevice_vector_table_base_set(BOOTLOADER_REGION_START);
-    APP_ERROR_CHECK(err_code);
-#endif // !S210_V3_STACK
-
-    //SOFTDEVICE_HANDLER_INIT(NRF_CLOCK_LFCLKSRC_XTAL_20_PPM, softdevice_evt_schedule);
-    err_code = softdevice_handler_init(NRF_CLOCK_LFCLKSRC_XTAL_20_PPM, NULL, 0, softdevice_evt_schedule);
+    err_code = softdevice_handler_init(&clock_lf_cfg, NULL, 0, softdevice_evt_schedule);
     APP_ERROR_CHECK(err_code);
 
     err_code = softdevice_sys_evt_handler_set(sys_evt_dispatch);
@@ -264,8 +254,9 @@ static void enter_boot_set (uint32_t value)
 
     ant_boot_param_flags &= ~PARAM_FLAGS_ENTER_BOOT_Msk;
     ant_boot_param_flags |= value << PARAM_FLAGS_ENTER_BOOT_Pos;
-
-    nrf_nvmc_write_word(ANT_BOOT_PARAM_FLAGS_BASE, ant_boot_param_flags);
+  
+    uint32_t err_code = blocking_flash_word_write(ANT_BOOT_PARAM_FLAGS, ant_boot_param_flags);
+    APP_ERROR_CHECK(err_code);
 }
 
 static void enter_boot_update (void)
@@ -294,7 +285,8 @@ static void enter_boot_update (void)
    {
        if(*ANT_BOOT_APP_SIZE != APP_SIZE_Empty)
        {
-           nrf_nvmc_write_word(ANT_BOOT_APP_SIZE_BASE, APP_SIZE_Clear);
+            uint32_t err_code = blocking_flash_word_write(ANT_BOOT_APP_SIZE, APP_SIZE_Clear);
+            APP_ERROR_CHECK(err_code);
        }
    }
 }
@@ -327,6 +319,14 @@ int main(void)
     APP_ERROR_CHECK_BOOL(NRF_FICR->CODEPAGESIZE == CODE_PAGE_SIZE);
 
 #if !defined (S210_V3_STACK)
+    sd_mbr_command_t com = {SD_MBR_COMMAND_INIT_SD, };
+
+    err_code = sd_mbr_command(&com);
+    APP_ERROR_CHECK(err_code);
+
+    err_code = sd_softdevice_vector_table_base_set(BOOTLOADER_REGION_START);
+    APP_ERROR_CHECK(err_code);
+
     err_code = bootloader_dfu_sd_update_continue();
     APP_ERROR_CHECK(err_code);
 

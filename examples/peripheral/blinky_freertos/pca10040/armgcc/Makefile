@@ -38,6 +38,7 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 #source common to all targets
 C_SOURCE_FILES += \
 $(abspath ../../../../../components/libraries/util/app_error.c) \
+$(abspath ../../../../../components/libraries/util/app_error_weak.c) \
 $(abspath ../../../../../components/libraries/util/app_util_platform.c) \
 $(abspath ../../../../../components/libraries/util/nrf_assert.c) \
 $(abspath ../../../../../external/freertos/source/croutine.c) \
@@ -52,6 +53,7 @@ $(abspath ../../../../../external/freertos/source/tasks.c) \
 $(abspath ../../../../../external/freertos/source/timers.c) \
 $(abspath ../../../../../components/drivers_nrf/clock/nrf_drv_clock.c) \
 $(abspath ../../../../../components/drivers_nrf/common/nrf_drv_common.c) \
+$(abspath ../../../../../components/drivers_nrf/nrf_soc_nosd/nrf_nvic.c) \
 $(abspath ../../../../../components/drivers_nrf/nrf_soc_nosd/nrf_soc.c) \
 $(abspath ../../main.c) \
 $(abspath ../../../../../components/toolchain/system_nrf52.c) \
@@ -69,6 +71,7 @@ INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/nrf_soc_nosd)
 INC_PATHS += -I$(abspath ../../../../../components/device)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/hal)
 INC_PATHS += -I$(abspath ../../../../../external/freertos/portable/GCC/nrf52)
+INC_PATHS += -I$(abspath ../../../../../components/toolchain/CMSIS/Include)
 INC_PATHS += -I$(abspath ../..)
 INC_PATHS += -I$(abspath ../../../../../components/libraries/util)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/common)
@@ -111,8 +114,7 @@ CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=hard -mfpu=fpv4-sp-d16
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
-CFLAGS += -fno-builtin --short-enums
-
+CFLAGS += -fno-builtin --short-enums 
 # keep every function in separate section. This will allow linker to dump unused functions
 LDFLAGS += -Xlinker -Map=$(LISTING_DIRECTORY)/$(OUTPUT_FILENAME).map
 LDFLAGS += -mthumb -mabi=aapcs -L $(TEMPLATE_PATH) -T$(LINKER_SCRIPT)
@@ -144,6 +146,7 @@ ASMFLAGS += -DNRF52_PAN_63
 ASMFLAGS += -DBOARD_PCA10040
 ASMFLAGS += -DNRF52
 ASMFLAGS += -DBSP_DEFINES_ONLY
+
 #default target - first one defined
 default: clean nrf52832_xxaa
 
@@ -156,7 +159,6 @@ all: clean
 help:
 	@echo following targets are available:
 	@echo 	nrf52832_xxaa
-
 
 C_SOURCE_FILE_NAMES = $(notdir $(C_SOURCE_FILES))
 C_PATHS = $(call remduplicates, $(dir $(C_SOURCE_FILES) ) )
@@ -173,9 +175,10 @@ OBJECTS = $(C_OBJECTS) $(ASM_OBJECTS)
 
 nrf52832_xxaa: OUTPUT_FILENAME := nrf52832_xxaa
 nrf52832_xxaa: LINKER_SCRIPT=blinky_FreeRTOS_gcc_nrf52.ld
+
 nrf52832_xxaa: $(BUILD_DIRECTORIES) $(OBJECTS)
 	@echo Linking target: $(OUTPUT_FILENAME).out
-	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
+	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -lm -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
 	$(NO_ECHO)$(MAKE) -f $(MAKEFILE_NAME) -C $(MAKEFILE_DIR) -e finalize
 
 ## Create build directories
@@ -190,16 +193,12 @@ $(OBJECT_DIRECTORY)/%.o: %.c
 
 # Assemble files
 $(OBJECT_DIRECTORY)/%.o: %.s
-	@echo Compiling file: $(notdir $<)
+	@echo Assembly file: $(notdir $<)
 	$(NO_ECHO)$(CC) $(ASMFLAGS) $(INC_PATHS) -c -o $@ $<
-
-
 # Link
 $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out: $(BUILD_DIRECTORIES) $(OBJECTS)
 	@echo Linking target: $(OUTPUT_FILENAME).out
-	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
-
-
+	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -lm -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
 ## Create binary .bin file from the .out file
 $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).bin: $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
 	@echo Preparing: $(OUTPUT_FILENAME).bin
@@ -220,7 +219,6 @@ genbin:
 genhex: 
 	@echo Preparing: $(OUTPUT_FILENAME).hex
 	$(NO_ECHO)$(OBJCOPY) -O ihex $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).hex
-
 echosize:
 	-@echo ''
 	$(NO_ECHO)$(SIZE) $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
@@ -231,10 +229,9 @@ clean:
 
 cleanobj:
 	$(RM) $(BUILD_DIRECTORIES)/*.o
-
-flash: $(MAKECMDGOALS)
+flash: nrf52832_xxaa
 	@echo Flashing: $(OUTPUT_BINARY_DIRECTORY)/$<.hex
 	nrfjprog --program $(OUTPUT_BINARY_DIRECTORY)/$<.hex -f nrf52  --chiperase
-	nrfjprog --reset
+	nrfjprog --reset -f nrf52
 
 ## Flash softdevice

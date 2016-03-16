@@ -148,7 +148,7 @@
         </option>
         <option>
           <name>OGUseCmsis</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>OGUseCmsisDspLib</name>
@@ -177,16 +177,6 @@
         </option>
         <option>
           <name>CCDefines</name>
-          <state>NRF52_PAN_8</state>
-          <state>NRF52_PAN_9</state>
-          <state>NRF52_PAN_10</state>
-          <state>NRF52_PAN_11</state>
-          <state>NRF52_PAN_12</state>
-          <state>NRF52_PAN_15</state>
-          <state>NRF52_PAN_16</state>
-          <state>NRF52_PAN_17</state>
-          <state>NRF52_PAN_20</state>
-          <state>NRF52_PAN_23</state>
           <state>NRF52_PAN_24</state>
           <state>NRF52_PAN_25</state>
           <state>NRF52_PAN_26</state>
@@ -222,6 +212,16 @@
           <state>NRF52_PAN_3</state>
           <state>NRF52_PAN_4</state>
           <state>NRF52_PAN_7</state>
+          <state>NRF52_PAN_8</state>
+          <state>NRF52_PAN_9</state>
+          <state>NRF52_PAN_10</state>
+          <state>NRF52_PAN_11</state>
+          <state>NRF52_PAN_12</state>
+          <state>NRF52_PAN_15</state>
+          <state>NRF52_PAN_16</state>
+          <state>NRF52_PAN_17</state>
+          <state>NRF52_PAN_20</state>
+          <state>NRF52_PAN_23</state>
           <state>BSP_DEFINES_ONLY</state>
           <state>NRF52</state>
         </option>
@@ -288,7 +288,7 @@
         </option>
         <option>
           <name>CCDebugInfo</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>IEndianMode</name>
@@ -366,9 +366,9 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\uart</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..\..</state>
-          <state>$TOOLKIT_DIR$\CMSIS\Include</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -518,7 +518,7 @@
         </option>
         <option>
           <name>ADebug</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>AltRegisterNames</name>
@@ -526,16 +526,6 @@
         </option>
         <option>
       <name>ADefines</name>
-          <state>NRF52_PAN_8</state>
-          <state>NRF52_PAN_9</state>
-          <state>NRF52_PAN_10</state>
-          <state>NRF52_PAN_11</state>
-          <state>NRF52_PAN_12</state>
-          <state>NRF52_PAN_15</state>
-          <state>NRF52_PAN_16</state>
-          <state>NRF52_PAN_17</state>
-          <state>NRF52_PAN_20</state>
-          <state>NRF52_PAN_23</state>
           <state>NRF52_PAN_24</state>
           <state>NRF52_PAN_25</state>
           <state>NRF52_PAN_26</state>
@@ -571,6 +561,16 @@
           <state>NRF52_PAN_3</state>
           <state>NRF52_PAN_4</state>
           <state>NRF52_PAN_7</state>
+          <state>NRF52_PAN_8</state>
+          <state>NRF52_PAN_9</state>
+          <state>NRF52_PAN_10</state>
+          <state>NRF52_PAN_11</state>
+          <state>NRF52_PAN_12</state>
+          <state>NRF52_PAN_15</state>
+          <state>NRF52_PAN_16</state>
+          <state>NRF52_PAN_17</state>
+          <state>NRF52_PAN_20</state>
+          <state>NRF52_PAN_23</state>
           <state>BSP_DEFINES_ONLY</state>
           <state>NRF52</state>
         </option>
@@ -682,6 +682,7 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\uart</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..\..</state>
         </option>
@@ -1086,6 +1087,9 @@
   <name>nRF_Libraries</name>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util\app_error.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util\app_error_weak.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fifo\app_fifo.c</name>

@@ -148,7 +148,7 @@
         </option>
         <option>
           <name>OGUseCmsis</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>OGUseCmsisDspLib</name>
@@ -180,22 +180,22 @@
           <state>BLE_STACK_SUPPORT_REQD</state>
           <state>__HEAP_SIZE=0</state>
           <state>S132</state>
-          <state>NRF52_PAN_53</state>
-          <state>NRF52_PAN_15</state>
-          <state>NRF52_PAN_54</state>
-          <state>NRF52_PAN_20</state>
-          <state>NRF52_PAN_55</state>
-          <state>NRF52_PAN_30</state>
-          <state>NRF52_PAN_58</state>
-          <state>NRF52_PAN_31</state>
-          <state>NRF52_PAN_62</state>
-          <state>NRF52_PAN_36</state>
-          <state>NRF52_PAN_63</state>
-          <state>NRF52_PAN_51</state>
-          <state>NRF52_PAN_64</state>
-          <state>CONFIG_GPIO_AS_PINRESET</state>
           <state>BOARD_PCA10040</state>
           <state>NRF52_PAN_12</state>
+          <state>NRF52_PAN_15</state>
+          <state>NRF52_PAN_20</state>
+          <state>NRF52_PAN_30</state>
+          <state>NRF52_PAN_31</state>
+          <state>NRF52_PAN_36</state>
+          <state>NRF52_PAN_51</state>
+          <state>NRF52_PAN_53</state>
+          <state>NRF52_PAN_54</state>
+          <state>NRF52_PAN_55</state>
+          <state>NRF52_PAN_58</state>
+          <state>NRF52_PAN_62</state>
+          <state>NRF52_PAN_63</state>
+          <state>NRF52_PAN_64</state>
+          <state>CONFIG_GPIO_AS_PINRESET</state>
           <state>NRF_LOG_USES_UART=1</state>
           <state>SOFTDEVICE_PRESENT</state>
           <state>NRF52</state>
@@ -264,7 +264,7 @@
         </option>
         <option>
           <name>CCDebugInfo</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>IEndianMode</name>
@@ -336,7 +336,6 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\common</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\device_manager</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\clock</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\common</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\config</state>
@@ -345,27 +344,33 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\hal</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\pstorage</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\uart</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\connection_handover</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\connection_handover\ac_rec</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\connection_handover\ep_oob_rec</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\connection_handover\hs_rec</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\connection_handover\le_oob_rec</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\generic\message</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\generic\record</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\t2t_lib</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\t2t_lib\hal_t2t</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\button</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\experimental_section_vars</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fifo</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fstorage</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fstorage\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\sensorsim</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\timer</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\trace</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\uart</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\connection_handover</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\connection_handover\ac_rec</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\connection_handover\ep_oob_rec</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\connection_handover\hs_rec</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\connection_handover\le_oob_rec</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\generic\message</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\generic\record</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\launchapp</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\t2t_lib</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\t2t_lib\hal_t2t</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\common\softdevice_handler</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\headers</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\headers\nrf52</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
-          <state>$TOOLKIT_DIR$\CMSIS\Include</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\external\segger_rtt</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -515,7 +520,7 @@
         </option>
         <option>
           <name>ADebug</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>AltRegisterNames</name>
@@ -526,22 +531,22 @@
           <state>BLE_STACK_SUPPORT_REQD</state>
           <state>__HEAP_SIZE=0</state>
           <state>S132</state>
-          <state>NRF52_PAN_53</state>
-          <state>NRF52_PAN_15</state>
-          <state>NRF52_PAN_54</state>
-          <state>NRF52_PAN_20</state>
-          <state>NRF52_PAN_55</state>
-          <state>NRF52_PAN_30</state>
-          <state>NRF52_PAN_58</state>
-          <state>NRF52_PAN_31</state>
-          <state>NRF52_PAN_62</state>
-          <state>NRF52_PAN_36</state>
-          <state>NRF52_PAN_63</state>
-          <state>NRF52_PAN_51</state>
-          <state>NRF52_PAN_64</state>
-          <state>CONFIG_GPIO_AS_PINRESET</state>
           <state>BOARD_PCA10040</state>
           <state>NRF52_PAN_12</state>
+          <state>NRF52_PAN_15</state>
+          <state>NRF52_PAN_20</state>
+          <state>NRF52_PAN_30</state>
+          <state>NRF52_PAN_31</state>
+          <state>NRF52_PAN_36</state>
+          <state>NRF52_PAN_51</state>
+          <state>NRF52_PAN_53</state>
+          <state>NRF52_PAN_54</state>
+          <state>NRF52_PAN_55</state>
+          <state>NRF52_PAN_58</state>
+          <state>NRF52_PAN_62</state>
+          <state>NRF52_PAN_63</state>
+          <state>NRF52_PAN_64</state>
+          <state>CONFIG_GPIO_AS_PINRESET</state>
           <state>NRF_LOG_USES_UART=1</state>
           <state>SOFTDEVICE_PRESENT</state>
           <state>NRF52</state>
@@ -649,7 +654,6 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\common</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\ble\device_manager</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\device</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\clock</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\common</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\config</state>
@@ -658,26 +662,33 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\hal</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\pstorage</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\uart</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\connection_handover</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\connection_handover\ac_rec</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\connection_handover\ep_oob_rec</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\connection_handover\hs_rec</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\connection_handover\le_oob_rec</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\generic\message</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\generic\record</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\t2t_lib</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\t2t_lib\hal_t2t</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\button</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\experimental_section_vars</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fifo</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fstorage</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fstorage\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\sensorsim</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\timer</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\trace</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\uart</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\connection_handover</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\connection_handover\ac_rec</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\connection_handover\ep_oob_rec</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\connection_handover\hs_rec</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\connection_handover\le_oob_rec</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\generic\message</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\generic\record</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\launchapp</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\t2t_lib</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\t2t_lib\hal_t2t</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\common\softdevice_handler</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\headers</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\headers\nrf52</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\external\segger_rtt</state>
         </option>
         <option>
           <name>AExtraOptionsCheckV2</name>
@@ -1064,25 +1075,28 @@
   <group>
   <name>nRF_Libraries</name>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt\RTT_Syscalls_IAR.c</name>
-    </file>
-    <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT.c</name>
-    </file>
-    <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_ext\segger_rtt\SEGGER_RTT_printf.c</name>
-    </file>
-    <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\button\app_button.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util\app_error.c</name>
     </file>
     <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util\app_error_weak.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fifo\app_fifo.c</name>
+    </file>
+    <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\timer\app_timer.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\trace\app_trace.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util\app_util_platform.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\fstorage\fstorage.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\util\nrf_assert.c</name>
@@ -1098,6 +1112,18 @@
     </file>
   </group>
   <group>
+  <name>nRF_Segger_RTT</name>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\external\segger_rtt\RTT_Syscalls_IAR.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\external\segger_rtt\SEGGER_RTT.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\external\segger_rtt\SEGGER_RTT_printf.c</name>
+    </file>
+  </group>
+  <group>
   <name>Documentation</name>
     <file>
     <name>$PROJ_DIR$\..\..\..\Abstract.txt</name>
@@ -1109,7 +1135,7 @@
   <group>
   <name>nRF_Drivers</name>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\uart\app_uart.c</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\libraries\uart\app_uart_fifo.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\drivers_nrf\delay\nrf_delay.c</name>
@@ -1184,37 +1210,43 @@
   <group>
   <name>nRF_NFC</name>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\t2t_lib\hal_t2t\hal_nfc_t2t.c</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\t2t_lib\hal_t2t\hal_nfc_t2t.c</name>
     </file>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\connection_handover\ac_rec\nfc_ac_rec.c</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\connection_handover\ac_rec\nfc_ac_rec.c</name>
     </file>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\connection_handover\nfc_ble_pair_msg.c</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\connection_handover\nfc_ble_pair_msg.c</name>
     </file>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\connection_handover\ep_oob_rec\nfc_ep_oob_rec.c</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\connection_handover\ep_oob_rec\nfc_ep_oob_rec.c</name>
     </file>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\connection_handover\hs_rec\nfc_hs_rec.c</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\connection_handover\hs_rec\nfc_hs_rec.c</name>
     </file>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\connection_handover\le_oob_rec\nfc_le_oob_rec.c</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\launchapp\nfc_launchapp_msg.c</name>
     </file>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\generic\message\nfc_ndef_msg.c</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\launchapp\nfc_launchapp_rec.c</name>
     </file>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\ndef\generic\record\nfc_ndef_record.c</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\connection_handover\le_oob_rec\nfc_le_oob_rec.c</name>
     </file>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\experimental_nfc\t2t_lib\nfc_t2t_lib_iar.a</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\generic\message\nfc_ndef_msg.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\ndef\generic\record\nfc_ndef_record.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\nfc\t2t_lib\nfc_t2t_lib_iar.a</name>
     </file>
   </group>
   <group>
   <name>nRF_SoftDevice</name>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\doc\s132_nrf52_2.0.0-7.alpha_licence_agreement.txt</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\doc\s132_nrf52_2.0.0_licence_agreement.txt</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\common\softdevice_handler\softdevice_handler.c</name>

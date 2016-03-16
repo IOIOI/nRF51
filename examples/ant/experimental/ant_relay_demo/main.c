@@ -36,6 +36,7 @@ All rights reserved.
 #include "nrf_delay.h"
 #include "nrf_gpio.h"
 #include "boards.h"
+#include "app_util_platform.h"
 #include "app_timer.h"
 #include "app_button.h"
 #include "ant_stack_config.h"
@@ -88,26 +89,10 @@ typedef enum
 } ant_state_command_t;
 
 // Static variables and buffers.
-static uint8_t pm_ant_public_key[8] = {0xE8, 0xE4, 0x21, 0x3B, 0x55, 0x7A, 0x67, 0xC1}; // Public Network Key
-static uint32_t m_led_change_counter = 0;
-static uint8_t m_broadcast_data[ANT_STANDARD_DATA_PAYLOAD_SIZE]; /**< Primary data transmit buffer. */
-
-
-/**@brief Function for handling an error.
- *
- * @param[in] id    Fault identifier. See @ref NRF_FAULT_IDS.
- * @param[in] pc    The program counter of the instruction that triggered the fault, or 0 if
- *                  unavailable.
- * @param[in] info  Optional additional information regarding the fault. Refer to each fault
- *                  identifier for details.
- */
-void app_error_fault_handler(uint32_t id, uint32_t pc, uint32_t info)
-{
-    for (;;)
-    {
-        // No implementation needed.
-    }
-}
+static uint8_t   pm_ant_public_key[8] = {0xE8, 0xE4, 0x21, 0x3B, 0x55, 0x7A, 0x67, 0xC1}; // Public Network Key
+static uint32_t  m_led_change_counter = 0;
+static uint8_t   m_broadcast_data[ANT_STANDARD_DATA_PAYLOAD_SIZE]; /**< Primary data transmit buffer. */
+nrf_nvic_state_t nrf_nvic_state;
 
 /**@brief Function for stack interrupt handling.
  *
@@ -121,11 +106,8 @@ void SD_EVT_IRQHandler(void)
 
 /**@brief Function for handling SoftDevice asserts.
  *
- * @param[in] pc          Value of the program counter.
- * @param[in] line_num    Line number where the assert occurred.
- * @param[in] p_file_name Pointer to the file name.
  */
-void softdevice_assert_callback(uint32_t pc, uint16_t line_num, const uint8_t * p_file_name)
+void softdevice_assert_callback(uint32_t id, uint32_t pc, uint32_t info)
 {
     for (;;)
     {
@@ -390,7 +372,7 @@ void ant_handle_main_page(uint8_t* p_payload)
  */
 void ant_process_relay_master(ant_evt_t* p_ant_event)
 {
-    ANT_MESSAGE* p_ant_message = (ANT_MESSAGE*)p_ant_event->evt_buffer;
+    ANT_MESSAGE* p_ant_message = (ANT_MESSAGE*)p_ant_event->msg.evt_buffer;
     switch(p_ant_event->event)
     {
         case EVENT_RX:
@@ -425,7 +407,7 @@ void ant_process_relay_master(ant_evt_t* p_ant_event)
 void ant_process_relay_slave(ant_evt_t* p_ant_event)
 {
     static bool first_recieved = false;
-    ANT_MESSAGE* p_ant_message = (ANT_MESSAGE*)p_ant_event->evt_buffer;
+    ANT_MESSAGE* p_ant_message = (ANT_MESSAGE*)p_ant_event->msg.evt_buffer;
 
     switch(p_ant_event->event)
     {
@@ -491,7 +473,7 @@ void ant_process_relay_slave(ant_evt_t* p_ant_event)
  */
 void ant_process_mobile(ant_evt_t* p_ant_event)
 {
-    ANT_MESSAGE* p_ant_message = (ANT_MESSAGE*)p_ant_event->evt_buffer;
+    ANT_MESSAGE* p_ant_message = (ANT_MESSAGE*)p_ant_event->msg.evt_buffer;
     switch(p_ant_event->event)
     {
         case EVENT_RX:
@@ -570,7 +552,7 @@ void ant_process_mobile(ant_evt_t* p_ant_event)
 int main(void)
 {
     // ANT event message buffer.
-    __ALIGN(4) static ant_evt_t ant_event;
+    static ant_evt_t ant_event;
 
     // Configure LEDs as outputs.
     LEDS_CONFIGURE(BSP_LED_0_MASK | BSP_LED_1_MASK);
@@ -581,15 +563,13 @@ int main(void)
 
     // Enable SoftDevice.
     uint32_t err_code;
-#if defined(S212) || defined(S332)
-    err_code = sd_softdevice_enable(NRF_CLOCK_LFCLKSRC, softdevice_assert_callback, ANT_LICENSE_KEY);
-#else
-    err_code = sd_softdevice_enable(NRF_CLOCK_LFCLKSRC, softdevice_assert_callback);
-#endif
+    nrf_clock_lf_cfg_t clock_lf_cfg = NRF_CLOCK_LFCLKSRC;
+
+    err_code = sd_softdevice_enable(&clock_lf_cfg, softdevice_assert_callback, ANT_LICENSE_KEY);
     APP_ERROR_CHECK(err_code);
 
     // Set application IRQ to lowest priority.
-    err_code = sd_nvic_SetPriority(SD_EVT_IRQn, NRF_APP_PRIORITY_LOW);
+    err_code = sd_nvic_SetPriority(SD_EVT_IRQn, APP_IRQ_PRIORITY_LOW);
     APP_ERROR_CHECK(err_code);
 
     // Enable application IRQ (triggered from protocol).
@@ -619,7 +599,7 @@ int main(void)
         do
         {
             // Fetch the event.
-            err_code = sd_ant_event_get(&ant_event.channel, &ant_event.event, ant_event.evt_buffer);
+            err_code = sd_ant_event_get(&ant_event.channel, &ant_event.event, ant_event.msg.evt_buffer);
             if (err_code == NRF_SUCCESS)
             {
                 switch(ant_event.channel)

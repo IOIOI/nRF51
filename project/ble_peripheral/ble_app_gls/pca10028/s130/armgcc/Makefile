@@ -67,6 +67,7 @@ CPP_SOURCE_FILES += \
 $(abspath ../../../main.cpp) \
 $(abspath ../../../advertising.cpp) \
 $(abspath ../../../devicemanager.cpp) \
+$(abspath ../../../usart.cpp) \
 
 #assembly files common to all targets
 ASM_SOURCE_FILES  = $(abspath ../../../../../../components/toolchain/gcc/gcc_startup_nrf51.s)
@@ -109,7 +110,7 @@ BUILD_DIRECTORIES := $(sort $(OBJECT_DIRECTORY) $(OUTPUT_BINARY_DIRECTORY) $(LIS
 
 #flags common to all targets
 CFLAGS  = -DNRF_LOG_USES_UART=1
-#CFLAGS  = -DDEBUG // destroys uart output
+#CFLAGS += -DDEBUG // destroys uart output
 CFLAGS += -DBOARD_PCA10028
 CFLAGS += -DSOFTDEVICE_PRESENT
 CFLAGS += -DNRF51
@@ -159,6 +160,7 @@ ASMFLAGS += -DNRF51
 ASMFLAGS += -DS130
 ASMFLAGS += -DBLE_STACK_SUPPORT_REQD
 ASMFLAGS += -DSWI_DISABLE0
+
 #default target - first one defined
 default: clean nrf51422_xxac_s130
 
@@ -194,6 +196,7 @@ OBJECTS = $(CPP_OBJECTS) $(C_OBJECTS) $(ASM_OBJECTS)
 
 nrf51422_xxac_s130: OUTPUT_FILENAME := nrf51422_xxac_s130
 nrf51422_xxac_s130: LINKER_SCRIPT=ble_app_gls_gcc_nrf51.ld
+
 nrf51422_xxac_s130: $(BUILD_DIRECTORIES) $(OBJECTS)
 	@echo Linking target: $(OUTPUT_FILENAME).out
 	$(NO_ECHO)$(CPP) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out

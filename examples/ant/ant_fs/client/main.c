@@ -1,7 +1,7 @@
 /*
 This software is subject to the license described in the license.txt file included with this software distribution. 
 You may not use this file except in compliance with this license. 
-Copyright © Dynastream Innovations Inc. 2012
+Copyright ï¿½ Dynastream Innovations Inc. 2012
 All rights reserved.
 */
 
@@ -35,6 +35,7 @@ All rights reserved.
 #include "app_timer.h"
 #include "app_button.h"
 #include "app_util.h"
+#include "app_util_platform.h"
 #include "ant_stack_config.h"
 
 #if defined(TRACE_UART)
@@ -73,46 +74,27 @@ static uint32_t                 m_file_offset;                 /**< Current offs
 static uint16_t                 m_current_crc;                 /**< Current CRC. */
 static bool                     m_upload_success;              /**< Upload response. */
 static volatile pairing_state_t m_pairing_state;               /**< Pairing state. */ 
-
-
+nrf_nvic_state_t                nrf_nvic_state;
 /**@brief Function for handling SoftDevice asserts, does not return.
  * 
  * Traces out the user supplied parameters and busy loops. 
  *
- * @param[in] pc          Value of the program counter.
- * @param[in] line_num    Line number where the assert occurred.
- * @param[in] p_file_name Pointer to the file name.
+ * @param[in] id    Fault id.
+ * @param[in] pc    The program counter of the instruction that triggered the fault.
+ * @param[in] info  Additional info.
  */
-void softdevice_assert_callback(uint32_t pc, uint16_t line_num, const uint8_t * p_file_name)
+void softdevice_assert_callback(uint32_t id, uint32_t pc, uint32_t info)
 {
     printf("ASSERT-softdevice_assert_callback\n");
     printf("PC: %#x\n", pc);
-    printf("File name: %s\n", (const char*)p_file_name);
-    printf("Line number: %u\n", line_num);
+    printf("Fault id: 0x%x\n", id);
+    printf("Additional info: 0x%x\n", info);
 
     for (;;)
     {
         // No implementation needed.
     }
 }
-
-
-/**@brief Function for handling an error. 
- *
- * @param[in] id    Fault identifier. See @ref NRF_FAULT_IDS.
- * @param[in] pc    The program counter of the instruction that triggered the fault, or 0 if
- *                  unavailable.
- * @param[in] info  Optional additional information regarding the fault. Refer to each fault
- *                  identifier for details.
- */
-void app_error_fault_handler(uint32_t id, uint32_t pc, uint32_t info)
-{
-    printf("ASSERT-app_error_fault_handler\n");
-
-    app_error_print(id, pc, info);
-    app_error_save_and_stop(id, pc, info);
-}
-
 
 /**@brief Function for handling protocol stack IRQ.
  *
@@ -554,19 +536,16 @@ static __INLINE void softdevice_setup(void)
 {
     printf("softdevice_setup\n");
 
-#if defined(S212) || defined(S332)
-    uint32_t err_code = sd_softdevice_enable(NRF_CLOCK_LFCLKSRC, 
+    nrf_clock_lf_cfg_t clock_lf_cfg = NRF_CLOCK_LFCLKSRC;
+
+    uint32_t err_code = sd_softdevice_enable(&clock_lf_cfg, 
                                              softdevice_assert_callback,
                                              ANT_LICENSE_KEY);
-#else
-    uint32_t err_code = sd_softdevice_enable(NRF_CLOCK_LFCLKSRC, 
-                                             softdevice_assert_callback);
-#endif
     APP_ERROR_CHECK(err_code);
 
     // Configure application-specific interrupts. Set application IRQ to lowest priority and enable 
     // application IRQ (triggered from ANT protocol stack).
-    err_code = sd_nvic_SetPriority(SD_EVT_IRQn, NRF_APP_PRIORITY_LOW); 
+    err_code = sd_nvic_SetPriority(SD_EVT_IRQn, APP_IRQ_PRIORITY_LOW); 
     APP_ERROR_CHECK(err_code);    
     err_code = sd_nvic_EnableIRQ(SD_EVT_IRQn);      
     APP_ERROR_CHECK(err_code);
@@ -592,7 +571,7 @@ int main(void)
         CTS_PIN_NUMBER, 
         APP_UART_FLOW_CONTROL_DISABLED, 
         false, 
-        UART_BAUDRATE_BAUDRATE_Baud38400
+        UART0_CONFIG_BAUDRATE
     }; 
         
     APP_UART_FIFO_INIT(&comm_params, 

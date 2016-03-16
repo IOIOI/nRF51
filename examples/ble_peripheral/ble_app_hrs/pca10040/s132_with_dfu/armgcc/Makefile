@@ -37,16 +37,16 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 
 #source common to all targets
 C_SOURCE_FILES += \
-$(abspath ../../../../../../components/drivers_ext/segger_rtt/RTT_Syscalls_GCC.c) \
-$(abspath ../../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT.c) \
-$(abspath ../../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT_printf.c) \
 $(abspath ../../../../../../components/libraries/button/app_button.c) \
 $(abspath ../../../../../../components/libraries/util/app_error.c) \
+$(abspath ../../../../../../components/libraries/util/app_error_weak.c) \
 $(abspath ../../../../../../components/libraries/fifo/app_fifo.c) \
 $(abspath ../../../../../../components/libraries/timer/app_timer.c) \
 $(abspath ../../../../../../components/libraries/trace/app_trace.c) \
+$(abspath ../../../../../../components/libraries/util/app_util_platform.c) \
 $(abspath ../../../../../../components/libraries/bootloader_dfu/bootloader_util.c) \
 $(abspath ../../../../../../components/libraries/bootloader_dfu/dfu_app_handler.c) \
+$(abspath ../../../../../../components/libraries/fstorage/fstorage.c) \
 $(abspath ../../../../../../components/libraries/util/nrf_assert.c) \
 $(abspath ../../../../../../components/libraries/util/nrf_log.c) \
 $(abspath ../../../../../../components/libraries/uart/retarget.c) \
@@ -60,6 +60,9 @@ $(abspath ../../../../../../components/drivers_nrf/pstorage/pstorage.c) \
 $(abspath ../../../../../bsp/bsp.c) \
 $(abspath ../../../../../bsp/bsp_btn_ble.c) \
 $(abspath ../../../main.c) \
+$(abspath ../../../../../../external/segger_rtt/RTT_Syscalls_GCC.c) \
+$(abspath ../../../../../../external/segger_rtt/SEGGER_RTT.c) \
+$(abspath ../../../../../../external/segger_rtt/SEGGER_RTT_printf.c) \
 $(abspath ../../../../../../components/ble/common/ble_advdata.c) \
 $(abspath ../../../../../../components/ble/ble_advertising/ble_advertising.c) \
 $(abspath ../../../../../../components/ble/ble_services/ble_bas/ble_bas.c) \
@@ -78,11 +81,11 @@ ASM_SOURCE_FILES  = $(abspath ../../../../../../components/toolchain/gcc/gcc_sta
 #includes common to all targets
 INC_PATHS  = -I$(abspath ../../../config/ble_app_hrs_s132_with_dfu_pca10040)
 INC_PATHS += -I$(abspath ../../../config)
-INC_PATHS += -I$(abspath ../../../../../../components/drivers_ext/segger_rtt)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/bootloader_dfu)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/config)
-INC_PATHS += -I$(abspath ../../../../../bsp)
+INC_PATHS += -I$(abspath ../../../../../../components/libraries/timer)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/fifo)
+INC_PATHS += -I$(abspath ../../../../../../components/libraries/fstorage/config)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/delay)
 INC_PATHS += -I$(abspath ../../../../../../components/softdevice/s132/headers/nrf52)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/util)
@@ -95,9 +98,13 @@ INC_PATHS += -I$(abspath ../../../../../../components/ble/ble_services/ble_dis)
 INC_PATHS += -I$(abspath ../../../../../../components/device)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/uart)
 INC_PATHS += -I$(abspath ../../../../../../components/libraries/button)
-INC_PATHS += -I$(abspath ../../../../../../components/libraries/timer)
+INC_PATHS += -I$(abspath ../../../../../../components/libraries/fstorage)
+INC_PATHS += -I$(abspath ../../../../../../components/libraries/experimental_section_vars)
 INC_PATHS += -I$(abspath ../../../../../../components/softdevice/s132/headers)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/gpiote)
+INC_PATHS += -I$(abspath ../../../../../../external/segger_rtt)
+INC_PATHS += -I$(abspath ../../../../../bsp)
+INC_PATHS += -I$(abspath ../../../../../../components/toolchain/CMSIS/Include)
 INC_PATHS += -I$(abspath ../../../../../../components/drivers_nrf/hal)
 INC_PATHS += -I$(abspath ../../../../../../components/toolchain/gcc)
 INC_PATHS += -I$(abspath ../../../../../../components/toolchain)
@@ -139,15 +146,13 @@ CFLAGS += -DNRF52_PAN_64
 CFLAGS += -DSOFTDEVICE_PRESENT
 CFLAGS += -DNRF52_PAN_62
 CFLAGS += -DNRF52_PAN_63
-CFLAGS += -DBLE_DFU_APP_SUPPORT
 CFLAGS += -mcpu=cortex-m4
 CFLAGS += -mthumb -mabi=aapcs --std=gnu99
 CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=hard -mfpu=fpv4-sp-d16
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
-CFLAGS += -fno-builtin --short-enums
-
+CFLAGS += -fno-builtin --short-enums 
 # keep every function in separate section. This will allow linker to dump unused functions
 LDFLAGS += -Xlinker -Map=$(LISTING_DIRECTORY)/$(OUTPUT_FILENAME).map
 LDFLAGS += -mthumb -mabi=aapcs -L $(TEMPLATE_PATH) -T$(LINKER_SCRIPT)
@@ -182,7 +187,7 @@ ASMFLAGS += -DNRF52_PAN_64
 ASMFLAGS += -DSOFTDEVICE_PRESENT
 ASMFLAGS += -DNRF52_PAN_62
 ASMFLAGS += -DNRF52_PAN_63
-ASMFLAGS += -DBLE_DFU_APP_SUPPORT
+
 #default target - first one defined
 default: clean s132_pca10040
 
@@ -196,7 +201,6 @@ help:
 	@echo following targets are available:
 	@echo 	s132_pca10040
 	@echo 	flash_softdevice
-
 
 C_SOURCE_FILE_NAMES = $(notdir $(C_SOURCE_FILES))
 C_PATHS = $(call remduplicates, $(dir $(C_SOURCE_FILES) ) )
@@ -212,10 +216,13 @@ vpath %.s $(ASM_PATHS)
 OBJECTS = $(C_OBJECTS) $(ASM_OBJECTS)
 
 s132_pca10040: OUTPUT_FILENAME := s132_pca10040
+s132_pca10040: CFLAGS += -DBLE_DFU_APP_SUPPORT
+s132_pca10040: ASMFLAGS += -DBLE_DFU_APP_SUPPORT
 s132_pca10040: LINKER_SCRIPT=ble_app_hrs_gcc_nrf52.ld
+
 s132_pca10040: $(BUILD_DIRECTORIES) $(OBJECTS)
 	@echo Linking target: $(OUTPUT_FILENAME).out
-	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
+	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -lm -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
 	$(NO_ECHO)$(MAKE) -f $(MAKEFILE_NAME) -C $(MAKEFILE_DIR) -e finalize
 
 ## Create build directories
@@ -230,16 +237,12 @@ $(OBJECT_DIRECTORY)/%.o: %.c
 
 # Assemble files
 $(OBJECT_DIRECTORY)/%.o: %.s
-	@echo Compiling file: $(notdir $<)
+	@echo Assembly file: $(notdir $<)
 	$(NO_ECHO)$(CC) $(ASMFLAGS) $(INC_PATHS) -c -o $@ $<
-
-
 # Link
 $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out: $(BUILD_DIRECTORIES) $(OBJECTS)
 	@echo Linking target: $(OUTPUT_FILENAME).out
-	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
-
-
+	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -lm -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
 ## Create binary .bin file from the .out file
 $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).bin: $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
 	@echo Preparing: $(OUTPUT_FILENAME).bin
@@ -260,7 +263,6 @@ genbin:
 genhex: 
 	@echo Preparing: $(OUTPUT_FILENAME).hex
 	$(NO_ECHO)$(OBJCOPY) -O ihex $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).hex
-
 echosize:
 	-@echo ''
 	$(NO_ECHO)$(SIZE) $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
@@ -271,14 +273,13 @@ clean:
 
 cleanobj:
 	$(RM) $(BUILD_DIRECTORIES)/*.o
-
-flash: $(MAKECMDGOALS)
+flash: s132_pca10040
 	@echo Flashing: $(OUTPUT_BINARY_DIRECTORY)/$<.hex
 	nrfjprog --program $(OUTPUT_BINARY_DIRECTORY)/$<.hex -f nrf52  --sectorerase
-	nrfjprog --reset
+	nrfjprog --reset -f nrf52
 
 ## Flash softdevice
 flash_softdevice:
-	@echo Flashing: s132_nrf52_2.0.0-7.alpha_softdevice.hex
-	nrfjprog --program ../../../../../../components/softdevice/s132/hex/s132_nrf52_2.0.0-7.alpha_softdevice.hex -f nrf52 --chiperase
-	nrfjprog --reset
+	@echo Flashing: s132_nrf52_2.0.0_softdevice.hex
+	nrfjprog --program ../../../../../../components/softdevice/s132/hex/s132_nrf52_2.0.0_softdevice.hex -f nrf52 --chiperase
+	nrfjprog --reset -f nrf52

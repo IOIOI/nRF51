@@ -121,11 +121,12 @@ static void demo1(void)
             BSP_LED_3 | NRF_DRV_PWM_PIN_INVERTED, // channel 2
             BSP_LED_2 | NRF_DRV_PWM_PIN_INVERTED  // channel 3
         },
-        .base_clock = NRF_PWM_CLK_1MHz,
-        .count_mode = NRF_PWM_MODE_UP,
-        .top_value  = m_demo1_top,
-        .load_mode  = NRF_PWM_LOAD_INDIVIDUAL,
-        .step_mode  = NRF_PWM_STEP_AUTO
+        .irq_priority = APP_IRQ_PRIORITY_LOW,
+        .base_clock   = NRF_PWM_CLK_1MHz,
+        .count_mode   = NRF_PWM_MODE_UP,
+        .top_value    = m_demo1_top,
+        .load_mode    = NRF_PWM_LOAD_INDIVIDUAL,
+        .step_mode    = NRF_PWM_STEP_AUTO
     };
     err_code = nrf_drv_pwm_init(&m_pwm0, &config0, demo1_handler);
     APP_ERROR_CHECK(err_code);
@@ -172,11 +173,12 @@ static void demo2(void)
             BSP_LED_2 | NRF_DRV_PWM_PIN_INVERTED, // channel 2
             BSP_LED_3 | NRF_DRV_PWM_PIN_INVERTED  // channel 3
         },
-        .base_clock = NRF_PWM_CLK_500kHz,
-        .count_mode = NRF_PWM_MODE_UP,
-        .top_value  = TOP,
-        .load_mode  = NRF_PWM_LOAD_COMMON,
-        .step_mode  = NRF_PWM_STEP_AUTO
+        .irq_priority = APP_IRQ_PRIORITY_LOW,
+        .base_clock   = NRF_PWM_CLK_500kHz,
+        .count_mode   = NRF_PWM_MODE_UP,
+        .top_value    = TOP,
+        .load_mode    = NRF_PWM_LOAD_COMMON,
+        .step_mode    = NRF_PWM_STEP_AUTO
     };
     err_code = nrf_drv_pwm_init(&m_pwm0, &config0, NULL);
     APP_ERROR_CHECK(err_code);
@@ -248,11 +250,12 @@ static void demo3(void)
             NRF_DRV_PWM_PIN_NOT_USED,             // channel 2
             NRF_DRV_PWM_PIN_NOT_USED,             // channel 3
         },
-        .base_clock = NRF_PWM_CLK_125kHz,
-        .count_mode = NRF_PWM_MODE_UP,
-        .top_value  = 25000,
-        .load_mode  = NRF_PWM_LOAD_COMMON,
-        .step_mode  = NRF_PWM_STEP_AUTO
+        .irq_priority = APP_IRQ_PRIORITY_LOW,
+        .base_clock   = NRF_PWM_CLK_125kHz,
+        .count_mode   = NRF_PWM_MODE_UP,
+        .top_value    = 25000,
+        .load_mode    = NRF_PWM_LOAD_COMMON,
+        .step_mode    = NRF_PWM_STEP_AUTO
     };
     err_code = nrf_drv_pwm_init(&m_pwm0, &config0, NULL);
     APP_ERROR_CHECK(err_code);
@@ -460,11 +463,12 @@ static void demo5(void)
             BSP_LED_3 | NRF_DRV_PWM_PIN_INVERTED, // channel 2
             BSP_LED_1 | NRF_DRV_PWM_PIN_INVERTED  // channel 3
         },
-        .base_clock = NRF_PWM_CLK_125kHz,
-        .count_mode = NRF_PWM_MODE_UP,
-        .top_value  = 15625,
-        .load_mode  = NRF_PWM_LOAD_INDIVIDUAL,
-        .step_mode  = NRF_PWM_STEP_AUTO
+        .irq_priority = APP_IRQ_PRIORITY_LOW,
+        .base_clock   = NRF_PWM_CLK_125kHz,
+        .count_mode   = NRF_PWM_MODE_UP,
+        .top_value    = 15625,
+        .load_mode    = NRF_PWM_LOAD_INDIVIDUAL,
+        .step_mode    = NRF_PWM_STEP_AUTO
     };
     err_code = nrf_drv_pwm_init(&m_pwm0, &config0, NULL);
     APP_ERROR_CHECK(err_code);
@@ -587,7 +591,7 @@ static void init_uart(void)
         .cts_pin_no   = CTS_PIN_NUMBER,
         .flow_control = APP_UART_FLOW_CONTROL_ENABLED,
         .use_parity   = false,
-        .baud_rate    = UART_BAUDRATE_BAUDRATE_Baud38400
+        .baud_rate    = UART_BAUDRATE_BAUDRATE_Baud115200
     };
 
     APP_UART_FIFO_INIT(&comm_params,

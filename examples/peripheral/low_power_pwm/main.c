@@ -32,9 +32,6 @@
 #include "app_util_platform.h"
 #include "low_power_pwm.h"
 #include "nordic_common.h"
-#ifdef SOFTDEVICE_PRESENT
-#include "softdevice_handler.h"
-#endif
 
 /*Timer initialization parameters*/   
 #define OP_QUEUES_SIZE          3
@@ -142,7 +139,6 @@ void low_power_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
-#ifndef SOFTDEVICE_PRESENT
 static void lfclk_init(void)
 {
     uint32_t err_code;
@@ -151,7 +147,6 @@ static void lfclk_init(void)
 
     nrf_drv_clock_lfclk_request(NULL);
 }
-#endif
 
 /**
  * @brief Function for application main entry.
@@ -161,14 +156,7 @@ int main(void)
     uint8_t new_duty_cycle;
     uint32_t err_code;
 
-    // We need the LFCK running for APP_TIMER. In case SoftDevice is in use
-    // it will start the LFCK during initialization, otherwise we have to
-    // start it manually.
-#ifdef SOFTDEVICE_PRESENT
-    SOFTDEVICE_HANDLER_INIT(NRF_CLOCK_LFCLKSRC_XTAL_20_PPM, false);
-#else
     lfclk_init();
-#endif
 
     // Start APP_TIMER to generate timeouts.
     APP_TIMER_INIT(APP_TIMER_PRESCALER, OP_QUEUES_SIZE, NULL);

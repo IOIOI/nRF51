@@ -35,6 +35,8 @@ All rights reserved.
 #include "ant_boot_settings_api.h"
 #include <string.h>
 #include "ant_stack_config.h"
+#include "app_util_platform.h"
+#include "boards.h"
 
 
 // Channel configuration.
@@ -63,7 +65,7 @@ All rights reserved.
 #define COMMAND_RESTART_BOOTLOADER      0x01u
 
 static const uint8_t m_version_string[] = VERSION_STRING; // Version string
-
+nrf_nvic_state_t     nrf_nvic_state;
 
 /**@brief Function for handling an error.
  *
@@ -201,21 +203,16 @@ void SD_EVT_IRQHandler(void)
    }
 }
 
-
 /**@brief Function for handling SoftDevice asserts.
  *
- * @param[in] pc          Value of the program counter.
- * @param[in] line_num    Line number where the assert occurred.
- * @param[in] p_file_name Pointer to the file name.
  */
-void softdevice_assert_callback(uint32_t pc, uint16_t line_num, const uint8_t * p_file_name)
+void softdevice_assert_callback(uint32_t id, uint32_t pc, uint32_t info)
 {
     for (;;)
     {
         // No implementation needed.
     }
 }
-
 
 /**@brief Function for handling HardFault.
  */
@@ -237,18 +234,16 @@ int main(void)
 
     // Enable SoftDevice.
     uint32_t err_code;
-#if defined(S212) || defined(S332)
-    err_code = sd_softdevice_enable(NRF_CLOCK_LFCLKSRC_XTAL_50_PPM, 
+
+    nrf_clock_lf_cfg_t clock_lf_cfg = NRF_CLOCK_LFCLKSRC;
+
+    err_code = sd_softdevice_enable(&clock_lf_cfg, 
                                     softdevice_assert_callback,
                                     ANT_LICENSE_KEY);
-#else
-   err_code = sd_softdevice_enable(NRF_CLOCK_LFCLKSRC_XTAL_50_PPM, 
-                                   softdevice_assert_callback);
-#endif
     APP_ERROR_CHECK(err_code);
 
     // Set application IRQ to lowest priority.
-    err_code = sd_nvic_SetPriority(SD_EVT_IRQn, NRF_APP_PRIORITY_LOW);
+    err_code = sd_nvic_SetPriority(SD_EVT_IRQn, APP_IRQ_PRIORITY_LOW);
     APP_ERROR_CHECK(err_code);
 
     // Enable application IRQ (triggered from protocol).

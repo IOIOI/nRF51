@@ -1,6 +1,240 @@
+nRF5 SDK v11.0.0
+----------------
+Release date: Week 10, 2016
+ 
+Highlights:
+- Combined SDK supporting both the nRF51 and the nRF52 Series
+- Moved Peer Manager out of experimental
+- Moved NFC libraries out of experimental and added support for low 
+  power mode
+- Added drivers for all nRF52 peripherals
+- Added serialization of the S132 and S130 SoftDevices
+- Added support for SoftDevices S130 v2.0.0, S132 v2.0.0, S212 v0.9.x, 
+  and S332 v0.9.x
+- Replaced the Enhanced ShockBurst library with a new implementation 
+  (based on µESB)
+- Included a critical MDK update (v8.5.0)
+- Removed support for CMSIS Packs
+ 
+The following toolchains/devices have been used for testing and
+verification:
+- ARM: MDK-ARM version 5.16a
+- GCC: GCC ARM Embedded 4.9 2015q1
+- IAR: IAR Workbench 7.30.4
+ 
+Supported SoftDevices:
+- S130 v2.0.0
+- S132 v2.0.0
+- S212 v0.9.x
+- S332 v0.9.x
+ 
+Supported IC revisions:
+- nRF51 IC revision 3
+- nRF52 IC revision 1
+- nRF52 Engineering C
+- nRF52 Engineering A and Engineering B (see Compatibility)
+ 
+Supported boards:
+- PCA10028
+- PCA10031
+- PCA10036 (see Compatibility)
+- PCA10040 (see Compatibility)
+- PCA20006 (only for beacon examples)
+For other devices and boards, see the SDK documentation, section 
+"Using the SDK with other boards".
+ 
+Compatibility:
+The SoftDevices that are supported in this SDK are not compatible 
+out-of-the-box with nRF52 Engineering A and Engineering B (the 
+IC revisions present on all versions of PCA10036 and on PCA10040
+v0.9.0).
+However, you can use the latest SoftDevices on Engineering A and B 
+nRF52 chips for development purposes if you implement the 
+workaround for anomaly 73 (TIMER: Event lost, see 
+http://infocenter.nordicsemi.com/topic/com.nordic.infocenter.nrf52/dita/nrf52/errata.html).
+ 
+*** New features
+****************
+ 
+** Drivers and libraries **
+- Added a COMP driver (nRF52 only)
+ 
+** BLE **
+- Extended the Peer Manager functionality:
+    - Added an additional data unit (Peer Rank) that can be used for 
+      tracking which bonds are most (and least) recently used
+    - Added support for LE Secure Connections in Peer Manager 
+      (experimental)
+- Added an example application for LE Secure Connections (experimental,
+  support for Keil5, IAR, and GCC only)
+ 
+** ANT **
+- Added new examples (experimental):
+    - Advanced Burst
+    - Asynchronous Transmitter
+    - Continuous Scanning Controller
+    - Debug Demo
+    - IO Demo
+    - Message Types
+    - Search Sharing
+    - Search Uplink
+- ANT OTA bootloader application now uses the SoCLibrary API to perform 
+  NVIC operations instead of direct operations
+- Added multiprotocol examples for the S332 SoftDevice:
+    - Heart Rate Monitor Relay Application
+    - Shared Channels (experimental)
+ 
+** Serialization **
+- Added serialization of the S130 and S132 v2.0.0 SoftDevices
+ 
+** NFC **
+- Added a generic NDEF message parser that can parse NDEF messages to 
+  the format that is used by the generic NFC NDEF message builder
+- Added a module and example for creating NDEF text records
+- Added and modified NFC pairing examples (experimental):
+    - HID Keyboard Application with BLE pairing using NFC (new)
+    - Heart Rate Application with BLE pairing using NFC (improved user 
+      experience)
+ 
+** Proprietary **
+- Added a Low Power Transmitter/Receiver example for ESB
+ 
+*** Changes
+***********
+ 
+** Overall **
+- Support for CMSIS Packs has been removed. The SDK is delivered as zip 
+  file only.
+ 
+** Drivers and libraries **
+- The MSB and LSB macros have been renamed to MSB_32 and LSB_32. Code 
+  using these macros should be changed to use either the 16- or the 
+  32-bit variant.
+ 
+** BLE **
+- Multi-instance handling of Service client modules has been greatly 
+  improved. The client examples now handle service discovery in the main
+  application context. The main application context must manage which 
+  client instance belongs to which connection link.
+- The Multi-link Example has been modified to demonstrate multiple 
+  client instances in a better way.
+- The ble_app_multilink_peripheral example has been removed. 
+  ble_app_blinky now acts as the peripheral for ble_app_multilink_central.
+- Heart Rate Application with RTX: Support for nRF52 has been removed.
+- The Peer Manager is no longer experimental.
+- The following BLE examples now use Peer Manager:
+    - Central: 
+         Running Speed and Cadence Collector (ble_app_rscs_c)
+    - Central and Peripheral: 
+         BLE Relay (ble_app_hrs_rscs_relay)
+         BLE LE Secure Connections Multirole (ble_app_multirole_lesc)
+    - Peripheral: 
+         Alert Notification (ble_app_alert_notification)
+         Proximity (ble_app_proximity)
+         Glucose (ble_app_gls)
+         HID Keyboard Application with BLE pairing using NFC (experimental_ble_app_hids_keyboard_pairing_nfc)
+- The behavior of Peer Manager and Device Manager has changed to reject 
+  pairing requests from already bonded peer centrals.
+- Several BLE peripheral examples now support the S332 SoftDevice.
+- Minor bugfixes in DFU.
+ 
+** ANT **
+- The ANT bootloader was aligned to MBR version 2.0.0.
+- The following ANT examples now support the S332 SoftDevice 
+  (experimental):
+    - ANT Bootloader/DFU
+    - Message Types
+ 
+** NFC **
+- The Adafruit Tag Reader Example has been extended to show added NDEF 
+  parsing functionality.
+- The NFC Type 2 Tag HAL was improved with a workaround for supporting 
+  low power mode.
+ 
+** Proprietary **
+- A new implementation of the Enhanced ShockBurst (ESB) protocol 
+  supporting both nRF51 and nRF52 has been added.
+ 
+*** Fixed issues
+****************
+ 
+** Drivers and libraries **
+- GPIOTE: Fixed the problem of lost events in low-accuracy sense toggle 
+          mode
+- SAADC: Added functionality to use one AIN with multiple channels
+- UART: Fixed a glitch on TX pin when initializing the driver
+- UART: Fixed the problem that TX bytes were sent in wrong order in 
+        app_uart_fifo
+ 
+** BLE **
+- Removed a vulnerability in Peer Manager and Device Manager that would 
+  allow malicious attackers to overwrite the bonding information of a 
+  bonded device
+ 
+** ANT **
+- Fixed the handling of send-until-success request types in the ANT 
+  request controller
+- Fixed an ant_evt_t structure member alignment bug
+ 
+** NFC **
+- Fixed the NFC examples to work when the UART logger is enabled
+- Fixed a buffer leakage bug in the module for creating 
+  application/vnd.bluetooth.le.oob records
+ 
+*** Known issues
+****************
+ 
+** Drivers and libraries **
+- Using the NVIC API directly and not through a SoftDevice causes 
+  problems, especially when NVIC_EnableIRQ or NVIC_DisableIRQ are called
+  from critical sections.
+ 
+** BLE **
+- All BLE examples have been tested only on PCA10028 and PCA10040.
+- BLE Examples that use pairing are incompatible with examples in SDK 
+  version 6.1 and earlier that do not use pairing.
+ 
+** ANT **
+- Previous versions of the ANT DFU example are incompatible with the ANT
+  S212/S332 SoftDevices version 0.9.x.
+ 
+** NFC **
+- NFCT requires using TIMER4 on nRF52832.
+ 
+** FPU **
+- When the FPU is in use, it triggers the FPU_IRQn interrupt when one of
+  the six exception flags (IDC, IXC, UFC, OFC, DZC, IOC) is set.
+  The FPU interrupt will always set the pending flag (even if the 
+  interrupt is not enabled), irrespective of whether the user is 
+  interested in the exception bit.
+  The pending flag then prevents the SoftDevice from going into low 
+  power mode when sd_app_evt_wait() is called.
+  Therefore, always clear the exception bits and the pending interrupt 
+  before calling sd_app_evt_wait(). See the code below for an example 
+  implementation.
+  FPU exception bit definition:
+  http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0553a/BABBFJEC.html
+  Example code:
+  {
+  // Set bit 7 and bits 4..0 in the mask to one (0x ...00 1001 1111)
+  #define FPU_EXCEPTION_MASK 0x0000009F 
+ 
+  ...
+      /* Clear exceptions and PendingIRQ from the FPU unit */
+      __set_FPSCR(__get_FPSCR()  & ~(FPU_EXCEPTION_MASK));      
+      (void) __get_FPSCR();
+      NVIC_ClearPendingIRQ(FPU_IRQn);
+ 
+      /* Call SoftDevice Wait For event */
+      error_code = sd_app_evt_wait();
+  }
+
+
+========================================================================
+
 nRF5 SDK v11.0.0-2.alpha
 ------------------------
-Release Date: Week 51, 2015
+Release date: Week 51, 2015
  
 Highlights:
 - Common SDK supporting both the nRF51 and the nRF52 Series  

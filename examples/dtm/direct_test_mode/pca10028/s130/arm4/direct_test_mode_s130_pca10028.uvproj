@@ -324,8 +324,8 @@
               </OCR_RVCT8>
               <OCR_RVCT9>
                 <Type>0</Type>
-                <StartAddress>0x20001200</StartAddress>
-                <Size>0x6e00</Size>
+                <StartAddress>0x200013c8</StartAddress>
+                <Size>0x6c38</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
@@ -445,9 +445,9 @@
           <GroupName>nRF_SoftDevice</GroupName>
           <Files>
             <File>
-              <FileName>s130_nrf51_2.0.0-7.alpha_licence_agreement.txt</FileName>
+              <FileName>s130_nrf51_2.0.0_licence_agreement.txt</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\..\..\..\..\components\softdevice\s130\doc\s130_nrf51_2.0.0-7.alpha_licence_agreement.txt</FilePath>
+              <FilePath>..\..\..\..\..\..\components\softdevice\s130\doc\s130_nrf51_2.0.0_licence_agreement.txt</FilePath>
             </File>
           </Files>
         </Group>

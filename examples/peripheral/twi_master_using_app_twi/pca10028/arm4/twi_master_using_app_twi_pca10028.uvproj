@@ -495,6 +495,11 @@
               <FilePath>..\..\..\..\..\components\drivers_nrf\uart\nrf_drv_uart.c</FilePath>
             </File>
             <File>
+              <FileName>nrf_nvic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd\nrf_nvic.c</FilePath>
+            </File>
+            <File>
               <FileName>nrf_soc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\components\drivers_nrf\nrf_soc_nosd\nrf_soc.c</FilePath>
@@ -513,6 +518,11 @@
               <FileName>app_error.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\components\libraries\util\app_error.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_error_weak.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\components\libraries\util\app_error_weak.c</FilePath>
             </File>
             <File>
               <FileName>app_fifo.c</FileName>

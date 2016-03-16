@@ -148,7 +148,7 @@
         </option>
         <option>
           <name>OGUseCmsis</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>OGUseCmsisDspLib</name>
@@ -178,22 +178,22 @@
         <option>
           <name>CCDefines</name>
           <state>BSP_DEFINES_ONLY</state>
-          <state>NRF52_PAN_53</state>
-          <state>NRF52_PAN_15</state>
-          <state>NRF52_PAN_54</state>
-          <state>NRF52_PAN_20</state>
-          <state>NRF52_PAN_55</state>
-          <state>NRF52_PAN_30</state>
-          <state>NRF52_PAN_58</state>
-          <state>NRF52_PAN_31</state>
-          <state>NRF52_PAN_62</state>
-          <state>NRF52_PAN_36</state>
-          <state>NRF52_PAN_63</state>
-          <state>NRF52_PAN_51</state>
-          <state>NRF52_PAN_64</state>
-          <state>CONFIG_GPIO_AS_PINRESET</state>
           <state>BOARD_PCA10040</state>
           <state>NRF52_PAN_12</state>
+          <state>NRF52_PAN_15</state>
+          <state>NRF52_PAN_20</state>
+          <state>NRF52_PAN_30</state>
+          <state>NRF52_PAN_31</state>
+          <state>NRF52_PAN_36</state>
+          <state>NRF52_PAN_51</state>
+          <state>NRF52_PAN_53</state>
+          <state>NRF52_PAN_54</state>
+          <state>NRF52_PAN_55</state>
+          <state>NRF52_PAN_58</state>
+          <state>NRF52_PAN_62</state>
+          <state>NRF52_PAN_63</state>
+          <state>NRF52_PAN_64</state>
+          <state>CONFIG_GPIO_AS_PINRESET</state>
           <state>S132</state>
           <state>NRF52</state>
           <state>SOFTDEVICE_PRESENT</state>
@@ -261,7 +261,7 @@
         </option>
         <option>
           <name>CCDebugInfo</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>IEndianMode</name>
@@ -333,9 +333,9 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\headers</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\headers\nrf52</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..\..</state>
-          <state>$TOOLKIT_DIR$\CMSIS\Include</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -485,7 +485,7 @@
         </option>
         <option>
           <name>ADebug</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>AltRegisterNames</name>
@@ -494,22 +494,22 @@
         <option>
       <name>ADefines</name>
           <state>BSP_DEFINES_ONLY</state>
-          <state>NRF52_PAN_53</state>
-          <state>NRF52_PAN_15</state>
-          <state>NRF52_PAN_54</state>
-          <state>NRF52_PAN_20</state>
-          <state>NRF52_PAN_55</state>
-          <state>NRF52_PAN_30</state>
-          <state>NRF52_PAN_58</state>
-          <state>NRF52_PAN_31</state>
-          <state>NRF52_PAN_62</state>
-          <state>NRF52_PAN_36</state>
-          <state>NRF52_PAN_63</state>
-          <state>NRF52_PAN_51</state>
-          <state>NRF52_PAN_64</state>
-          <state>CONFIG_GPIO_AS_PINRESET</state>
           <state>BOARD_PCA10040</state>
           <state>NRF52_PAN_12</state>
+          <state>NRF52_PAN_15</state>
+          <state>NRF52_PAN_20</state>
+          <state>NRF52_PAN_30</state>
+          <state>NRF52_PAN_31</state>
+          <state>NRF52_PAN_36</state>
+          <state>NRF52_PAN_51</state>
+          <state>NRF52_PAN_53</state>
+          <state>NRF52_PAN_54</state>
+          <state>NRF52_PAN_55</state>
+          <state>NRF52_PAN_58</state>
+          <state>NRF52_PAN_62</state>
+          <state>NRF52_PAN_63</state>
+          <state>NRF52_PAN_64</state>
+          <state>CONFIG_GPIO_AS_PINRESET</state>
           <state>S132</state>
           <state>NRF52</state>
           <state>SOFTDEVICE_PRESENT</state>
@@ -616,6 +616,7 @@
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\headers</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\headers\nrf52</state>
           <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..\..</state>
         </option>
@@ -1025,7 +1026,7 @@
   <group>
   <name>nRF_SoftDevice</name>
     <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\doc\s132_nrf52_2.0.0-7.alpha_licence_agreement.txt</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\..\components\softdevice\s132\doc\s132_nrf52_2.0.0_licence_agreement.txt</name>
     </file>
   </group>
   <group>

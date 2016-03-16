@@ -508,6 +508,11 @@
               <FilePath>..\..\..\..\..\..\components\libraries\util\app_error.c</FilePath>
             </File>
             <File>
+              <FileName>app_error_weak.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\components\libraries\util\app_error_weak.c</FilePath>
+            </File>
+            <File>
               <FileName>app_scheduler.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\components\libraries\scheduler\app_scheduler.c</FilePath>
@@ -521,6 +526,11 @@
               <FileName>app_timer_appsh.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\components\libraries\timer\app_timer_appsh.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_util_platform.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\components\libraries\util\app_util_platform.c</FilePath>
             </File>
             <File>
               <FileName>bootloader.c</FileName>
@@ -573,9 +583,9 @@
           <GroupName>nRF_SoftDevice</GroupName>
           <Files>
             <File>
-              <FileName>s130_nrf51_2.0.0-7.alpha_licence_agreement.txt</FileName>
+              <FileName>s130_nrf51_2.0.0_licence_agreement.txt</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\..\..\..\..\components\softdevice\s130\doc\s130_nrf51_2.0.0-7.alpha_licence_agreement.txt</FilePath>
+              <FilePath>..\..\..\..\..\..\components\softdevice\s130\doc\s130_nrf51_2.0.0_licence_agreement.txt</FilePath>
             </File>
             <File>
               <FileName>softdevice_handler.c</FileName>

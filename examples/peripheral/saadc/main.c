@@ -38,10 +38,6 @@
 #define UART_TX_BUF_SIZE 256 /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE 1   /**< UART RX buffer size. */
 
-#ifndef NRF_APP_PRIORITY_HIGH
-#define NRF_APP_PRIORITY_HIGH 1
-#endif
-
 #define SAMPLES_IN_BUFFER 5
 volatile uint8_t state = 1;
 
@@ -70,7 +66,7 @@ void uart_config(void)
         CTS_PIN_NUMBER,
         APP_UART_FLOW_CONTROL_DISABLED,
         false,
-        UART_BAUDRATE_BAUDRATE_Baud38400
+        UART_BAUDRATE_BAUDRATE_Baud115200
     };
 
     APP_UART_FIFO_INIT(&comm_params,
@@ -103,7 +99,7 @@ void saadc_sampling_event_init(void)
     nrf_drv_timer_enable(&m_timer);
 
     uint32_t timer_compare_event_addr = nrf_drv_timer_compare_event_address_get(&m_timer, NRF_TIMER_CC_CHANNEL0);
-    uint32_t saadc_sample_event_addr = nrf_drv_saadc_task_address_get(NRF_SAADC_TASK_SAMPLE);
+    uint32_t saadc_sample_event_addr = nrf_drv_saadc_sample_task_get();
 
     /* setup ppi channel so that timer compare event is triggering sample task in SAADC */
     err_code = nrf_drv_ppi_channel_alloc(&m_ppi_channel);

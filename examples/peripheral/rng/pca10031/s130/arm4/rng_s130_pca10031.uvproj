@@ -7,7 +7,7 @@
 
   <Targets>    
     <Target>
-      <TargetName>nrf51422_xxac_s110</TargetName>
+      <TargetName>nrf51422_xxac_s130</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <TargetOption>
@@ -45,7 +45,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\_build\</OutputDirectory>
-          <OutputName>nrf51422_xxac_s110</OutputName>
+          <OutputName>nrf51422_xxac_s130</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -324,8 +324,8 @@
               </OCR_RVCT8>
               <OCR_RVCT9>
                 <Type>0</Type>
-                <StartAddress>0x20004300</StartAddress>
-                <Size>0x3d00</Size>
+                <StartAddress>0x20001870</StartAddress>
+                <Size>0x6790</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
@@ -490,6 +490,11 @@
               <FilePath>..\..\..\..\..\..\components\libraries\util\app_error.c</FilePath>
             </File>
             <File>
+              <FileName>app_error_weak.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\components\libraries\util\app_error_weak.c</FilePath>
+            </File>
+            <File>
               <FileName>app_fifo.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\components\libraries\fifo\app_fifo.c</FilePath>
@@ -498,6 +503,11 @@
               <FileName>app_timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\..\..\components\libraries\timer\app_timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_util_platform.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\components\libraries\util\app_util_platform.c</FilePath>
             </File>
             <File>
               <FileName>nrf_assert.c</FileName>
@@ -515,9 +525,9 @@
           <GroupName>nRF_SoftDevice</GroupName>
           <Files>
             <File>
-              <FileName>s130_nrf51_2.0.0-7.alpha_licence_agreement.txt</FileName>
+              <FileName>s130_nrf51_2.0.0_licence_agreement.txt</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\..\..\..\..\components\softdevice\s130\doc\s130_nrf51_2.0.0-7.alpha_licence_agreement.txt</FilePath>
+              <FilePath>..\..\..\..\..\..\components\softdevice\s130\doc\s130_nrf51_2.0.0_licence_agreement.txt</FilePath>
             </File>
             <File>
               <FileName>softdevice_handler.c</FileName>

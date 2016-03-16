@@ -148,7 +148,7 @@
         </option>
         <option>
           <name>OGUseCmsis</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>OGUseCmsisDspLib</name>
@@ -180,16 +180,6 @@
           <state>ANT_STACK_SUPPORT_REQD</state>
           <state>DEBUG</state>
           <state>S212</state>
-          <state>NRF52_PAN_8</state>
-          <state>NRF52_PAN_9</state>
-          <state>NRF52_PAN_10</state>
-          <state>NRF52_PAN_11</state>
-          <state>NRF52_PAN_12</state>
-          <state>NRF52_PAN_15</state>
-          <state>NRF52_PAN_16</state>
-          <state>NRF52_PAN_17</state>
-          <state>NRF52_PAN_20</state>
-          <state>NRF52_PAN_23</state>
           <state>NRF52_PAN_24</state>
           <state>NRF52_PAN_25</state>
           <state>NRF52_PAN_26</state>
@@ -225,6 +215,16 @@
           <state>NRF52_PAN_3</state>
           <state>NRF52_PAN_4</state>
           <state>NRF52_PAN_7</state>
+          <state>NRF52_PAN_8</state>
+          <state>NRF52_PAN_9</state>
+          <state>NRF52_PAN_10</state>
+          <state>NRF52_PAN_11</state>
+          <state>NRF52_PAN_12</state>
+          <state>NRF52_PAN_15</state>
+          <state>NRF52_PAN_16</state>
+          <state>NRF52_PAN_17</state>
+          <state>NRF52_PAN_20</state>
+          <state>NRF52_PAN_23</state>
           <state>NRF52</state>
           <state>SOFTDEVICE_PRESENT</state>
           <state>SWI_DISABLE0</state>
@@ -292,7 +292,7 @@
         </option>
         <option>
           <name>CCDebugInfo</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>IEndianMode</name>
@@ -356,7 +356,6 @@
         </option>
         <option>
           <name>CCIncludePath2</name>
-          <state>$PROJ_DIR$\..\..\config\ant_scan_and_forward_s212_pca10036</state>
           <state>$PROJ_DIR$\..\..\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\ant\ant_channel_config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\ant\ant_search_config</state>
@@ -374,8 +373,8 @@
           <state>$PROJ_DIR$\..\..\..\..\..\components\softdevice\s212\headers</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\softdevice\s212\headers\nrf52</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\bsp</state>
-          <state>$TOOLKIT_DIR$\CMSIS\Include</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -525,7 +524,7 @@
         </option>
         <option>
           <name>ADebug</name>
-          <state>1</state>
+          <state></state>
         </option>
         <option>
           <name>AltRegisterNames</name>
@@ -536,16 +535,6 @@
           <state>ANT_STACK_SUPPORT_REQD</state>
           <state>DEBUG</state>
           <state>S212</state>
-          <state>NRF52_PAN_8</state>
-          <state>NRF52_PAN_9</state>
-          <state>NRF52_PAN_10</state>
-          <state>NRF52_PAN_11</state>
-          <state>NRF52_PAN_12</state>
-          <state>NRF52_PAN_15</state>
-          <state>NRF52_PAN_16</state>
-          <state>NRF52_PAN_17</state>
-          <state>NRF52_PAN_20</state>
-          <state>NRF52_PAN_23</state>
           <state>NRF52_PAN_24</state>
           <state>NRF52_PAN_25</state>
           <state>NRF52_PAN_26</state>
@@ -581,6 +570,16 @@
           <state>NRF52_PAN_3</state>
           <state>NRF52_PAN_4</state>
           <state>NRF52_PAN_7</state>
+          <state>NRF52_PAN_8</state>
+          <state>NRF52_PAN_9</state>
+          <state>NRF52_PAN_10</state>
+          <state>NRF52_PAN_11</state>
+          <state>NRF52_PAN_12</state>
+          <state>NRF52_PAN_15</state>
+          <state>NRF52_PAN_16</state>
+          <state>NRF52_PAN_17</state>
+          <state>NRF52_PAN_20</state>
+          <state>NRF52_PAN_23</state>
           <state>NRF52</state>
           <state>SOFTDEVICE_PRESENT</state>
           <state>SWI_DISABLE0</state>
@@ -679,7 +678,6 @@
         </option>
         <option>
           <name>AUserIncludes</name>
-          <state>$PROJ_DIR$\..\..\config\ant_scan_and_forward_s212_pca10036</state>
           <state>$PROJ_DIR$\..\..\config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\ant\ant_channel_config</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\ant\ant_search_config</state>
@@ -697,6 +695,7 @@
           <state>$PROJ_DIR$\..\..\..\..\..\components\softdevice\s212\headers</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\softdevice\s212\headers\nrf52</state>
           <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\components\toolchain\CMSIS\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\bsp</state>
         </option>
         <option>
@@ -1090,7 +1089,13 @@
     <name>$PROJ_DIR$\..\..\..\..\..\components\libraries\util\app_error.c</name>
     </file>
     <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\components\libraries\util\app_error_weak.c</name>
+    </file>
+    <file>
     <name>$PROJ_DIR$\..\..\..\..\..\components\libraries\timer\app_timer.c</name>
+    </file>
+    <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\components\libraries\util\app_util_platform.c</name>
     </file>
     <file>
     <name>$PROJ_DIR$\..\..\..\..\..\components\libraries\util\nrf_assert.c</name>

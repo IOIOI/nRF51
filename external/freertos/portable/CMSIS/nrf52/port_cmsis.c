@@ -77,6 +77,7 @@
 #ifdef SOFTDEVICE_PRESENT
 #include "nrf_soc.h"
 #include "app_util.h"
+#include "app_util_platform.h"
 #endif
 
 #if !(__FPU_USED) && !(__LINT__)
@@ -109,26 +110,6 @@ debugger. */
 #else
     #define portTASK_RETURN_ADDRESS prvTaskExitError
 #endif
-
-/* Warning about softdevice configuration */
-#ifdef SOFTDEVICE_PRESENT
-    #ifndef APP_WILL_NOT_USE_SYSCALL_IN_SD_EVENT_HANDLERS
-      /* NOTE: Keep in mind: lower priority, higher value.
-       * NOTE: System call is call to any FreeRTOS function
-       *       (setting event, sending data into queue, etc...)
-       *
-       * If there are any syscalls in SD handlers it is required for the max SYSCALL interrupt
-       * priority to be at least on APP LOW priority level.
-       * 
-       * If it is programmer intention to keep configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY
-       * lower than NRF_APP_PRIORITY_LOW becouse there are no system function calls inside
-       * SD event handlers define global symbol APP_WILL_NOT_USE_SYSCALL_IN_SD_EVENT_HANDLERS
-       * to disable this warning.
-       */
-      STATIC_ASSERT(NRF_APP_PRIORITY_LOW >= configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY);
-      STATIC_ASSERT(NRF_APP_PRIORITY_LOW == configLIBRARY_LOWEST_INTERRUPT_PRIORITY);
-    #endif
-#endif /* SOFTDEVICE_PRESENT */
 
 /* Each task maintains its own interrupt status in the critical nesting
 variable. */

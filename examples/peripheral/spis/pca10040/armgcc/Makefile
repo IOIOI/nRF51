@@ -37,11 +37,9 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 
 #source common to all targets
 C_SOURCE_FILES += \
-$(abspath ../../../../../components/drivers_ext/segger_rtt/RTT_Syscalls_GCC.c) \
-$(abspath ../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT.c) \
-$(abspath ../../../../../components/drivers_ext/segger_rtt/SEGGER_RTT_printf.c) \
 $(abspath ../../../../../components/libraries/button/app_button.c) \
 $(abspath ../../../../../components/libraries/util/app_error.c) \
+$(abspath ../../../../../components/libraries/util/app_error_weak.c) \
 $(abspath ../../../../../components/libraries/timer/app_timer.c) \
 $(abspath ../../../../../components/libraries/util/app_util_platform.c) \
 $(abspath ../../../../../components/libraries/util/nrf_assert.c) \
@@ -55,6 +53,9 @@ $(abspath ../../../../../components/drivers_nrf/spi_slave/nrf_drv_spis.c) \
 $(abspath ../../../../../components/drivers_nrf/uart/nrf_drv_uart.c) \
 $(abspath ../../../../bsp/bsp.c) \
 $(abspath ../../main.c) \
+$(abspath ../../../../../external/segger_rtt/RTT_Syscalls_GCC.c) \
+$(abspath ../../../../../external/segger_rtt/SEGGER_RTT.c) \
+$(abspath ../../../../../external/segger_rtt/SEGGER_RTT_printf.c) \
 $(abspath ../../../../../components/toolchain/system_nrf52.c) \
 
 #assembly files common to all targets
@@ -70,15 +71,16 @@ INC_PATHS += -I$(abspath ../../../../../components/libraries/uart)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/hal)
 INC_PATHS += -I$(abspath ../../../../../components/libraries/button)
 INC_PATHS += -I$(abspath ../../../../../components/libraries/timer)
-INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/spi_slave)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/delay)
+INC_PATHS += -I$(abspath ../../../../../components/toolchain/CMSIS/Include)
 INC_PATHS += -I$(abspath ../..)
 INC_PATHS += -I$(abspath ../../../../../components/libraries/util)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/uart)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/common)
 INC_PATHS += -I$(abspath ../../../../../components/toolchain)
-INC_PATHS += -I$(abspath ../../../../../components/drivers_ext/segger_rtt)
+INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/spi_slave)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/config)
+INC_PATHS += -I$(abspath ../../../../../external/segger_rtt)
 INC_PATHS += -I$(abspath ../../../../../components/drivers_nrf/gpiote)
 INC_PATHS += -I$(abspath ../../../../../components/toolchain/gcc)
 
@@ -91,7 +93,7 @@ BUILD_DIRECTORIES := $(sort $(OBJECT_DIRECTORY) $(OUTPUT_BINARY_DIRECTORY) $(LIS
 
 #flags common to all targets
 CFLAGS  = -DNRF_LOG_USES_UART=1
-CFLAGS += -DNRF_LOG_USES_RTT=1
+CFLAGS += -DNRF52_PAN_12
 CFLAGS += -DNRF52_PAN_15
 CFLAGS += -DNRF52_PAN_58
 CFLAGS += -DSWI_DISABLE0
@@ -105,7 +107,7 @@ CFLAGS += -DNRF52_PAN_53
 CFLAGS += -DCONFIG_GPIO_AS_PINRESET
 CFLAGS += -DNRF52_PAN_64
 CFLAGS += -DNRF52_PAN_55
-CFLAGS += -DNRF52_PAN_12
+CFLAGS += -DNRF_LOG_USES_RTT=1
 CFLAGS += -DNRF52_PAN_62
 CFLAGS += -DNRF52_PAN_63
 CFLAGS += -DBOARD_PCA10040
@@ -116,8 +118,7 @@ CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=hard -mfpu=fpv4-sp-d16
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
-CFLAGS += -fno-builtin --short-enums
-
+CFLAGS += -fno-builtin --short-enums 
 # keep every function in separate section. This will allow linker to dump unused functions
 LDFLAGS += -Xlinker -Map=$(LISTING_DIRECTORY)/$(OUTPUT_FILENAME).map
 LDFLAGS += -mthumb -mabi=aapcs -L $(TEMPLATE_PATH) -T$(LINKER_SCRIPT)
@@ -131,7 +132,7 @@ LDFLAGS += --specs=nano.specs -lc -lnosys
 # Assembler flags
 ASMFLAGS += -x assembler-with-cpp
 ASMFLAGS += -DNRF_LOG_USES_UART=1
-ASMFLAGS += -DNRF_LOG_USES_RTT=1
+ASMFLAGS += -DNRF52_PAN_12
 ASMFLAGS += -DNRF52_PAN_15
 ASMFLAGS += -DNRF52_PAN_58
 ASMFLAGS += -DSWI_DISABLE0
@@ -145,11 +146,12 @@ ASMFLAGS += -DNRF52_PAN_53
 ASMFLAGS += -DCONFIG_GPIO_AS_PINRESET
 ASMFLAGS += -DNRF52_PAN_64
 ASMFLAGS += -DNRF52_PAN_55
-ASMFLAGS += -DNRF52_PAN_12
+ASMFLAGS += -DNRF_LOG_USES_RTT=1
 ASMFLAGS += -DNRF52_PAN_62
 ASMFLAGS += -DNRF52_PAN_63
 ASMFLAGS += -DBOARD_PCA10040
 ASMFLAGS += -DNRF52
+
 #default target - first one defined
 default: clean nrf52832_xxaa
 
@@ -162,7 +164,6 @@ all: clean
 help:
 	@echo following targets are available:
 	@echo 	nrf52832_xxaa
-
 
 C_SOURCE_FILE_NAMES = $(notdir $(C_SOURCE_FILES))
 C_PATHS = $(call remduplicates, $(dir $(C_SOURCE_FILES) ) )
@@ -179,9 +180,10 @@ OBJECTS = $(C_OBJECTS) $(ASM_OBJECTS)
 
 nrf52832_xxaa: OUTPUT_FILENAME := nrf52832_xxaa
 nrf52832_xxaa: LINKER_SCRIPT=spis_gcc_nrf52.ld
+
 nrf52832_xxaa: $(BUILD_DIRECTORIES) $(OBJECTS)
 	@echo Linking target: $(OUTPUT_FILENAME).out
-	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
+	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -lm -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
 	$(NO_ECHO)$(MAKE) -f $(MAKEFILE_NAME) -C $(MAKEFILE_DIR) -e finalize
 
 ## Create build directories
@@ -196,16 +198,12 @@ $(OBJECT_DIRECTORY)/%.o: %.c
 
 # Assemble files
 $(OBJECT_DIRECTORY)/%.o: %.s
-	@echo Compiling file: $(notdir $<)
+	@echo Assembly file: $(notdir $<)
 	$(NO_ECHO)$(CC) $(ASMFLAGS) $(INC_PATHS) -c -o $@ $<
-
-
 # Link
 $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out: $(BUILD_DIRECTORIES) $(OBJECTS)
 	@echo Linking target: $(OUTPUT_FILENAME).out
-	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
-
-
+	$(NO_ECHO)$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -lm -o $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
 ## Create binary .bin file from the .out file
 $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).bin: $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
 	@echo Preparing: $(OUTPUT_FILENAME).bin
@@ -226,7 +224,6 @@ genbin:
 genhex: 
 	@echo Preparing: $(OUTPUT_FILENAME).hex
 	$(NO_ECHO)$(OBJCOPY) -O ihex $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).hex
-
 echosize:
 	-@echo ''
 	$(NO_ECHO)$(SIZE) $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out
@@ -237,10 +234,9 @@ clean:
 
 cleanobj:
 	$(RM) $(BUILD_DIRECTORIES)/*.o
-
-flash: $(MAKECMDGOALS)
+flash: nrf52832_xxaa
 	@echo Flashing: $(OUTPUT_BINARY_DIRECTORY)/$<.hex
 	nrfjprog --program $(OUTPUT_BINARY_DIRECTORY)/$<.hex -f nrf52  --chiperase
-	nrfjprog --reset
+	nrfjprog --reset -f nrf52
 
 ## Flash softdevice

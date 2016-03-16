@@ -10,11 +10,10 @@
  *
  */
 
-/** @example examples/ble_peripheral/ble_app_blinky/main.c
- *
+/** 
  * @brief Blinky Sample Application main file.
  *
- * This file contains the source code for a sample application using the LED Button service.
+ * This file contains the source code for a sample server application using the LED Button service.
  */
 
 #include <stdint.h>
@@ -34,13 +33,13 @@
 #include "bsp.h"
 #include "ble_gap.h"
 
-#define CENTRAL_LINK_COUNT              0                                           /**<number of central links used by the application. When changing this number remember to adjust the RAM settings*/
-#define PERIPHERAL_LINK_COUNT           1                                           /**<number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
+#define CENTRAL_LINK_COUNT              0                                           /**< Number of central links used by the application. When changing this number remember to adjust the RAM settings*/
+#define PERIPHERAL_LINK_COUNT           1                                           /**< Number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
 
 #define ADVERTISING_LED_PIN             BSP_LED_0_MASK                              /**< Is on when device is advertising. */
 #define CONNECTED_LED_PIN               BSP_LED_1_MASK                              /**< Is on when device has connected. */
 
-#define LEDBUTTON_LED_PIN               BSP_LED_0_MASK                              /**< LED to be toggled with the help of the LED Button Service. */
+#define LEDBUTTON_LED_PIN               BSP_LED_2_MASK                              /**< LED to be toggled with the help of the LED Button Service. */
 #define LEDBUTTON_BUTTON_PIN            BSP_BUTTON_0                                /**< Button that will trigger the notification event with the LED Button Service */
 
 #define DEVICE_NAME                     "Nordic_Blinky"                             /**< Name of device. Will be included in the advertising data. */
@@ -92,8 +91,8 @@ void assert_nrf_callback(uint16_t line_num, const uint8_t * p_file_name)
  */
 static void leds_init(void)
 {
-    LEDS_CONFIGURE(ADVERTISING_LED_PIN | CONNECTED_LED_PIN);
-    LEDS_OFF(ADVERTISING_LED_PIN | CONNECTED_LED_PIN);
+    LEDS_CONFIGURE(ADVERTISING_LED_PIN | CONNECTED_LED_PIN | LEDBUTTON_LED_PIN);
+    LEDS_OFF(ADVERTISING_LED_PIN | CONNECTED_LED_PIN | LEDBUTTON_LED_PIN);
 }
 
 
@@ -351,9 +350,11 @@ static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
 static void ble_stack_init(void)
 {
     uint32_t err_code;
-
+    
+    nrf_clock_lf_cfg_t clock_lf_cfg = NRF_CLOCK_LFCLKSRC;
+    
     // Initialize the SoftDevice handler module.
-    SOFTDEVICE_HANDLER_INIT(NRF_CLOCK_LFCLKSRC_XTAL_20_PPM, false);
+    SOFTDEVICE_HANDLER_INIT(&clock_lf_cfg, NULL);
     
     ble_enable_params_t ble_enable_params;
     err_code = softdevice_enable_get_default_config(CENTRAL_LINK_COUNT,

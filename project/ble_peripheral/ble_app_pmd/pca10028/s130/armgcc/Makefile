@@ -132,9 +132,8 @@ OUTPUT_BINARY_DIRECTORY = $(OBJECT_DIRECTORY)
 BUILD_DIRECTORIES := $(sort $(OBJECT_DIRECTORY) $(OUTPUT_BINARY_DIRECTORY) $(LISTING_DIRECTORY) )
 
 #flags common to all targets
-CFLAGS  = -DNRF_LOG_USES_UART=1
+CFLAGS  = -DNRF_LOG_USES_RTT=1
 CFLAGS += -DBOARD_PCA10028
-#CFLAGS += -DDEBUG # destroys uart output
 CFLAGS += -DSOFTDEVICE_PRESENT
 CFLAGS += -DNRF51
 CFLAGS += -DS130
@@ -160,7 +159,7 @@ LDFLAGS += --specs=nano.specs -lc -lnosys -lgcc -lm -lstdc++ -lsupc++
 #flags common to all targets
 CPPFLAGS  = -DBOARD_PCA10028
 CPPFLAGS += -DSOFTDEVICE_PRESENT
-CPPFLAGS += -DNRF_LOG_USES_UART=1
+CPPFLAGS += -DNRF_LOG_USES_RTT=1
 CPPFLAGS += -DNRF51
 CPPFLAGS += -DS130
 CPPFLAGS += -DBLE_STACK_SUPPORT_REQD
@@ -173,9 +172,11 @@ CPPFLAGS += -mfloat-abi=soft
 CPPFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
 CPPFLAGS += -fno-builtin --short-enums -fno-rtti -fno-exceptions
 
+CPPFLAGS += -Wno-error=write-strings
+
 # Assembler flags
 ASMFLAGS += -x assembler-with-cpp
-ASMFLAGS += -DNRF_LOG_USES_UART=1
+ASMFLAGS += -DNRF_LOG_USES_RTT=1
 ASMFLAGS += -DBOARD_PCA10028
 ASMFLAGS += -DSOFTDEVICE_PRESENT
 ASMFLAGS += -DNRF51

@@ -83,7 +83,7 @@ extern "C" {
 
 #define SEC_PARAM_BOND                 1                                           /**< Perform bonding. */
 #define SEC_PARAM_MITM                 1                                           /**< Man In The Middle protection required (applicable when display module is detected). */
-#define SEC_PARAM_LESC                 1                                           /**< LE Secure Connections not enabled. */
+#define SEC_PARAM_LESC                 0                                           /**< LE Secure Connections not enabled. */
 #define SEC_PARAM_KEYPRESS             0                                           /**< Keypress notifications not enabled. */
 #define SEC_PARAM_IO_CAPABILITIES      BLE_GAP_IO_CAPS_DISPLAY_ONLY                /**< Display I/O capabilities. */
 #define SEC_PARAM_OOB                  0                                           /**< Out Of Band data not available. */

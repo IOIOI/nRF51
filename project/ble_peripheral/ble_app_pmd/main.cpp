@@ -32,15 +32,12 @@ extern "C" {
 #include "app_error.h"
 #include "nrf_gpio.h"
 #include "ble.h"
-#include "ble_hci.h"
-#include "ble_srv_common.h"
 #include "ble_conn_params.h"
 #include "ble_nus.h"
 #include "boards.h"
 #include "softdevice_handler.h"
 #include "app_timer.h"
 #include "peer_manager.h"
-#include "app_button.h"
 #include "pstorage.h"
 #include "app_uart.h"
 #include "bsp.h"
@@ -355,22 +352,20 @@ static void nus_data_handler(ble_nus_t* p_nus, uint8_t* p_data, uint16_t length)
     APP_LOG("[APP] Recv: ", (char*)p_data);
     APP_LOG("\r\n");
 
-//    const std::string msg((char*)p_data, length);
-//
-//    if(msg.find("LED2") != std::string::npos){
-//      LEDS_INVERT(BSP_LED_1_MASK);
-//      APP_LOG("[APP] 2 \r\n");
-//    }
-//    if(msg.find("LED3") != std::string::npos){
-//              LEDS_INVERT(BSP_LED_2_MASK);
-//              APP_LOG("[APP] 3 \r\n");
-//
-//        }
-//    if(msg.find("LED4") != std::string::npos){
-//              //LEDS_INVERT(BSP_LED_3_MASK);
-//              APP_LOG("[APP] 4 \r\n");
-//
-//        }
+    const std::string msg((char*)p_data, length);
+
+    if (msg.find("LED2") != std::string::npos) {
+        LEDS_INVERT(BSP_LED_1_MASK);
+        APP_LOG("[APP] 2 \r\n");
+    }
+    if (msg.find("LED3") != std::string::npos) {
+        LEDS_INVERT(BSP_LED_2_MASK);
+        APP_LOG("[APP] 3 \r\n");
+    }
+    if (msg.find("LED4") != std::string::npos) {
+        LEDS_INVERT(BSP_LED_3_MASK);
+        APP_LOG("[APP] 4 \r\n");
+    }
 }
 
 /**@brief Function for initializing services that will be used by the application.
@@ -742,6 +737,9 @@ int main(void)
     advertising_init();
     conn_params_init();
 
+    LEDS_CONFIGURE(LED_2);
+    LEDS_CONFIGURE(LED_3);
+    LEDS_CONFIGURE(LED_4);
     // Start execution.
 
     advertising_start();

@@ -47,7 +47,6 @@ $(abspath ../../../../../../components/libraries/util/nrf_assert.c) \
 $(abspath ../../../../../../components/libraries/util/nrf_log.c) \
 $(abspath ../../../../../../components/libraries/uart/retarget.c) \
 $(abspath ../../../../../../components/libraries/util/sdk_mapped_flags.c) \
-$(abspath ../../../../../../components/libraries/sensorsim/sensorsim.c) \
 $(abspath ../../../../../../external/segger_rtt/RTT_Syscalls_GCC.c) \
 $(abspath ../../../../../../external/segger_rtt/SEGGER_RTT.c) \
 $(abspath ../../../../../../external/segger_rtt/SEGGER_RTT_printf.c) \
@@ -63,7 +62,6 @@ $(abspath ../../../../../../components/ble/common/ble_advdata.c) \
 $(abspath ../../../../../../components/ble/ble_advertising/ble_advertising.c) \
 $(abspath ../../../../../../components/ble/common/ble_conn_params.c) \
 $(abspath ../../../../../../components/ble/common/ble_conn_state.c) \
-$(abspath ../../../../../../components/ble/common/ble_srv_common.c) \
 $(abspath ../../../../../../components/ble/ble_services/ble_nus/ble_nus.c) \
 $(abspath ../../../../../../components/ble/peer_manager/gatt_cache_manager.c) \
 $(abspath ../../../../../../components/ble/peer_manager/gattc_cache_manager.c) \

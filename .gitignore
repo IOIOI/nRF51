@@ -12,3 +12,7 @@ project/ble_peripheral/ble_app_pmd/pca10028/s130/armgcc/_build/nrf51422_xxac_s13
 project/ble_peripheral/ble_app_pmd/pca10028/s130/armgcc/_build/nrf51422_xxac_s130.hex
 project/ble_peripheral/ble_app_pmd/pca10028/s130/armgcc/_build/nrf51422_xxac_s130.map
 project/ble_peripheral/ble_app_pmd/pca10028/s130/armgcc/_build/nrf51422_xxac_s130.out
+examples/dfu/bootloader/pca10028/dual_bank_ble_s130/armgcc/_build/nrf51422_xxac.bin
+examples/dfu/bootloader/pca10028/dual_bank_ble_s130/armgcc/_build/nrf51422_xxac.hex
+examples/dfu/bootloader/pca10028/dual_bank_ble_s130/armgcc/_build/nrf51422_xxac.map
+examples/dfu/bootloader/pca10028/dual_bank_ble_s130/armgcc/_build/nrf51422_xxac.out

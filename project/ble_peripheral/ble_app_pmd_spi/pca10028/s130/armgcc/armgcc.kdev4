@@ -1,0 +1,3 @@
+[Project]
+Manager=KDevCustomMakeManager
+Name=PMD_BLE

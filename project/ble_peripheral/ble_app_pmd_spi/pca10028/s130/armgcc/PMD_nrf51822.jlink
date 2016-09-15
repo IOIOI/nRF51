@@ -1,0 +1,10 @@
+si SWD
+speed 4000
+device NRF51822_XXAA
+connect
+erase
+loadfile ../../../headers/components/softdevice/s130/hex/s130_nrf51_2.0.0_softdevice.hex
+loadfile _build/nrf51422_xxac_s130.hex
+r
+g
+q

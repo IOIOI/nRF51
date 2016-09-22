@@ -22,19 +22,13 @@
  * @ref srvlib_conn_params module.
  */
 
-#include <cstdint>
-#include <cstring>
-#include <string>
-
-extern "C" {
 #include "app_error.h"
 #include "boards.h"
 #include "nrf_log.h"
 #include "nrf_delay.h"
 
 #include "PMD_Ble.h"
-#include "PMD_Spi.h"
-}
+#include "PMD_FwManager.h"
 
 #if BUTTONS_NUMBER < 2
 #error "Not enough resources on board to run example"
@@ -60,41 +54,52 @@ void assert_nrf_callback(uint16_t line_num, const uint8_t* p_file_name)
     app_error_handler(DEAD_BEEF, line_num, p_file_name);
 }
 
-
-/**@brief Function for application main entry.
+/**
+ * @brief Main initialisation function.
  */
-int main(void)
+void init()
 {
     bool erase_bonds;
 
-    // Initialize.
     APP_ERROR_CHECK(NRF_LOG_INIT());
 
     timers_init();
     buttons_leds_init(&erase_bonds);
     ble_stack_init();
     peer_manager_init(erase_bonds);
+
     if (erase_bonds == true) {
         APP_LOG("Bonds erased!\r\n");
     }
+
     gap_params_init();
     services_init();
     advertising_init();
     conn_params_init();
-    pmd_spi_init();
+
+    initFwManager();
 
     LEDS_CONFIGURE(LED_3);
     LEDS_CONFIGURE(LED_4);
 
     advertising_start();
+}
+
+
+/**
+ * @brief Function for application main entry.
+ */
+int main(void)
+{
+    init();
 
     APP_LOG("\r\nPMD Start!\r\n");
 
+    testFnc();
+
     for ( ; ; ) {
         power_manage();
-        pmd_spi_transceiver();
-
-        nrf_delay_ms(200);
+        nrf_delay_ms(1000);
     }
 }
 

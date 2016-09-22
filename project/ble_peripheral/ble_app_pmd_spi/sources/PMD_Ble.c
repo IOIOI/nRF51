@@ -1,3 +1,15 @@
+/* Copyright (c) 2014 Nordic Semiconductor. All Rights Reserved.
+ *
+ * The information contained herein is property of Nordic Semiconductor ASA.
+ * Terms and conditions of usage are described in detail in NORDIC
+ * SEMICONDUCTOR STANDARD SOFTWARE LICENSE AGREEMENT.
+ *
+ * Licensees are granted free, non-transferable use of the information. NO
+ * WARRANTY of ANY KIND is provided. This heading must NOT be removed from
+ * the file.
+ *
+ */
+
 #include "PMD_Ble.h"
 
 #define UART_TX_BUF_SIZE 256                                                       /**< UART TX buffer size. */
@@ -290,22 +302,6 @@ static void nus_data_handler(ble_nus_t* p_nus, uint8_t* p_data, uint16_t length)
     p_data[length] = 0;
     APP_LOG("[APP] Recv: ", (char*)p_data);
     APP_LOG("\r\n");
-    
-// TODO: Anpassen / Brauchen wir die Funktion?
-//     const std::string msg((char*)p_data, length);
-// 
-//     if (msg.find("LED2") != std::string::npos) {
-//         LEDS_INVERT(BSP_LED_1_MASK);
-//         APP_LOG("[APP] 2 \r\n");
-//     }
-//     if (msg.find("LED3") != std::string::npos) {
-//         LEDS_INVERT(BSP_LED_2_MASK);
-//         APP_LOG("[APP] 3 \r\n");
-//     }
-//     if (msg.find("LED4") != std::string::npos) {
-//         LEDS_INVERT(BSP_LED_3_MASK);
-//         APP_LOG("[APP] 4 \r\n");
-//     }
 }
 
 /**@brief Function for initializing services that will be used by the application.
@@ -652,4 +648,4 @@ void power_manage(void)
 {
     uint32_t err_code = sd_app_evt_wait();
     APP_ERROR_CHECK(err_code);
-} 
+}

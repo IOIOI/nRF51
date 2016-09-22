@@ -3,7 +3,7 @@ PROJECT_NAME := ble_app_gls_s130_pca10028
 export OUTPUT_FILENAME
 #MAKEFILE_NAME := $(CURDIR)/$(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
 MAKEFILE_NAME := $(MAKEFILE_LIST)
-MAKEFILE_DIR := $(dir $(MAKEFILE_NAME) ) 
+MAKEFILE_DIR := $(dir $(MAKEFILE_NAME) )
 
 TEMPLATE_PATH = ../../../includes/components/toolchain/gcc
 include $(TEMPLATE_PATH)/Makefile.posix
@@ -13,7 +13,7 @@ RM := rm -rf
 
 #echo suspend
 ifeq ("$(VERBOSE)","1")
-NO_ECHO := 
+NO_ECHO :=
 else
 NO_ECHO := @
 endif
@@ -34,7 +34,10 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 
 #source common to all targets
 C_SOURCE_FILES += \
+$(abspath ../../../sources/main.c) \
 $(abspath ../../../sources/PMD_Spi.c) \
+$(abspath ../../../sources/PMD_FwManager.c) \
+$(abspath ../../../sources/PMD_FwManager_test.c) \
 $(abspath ../../../sources/PMD_Ble.c) \
 $(abspath ../../../includes/components/libraries/button/app_button.c) \
 $(abspath ../../../includes/components/libraries/util/app_error.c) \
@@ -85,8 +88,9 @@ $(abspath ../../../sources/advertising.c) \
 # $(abspath ../../../includes/components/libraries/uart/app_uart.c) \
 
 #source common to all targets
-CPP_SOURCE_FILES += \
-$(abspath ../../../sources/main.cpp) \
+# CPP_SOURCE_FILES = ""
+# CPP_SOURCE_FILES += \
+# $(abspath ../../../sources/main.cpp) \
 
 #assembly files common to all targets
 ASM_SOURCE_FILES  = $(abspath ../../../includes/components/toolchain/gcc/gcc_startup_nrf51.s)
@@ -151,7 +155,7 @@ CFLAGS += -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section. This will allow linker to dump unused functions
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
-CFLAGS += -fno-builtin --short-enums 
+CFLAGS += -fno-builtin --short-enums
 
 # keep every function in separate section. This will allow linker to dump unused functions
 LDFLAGS += -Xlinker -Map=$(LISTING_DIRECTORY)/$(OUTPUT_FILENAME).map
@@ -210,19 +214,20 @@ C_SOURCE_FILE_NAMES = $(notdir $(C_SOURCE_FILES))
 C_PATHS = $(call remduplicates, $(dir $(C_SOURCE_FILES) ) )
 C_OBJECTS = $(addprefix $(OBJECT_DIRECTORY)/, $(C_SOURCE_FILE_NAMES:.c=.o) )
 
-CPP_SOURCE_FILE_NAMES = $(notdir $(CPP_SOURCE_FILES))
-CPP_PATHS = $(call remduplicates, $(dir $(CPP_SOURCE_FILES) ) )
-CPP_OBJECTS = $(addprefix $(OBJECT_DIRECTORY)/, $(CPP_SOURCE_FILE_NAMES:.cpp=.o) )
+# CPP_SOURCE_FILE_NAMES = $(notdir $(CPP_SOURCE_FILES))
+# CPP_PATHS = $(call remduplicates, $(dir $(CPP_SOURCE_FILES) ) )
+# CPP_OBJECTS = $(addprefix $(OBJECT_DIRECTORY)/, $(CPP_SOURCE_FILE_NAMES:.cpp=.o) )
 
 ASM_SOURCE_FILE_NAMES = $(notdir $(ASM_SOURCE_FILES))
 ASM_PATHS = $(call remduplicates, $(dir $(ASM_SOURCE_FILES) ))
 ASM_OBJECTS = $(addprefix $(OBJECT_DIRECTORY)/, $(ASM_SOURCE_FILE_NAMES:.s=.o) )
 
 vpath %.c $(C_PATHS)
-vpath %.cpp $(CPP_PATHS)
+# vpath %.cpp $(CPP_PATHS)
 vpath %.s $(ASM_PATHS)
 
-OBJECTS = $(CPP_OBJECTS) $(C_OBJECTS) $(ASM_OBJECTS)
+# OBJECTS = $(CPP_OBJECTS) $(C_OBJECTS) $(ASM_OBJECTS)
+OBJECTS = $(C_OBJECTS) $(ASM_OBJECTS)
 
 nrf51422_xxac_s130: OUTPUT_FILENAME := nrf51422_xxac_s130
 nrf51422_xxac_s130: LINKER_SCRIPT=ble_app_gls_gcc_nrf51.ld
@@ -241,12 +246,12 @@ $(BUILD_DIRECTORIES):
 $(OBJECT_DIRECTORY)/%.o: %.c
 	@echo Compiling file: $(notdir $<)
 	$(NO_ECHO)$(CC) $(CFLAGS) $(INC_PATHS) -c -o $@ $<
-	
+
 # Create objects from CPP SRC files
 $(OBJECT_DIRECTORY)/%.o: %.cpp
 	@echo Compiling file: $(notdir $<)
 	$(NO_ECHO)$(CPP) $(CPPFLAGS) $(DEFINES) $(INC_PATHS) -c -o $@ $<
-	
+
 # Assemble files
 $(OBJECT_DIRECTORY)/%.o: %.s
 	@echo Assembly file: $(notdir $<)
@@ -274,7 +279,7 @@ genbin:
 	$(NO_ECHO)$(OBJCOPY) -O binary $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).bin
 
 ## Create binary .hex file from the .out file
-genhex: 
+genhex:
 	@echo Preparing: $(OUTPUT_FILENAME).hex
 	$(NO_ECHO)$(OBJCOPY) -O ihex $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).out $(OUTPUT_BINARY_DIRECTORY)/$(OUTPUT_FILENAME).hex
 

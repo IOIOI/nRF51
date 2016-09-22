@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Daniel Tatzel
+/* Copyright (C) 2016 Daniel Tatzel
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,31 +19,55 @@
 #include "boards.h"
 #include "sdk_common.h"
 #include "app_util_platform.h"
-
 #include "nrf_delay.h"
 
-#define ERROR_WRONG_ADDRESS ((uint32_t) 0xFE000000)
-#define ERROR_BINARY_SIZE ((uint32_t) 0xFF000000)
-// #define SUCCESS ((uint32_t) 0xFF000000)
+#define BUFFER_SIZE ((uint8_t) 0x80)
 
+union MemoryAddress {
+ uint32_t address;
+ uint8_t addressBytes[3];
+};
 
-/**
- * @brief SPI user event handler.
- * @param event
- */
-void pmd_spi_event_handler(nrf_drv_spi_evt_t const * p_event);
+enum AddressBytes {
+    LOWER_BYTE,
+    MIDDLE_BYTE,
+    UPPER_BYTE
+};
 
-/**
- * @brief SPI initialisation.
- */
-void pmd_spi_init();
+struct transmissionData {
+    uint8_t tx_data[BUFFER_SIZE];
+    uint8_t tx_length;
+    uint8_t rx_data[BUFFER_SIZE];
+    uint8_t rx_length;
+};
 
-void pmd_spi_transceiver();
+void spi_event_handler(nrf_drv_spi_evt_t const * p_event);
+void spi_init();
+void spi_transceiver();
 
 void setMemWriteProtection(uint8_t blockProtection);
+
 uint8_t getMemWriteProtection();
 
-void getDeviceID();
-void getManufacturerAndDeviceId();
+void splitAndStoreData(uint8_t* data, uint32_t data_length, union MemoryAddress addr);
 
-void storeData(uint8_t* data, uint32_t data_length, const uint32_t addr);
+#ifndef USE_FAST_READ
+void readData(union MemoryAddress addr, struct transmissionData* retData);
+#else
+void fastReadData(union MemoryAddress addr, struct transmissionData* retData);
+#endif /* USE_FAST_READ */
+
+void pageProgram(uint8_t* data, uint8_t data_length, union MemoryAddress addr);
+
+void sectorErase(union MemoryAddress addr);
+void blockErase(union MemoryAddress addr);
+void chipErase();
+
+void powerDown();
+void releasePowerDown();
+
+#ifdef DEBUG
+uint8_t getDeviceID();
+uint16_t getManufacturerAndDeviceId();
+#endif /* DEBUG */
+

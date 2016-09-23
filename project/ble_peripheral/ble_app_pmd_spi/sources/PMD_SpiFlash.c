@@ -13,7 +13,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "PMD_Spi.h"
+#include "PMD_SpiFlash.h"
 
 /* ########################## */
 /* SPI COMMANDS               */
@@ -23,7 +23,7 @@
 
 #define READ_STATUS_REG ((uint8_t) 0x05)
 #define READ_STATUS_REG_CMD_SIZE ((uint8_t) 1)
-#define READ_STATUS_REG_BUFFER_SIZE ((uint8_t) 1)
+#define READ_STATUS_REG_SPI_BUFFER_SIZE ((uint8_t) 1)
 #define WRITE_STATUS_REG ((uint8_t) 01)
 
 #define READ_DATA ((uint8_t) 0x03)
@@ -54,12 +54,10 @@
 
 #define DUMMY_BYTE ((uint8_t) 0x00)
 
-
 #define SPI_INSTANCE  0 /**< SPI instance index. */
 
 static const nrf_drv_spi_t spi0 = NRF_DRV_SPI_INSTANCE(SPI_INSTANCE);  /**< SPI instance. */
 static volatile bool spi_xfer_done;  /**< Flag used to indicate that SPI instance completed the transfer. */
-// static volatile bool flash_wip_flag;
 
 enum spiCommandLayout {
     COMMAND,
@@ -133,7 +131,7 @@ static void writeDisable()
 
 static uint8_t readStatusReg()
 {
-    uint8_t m_rx_buf[READ_STATUS_REG_BUFFER_SIZE + READ_STATUS_REG_CMD_SIZE];
+    uint8_t m_rx_buf[READ_STATUS_REG_SPI_BUFFER_SIZE + READ_STATUS_REG_CMD_SIZE];
     uint8_t m_rx_length = sizeof(m_rx_buf);
     memset(m_rx_buf, 0, m_rx_length);
 
@@ -342,26 +340,26 @@ uint8_t getMemWriteProtection()
 
 void splitAndStoreData(uint8_t* data, uint32_t data_length, union MemoryAddress addr)
 {
-    const uint32_t halfPages = data_length / BUFFER_SIZE;
-    const uint32_t rest = data_length % BUFFER_SIZE;
+    const uint32_t halfPages = data_length / SPI_BUFFER_SIZE;
+    const uint32_t rest = data_length % SPI_BUFFER_SIZE;
     uint32_t index;
 
     for(index = 0; halfPages > index; index++)
     {
-        pageProgram(&data[index * BUFFER_SIZE], BUFFER_SIZE, addr);
-        addr.address += BUFFER_SIZE;
+        pageProgram(&data[index * SPI_BUFFER_SIZE], SPI_BUFFER_SIZE, addr);
+        addr.address += SPI_BUFFER_SIZE;
     }
 
     if(0 != rest)
     {
-        pageProgram(&data[halfPages * BUFFER_SIZE], rest, addr);
+        pageProgram(&data[halfPages * SPI_BUFFER_SIZE], rest, addr);
     }
 }
 
 #ifndef USE_FAST_READ
 void readData(union MemoryAddress addr, struct transmissionData* retData)
 {
-    uint8_t m_rx_buf[BUFFER_SIZE + READ_CMD_SIZE];
+    uint8_t m_rx_buf[SPI_BUFFER_SIZE + READ_CMD_SIZE];
     uint8_t m_rx_length = sizeof(m_rx_buf);
     memset(m_rx_buf, 0, m_rx_length);
 
@@ -381,8 +379,8 @@ void readData(union MemoryAddress addr, struct transmissionData* retData)
 
     if(NULL != retData)
     {
-        memcpy(retData->rx_data, &m_rx_buf[READ_CMD_SIZE], BUFFER_SIZE);
-        retData->rx_length = BUFFER_SIZE;
+        memcpy(retData->rx_data, &m_rx_buf[READ_CMD_SIZE], SPI_BUFFER_SIZE);
+        retData->rx_length = SPI_BUFFER_SIZE;
         retData->tx_length = 0;
     }
 }
@@ -391,7 +389,7 @@ void readData(union MemoryAddress addr, struct transmissionData* retData)
 
 void fastReadData(union MemoryAddress addr, struct transmissionData* retData)
 {
-    uint8_t m_rx_buf[BUFFER_SIZE + FAST_READ_CMD_SIZE];
+    uint8_t m_rx_buf[SPI_BUFFER_SIZE + FAST_READ_CMD_SIZE];
     uint8_t m_rx_length = sizeof(m_rx_buf);
     memset(m_rx_buf, 0, m_rx_length);
 
@@ -412,8 +410,8 @@ void fastReadData(union MemoryAddress addr, struct transmissionData* retData)
 
     if(NULL != retData)
     {
-        memcpy(retData->rx_data, &m_rx_buf[FAST_READ_CMD_SIZE], BUFFER_SIZE);
-        retData->rx_length = BUFFER_SIZE;
+        memcpy(retData->rx_data, &m_rx_buf[FAST_READ_CMD_SIZE], SPI_BUFFER_SIZE);
+        retData->rx_length = SPI_BUFFER_SIZE;
         retData->tx_length = 0;
     }
 }
@@ -421,7 +419,7 @@ void fastReadData(union MemoryAddress addr, struct transmissionData* retData)
 
 void pageProgram(uint8_t* data, uint8_t data_length, union MemoryAddress addr)
 {
-    uint8_t m_tx_buf[BUFFER_SIZE + 4] = {0};
+    uint8_t m_tx_buf[SPI_BUFFER_SIZE + 4] = {0};
     uint8_t m_tx_length = 4 * sizeof(m_tx_buf[0]) + data_length;
     uint8_t index = 0;
 

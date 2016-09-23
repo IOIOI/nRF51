@@ -13,6 +13,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
+#include <stdbool.h>
+#include <stdint.h>
 #include "nrf_drv_spi.h"
 #include "nrf_log.h"
 #include "app_error.h"
@@ -21,7 +23,7 @@
 #include "app_util_platform.h"
 #include "nrf_delay.h"
 
-#define BUFFER_SIZE ((uint8_t) 0x80)
+#define SPI_BUFFER_SIZE ((uint8_t) 0x80)
 
 union MemoryAddress {
  uint32_t address;
@@ -35,9 +37,9 @@ enum AddressBytes {
 };
 
 struct transmissionData {
-    uint8_t tx_data[BUFFER_SIZE];
+    uint8_t tx_data[SPI_BUFFER_SIZE];
     uint8_t tx_length;
-    uint8_t rx_data[BUFFER_SIZE];
+    uint8_t rx_data[SPI_BUFFER_SIZE];
     uint8_t rx_length;
 };
 
@@ -52,9 +54,13 @@ uint8_t getMemWriteProtection();
 void splitAndStoreData(uint8_t* data, uint32_t data_length, union MemoryAddress addr);
 
 #ifndef USE_FAST_READ
+
 void readData(union MemoryAddress addr, struct transmissionData* retData);
+
 #else
+
 void fastReadData(union MemoryAddress addr, struct transmissionData* retData);
+
 #endif /* USE_FAST_READ */
 
 void pageProgram(uint8_t* data, uint8_t data_length, union MemoryAddress addr);

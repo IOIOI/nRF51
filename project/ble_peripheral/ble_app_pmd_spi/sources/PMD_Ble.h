@@ -10,6 +10,8 @@
  *
  */
 
+#include <stdbool.h>
+#include <stdint.h>
 #include "nordic_common.h"
 #include "nrf.h"
 #include "nrf_gpio.h"

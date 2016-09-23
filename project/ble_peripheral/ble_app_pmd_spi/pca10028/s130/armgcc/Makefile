@@ -35,9 +35,10 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 #source common to all targets
 C_SOURCE_FILES += \
 $(abspath ../../../sources/main.c) \
-$(abspath ../../../sources/PMD_Spi.c) \
+$(abspath ../../../sources/PMD_SpiFlash.c) \
 $(abspath ../../../sources/PMD_FwManager.c) \
 $(abspath ../../../sources/PMD_FwManager_test.c) \
+$(abspath ../../../sources/PMD_Uart.c) \
 $(abspath ../../../sources/PMD_Ble.c) \
 $(abspath ../../../includes/components/libraries/button/app_button.c) \
 $(abspath ../../../includes/components/libraries/util/app_error.c) \

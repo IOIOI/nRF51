@@ -1,5 +1,6 @@
 #include "PMD_FwManager.h"
-#include "PMD_Spi.h"
+#include "PMD_SpiFlash.h"
+#include "PMD_FwManager_test.h"
 
 #define BIN_1_ADDR ((uint32_t) 0x0)
 #define BIN_2_ADDR ((uint32_t) 0x80000)

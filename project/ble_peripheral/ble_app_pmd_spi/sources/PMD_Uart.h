@@ -13,23 +13,14 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
+#include <stdbool.h>
 #include <stdint.h>
+#include "app_uart.h"
+#include "app_error.h"
+#include "nrf_delay.h"
+#include "nrf.h"
+#include "bsp.h"
+#include "nrf_drv_config.h"
 
-#define RESET_PROGRESS ((uint8_t) 0x40)
-#define WRITE_IN_PROGRESS ((uint8_t) 0x80)
-#define ERROR_WRONG_ADDRESS ((uint8_t) 0xE)
-#define ERROR_BIN_SIZE ((uint8_t) 0xF0)
-#define SUCCESS ((uint8_t) 0x00)
-
-struct binaryInfo {
-    uint8_t  status;
-    uint32_t size;
-    uint32_t version;
-    uint16_t hash;
-    uint16_t crc;
-};
-
-void initFwManager();
-void getBinaryInfo(uint32_t addr, struct binaryInfo* info);
-uint8_t writeBinary(uint8_t* data, uint32_t data_length);
-void writeBinaryStatus(uint8_t status, uint32_t binaryAddr);
+void uart_error_handle(app_uart_evt_t * p_event);
+void initUart();

@@ -14,20 +14,21 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "PMD_FwManager.h"
-#include "PMD_Spi.h"
+#include "PMD_SpiFlash.h"
 
 #define BIN_1_ADDR ((uint32_t) 0x0)
 #define BIN_2_ADDR ((uint32_t) 0x80000)
 
-#define BIN_INFO_OFFEST ((uint32_t) 0x0)
-#define INFO_STATUS_OFFEST ((uint8_t) 0)
-#define INFO_SIZE_OFFEST ((uint8_t) 1)
+#define BIN_INFO_OFFEST ((uint32_t) 0)
+#define INFO_STATUS_OFFEST ((uint8_t) BIN_INFO_OFFEST)
+#define INFO_STATUS_LENGTH ((uint8_t) 1)
+#define INFO_SIZE_OFFEST ((uint8_t) INFO_STATUS_OFFEST + INFO_STATUS_LENGTH)
 #define INFO_SIZE_LENGTH ((uint8_t) 4)
-#define INFO_VERSION_OFFEST ((uint8_t) 5)
+#define INFO_VERSION_OFFEST ((uint8_t) INFO_SIZE_OFFEST + INFO_SIZE_LENGTH)
 #define INFO_VERSION_LENGTH ((uint8_t) 4)
-#define INFO_HASH_OFFEST ((uint8_t) 9)
+#define INFO_HASH_OFFEST ((uint8_t) INFO_VERSION_OFFEST + INFO_VERSION_LENGTH)
 #define INFO_HASH_LENGTH ((uint8_t) 2)
-#define INFO_CRC_OFFEST ((uint8_t) 11)
+#define INFO_CRC_OFFEST ((uint8_t) INFO_HASH_OFFEST + INFO_HASH_LENGTH)
 #define INFO_CRC_LENGTH ((uint8_t) 2)
 
 #define SIG_OFFEST ((uint32_t) 0x80)

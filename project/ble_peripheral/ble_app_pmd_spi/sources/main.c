@@ -28,7 +28,9 @@
 #include "nrf_delay.h"
 
 #include "PMD_Ble.h"
+#include "PMD_FwManager_test.h"
 #include "PMD_FwManager.h"
+#include "PMD_Uart.h"
 
 #if BUTTONS_NUMBER < 2
 #error "Not enough resources on board to run example"
@@ -95,12 +97,14 @@ int main(void)
 
     APP_LOG("\r\nPMD Start!\r\n");
 
-    testFnc();
+    testUart();
 
-    for ( ; ; ) {
-        power_manage();
-        nrf_delay_ms(1000);
-    }
+//     testFnc();
+//
+//     for ( ; ; ) {
+//         power_manage();
+//         nrf_delay_ms(1000);
+//     }
 }
 
 /**

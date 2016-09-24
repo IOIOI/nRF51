@@ -1,5 +1,5 @@
-void spi_testFncWrite();
-void spi_testFncRead(uint32_t tmpAddr);
-void spi_testFncInfo();
-void spi_testFncBin();
-void testFnc();
+void fwM_testFncWrite();
+void fwM_testFncRead(uint32_t tmpAddr);
+void fwM_testFncInfo();
+void fwM_testFncBin();
+void fwM_testFnc();

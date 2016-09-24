@@ -10,8 +10,32 @@
  *
  */
 
+/*************************************************************************************************************************//**
+* \file PMD_Ble.c                                                   <!-- Has to be changed according to the real file name -->
+*
+* \brief This module is handling the communication via Bluetooth.                                   <!-- Brief description -->
+*
+* This module handles the communication via Bluetooth.                                           <!-- Detailed description -->
+* It is also responsible for parsing the received data to passthrough the data
+* to the corresponding module eg. the firmware manager.
+*
+******************************************************************************************************************************
+* <!-- Authors -->
+******************************************************************************************************************************
+*
+* \author Nordic Semiconductor                                                               <!-- One line for each author -->
+* \author Daniel Tatzel
+*
+*****************************************************************************************************************************/
+
+/*===========================================================================================================================|
+|  INCLUDES                                                                                                                  |
+============================================================================================================================*/
 #include "PMD_Ble.h"
 
+/*===========================================================================================================================|
+|  LOCAL CONSTANT / FUNCTION MACROS                                                                                          |
+============================================================================================================================*/
 #define UART_TX_BUF_SIZE 256                                                       /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE 256                                                       /**< UART RX buffer size. */
 
@@ -48,30 +72,118 @@
 #define CENTRAL_LINK_COUNT              0                                          /**< Number of central links used by the application. When changing this number remember to adjust the RAM settings*/
 #define PERIPHERAL_LINK_COUNT           1                                          /**< Number of peripheral links used by the application. When changing this number remember to adjust the RAM settings*/
 
-static uint16_t m_conn_handle = BLE_CONN_HANDLE_INVALID;    /**< Handle of the current connection. */
-static ble_nus_t m_nus;                                                             /**< Structure to identify the Nordic UART Service. */
+/*===========================================================================================================================|
+|  LOCAL DATA TYPES AND STRUCTURES                                                                                           |
+============================================================================================================================*/
 
-APP_TIMER_DEF(m_sec_req_timer_id);                                                /**< Security Request timer. */
+
+/*===========================================================================================================================|
+|  LOCAL DATA PROTOTYPES                                                                                                     |
+============================================================================================================================*/
+static uint16_t m_conn_handle = BLE_CONN_HANDLE_INVALID;                           /**< Handle of the current connection. */
+static ble_nus_t m_nus;                                                            /**< Structure to identify the Nordic UART Service. */
+
+APP_TIMER_DEF(m_sec_req_timer_id);                                                 /**< Security Request timer. */
 
 pm_peer_id_t peer_to_be_deleted = PM_PEER_ID_INVALID;
 
-static void pm_evt_handler(pm_evt_t const* p_evt);
-static void sec_req_timeout_handler(void* p_context);
-static void nus_data_handler(ble_nus_t* p_nus, uint8_t* p_data, uint16_t length);
-static void on_conn_params_evt(ble_conn_params_evt_t* p_evt);
-static void conn_params_error_handler(uint32_t nrf_error);
-static void sleep_mode_enter(void);
-static void on_ble_evt(ble_evt_t* p_ble_evt);
-static void ble_evt_dispatch(ble_evt_t* p_ble_evt);
-static void sys_evt_dispatch(uint32_t sys_evt);
-static void bsp_event_handler(bsp_event_t event);
-
-
-
-/**@brief Function for handling Peer Manager events.
+/*===========================================================================================================================|
+| LOCAL FUNCTION PROTOTYPES                                                                                                  |
+|===========================================================================================================================*/
+/**
+ * @brief Function for handling Peer Manager events.
  *
  * @param[in] p_evt  Peer Manager event.
  */
+static void pm_evt_handler(pm_evt_t const* p_evt);
+
+/**
+ * @brief Function for handling the Security Request timer timeout.
+ *
+ * @details This function will be called each time the Security Request timer expires.
+ *
+ * @param[in] p_context  Pointer used for passing some arbitrary information (context) from the
+ *                       app_start_timer() call to the timeout handler.
+ */
+static void sec_req_timeout_handler(void* p_context);
+
+/**
+ * @brief Function for handling the data from the Nordic UART Service.
+ *
+ * @details This function will process the data received from the Nordic UART BLE Service and send
+ *          it to the UART module.
+ *
+ * @param[in] p_nus    Nordic UART Service structure.
+ * @param[in] p_data   Data to be send to UART module.
+ * @param[in] length   Length of the data.
+ */
+/**@snippet [Handling the data received over BLE] */
+static void nus_data_handler(ble_nus_t* p_nus, uint8_t* p_data, uint16_t length);
+
+/**
+ * @brief Function for handling the Connection Parameter events.
+ *
+ * @details This function will be called for all events in the Connection Parameters Module which
+ *          are passed to the application.
+ *          @note All this function does is to disconnect. This could have been done by simply
+ *                setting the disconnect_on_fail configuration parameter, but instead we use the
+ *                event handler mechanism to demonstrate its use.
+ *
+ * @param[in] p_evt  Event received from the Connection Parameters Module.
+ */
+static void on_conn_params_evt(ble_conn_params_evt_t* p_evt);
+
+/**
+ * @brief Function for handling a Connection Parameters error.
+ *
+ * @param[in] nrf_error  Error code containing information about what went wrong.
+ */
+static void conn_params_error_handler(uint32_t nrf_error);
+
+/**
+ * @brief Function for putting the chip into sleep mode.
+ *
+ * @note This function will not return.
+ */
+static void sleep_mode_enter(void);
+
+/**
+ * @brief Function for handling the Application's BLE Stack events.
+ *
+ * @param[in] p_ble_evt  Bluetooth stack event.
+ */
+static void on_ble_evt(ble_evt_t* p_ble_evt);
+
+/**
+ * @brief Function for dispatching a BLE stack event to all modules with a BLE stack event handler.
+ *
+ * @details This function is called from the BLE Stack event interrupt handler after a BLE stack
+ *          event has been received.
+ *
+ * @param[in] p_ble_evt  Bluetooth stack event.
+ */
+static void ble_evt_dispatch(ble_evt_t* p_ble_evt);
+
+/**
+ * @brief Function for dispatching a system event to interested modules.
+ *
+ * @details This function is called from the System event interrupt handler after a system
+ *          event has been received.
+ *
+ * @param[in] sys_evt  System stack event.
+ */
+static void sys_evt_dispatch(uint32_t sys_evt);
+
+/**
+ * @brief Function for handling events from the BSP module.
+ *
+ * @param[in]   event   Event generated by button press.
+ */
+static void bsp_event_handler(bsp_event_t event);
+
+/*===========================================================================================================================|
+|  LOCAL FUNCTIONS                                                                                                           |
+|===========================================================================================================================*/
 static void pm_evt_handler(pm_evt_t const* p_evt)
 {
     ret_code_t err_code;
@@ -219,13 +331,6 @@ static void pm_evt_handler(pm_evt_t const* p_evt)
     }
 }
 
-/**@brief Function for handling the Security Request timer timeout.
- *
- * @details This function will be called each time the Security Request timer expires.
- *
- * @param[in] p_context  Pointer used for passing some arbitrary information (context) from the
- *                       app_start_timer() call to the timeout handler.
- */
 static void sec_req_timeout_handler(void* p_context)
 {
     uint32_t err_code;
@@ -240,63 +345,6 @@ static void sec_req_timeout_handler(void* p_context)
     }
 }
 
-/**@brief Function for the Timer initialization.
- *
- * @details Initializes the timer module. This creates and starts application timers.
- */
-void timers_init(void)
-{
-    uint32_t err_code;
-
-    // Initialize timer module.
-    APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, NULL);
-
-    // Create Security Request timer.
-    err_code = app_timer_create(&m_sec_req_timer_id,
-                                APP_TIMER_MODE_SINGLE_SHOT,
-                                sec_req_timeout_handler);
-    APP_ERROR_CHECK(err_code);
-}
-
-/**@brief Function for the GAP initialization.
- *
- * @details This function sets up all the necessary GAP (Generic Access Profile) parameters of the
- *          device including the device name, appearance, and the preferred connection parameters.
- */
-void gap_params_init(void)
-{
-    uint32_t err_code;
-    ble_gap_conn_params_t gap_conn_params;
-    ble_gap_conn_sec_mode_t sec_mode;
-
-    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&sec_mode);
-
-    err_code = sd_ble_gap_device_name_set(&sec_mode,
-                                          (const uint8_t*)DEVICE_NAME,
-                                          strlen(DEVICE_NAME));
-    APP_ERROR_CHECK(err_code);
-
-    memset(&gap_conn_params, 0, sizeof(gap_conn_params));
-
-    gap_conn_params.min_conn_interval = MIN_CONN_INTERVAL;
-    gap_conn_params.max_conn_interval = MAX_CONN_INTERVAL;
-    gap_conn_params.slave_latency = SLAVE_LATENCY;
-    gap_conn_params.conn_sup_timeout = CONN_SUP_TIMEOUT;
-
-    err_code = sd_ble_gap_ppcp_set(&gap_conn_params);
-    APP_ERROR_CHECK(err_code);
-}
-
-/**@brief Function for handling the data from the Nordic UART Service.
- *
- * @details This function will process the data received from the Nordic UART BLE Service and send
- *          it to the UART module.
- *
- * @param[in] p_nus    Nordic UART Service structure.
- * @param[in] p_data   Data to be send to UART module.
- * @param[in] length   Length of the data.
- */
-/**@snippet [Handling the data received over BLE] */
 static void nus_data_handler(ble_nus_t* p_nus, uint8_t* p_data, uint16_t length)
 {
     p_data[length] = 0;
@@ -304,34 +352,6 @@ static void nus_data_handler(ble_nus_t* p_nus, uint8_t* p_data, uint16_t length)
     APP_LOG("\r\n");
 }
 
-/**@brief Function for initializing services that will be used by the application.
- *
- * @details Initialize the Glucose, Battery and Device Information services.
- */
-void services_init(void) // TODO: Was muss / soll hier alles gemacht werden?
-{
-    uint32_t err_code;
-
-    ble_nus_init_t nus_init;
-
-    memset(&nus_init, 0, sizeof(nus_init));
-
-    nus_init.data_handler = nus_data_handler;
-
-    err_code = ble_nus_init(&m_nus, &nus_init);
-    APP_ERROR_CHECK(err_code);
-}
-
-/**@brief Function for handling the Connection Parameter events.
- *
- * @details This function will be called for all events in the Connection Parameters Module which
- *          are passed to the application.
- *          @note All this function does is to disconnect. This could have been done by simply
- *                setting the disconnect_on_fail configuration parameter, but instead we use the
- *                event handler mechanism to demonstrate its use.
- *
- * @param[in] p_evt  Event received from the Connection Parameters Module.
- */
 static void on_conn_params_evt(ble_conn_params_evt_t* p_evt)
 {
     uint32_t err_code;
@@ -342,41 +362,11 @@ static void on_conn_params_evt(ble_conn_params_evt_t* p_evt)
     }
 }
 
-/**@brief Function for handling a Connection Parameters error.
- *
- * @param[in] nrf_error  Error code containing information about what went wrong.
- */
 static void conn_params_error_handler(uint32_t nrf_error)
 {
     APP_ERROR_HANDLER(nrf_error);
 }
 
-/**@brief Function for initializing the Connection Parameters module.
- */
-void conn_params_init(void)
-{
-    uint32_t err_code;
-    ble_conn_params_init_t cp_init;
-
-    memset(&cp_init, 0, sizeof(cp_init));
-
-    cp_init.p_conn_params = NULL;
-    cp_init.first_conn_params_update_delay = FIRST_CONN_PARAMS_UPDATE_DELAY;
-    cp_init.next_conn_params_update_delay = NEXT_CONN_PARAMS_UPDATE_DELAY;
-    cp_init.max_conn_params_update_count = MAX_CONN_PARAM_UPDATE_COUNT;
-    cp_init.start_on_notify_cccd_handle = BLE_GATT_HANDLE_INVALID;
-    cp_init.disconnect_on_fail = false;
-    cp_init.evt_handler = on_conn_params_evt;
-    cp_init.error_handler = conn_params_error_handler;
-
-    err_code = ble_conn_params_init(&cp_init);
-    APP_ERROR_CHECK(err_code);
-}
-
-/**@brief Function for putting the chip into sleep mode.
- *
- * @note This function will not return.
- */
 static void sleep_mode_enter(void)
 {
     uint32_t err_code = bsp_indication_set(BSP_INDICATE_IDLE);
@@ -391,10 +381,6 @@ static void sleep_mode_enter(void)
     APP_ERROR_CHECK(err_code);
 }
 
-/**@brief Function for handling the Application's BLE Stack events.
- *
- * @param[in] p_ble_evt  Bluetooth stack event.
- */
 static void on_ble_evt(ble_evt_t* p_ble_evt)
 {
     uint32_t err_code = NRF_SUCCESS;                    //lint -save -e438 // Last value assigned to variable 'err_code' not used
@@ -483,13 +469,6 @@ static void on_ble_evt(ble_evt_t* p_ble_evt)
     }
 }
 
-/**@brief Function for dispatching a BLE stack event to all modules with a BLE stack event handler.
- *
- * @details This function is called from the BLE Stack event interrupt handler after a BLE stack
- *          event has been received.
- *
- * @param[in] p_ble_evt  Bluetooth stack event.
- */
 static void ble_evt_dispatch(ble_evt_t* p_ble_evt)
 {
     ble_conn_state_on_ble_evt(p_ble_evt);
@@ -501,23 +480,117 @@ static void ble_evt_dispatch(ble_evt_t* p_ble_evt)
     ble_advertising_on_ble_evt(p_ble_evt);
 }
 
-/**@brief Function for dispatching a system event to interested modules.
- *
- * @details This function is called from the System event interrupt handler after a system
- *          event has been received.
- *
- * @param[in] sys_evt  System stack event.
- */
 static void sys_evt_dispatch(uint32_t sys_evt)
 {
     fs_sys_event_handler(sys_evt);
     ble_advertising_on_sys_evt(sys_evt);
 }
 
-/**@brief Function for initializing the BLE stack.
- *
- * @details Initializes the SoftDevice and the BLE event interrupt.
- */
+static void bsp_event_handler(bsp_event_t event)
+{
+    uint32_t err_code;
+
+    switch (event) {
+    case BSP_EVENT_SLEEP:
+        sleep_mode_enter();
+        break;//BSP_EVENT_SLEEP
+
+    case BSP_EVENT_DISCONNECT:
+        err_code = sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
+        if (err_code != NRF_ERROR_INVALID_STATE) {
+            APP_ERROR_CHECK(err_code);
+        }
+        break;//BSP_EVENT_DISCONNECT
+
+    case BSP_EVENT_WHITELIST_OFF:
+        advertising_restart();
+        break;//BSP_EVENT_WHITELIST_OFF
+
+    case BSP_EVENT_KEY_1:
+        ble_nus_string_send(&m_nus, (uint8_t*)"KEY1\r\n", 5);
+        break;//BSP_EVENT_KEY_1
+
+    default:
+        break;
+    }
+}
+
+/*===========================================================================================================================|
+|  GLOBAL FUNCTIONS                                                                                                          |
+|===========================================================================================================================*/
+void timers_init(void)
+{
+    uint32_t err_code;
+
+    // Initialize timer module.
+    APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, NULL);
+
+    // Create Security Request timer.
+    err_code = app_timer_create(&m_sec_req_timer_id,
+                                APP_TIMER_MODE_SINGLE_SHOT,
+                                sec_req_timeout_handler);
+    APP_ERROR_CHECK(err_code);
+}
+
+void gap_params_init(void)
+{
+    uint32_t err_code;
+    ble_gap_conn_params_t gap_conn_params;
+    ble_gap_conn_sec_mode_t sec_mode;
+
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&sec_mode);
+
+    err_code = sd_ble_gap_device_name_set(&sec_mode,
+                                          (const uint8_t*)DEVICE_NAME,
+                                          strlen(DEVICE_NAME));
+    APP_ERROR_CHECK(err_code);
+
+    memset(&gap_conn_params, 0, sizeof(gap_conn_params));
+
+    gap_conn_params.min_conn_interval = MIN_CONN_INTERVAL;
+    gap_conn_params.max_conn_interval = MAX_CONN_INTERVAL;
+    gap_conn_params.slave_latency = SLAVE_LATENCY;
+    gap_conn_params.conn_sup_timeout = CONN_SUP_TIMEOUT;
+
+    err_code = sd_ble_gap_ppcp_set(&gap_conn_params);
+    APP_ERROR_CHECK(err_code);
+}
+
+void services_init(void)
+{
+    uint32_t err_code;
+
+    ble_nus_init_t nus_init;
+
+    memset(&nus_init, 0, sizeof(nus_init));
+
+    nus_init.data_handler = nus_data_handler;
+
+    err_code = ble_nus_init(&m_nus, &nus_init);
+    APP_ERROR_CHECK(err_code);
+}
+
+
+void conn_params_init(void)
+{
+    uint32_t err_code;
+    ble_conn_params_init_t cp_init;
+
+    memset(&cp_init, 0, sizeof(cp_init));
+
+    cp_init.p_conn_params = NULL;
+    cp_init.first_conn_params_update_delay = FIRST_CONN_PARAMS_UPDATE_DELAY;
+    cp_init.next_conn_params_update_delay = NEXT_CONN_PARAMS_UPDATE_DELAY;
+    cp_init.max_conn_params_update_count = MAX_CONN_PARAM_UPDATE_COUNT;
+    cp_init.start_on_notify_cccd_handle = BLE_GATT_HANDLE_INVALID;
+    cp_init.disconnect_on_fail = false;
+    cp_init.evt_handler = on_conn_params_evt;
+    cp_init.error_handler = conn_params_error_handler;
+
+    err_code = ble_conn_params_init(&cp_init);
+    APP_ERROR_CHECK(err_code);
+}
+
 void ble_stack_init(void)
 {
     uint32_t err_code;
@@ -549,44 +622,6 @@ void ble_stack_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
-/**@brief Function for handling events from the BSP module.
- *
- * @param[in]   event   Event generated by button press.
- */
-static void bsp_event_handler(bsp_event_t event)
-{
-    uint32_t err_code;
-
-    switch (event) {
-    case BSP_EVENT_SLEEP:
-        sleep_mode_enter();
-        break;//BSP_EVENT_SLEEP
-
-    case BSP_EVENT_DISCONNECT:
-        err_code = sd_ble_gap_disconnect(m_conn_handle, BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION);
-        if (err_code != NRF_ERROR_INVALID_STATE) {
-            APP_ERROR_CHECK(err_code);
-        }
-        break;//BSP_EVENT_DISCONNECT
-
-    case BSP_EVENT_WHITELIST_OFF:
-        advertising_restart();
-        break;//BSP_EVENT_WHITELIST_OFF
-
-    case BSP_EVENT_KEY_1:
-        ble_nus_string_send(&m_nus, (uint8_t*)"KEY1\r\n", 5);
-        break;//BSP_EVENT_KEY_1
-
-    default:
-        break;
-    }
-}
-
-/**@brief Function for the Peer Manager initialization.
- *
- * @param[in] erase_bonds  Indicates whether bonding information should be cleared from
- *                         persistent storage during initialization of the Peer Manager.
- */
 void peer_manager_init(bool erase_bonds)
 {
     ble_gap_sec_params_t sec_param;
@@ -623,10 +658,6 @@ void peer_manager_init(bool erase_bonds)
     APP_ERROR_CHECK(err_code);
 }
 
-/**@brief Function for initializing buttons and leds.
- *
- * @param[out] p_erase_bonds  Will be true if the clear bonding button was pressed to wake the application up.
- */
 void buttons_leds_init(bool* p_erase_bonds)
 {
     bsp_event_t startup_event;
@@ -642,8 +673,6 @@ void buttons_leds_init(bool* p_erase_bonds)
     *p_erase_bonds = (startup_event == BSP_EVENT_CLEAR_BONDING_DATA);
 }
 
-/**@brief Function for the Power manager.
- */
 void power_manage(void)
 {
     uint32_t err_code = sd_app_evt_wait();

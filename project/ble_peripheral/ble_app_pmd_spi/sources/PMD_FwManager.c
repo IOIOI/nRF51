@@ -13,48 +13,98 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
+
+/*************************************************************************************************************************//**
+* \file PMD_FwManager.c                                             <!-- Has to be changed according to the real file name -->
+*
+* \brief Firmware manager for the PMD project.                                                      <!-- Brief description -->
+*
+* This module handles binaries for the STM32 boards of the PMD.                                  <!-- Detailed description -->
+* It handles Bluetooth data, stores data in a flash memory and sends the stored binary to the PMD.
+*
+******************************************************************************************************************************
+* <!-- Authors -->
+******************************************************************************************************************************
+*
+* \author Daniel Tatzel                                                                      <!-- One line for each author -->
+*
+*****************************************************************************************************************************/
+
+/*===========================================================================================================================|
+|  INCLUDES                                                                                                                  |
+============================================================================================================================*/
 #include "PMD_FwManager.h"
 #include "PMD_SpiFlash.h"
 
-#define BIN_1_ADDR ((uint32_t) 0x0)
-#define BIN_2_ADDR ((uint32_t) 0x80000)
+/*===========================================================================================================================|
+|  LOCAL CONSTANT / FUNCTION MACROS                                                                                          |
+============================================================================================================================*/
+#define BIN_1_ADDR ((uint32_t) 0x0)                                              /**< Memory address of the first binary. */
+#define BIN_2_ADDR ((uint32_t) 0x80000)                                          /**< Memory address of the second binary. */
 
-#define BIN_INFO_OFFEST ((uint32_t) 0)
-#define INFO_STATUS_OFFEST ((uint8_t) BIN_INFO_OFFEST)
-#define INFO_STATUS_LENGTH ((uint8_t) 1)
-#define INFO_SIZE_OFFEST ((uint8_t) INFO_STATUS_OFFEST + INFO_STATUS_LENGTH)
-#define INFO_SIZE_LENGTH ((uint8_t) 4)
-#define INFO_VERSION_OFFEST ((uint8_t) INFO_SIZE_OFFEST + INFO_SIZE_LENGTH)
-#define INFO_VERSION_LENGTH ((uint8_t) 4)
-#define INFO_HASH_OFFEST ((uint8_t) INFO_VERSION_OFFEST + INFO_VERSION_LENGTH)
-#define INFO_HASH_LENGTH ((uint8_t) 2)
-#define INFO_CRC_OFFEST ((uint8_t) INFO_HASH_OFFEST + INFO_HASH_LENGTH)
-#define INFO_CRC_LENGTH ((uint8_t) 2)
+#define BIN_INFO_OFFEST ((uint32_t) 0)                                           /**< Address offset of the binary information block. */
+#define INFO_STATUS_OFFEST ((uint8_t) BIN_INFO_OFFEST)                           /**< Address offset of the binary status. */
+#define INFO_STATUS_LENGTH ((uint8_t) 1)                                         /**< Length of the binary status in bytes. */
+#define INFO_SIZE_OFFEST ((uint8_t) INFO_STATUS_OFFEST + INFO_STATUS_LENGTH)     /**< Address offset of the binary size. */
+#define INFO_SIZE_LENGTH ((uint8_t) 4)                                           /**< Length of the binary size in bytes. */
+#define INFO_VERSION_OFFEST ((uint8_t) INFO_SIZE_OFFEST + INFO_SIZE_LENGTH)      /**< Address offset of the binary version. */
+#define INFO_VERSION_LENGTH ((uint8_t) 4)                                        /**< Length of the binary version in bytes. */
+#define INFO_HASH_OFFEST ((uint8_t) INFO_VERSION_OFFEST + INFO_VERSION_LENGTH)   /**< Address offset of the binary hash. */
+#define INFO_HASH_LENGTH ((uint8_t) 2)                                           /**< Length of the binary hash in bytes. */
+#define INFO_CRC_OFFEST ((uint8_t) INFO_HASH_OFFEST + INFO_HASH_LENGTH)          /**< Address offset of the binary crc. */
+#define INFO_CRC_LENGTH ((uint8_t) 2)                                            /**< Length of the binary crc in bytes. */
 
-#define SIG_OFFEST ((uint32_t) 0x80)
-#define SIG_LENGTH ((uint32_t) 0x80)
+#define SIG_OFFEST ((uint32_t) 0x80)                                             /**< Address offset of the signature for the binary. */
+#define SIG_LENGTH ((uint32_t) 0x80)                                             /**< Length of the signature of the binary in bytes. */
 
-#define MASTER_KEY_OFFEST ((uint32_t) 0x100)
-#define MASTER_KEY_LENGTH ((uint32_t) 0x80)
+#define MASTER_KEY_OFFEST ((uint32_t) 0x100)                                     /**< Address offset of the master key for the binary. */
+#define MASTER_KEY_LENGTH ((uint32_t) 0x80)                                      /**< Length of the master key for the binary in bytes. */
 
-#define SLAVE_KEY_OFFEST ((uint32_t) 0x180)
-#define SLAVE_KEY_LENGTH ((uint32_t) 0x80)
+#define SLAVE_KEY_OFFEST ((uint32_t) 0x180)                                      /**< Address offset of the slave key for the binary. */
+#define SLAVE_KEY_LENGTH ((uint32_t) 0x80)                                       /**< Length of the slave key for the binary in bytes. */
 
-#define BIN_OFFEST ((uint32_t) 0x200)
+#define BIN_OFFEST ((uint32_t) 0x200)                                            /**< Address offset of the binary. */
 
-#define CURRENT_BINARY ((uint8_t) 0x80)
-#define OLD_BINARY ((uint8_t) 0xFF)
-#define NEW_BINARY ((uint8_t) 0x00)
+#define CURRENT_BINARY ((uint8_t) 0x80)                                          /**< Binary status value for the current active binary. */
+#define OLD_BINARY ((uint8_t) 0xFF)                                              /**< Binary status value of the old (inactive) binary. */
+#define NEW_BINARY ((uint8_t) 0x00)                                              /**< Binary status value of a newly transmitted and inactive binary. */
 
-#define MEMORY_SIZE ((uint32_t) 0x100000)
-#define MAX_BIN_SIZE ((uint32_t) 0x80000)
+#define MEMORY_SIZE ((uint32_t) 0x100000)                                        /**< Maximum size of the flash memory. */
+#define MAX_BIN_SIZE ((uint32_t) 0x80000)                                        /**< Maximum allowed size of a binary. */
 
+/*===========================================================================================================================|
+|  LOCAL DATA TYPES AND STRUCTURES                                                                                           |
+============================================================================================================================*/
+
+
+/*===========================================================================================================================|
+|  LOCAL DATA PROTOTYPES                                                                                                     |
+============================================================================================================================*/
+
+
+/*===========================================================================================================================|
+| LOCAL FUNCTION PROTOTYPES                                                                                                  |
+|===========================================================================================================================*/
+/**
+ * @brief Function for erasing the memory occupied by the specified binary.
+ *
+ * @param[in] binaryStartAddress    Address (without offset) of the memory which must be erased.
+ */
 static void eraseBinary(uint32_t binaryStartAddress);
+
+/**
+ * @brief Function for getting the address of the current inactive binary.
+ *
+ * This function returns the address of the inactive binary which can be overwritten with a new one.
+ *
+ * @retval BIN_1_ADDR                Address of the first binary (withoug offset) if the first binary is currently not in use.
+ * @retval BIN_2_ADDR                Address of the second binary (withoug offset) if the second binary is currently not in use.
+ */
 static uint32_t getAddrOfInactiveBinary();
 
-/* ########################## */
-/* BEGINN OF STATIC FUNCTIONS */
-/* ########################## */
+/*===========================================================================================================================|
+|  LOCAL FUNCTIONS                                                                                                           |
+|===========================================================================================================================*/
 static void eraseBinary(uint32_t binaryStartAddress)
 {
     int index;
@@ -62,7 +112,7 @@ static void eraseBinary(uint32_t binaryStartAddress)
 
     tmpAddr.address = binaryStartAddress;
 
-    for(index = 0; 8 > index; index++) // TODO: Magical Numbers ersetzen
+    for(index = 0; BYTE_SIZE > index; index++)
     {
         blockErase(tmpAddr);
         tmpAddr.addressBytes[UPPER_BYTE]++;
@@ -90,17 +140,13 @@ static uint32_t getAddrOfInactiveBinary()
         return BIN_2_ADDR;
     }
 }
-/* ########################## */
-/* END OF STATIC FUNCTIONS    */
-/* ########################## */
 
-/* ########################## */
-/* BEGINN OF GLOBAL FUNCTIONS */
-/* ########################## */
-
+/*===========================================================================================================================|
+|  GLOBAL FUNCTIONS                                                                                                          |
+|===========================================================================================================================*/
 void initFwManager()
 {
-    spi_init();
+    initSPI();
 }
 
 void getBinaryInfo(uint32_t addr, struct binaryInfo* info)
@@ -122,34 +168,34 @@ void getBinaryInfo(uint32_t addr, struct binaryInfo* info)
         return;
     }
 
-    info->status = data.rx_data[0];
+    info->status = data.rx_data[INFO_STATUS_OFFEST];
 
     for(index = INFO_SIZE_OFFEST; INFO_SIZE_OFFEST + INFO_SIZE_LENGTH > index; index++)
     {
-        info->size = info->size << 8;
+        info->size = info->size << BYTE_SIZE;
         info->size = info->size | data.rx_data[index];
     }
 
     for(index = INFO_VERSION_OFFEST; INFO_VERSION_OFFEST + INFO_VERSION_LENGTH > index; index++)
     {
-        info->version = info->version << 8;
+        info->version = info->version << BYTE_SIZE;
         info->version = info->version | data.rx_data[index];
     }
 
     for(index = INFO_HASH_OFFEST; INFO_HASH_OFFEST + INFO_HASH_LENGTH > index; index++)
     {
-        info->hash = info->hash << 8;
+        info->hash = info->hash << BYTE_SIZE;
         info->hash = info->hash | data.rx_data[index];
     }
 
     for(index = INFO_CRC_OFFEST; INFO_CRC_OFFEST + INFO_CRC_LENGTH > index; index++)
     {
-        info->crc = info->crc << 8;
+        info->crc = info->crc << BYTE_SIZE;
         info->crc = info->crc | data.rx_data[index];
     }
 }
 
-uint8_t writeBinary(uint8_t* data, uint32_t data_length)
+uint8_t writeBinary(uint8_t* data, uint32_t dataLength)
 {
     static volatile uint32_t addr = 0;
     static volatile uint32_t currAddress = 0;
@@ -157,7 +203,7 @@ uint8_t writeBinary(uint8_t* data, uint32_t data_length)
     union MemoryAddress tmpAddr;
     uint8_t index;
 
-    if(NULL == (data) || (0 == data_length))
+    if(NULL == (data) || (0 == dataLength))
     {
 #ifdef DEBUG
         NRF_LOG("RESET Progress\r\n");
@@ -188,9 +234,9 @@ uint8_t writeBinary(uint8_t* data, uint32_t data_length)
 
         eraseBinary(addr);
 
-        for(index = 1; 4 >= index; index++)
+        for(index = INFO_SIZE_OFFEST; INFO_SIZE_LENGTH >= index; index++)
         {
-            binarySize = binarySize << 8;
+            binarySize = binarySize << BYTE_SIZE;
             binarySize = binarySize | data[index];
         }
 
@@ -200,7 +246,7 @@ uint8_t writeBinary(uint8_t* data, uint32_t data_length)
         NRF_LOG("\r\n");
 #endif
 
-        data[0] = NEW_BINARY;
+        data[INFO_STATUS_OFFEST] = NEW_BINARY;
     }
 
     tmpAddr.address = addr + currAddress;
@@ -211,8 +257,8 @@ uint8_t writeBinary(uint8_t* data, uint32_t data_length)
     NRF_LOG("\r\n");
 #endif
 
-    splitAndStoreData(data, data_length, tmpAddr);
-    currAddress += data_length;
+    splitAndStoreData(data, dataLength, tmpAddr);
+    currAddress += dataLength;
 
     if(binarySize + BIN_OFFEST == currAddress)
     {
@@ -236,6 +282,3 @@ void writeBinaryStatus(uint8_t status, uint32_t binaryAddr)
 
     pageProgram(&status, 1, binAddr);
 }
-/* ########################## */
-/* END OF GLOBAL FUNCTIONS    */
-/* ########################## */

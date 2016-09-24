@@ -5,13 +5,12 @@
 #define BIN_1_ADDR ((uint32_t) 0x0)
 #define BIN_2_ADDR ((uint32_t) 0x80000)
 #define SIZE 260
-// #define SIZE 384
 
-void spi_testFncWrite()
+void fwM_testFncWrite()
 {
     union MemoryAddress addr;
     uint8_t data[SIZE];
-    uint32_t data_length = SIZE;
+    uint32_t dataLength = SIZE;
     uint16_t i;
 
     chipErase();
@@ -23,10 +22,10 @@ void spi_testFncWrite()
 
     addr.address = BIN_1_ADDR;
 
-    splitAndStoreData(data, data_length, addr);
+    splitAndStoreData(data, dataLength, addr);
 }
 
-void spi_testFncRead(uint32_t tmpAddr)
+void fwM_testFncRead(uint32_t tmpAddr)
 {
     union MemoryAddress addr;
     struct transmissionData recData;
@@ -55,7 +54,7 @@ void spi_testFncRead(uint32_t tmpAddr)
     }
 }
 
-void spi_testFncInfo()
+void fwM_testFncInfo()
 {
     struct binaryInfo info;
     getBinaryInfo(BIN_1_ADDR, &info);
@@ -72,10 +71,10 @@ void spi_testFncInfo()
     NRF_LOG("\r\n");
 }
 
-void spi_testFncBin()
+void fwM_testFncBin()
 {
     uint8_t data[600];
-    uint32_t data_length = 384;
+    uint32_t dataLength = 384;
     uint16_t i;
 
     chipErase();
@@ -123,18 +122,18 @@ void spi_testFncBin()
 
 //     writeBinaryStatus(0x00, BIN_1_ADDR);
 
-    spi_testFncInfo();
+    fwM_testFncInfo();
 
-    writeBinary(data, data_length);
-    data_length = 216;
-    writeBinary(&data[384], data_length);
+    writeBinary(data, dataLength);
+    dataLength = 216;
+    writeBinary(&data[384], dataLength);
 }
 
-void testFnc()
+void fwM_testFnc()
 {
-//     spi_testFncWrite();
-    spi_testFncBin();
-    spi_testFncInfo();
-    spi_testFncRead(0);
-    spi_testFncRead(0x80000);
+//     fwM_testFncWrite();
+    fwM_testFncBin();
+    fwM_testFncInfo();
+    fwM_testFncRead(0);
+    fwM_testFncRead(0x80000);
 }

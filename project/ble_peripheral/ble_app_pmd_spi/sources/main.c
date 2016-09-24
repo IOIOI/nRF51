@@ -10,17 +10,22 @@
  *
  */
 
-/** @file
- *
- * @defgroup ble_sdk_app_gls_main main.c
- * @{
- * @ingroup ble_sdk_app_gls
- * @brief Glucose Meter service Sample Application
- *
- * This file contains the source code for a sample application using the Glucose Meter service
- * (and also Battery and Device Information services). This application uses the
- * @ref srvlib_conn_params module.
- */
+/*************************************************************************************************************************//**
+* \file main.c                                                      <!-- Has to be changed according to the real file name -->
+*
+* \brief Main Module for the PMD Bluetooth applications.                                            <!-- Brief description -->
+*
+* This module is the entry point of the whole project.                                           <!-- Detailed description -->
+* It is responsible for initialising the others modules.
+*
+******************************************************************************************************************************
+* <!-- Authors -->
+******************************************************************************************************************************
+*
+* \author Nordic Semiconductor                                                               <!-- One line for each author -->
+* \author Daniel Tatzel
+*
+*****************************************************************************************************************************/
 
 #include "app_error.h"
 #include "boards.h"
